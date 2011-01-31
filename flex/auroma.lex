@@ -50,7 +50,7 @@
 \\(?i:nl)                       return LINE_BREAK;
     /* The unknown command! */
 \\[[:alpha:]]+                  {
-    cout << "UC:'" << YYText() << "'";
+    cout << endl << "\033[01;31mline:" << yylineno << " UC:\033[00m'" << YYText() << "'" << endl;
     return UNKNOWN_COMMAND;
  }
 
