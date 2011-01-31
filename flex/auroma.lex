@@ -18,7 +18,9 @@
          LINE_BREAK,
          COMMA,
          PERIOD,
+         SEMICOLON,
          M_DASH,
+         NEWLINE,
          UNKNOWN_COMMAND,
      };
 %}
@@ -64,9 +66,13 @@
     return STRING;
  }
 
+    /* Punctuations marks */
 \x97                            cout << "--"; return M_DASH;
 ,                               cout << ","; return COMMA;
+;                               cout << ";"; return SEMICOLON;
 \.                              return PERIOD;
+\r                              /* ignore */
+\n                              cout << endl; return NEWLINE;
 
 
 %%
