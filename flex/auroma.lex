@@ -1,13 +1,14 @@
+ /* Options */
 %option prefix="auroma"
 
 %option c++
 %option yylineno
 %option noyywrap
 
+ /* Start condition needed to scan metadata. */
+%x AT_HEAD                      
 
-%x AT_HEAD
-
-
+ /* Definitions */
 commandTerminator [[:space:]\\{]
 %{
      #include <iostream>
@@ -44,6 +45,11 @@ commandTerminator [[:space:]\\{]
 %}
 
 %%
+     /*
+      * We expect there to be special metadata at the head of text
+      * files. We begin with the start condition AT_HEAD in order to
+      * deal with this information.
+      */
      BEGIN(AT_HEAD);
 
     /*
@@ -54,9 +60,11 @@ commandTerminator [[:space:]\\{]
 <AT_HEAD>^Volume:.*\n           /* Ignore the "Volume:" header. */
 <AT_HEAD>^[[:space:]]*\n        /* Ignore blank lines in the header */
 <AT_HEAD>.                      {
-    /* We should switch back to the normal 'INITIAL' start-condition
-     * upon discovering any character other than the special sequences
-     * permitted in the Auroma texts. */
+    /*
+     * Switch back to the normal 'INITIAL' start-condition upon
+     * discovering any character other than the special sequences
+     * permitted in the metadata section.
+     */
     BEGIN(INITIAL);
     unput(yytext[0]);
  }
