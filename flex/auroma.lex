@@ -9,13 +9,15 @@
 %x AT_HEAD                      
 
  /* Definitions */
-commandTerminator [[:space:]\\{]
+EOC                  [[:space:]\\{]              /* command terminator */
+
 %{
      #include <iostream>
      using namespace std;
 
      enum tokens {
-         BOOK_TITLE_CMD = 1,         /* For book titles. */
+         BOOK_PART_TITLE_CMD = 1,    /* For part titles. */
+         BOOK_PART_NUMBER_CMD,       /* For part numbers. */
          CHAPTER_NUMBER_CMD,         /* e.g. Chapter IX */
          CHAPTER_TITLE_CMD,          /* Chapter Headings. */
          CHAPTER_GROUP_TITLE_CMD,    /* Title for a group of chapters. */
@@ -29,24 +31,27 @@ commandTerminator [[:space:]\\{]
          FOOTNOTE_QUADSPACE_CMD,     /* 12pt. space in a footnote context */
          POEM_CMD,                   /* Enter poem mode. */
          PROSE_CMD,                  /* return to default (prose) mode */
+         ENUMERATION_ITEM_CMD,
          BOLD_ITALICS_FACE_CMD,      /* Bold and italics. */
          BOLD_FACE_CMD,
          ITALICS_FACE_CMD,
-         SLANT_CMD,                  /* slanted text */
+         SLANT_CMD,                  /* Slanted text. */
          NOINDENT_CMD,               /* Begin paragraph without indentation. */
-         FOOTER_CENTERED_TEXT_CMD,  /* Centered text at the footer of a page. */
-         DROP_CMD,
+         FOOTER_CENTERED_TEXT_CMD,   /* Centered text at the footer of a page.*/
+         DROP_CMD,                   /* Enlarge the first letter which follows*/
          NODROP_CMD,
          LINE_BREAK_CMD,
          DOTS_CMD,                   /* ... */
-         DOTSNS_CMD,                 /* dots without a space following them */
-         TSTAR_CMD,                  /* triple star, centered. */
+         DOTSNS_CMD,                 /* Dots without a space following them */
+         TSTAR_CMD,                  /* Triple star, centered. */
+         PAGE_CMD,                   /* Page break */
          UNKNOWN_COMMAND,
          BEGIN_BLOCK,
          END_BLOCK,
          STRING,
 
-         LONG_DASH,
+         N_DASH,
+         M_DASH,
          SINGLE_QUOTE,
          DOUBLE_QUOTES,
          OPENING_SINGLE_QUOTE,
@@ -57,6 +62,7 @@ commandTerminator [[:space:]\\{]
          OPENING_SQUARE_BRACKET,
          CLOSING_SQUARE_BRACKET,
          PUNCTUATION_MARK,
+
          NEWLINE,
          WHITE_SPACE,
      };
@@ -90,61 +96,66 @@ commandTerminator [[:space:]\\{]
     /*
      * Handle commands.
      */
-\\(?i:tpt)/{commandTerminator}     return BOOK_TITLE_CMD;
-\\(?i:tc)/{commandTerminator}      return CHAPTER_TITLE_CMD;
-\\(?i:tcf)/{commandTerminator}     return CHAPTER_TITLE_CMD;
-\\(?i:tcfup)/{commandTerminator}   return CHAPTER_GROUP_TITLE_CMD;
-\\(?i:tcsub)/{commandTerminator}   return CHAPTER_GROUP_SUBTITLE_CMD;
-\\(?i:tcn)/{commandTerminator}     return CHAPTER_NUMBER_CMD;
-\\(?i:tscc)/{commandTerminator}    return CHAPTER_TERMINATOR_CENTERED_CMD;
-\\(?i:par)/{commandTerminator}     return PARA_CMD;
-\\(?i:pf)/{commandTerminator}      return NOINDENT_CMD;
-\\(?i:noindent)/{commandTerminator} return NOINDENT_CMD;
-\\(?i:bf)/{commandTerminator}      return NOINDENT_CMD;/* not sure about this */
-\\(?i:csf)/{commandTerminator}     return CHAPTER_HEAD_QUOTE_CMD;
-\\(?i:sf)/{commandTerminator}      return CHAPTER_HEAD_QUOTE_CMD;
-\\(?i:quote)/{commandTerminator}   return QUOTE_CMD;
-\\(?i:sref)/{commandTerminator}    return REFERENCE_CMD;
-\\(?i:pnote)/{commandTerminator}   return FOOTNOTE_CMD;
-\\(?i:note)/{commandTerminator}    return FOOTNOTE_CMD;
-\\(?i:lnote)/{commandTerminator}   return FOOTNOTE_CMD;
-\\(?i:poem)/{commandTerminator}    return POEM_CMD;
-\\(?i:prose)/{commandTerminator}   return PROSE_CMD;
-\\(?i:fnquad)/{commandTerminator}  return FOOTNOTE_QUADSPACE_CMD;
-\\(?i:s)/{commandTerminator}       return SLANT_CMD;
-\\(?i:sforced)/{commandTerminator} return SLANT_CMD;
-\\(?i:ftext)/{commandTerminator}   return FOOTER_CENTERED_TEXT_CMD;
-\\(?i:drop)/{commandTerminator}    return DROP_CMD;
-\\(?i:nodrop)/{commandTerminator}  return NODROP_CMD;
-\\(?i:ftextbi)/{commandTerminator} return BOLD_ITALICS_FACE_CMD;
-\\(?i:ftextb)/{commandTerminator}  return BOLD_FACE_CMD;
-\\(?i:it)/{commandTerminator}      return ITALICS_FACE_CMD;
-\\(?i:nl)/{commandTerminator}      return LINE_BREAK_CMD;
-\\(?i:dots)/{commandTerminator}    return DOTS_CMD;
-\\(?i:sdots)/{commandTerminator}   return DOTS_CMD;
-\\(?i:dotsns)/{commandTerminator}  return DOTSNS_CMD;
-\\(?i:tstar)/{commandTerminator}   return TSTAR_CMD;
-\\(?i:text)/{commandTerminator} /* ignore */
-\\(?i:BC)/{commandTerminator}   /* ignore */
-\\(?i:hbox)/{commandTerminator} /* ignore */
-\\(?i:nh)/{commandTerminator}   /* ignore */
-\\(?i:si)/{commandTerminator}   /* ignore */
-\\(?i:rl)/{commandTerminator}   /* ignore */
-\\(?i:pi)/{commandTerminator}   /* ignore */
-\\(?i:quad)/{commandTerminator} /* ignore */
-\\(?i:pnotes)/{commandTerminator}  /* ignore */
-\\(?i:lnotes)/{commandTerminator}  /* ignore */
-\\(?i:oquad)/{commandTerminator}   /* ignore */
-\\(?i:qquad)/{commandTerminator}   /* ignore */
-\\(?i:medskip)/{commandTerminator} /* ignore */
-\\(?i:bigskip)/{commandTerminator} /* ignore */
-\\(?i:relax)/{commandTerminator}   /* ignore */
-\\(?i:phantom)/{commandTerminator} /* ignore */
-\\(?i:fsqstart)/{commandTerminator} /* ignore */
-\\(?i:fsqend)/{commandTerminator}   /* ignore */
-\\(?i:dropquote)/{commandTerminator}  /* ignore */
-\\(?i:shortlines)/{commandTerminator} /* ignore; but needs to be addressed */
-\\[[:digit:]]/{commandTerminator}     /* ignore; but needs to be addressed */
+\\(?i:tpt)/{EOC}     return BOOK_PART_TITLE_CMD;
+\\(?i:tpn)/{EOC}     return BOOK_PART_NUMBER_CMD;
+\\(?i:tc)/{EOC}      return CHAPTER_TITLE_CMD;
+\\(?i:tcf)/{EOC}     return CHAPTER_TITLE_CMD;
+\\(?i:tcfup)/{EOC}   return CHAPTER_GROUP_TITLE_CMD;
+\\(?i:tcsub)/{EOC}   return CHAPTER_GROUP_SUBTITLE_CMD;
+\\(?i:tcn)/{EOC}     return CHAPTER_NUMBER_CMD;
+\\(?i:tscc)/{EOC}    return CHAPTER_TERMINATOR_CENTERED_CMD;
+\\(?i:par)/{EOC}     return PARA_CMD;
+\\(?i:pf)/{EOC}      return NOINDENT_CMD;
+\\(?i:noindent)/{EOC} return NOINDENT_CMD;
+\\(?i:bf)/{EOC}      return NOINDENT_CMD;/* not sure about this */
+\\(?i:csf)/{EOC}     return CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:sf)/{EOC}      return CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:quote)/{EOC}   return QUOTE_CMD;
+\\(?i:sref)/{EOC}    return REFERENCE_CMD;
+\\(?i:pnote)/{EOC}   return FOOTNOTE_CMD;
+\\(?i:note)/{EOC}    return FOOTNOTE_CMD;
+\\(?i:lnote)/{EOC}   return FOOTNOTE_CMD;
+\\(?i:poem)/{EOC}    return POEM_CMD;
+\\(?i:prose)/{EOC}   return PROSE_CMD;
+\\(?i:sitem)/{EOC}   return ENUMERATION_ITEM_CMD;
+\\(?i:fnquad)/{EOC}  return FOOTNOTE_QUADSPACE_CMD;
+\\(?i:s)/{EOC}       return SLANT_CMD;
+\\(?i:sforced)/{EOC} return SLANT_CMD;
+\\(?i:ftext)/{EOC}   return FOOTER_CENTERED_TEXT_CMD;
+\\(?i:drop)/{EOC}    return DROP_CMD;
+\\(?i:nodrop)/{EOC}  return NODROP_CMD;
+\\(?i:ftextbi)/{EOC} return BOLD_ITALICS_FACE_CMD;
+\\(?i:ftextb)/{EOC}  return BOLD_FACE_CMD;
+\\(?i:it)/{EOC}      return ITALICS_FACE_CMD;
+\\(?i:nl)/{EOC}      return LINE_BREAK_CMD;
+\\(?i:dots)/{EOC}    return DOTS_CMD;
+\\(?i:sdots)/{EOC}   return DOTS_CMD;
+\\(?i:dotsns)/{EOC}  return DOTSNS_CMD;
+\\(?i:tstar)/{EOC}   return TSTAR_CMD;
+^Page/[[:blank:]](--|[[:digit:]]+) return PAGE_CMD;
+
+\\(?i:text)/{EOC} /* ignore */
+\\(?i:BC)/{EOC}   /* ignore */
+\\(?i:hbox)/{EOC} /* ignore */
+\\(?i:nh)/{EOC}   /* ignore */
+\\(?i:si)/{EOC}   /* ignore */
+\\(?i:rl)/{EOC}   /* ignore */
+\\(?i:pi)/{EOC}   /* ignore */
+\\(?i:quad)/{EOC} /* ignore */
+\\(?i:pnotes)/{EOC}  /* ignore */
+\\(?i:lnotes)/{EOC}  /* ignore */
+\\(?i:oquad)/{EOC}   /* ignore */
+\\(?i:qquad)/{EOC}   /* ignore */
+\\(?i:medskip)/{EOC} /* ignore */
+\\(?i:bigskip)/{EOC} /* ignore */
+\\(?i:relax)/{EOC}   /* ignore */
+\\(?i:phantom)/{EOC} /* ignore */
+\\(?i:fsqstart)/{EOC} /* ignore */
+\\(?i:fsqend)/{EOC}   /* ignore */
+\\(?i:dropquote)/{EOC}  /* ignore */
+\\(?i:emptypage)/{EOC}  /* ignore */
+\\(?i:shortlines)/{EOC} /* ignore; but needs to be addressed */
+\\[[:digit:]]/{EOC}     /* ignore; but needs to be addressed */
 
 \.\.\.                          /* ignore dots; handled by \dots */
 [[:space:]]*\*[[:space:]]*\*[[:space:]]*\* /* ignore tstar */
@@ -152,23 +163,34 @@ commandTerminator [[:space:]\\{]
 \}                                 return END_BLOCK;
     /* The unknown command! */
 \\[[:alnum:]]+                  {
-    cout << "\033[01;31mline:"
+    cerr << "\033[01;31mline:"
          << yylineno << " Unknown Command:\033[00m'" << YYText() << "'"
          << endl;
     return UNKNOWN_COMMAND;
  }
 
 
+    /* Punctuations marks */
+\-\-                            return N_DASH;
+\-\-\-|\x97                     return M_DASH;
+`                               return OPENING_SINGLE_QUOTE;
+\x93|``                         return OPENING_DOUBLE_QUOTES;
+\x94|''                         return CLOSING_DOUBLE_QUOTES;
+\'                              return SINGLE_QUOTE;
+\"                              return DOUBLE_QUOTES;
+\(                              return OPENING_PAREN;
+\)                              return CLOSING_PAREN;
+\[                              return OPENING_SQUARE_BRACKET;
+\]                              return CLOSING_SQUARE_BRACKET;
+ /* The default rule for punctuation */
+[[:punct:]]                     return PUNCTUATION_MARK;
+
+
     /* String */
 (?xi:
- ([[:alnum:]] |
-  \-          |
-  \xF1        |                 /* \~n */
-  \xEA        |                 /* \^e */
-  \xE9        |                 /* \'e */
-  \x96        |                 /* long dash */
-  \xE7        |                 /* \c{c} */
-  \xFC        |                 /* \"u */
+ ([[:alnum:]]           |
+  \-                    |
+  \\[uU][[:xdigit:]]{4} |        /* allow for UTF-16 */
   /* Handle Diacritical marks */
   (\\=  |
    \\\. |
@@ -178,39 +200,55 @@ commandTerminator [[:space:]\\{]
    \\^  |
    \\`  |
    \\~  |
-   \\c  )[[:alpha:]])+
- /* Handle the apostrophe s */
+   \\c  )[[:alpha:]]    |
+  \\[ ]                         /* allow escaped spaces to be part of strings */
+ )+
+ /* Handle the apostrophe followed by s */
  (\'s)?
+)|(?xi:
+   "e.g."                 |
+   "B.C."                 |
+   "B. C."                |
+   "A.D."                 |
+   "A. D."                |
+   "Ave."                 |
+   "ed."                  |
+   "Gov."                 |
+   "i.e."                 |
+   "inc."                 |
+   "Mr."                  |
+   "Mrs."                 |
+   "pub."                 |
+   "rev."                 |
+   "U.S."                 |
+   "vs."
 )                               {
-    /* cout << "'" << YYText() << "'"; */
+    /* cout << yylineno << "'" << YYText() << "'"; */
     return STRING;
  }
 
-    /* Punctuations marks */
-\x97                            return LONG_DASH;
-`                               return OPENING_SINGLE_QUOTE;
-\x93|``                         return OPENING_DOUBLE_QUOTES;
-\x94|''                         return CLOSING_DOUBLE_QUOTES;
-\'                              return SINGLE_QUOTE;
-\"                              return DOUBLE_QUOTES;
-[-,:;\.\?!/&]                   return PUNCTUATION_MARK;
-\(                              return OPENING_PAREN;
-\)                              return CLOSING_PAREN;
-\[                              return OPENING_SQUARE_BRACKET;
-\]                              return CLOSING_SQUARE_BRACKET;
-\r                              /* ignore */
+
+
+    /* Line terminators */
+\r                              /* ignore  */
 \n                              return NEWLINE;
 
 
-[[:space:]]+                    return WHITE_SPACE;
+[[:space:]]+                    /* ECHO;  */return WHITE_SPACE;
 
- /* Default catch-all rules; error reporting */
+ /*
+  * Default catch-all rules; error reporting
+  */
+
+ /* for unsupported diacritical combinations */
 \\[^[:alnum:][:blank:]][[:alpha:]] {
-    cout << "\033[01;31mline:" << yylineno
+    cerr << "\033[01;31mline:" << yylineno
          << ": unknown diacritical mark: \033[00m'" << YYText() << "'" << endl;
  }
+
+ /* For unknown byte--this is the default match. */
 .                               {
-    cout << "\033[01;31mline:" << yylineno
+    cerr << "\033[01;31mline:" << yylineno
          << ": unexpected byte: \033[00m'" << YYText() << "'" << endl;
  }
 
