@@ -66,23 +66,23 @@ EOC                  [[:space:]\\{]              /* command terminator */
          NEWLINE,
          WHITE_SPACE,
      };
+
+    /*
+     * We expect there to be special metadata at the head of text
+     * files. We begin with the start condition AT_HEAD in order to
+     * deal with this information.
+     */
+     #define YY_USER_INIT BEGIN(AT_HEAD);
 %}
 
 %%
-     /*
-      * We expect there to be special metadata at the head of text
-      * files. We begin with the start condition AT_HEAD in order to
-      * deal with this information.
-      */
-     BEGIN(AT_HEAD);
-
     /*
      * Handle the special sequences which may be found at the head of the
      * Auroma text.
      */
 <AT_HEAD>^Session\ on:.*\n      /* Ignore the "Session on:" header. */
 <AT_HEAD>^Volume:.*\n           /* Ignore the "Volume:" header. */
-<AT_HEAD>^[[:space:]]*\n        /* Ignore blank lines in the header */
+<AT_HEAD>^[[:blank:]]*\n        /* Ignore blank lines in the header */
 <AT_HEAD>.                      {
     /*
      * Switch back to the normal 'INITIAL' start-condition upon
@@ -158,17 +158,9 @@ EOC                  [[:space:]\\{]              /* command terminator */
 \\[[:digit:]]/{EOC}     /* ignore; but needs to be addressed */
 
 \.\.\.                          /* ignore dots; handled by \dots */
-[[:space:]]*\*[[:space:]]*\*[[:space:]]*\* /* ignore tstar */
+[[:blank:]]*\*[[:blank:]]*\*[[:blank:]]*\* /* ignore tstar */
 \{                                 return BEGIN_BLOCK;
 \}                                 return END_BLOCK;
-    /* The unknown command! */
-\\[[:alnum:]]+                  {
-    cerr << "\033[01;31mline:"
-         << yylineno << " Unknown Command:\033[00m'" << YYText() << "'"
-         << endl;
-    return UNKNOWN_COMMAND;
- }
-
 
     /* Punctuations marks */
 \-\-                            return N_DASH;
@@ -187,9 +179,23 @@ EOC                  [[:space:]\\{]              /* command terminator */
 
 
     /* String */
-(?xi:
+(?x:
+ /* The pattern for the first character of a string */
  ([[:alnum:]]           |
-  \-                    |
+  \\[uU][[:xdigit:]]{4} |        /* allow for UTF-16 */
+  /* Handle Diacritical marks */
+  (\\=  |
+   \\\. |
+   \\,  |
+   \\\' |
+   \\\" |
+   \\^  |
+   \\`  |
+   \\~  |
+   \\c  )[[:alpha:]]
+  )
+ /* followed by other characters, which may even contain some punctuations */
+ ([[:alnum:]]           |
   \\[uU][[:xdigit:]]{4} |        /* allow for UTF-16 */
   /* Handle Diacritical marks */
   (\\=  |
@@ -201,11 +207,14 @@ EOC                  [[:space:]\\{]              /* command terminator */
    \\`  |
    \\~  |
    \\c  )[[:alpha:]]    |
-  \\[ ]                         /* allow escaped spaces to be part of strings */
- )+
+  \'                    |
+  \- | \x96             |       /* allow hyphens or n-dashes */
+  \\[ ]               /* allow escaped spaces to be part of strings */
+  )*
  /* Handle the apostrophe followed by s */
  (\'s)?
-)|(?xi:
+)                                      |
+(?xi:                           /* common abbreviations */
    "e.g."                 |
    "B.C."                 |
    "B. C."                |
@@ -223,10 +232,9 @@ EOC                  [[:space:]\\{]              /* command terminator */
    "U.S."                 |
    "vs."
 )                               {
-    /* cout << yylineno << "'" << YYText() << "'"; */
+    /* cout << "s:" << yylineno << "'" << YYText() << "'"; */
     return STRING;
  }
-
 
 
     /* Line terminators */
@@ -234,11 +242,19 @@ EOC                  [[:space:]\\{]              /* command terminator */
 \n                              return NEWLINE;
 
 
-[[:space:]]+                    /* ECHO;  */return WHITE_SPACE;
+[[:blank:]]+                    /* ECHO;  */return WHITE_SPACE;
 
  /*
   * Default catch-all rules; error reporting
   */
+
+ /* The unknown command! */
+\\[[:alnum:]]+                  {
+    cerr << "\033[01;31mline:"
+         << yylineno << " Unknown Command:\033[00m'" << YYText() << "'"
+         << endl;
+    return UNKNOWN_COMMAND;
+ }
 
  /* for unsupported diacritical combinations */
 \\[^[:alnum:][:blank:]][[:alpha:]] {
@@ -258,7 +274,11 @@ int
 main()
 {
     yyFlexLexer* lexer = new yyFlexLexer;
-    while(lexer->yylex() != 0)
-        ;
+    /* int ret; */
+
+    while((/* ret =  */lexer->yylex()) != 0) {
+        /* cout << "r" << ret << " " */;
+    }
+
     return 0;
 }
