@@ -12,7 +12,7 @@
 EOC                  [[:space:][:punct:]]              /* command terminator */
 
 %{
-     #include <iostream>
+#ifndef BISON_DRIVER
      using namespace std;
 
      enum tokens {
@@ -67,12 +67,13 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
          WHITE_SPACE,
      };
 
-    /*
-     * We expect there to be special metadata at the head of text
-     * files. We begin with the start condition AT_HEAD in order to
-     * deal with this information.
-     */
-     #define YY_USER_INIT BEGIN(AT_HEAD);
+     /*
+      * We expect there to be special metadata at the head of text
+      * files. We begin with the start condition AT_HEAD in order to
+      * deal with this information.
+      */
+#define YY_USER_INIT BEGIN(AT_HEAD);
+#endif
 %}
 
 %%
@@ -271,15 +272,31 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
 
 %%
 
-int
-main()
-{
-    yyFlexLexer* lexer = new yyFlexLexer;
-    /* int ret; */
+#include <fstream>
 
+#ifndef BISON_DRIVER
+
+int
+main(int argc, const char *argv[])
+{
+    if (argc == 1) {
+        cerr << "Usage: " << argv[0] << " filename" << endl;
+        exit(-1);
+    }
+
+    ifstream *yyin = new ifstream(argv[1] , ifstream::in);
+    if (yyin->fail()) {
+        cerr << "failed to open file '" << argv[1] << "'" << endl;
+        exit(-1);
+    }
+
+    yyFlexLexer *lexer = new yyFlexLexer(yyin);
+
+    /* /\* int ret; *\/ */
     while((/* ret =  */lexer->yylex()) != 0) {
         /* cout << "r" << ret << " " */;
     }
 
     return 0;
 }
+#endif
