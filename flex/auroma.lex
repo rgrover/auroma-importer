@@ -193,6 +193,7 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
    \\`  |
    \\~  |
    \\c  |
+   \\,  |
    \\d  )[[:alpha:]]
   )
  /* followed by other characters, which may even contain some punctuations */
@@ -208,6 +209,7 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
    \\`  |
    \\~  |
    \\c  |
+   \\,  |
    \\d  )[[:alpha:]]    |
   \'                    |
   \- | \x96             |       /* allow hyphens or n-dashes */
