@@ -12,60 +12,8 @@
 EOC                  [[:space:][:punct:]]              /* command terminator */
 
 %{
-#ifndef BISON_DRIVER
-     using namespace std;
-
-     enum tokens {
-         BOOK_PART_TITLE_CMD = 1,    /* For part titles. */
-         BOOK_PART_NUMBER_CMD,       /* For part numbers. */
-         CHAPTER_NUMBER_CMD,         /* e.g. Chapter IX */
-         CHAPTER_TITLE_CMD,          /* Chapter Headings. */
-         CHAPTER_GROUP_TITLE_CMD,    /* Title for a group of chapters. */
-         CHAPTER_GROUP_SUBTITLE_CMD, /* Title for chapter within a chap-group.*/
-         CHAPTER_TERMINATOR_CENTERED_CMD, /* Centered text to end a chapter. */
-         PARA_CMD,
-         CHAPTER_HEAD_QUOTE_CMD, /* Quotations following a chapter heading. */
-         QUOTE_CMD,                  /* Indented quotations. */
-         REFERENCE_CMD,              /* References for quotations. */
-         FOOTNOTE_CMD,
-         FOOTNOTE_QUADSPACE_CMD,     /* 12pt. space in a footnote context */
-         POEM_CMD,                   /* Enter poem mode. */
-         PROSE_CMD,                  /* return to default (prose) mode */
-         ENUMERATION_ITEM_CMD,
-         BOLD_ITALICS_FACE_CMD,      /* Bold and italics. */
-         BOLD_FACE_CMD,
-         ITALICS_FACE_CMD,
-         SLANT_CMD,                  /* Slanted text. */
-         NOINDENT_CMD,               /* Begin paragraph without indentation. */
-         FOOTER_CENTERED_TEXT_CMD,   /* Centered text at the footer of a page.*/
-         DROP_CMD,                   /* Enlarge the first letter which follows*/
-         NODROP_CMD,
-         LINE_BREAK_CMD,
-         DOTS_CMD,                   /* ... */
-         DOTSNS_CMD,                 /* Dots without a space following them */
-         TSTAR_CMD,                  /* Triple star, centered. */
-         PAGE_CMD,                   /* Page break */
-         UNKNOWN_COMMAND,
-         BEGIN_BLOCK,
-         END_BLOCK,
-         STRING,
-
-         N_DASH,
-         M_DASH,
-         SINGLE_QUOTE,
-         DOUBLE_QUOTES,
-         OPENING_SINGLE_QUOTE,
-         OPENING_DOUBLE_QUOTES,
-         CLOSING_DOUBLE_QUOTES,
-         OPENING_PAREN,
-         CLOSING_PAREN,
-         OPENING_SQUARE_BRACKET,
-         CLOSING_SQUARE_BRACKET,
-         PUNCTUATION_MARK,
-
-         NEWLINE,
-         WHITE_SPACE,
-     };
+using namespace std;
+#include "auromaParserbase.h"
 
      /*
       * We expect there to be special metadata at the head of text
@@ -73,7 +21,6 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
       * deal with this information.
       */
 #define YY_USER_INIT BEGIN(AT_HEAD);
-#endif
 %}
 
 %%
@@ -97,43 +44,43 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
     /*
      * Handle commands.
      */
-\\(?i:tpt)/{EOC}     return BOOK_PART_TITLE_CMD;
-\\(?i:tpn)/{EOC}     return BOOK_PART_NUMBER_CMD;
-\\(?i:tc)/{EOC}      return CHAPTER_TITLE_CMD;
-\\(?i:tcf)/{EOC}     return CHAPTER_TITLE_CMD;
-\\(?i:tcfup)/{EOC}   return CHAPTER_GROUP_TITLE_CMD;
-\\(?i:tcsub)/{EOC}   return CHAPTER_GROUP_SUBTITLE_CMD;
-\\(?i:tcn)/{EOC}     return CHAPTER_NUMBER_CMD;
-\\(?i:tscc)/{EOC}    return CHAPTER_TERMINATOR_CENTERED_CMD;
-\\(?i:par)/{EOC}     return PARA_CMD;
-\\(?i:pf)/{EOC}      return NOINDENT_CMD;
-\\(?i:noindent)/{EOC} return NOINDENT_CMD;
-\\(?i:bf)/{EOC}      return NOINDENT_CMD;/* not sure about this */
-\\(?i:csf)/{EOC}     return CHAPTER_HEAD_QUOTE_CMD;
-\\(?i:sf)/{EOC}      return CHAPTER_HEAD_QUOTE_CMD;
-\\(?i:quote)/{EOC}   return QUOTE_CMD;
-\\(?i:sref)/{EOC}    return REFERENCE_CMD;
-\\(?i:pnote)/{EOC}   return FOOTNOTE_CMD;
-\\(?i:note)/{EOC}    return FOOTNOTE_CMD;
-\\(?i:lnote)/{EOC}   return FOOTNOTE_CMD;
-\\(?i:poem)/{EOC}    return POEM_CMD;
-\\(?i:prose)/{EOC}   return PROSE_CMD;
-\\(?i:sitem)/{EOC}   return ENUMERATION_ITEM_CMD;
-\\(?i:fnquad)/{EOC}  return FOOTNOTE_QUADSPACE_CMD;
-\\(?i:s)/{EOC}       return SLANT_CMD;
-\\(?i:sforced)/{EOC} return SLANT_CMD;
-\\(?i:ftext)/{EOC}   return FOOTER_CENTERED_TEXT_CMD;
-\\(?i:drop)/{EOC}    return DROP_CMD;
-\\(?i:nodrop)/{EOC}  return NODROP_CMD;
-\\(?i:ftextbi)/{EOC} return BOLD_ITALICS_FACE_CMD;
-\\(?i:ftextb)/{EOC}  return BOLD_FACE_CMD;
-\\(?i:it)/{EOC}      return ITALICS_FACE_CMD;
-\\(?i:nl)/{EOC}      return LINE_BREAK_CMD;
-\\(?i:dots)/{EOC}    return DOTS_CMD;
-\\(?i:sdots)/{EOC}   return DOTS_CMD;
-\\(?i:dotsns)/{EOC}  return DOTSNS_CMD;
-\\(?i:tstar)/{EOC}   return TSTAR_CMD;
-^Page/[[:blank:]](--|[[:digit:]]+) return PAGE_CMD;
+\\(?i:tpt)/{EOC}     return auromaParserBase::BOOK_PART_TITLE_CMD;
+\\(?i:tpn)/{EOC}     return auromaParserBase::BOOK_PART_NUMBER_CMD;
+\\(?i:tc)/{EOC}      return auromaParserBase::CHAPTER_TITLE_CMD;
+\\(?i:tcf)/{EOC}     return auromaParserBase::CHAPTER_TITLE_CMD;
+\\(?i:tcfup)/{EOC}   return auromaParserBase::CHAPTER_GROUP_TITLE_CMD;
+\\(?i:tcsub)/{EOC}   return auromaParserBase::CHAPTER_GROUP_SUBTITLE_CMD;
+\\(?i:tcn)/{EOC}     return auromaParserBase::CHAPTER_NUMBER_CMD;
+\\(?i:tscc)/{EOC}    return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD;
+\\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
+\\(?i:pf)/{EOC}      return auromaParserBase::NOINDENT_CMD;
+\\(?i:noindent)/{EOC} return auromaParserBase::NOINDENT_CMD;
+\\(?i:bf)/{EOC}      return auromaParserBase::NOINDENT_CMD;/* not sure about this */
+\\(?i:csf)/{EOC}     return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:sf)/{EOC}      return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:quote)/{EOC}   return auromaParserBase::QUOTE_CMD;
+\\(?i:sref)/{EOC}    return auromaParserBase::REFERENCE_CMD;
+\\(?i:pnote)/{EOC}   return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:note)/{EOC}    return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:lnote)/{EOC}   return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:poem)/{EOC}    return auromaParserBase::POEM_CMD;
+\\(?i:prose)/{EOC}   return auromaParserBase::PROSE_CMD;
+\\(?i:sitem)/{EOC}   return auromaParserBase::ENUMERATION_ITEM_CMD;
+\\(?i:fnquad)/{EOC}  return auromaParserBase::FOOTNOTE_QUADSPACE_CMD;
+\\(?i:s)/{EOC}       return auromaParserBase::SLANT_CMD;
+\\(?i:sforced)/{EOC} return auromaParserBase::SLANT_CMD;
+\\(?i:ftext)/{EOC}   return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
+\\(?i:drop)/{EOC}    return auromaParserBase::DROP_CMD;
+\\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
+\\(?i:ftextbi)/{EOC} return auromaParserBase::BOLD_ITALICS_FACE_CMD;
+\\(?i:ftextb)/{EOC}  return auromaParserBase::BOLD_FACE_CMD;
+\\(?i:it)/{EOC}      return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
+\\(?i:dots)/{EOC}    return auromaParserBase::DOTS_CMD;
+\\(?i:sdots)/{EOC}   return auromaParserBase::DOTS_CMD;
+\\(?i:dotsns)/{EOC}  return auromaParserBase::DOTSNS_CMD;
+\\(?i:tstar)/{EOC}   return auromaParserBase::TSTAR_CMD;
+^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
 
 \\(?i:text)/{EOC} /* ignore */
 \\(?i:BC)/{EOC}   /* ignore */
@@ -160,23 +107,23 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
 
 \.\.\.                          /* ignore dots; handled by \dots */
 [[:blank:]]*\*[[:blank:]]*\*[[:blank:]]*\* /* ignore tstar */
-\{                                 return BEGIN_BLOCK;
-\}                                 return END_BLOCK;
+\{                                 return auromaParserBase::BEGIN_BLOCK;
+\}                                 return auromaParserBase::END_BLOCK;
 
     /* Punctuations marks */
-\-\-                            return N_DASH;
-\-\-\-|\x97                     return M_DASH;
-`                               return OPENING_SINGLE_QUOTE;
-\x93|``                         return OPENING_DOUBLE_QUOTES;
-\x94|''                         return CLOSING_DOUBLE_QUOTES;
-\'                              return SINGLE_QUOTE;
-\"                              return DOUBLE_QUOTES;
-\(                              return OPENING_PAREN;
-\)                              return CLOSING_PAREN;
-\[                              return OPENING_SQUARE_BRACKET;
-\]                              return CLOSING_SQUARE_BRACKET;
+\-\-                            return auromaParserBase::N_DASH;
+\-\-\-|\x97                     return auromaParserBase::M_DASH;
+`                               return auromaParserBase::OPENING_SINGLE_QUOTE;
+\x93|``                         return auromaParserBase::OPENING_DOUBLE_QUOTES;
+\x94|''                         return auromaParserBase::CLOSING_DOUBLE_QUOTES;
+\'                              return auromaParserBase::SINGLE_QUOTE;
+\"                              return auromaParserBase::DOUBLE_QUOTES;
+\(                              return auromaParserBase::OPENING_PAREN;
+\)                              return auromaParserBase::CLOSING_PAREN;
+\[                              return auromaParserBase::OPENING_SQUARE_BRACKET;
+\]                              return auromaParserBase::CLOSING_SQUARE_BRACKET;
  /* The default rule for punctuation */
-[[:punct:]]                     return PUNCTUATION_MARK;
+[[:punct:]]                     return auromaParserBase::PUNCTUATION_MARK;
 
 
     /* String */
@@ -237,16 +184,16 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
    "vs."
 )                               {
     /* cout << "s:" << yylineno << "'" << YYText() << "'"; */
-    return STRING;
+    return auromaParserBase::STRING;
  }
 
 
     /* Line terminators */
 \r                              /* ignore  */
-\n                              return NEWLINE;
+\n                              return auromaParserBase::NEWLINE;
 
 
-[[:blank:]]+                    /* ECHO;  */return WHITE_SPACE;
+[[:blank:]]+                    /* ECHO;  */return auromaParserBase::WHITE_SPACE;
 
  /*
   * Default catch-all rules; error reporting
@@ -257,7 +204,7 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
     cerr << "\033[01;31mline:"
          << yylineno << " Unknown Command:\033[00m'" << YYText() << "'"
          << endl;
-    return UNKNOWN_COMMAND;
+    return auromaParserBase::UNKNOWN_COMMAND;
  }
 
  /* for unsupported diacritical combinations */
@@ -273,32 +220,3 @@ EOC                  [[:space:][:punct:]]              /* command terminator */
  }
 
 %%
-
-#include <fstream>
-
-#ifndef BISON_DRIVER
-
-int
-main(int argc, const char *argv[])
-{
-    if (argc == 1) {
-        cerr << "Usage: " << argv[0] << " filename" << endl;
-        exit(-1);
-    }
-
-    ifstream *yyin = new ifstream(argv[1] , ifstream::in);
-    if (yyin->fail()) {
-        cerr << "failed to open file '" << argv[1] << "'" << endl;
-        exit(-1);
-    }
-
-    yyFlexLexer *lexer = new yyFlexLexer(yyin);
-
-    /* /\* int ret; *\/ */
-    while((/* ret =  */lexer->yylex()) != 0) {
-        /* cout << "r" << ret << " " */;
-    }
-
-    return 0;
-}
-#endif

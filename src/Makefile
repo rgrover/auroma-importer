@@ -5,7 +5,7 @@ all: auromaParser auromaLexer
 auromaParser: parser.auroma.o
 	g++ $^ -o $@
 
-auromaLexer: lex.auroma.cc
+auromaLexer: lex.auroma.o auromaLexerMain.o
 	$(CXX) $^ -o $@
 
 lex.auroma.cc: auroma.lex
