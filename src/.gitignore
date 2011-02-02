@@ -1,3 +1,7 @@
 lex
 lex.auroma.cc
-*.txt
+Parser.h
+Parser.ih
+Parserbase.h
+parse.cc
+*~
