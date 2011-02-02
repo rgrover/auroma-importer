@@ -1,7 +1,6 @@
-lex
+auromaLexer
 lex.auroma.cc
-Parser.h
-Parser.ih
-Parserbase.h
+parser.auroma.cc
+auromaParserbase.h
 parse.cc
 *~
