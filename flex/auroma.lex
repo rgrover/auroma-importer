@@ -9,7 +9,7 @@
 %x AT_HEAD                      
 
  /* Definitions */
-EOC                  [[:space:]\\{]              /* command terminator */
+EOC                  [[:space:][:punct:]]              /* command terminator */
 
 %{
      #include <iostream>
@@ -186,13 +186,13 @@ EOC                  [[:space:]\\{]              /* command terminator */
   /* Handle Diacritical marks */
   (\\=  |
    \\\. |
-   \\,  |
    \\\' |
    \\\" |
    \\^  |
    \\`  |
    \\~  |
-   \\c  )[[:alpha:]]
+   \\c  |
+   \\d  )[[:alpha:]]
   )
  /* followed by other characters, which may even contain some punctuations */
  ([[:alnum:]]           |
@@ -206,7 +206,8 @@ EOC                  [[:space:]\\{]              /* command terminator */
    \\^  |
    \\`  |
    \\~  |
-   \\c  )[[:alpha:]]    |
+   \\c  |
+   \\d  )[[:alpha:]]    |
   \'                    |
   \- | \x96             |       /* allow hyphens or n-dashes */
   \\[ ]               /* allow escaped spaces to be part of strings */
