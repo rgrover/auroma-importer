@@ -1,4 +1,5 @@
 auromaLexer
+auromaParser
 lex.auroma.cc
 parser.auroma.cc
 auromaParserbase.h

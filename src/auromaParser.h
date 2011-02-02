@@ -6,15 +6,27 @@
 // $insert baseclass
 #include "auromaParserbase.h"
 
+#undef yyFlexLexer
+#define yyFlexLexer auromaFlexLexer
+#include <FlexLexer.h>
+
 
 #undef auromaParser
 class auromaParser: public auromaParserBase
 {
         
     public:
+        auromaParser(yyFlexLexer *lexerIn) :
+            lexer(lexerIn)
+        {
+            /* empty */
+        }
+    
         int parse();
 
     private:
+        yyFlexLexer *lexer;
+
         void error(char const *msg);    // called on (syntax) errors
         int lex();                      // returns the next token from the
                                         // lexical scanner. 
@@ -26,6 +38,12 @@ class auromaParser: public auromaParserBase
         int lookup(bool recovery);
         void nextToken();
 };
+
+inline int auromaParser::lex()
+{
+    return lexer->yylex();
+}
+
 
 inline void auromaParser::error(char const *msg)
 {

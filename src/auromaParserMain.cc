@@ -3,12 +3,7 @@
 
 #include <cstdlib>
 
-#undef yyFlexLexer
-#define yyFlexLexer auromaFlexLexer
-#include <FlexLexer.h>
-
-using namespace std;
-
+#include "auromaParser.ih"
 
 
 int
@@ -25,12 +20,10 @@ main(int argc, const char *argv[])
         exit(-1);
     }
 
-    yyFlexLexer *lexer = new yyFlexLexer(yyin);
+    auromaFlexLexer *lexer = new auromaFlexLexer(yyin);
+    auromaParser parser(lexer);
 
-    /* /\* int ret; *\/ */
-    while((/* ret =  */lexer->yylex()) != 0) {
-        /* cout << "r" << ret << " " */;
-    }
+    parser.parse();
 
     return 0;
 }
