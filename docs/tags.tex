@@ -1,5 +1,17 @@
 \documentclass[11pt]{article}
 
+%% Things to add:
+
+%%  * Make it extra clear that the input should be plain ascii. If
+%%    anyone uses a special editor like Word, then they should avoid
+%%    introducing Word specific formatting.
+%%  * Diacritical marks cannot be verified visually until the end of
+%%    the import process. This poses a special challenge; people
+%%    involved have to be very careful.
+%%  * Rename \newpage{} to \pagebreak[]
+%%  * Blank lines should be avoided when switching pages.
+
+
 \newcommand{\cmd}[1]{{\tt $\backslash$#1}}
 
 %% Description of the Language to be used for Tagging
@@ -180,7 +192,7 @@ within curly braces.
 %% \tagger{Dr. Goodman}
 %% \date{12th February, 2011}
 
-%% ...the tagged text 
+%% ...the tagged text
 %% ...
 %% Simple is {\it beaufitul}.
 %% ...
@@ -647,15 +659,3 @@ command. Verbatim, if used, should be the only tag within the
 containing paragraph.
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
