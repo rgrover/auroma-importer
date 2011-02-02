@@ -7,4 +7,4 @@ lex.auroma.cc: auroma.lex
 	flex -o $@ $^
 
 clean:
-	rm -f *.yy.c *.o *.cc lex
+	rm -f lex.*.cc *.o lex
