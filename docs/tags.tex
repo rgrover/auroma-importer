@@ -1,0 +1,662 @@
+\documentclass[11pt]{article}
+
+\newcommand{\cmd}[1]{{\tt $\backslash$#1}}
+
+%% Description of the Language to be used for Tagging
+%% ==================================================
+%% Rohit Grover <rgrover1@gmail.com>
+%% v0.1, February 2011:
+%% Draft version.
+\title{Description of the Language to be used for Tagging\\(Draft Version)}
+\author{Rohit Grover}
+\date{Draft V0.1, February, 2011}
+\begin{document}
+\maketitle
+
+\newpage
+
+\section{Introduction}
+
+\noindent With its intention to archive and publish the works of (and
+related to) Sri Aurobindo and The Mother, Aurokruti will be gathering
+electronic versions of texts, either through the process of
+translating existing materials from other formats, scanning documents,
+or even by capturing them manually. In addition to obtaining the plain
+texts for the various works, it will be desirable to capture useful
+semantic information from the sources so as to bring the quality of
+the gathered materials as close to the originals as possible. The
+current document presents a simple language consisting of a set of
+tags which may be added to the plain texts of the works in order to
+enrich their content based on the originals.
+
+The tagged files will subsequently be input to the automated importer
+to generate XML (and any other formats as needed for research); and it
+is very likely that the final versions will be made available to the
+users through a web interface. While having a rich set of tags is a
+good thing for describing the originals accurately, it is not our
+intention to replicate the works. We would like to keep the tagging
+process simple; a simple set of tags will also help to keep our data
+processing tool-chain manageable in its complexity.
+
+%% Input Files
+%% -----------
+
+%% Each tagged text to be sent to the importer will be a plain ASCII text
+%% file containing an entire work. You can create it with any editor. It
+%% will contain the text of the document as well as have tags added to
+%% highlight special semantic properties.
+
+\section{Input Files}
+
+Each tagged text to be sent to the ``importer'' will be a plain ASCII
+text file containing an entire work. It should be possible to create
+it with any editor. It will contain the text of the document as well
+as have tags added to highlight special semantic properties.
+
+%% Spaces
+%% ~~~~~~
+
+%% "Whitespace" characters such as blank or tab are treated uniformly as
+%% "space." Several consecutive white space characters are treated as one
+%% "space." A single linebreak is treated as a "whitespace."
+
+%% Any empty line between two lines of text defines the end of a
+%% paragraph. Several empty lines are treated the same as one empty
+%% line. A new paragraph can also be begun with a +\par+ tag--this is the
+%% recommended approach.
+
+\subsection{Spaces}
+
+``Whitespace" characters in the text, such as blanks or tabs, will be
+treated uniformly as ``space." Several consecutive white space
+characters will be treated the same as one single "space." A single
+linebreak is treated as a ``whitespace."
+
+Any empty line between two lines of text defines the end of a
+paragraph. Several empty lines are treated the same as one empty
+line. A new paragraph can also be begun with a {\tt $\backslash$par}
+tag--this is the recommended approach.
+
+%% Special Characters
+%% ~~~~~~~~~~~~~~~~~~
+
+%% The following symbols are reserved characters that have special
+%% meaning:
+
+%% _______________________
+%% \ { }
+%% _______________________
+
+%% As you will see, these characters can be used in your documents all
+%% the same by adding a prefix backslash:
+
+
+%% ----------------------
+%% \\ \{ \}
+%% ----------------------
+
+%% Unusual symbols can described either by using diacritical marks (for
+%% accents) or using Unicode Character-points directly (such as \Uxxxx,
+%% where +xxxx+ is the UTF-16 representation of a character).
+
+\newpage
+
+\subsection{Special Characters}
+
+The following symbols are reserved characters that have special
+meaning:
+
+\begin{quote}
+$\backslash$ \{ \}
+\end{quote}
+
+\noindent As you will see, these characters can be used in your documents
+by adding a backslash prefix:
+
+\begin{quote}
+$\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
+\end{quote}
+
+
+%% Tags
+%% ~~~~
+
+%% Tags and commands are case sensitive. They usually start with a
+%% backslash \ and then have a name consisiting of letters only. Command
+%% names are terminated by a space, a number, or any other punctuation
+%% mark.
+
+%% Some commands need a parameter which has to be given between curly
+%% braces { } after the command name; for example:
+
+%% .Examples of Using Tags--even ones which take arguments
+%% ===================================
+%% Please, start a new line right here!\newline Thank you!
+
+%% The above should place 'Thank you!' on a separate line\footnote{this
+%% is a footnote appearing right after the word 'line'}.
+%% ===================================
+
+
+%% In the above tagged text, we used the \newline command to force a new
+%% line. We also used the \footnote tag, which takes an argument within
+%% curly braces.
+
+\subsection{Tags}
+
+Tags and commands are case sensitive. They usually start with a
+backslash $\backslash$ and then have a name consisiting of letters
+only; such as \cmd{newline}. In some cases, tags can take an argument,
+such as: \cmd{footnote\{some text\}}\ ---such tags are called
+commands. Tags and commands may be terminated by a space, a number, or
+any other punctuation mark. The following is an example of the use of
+tags and commands in text:
+\begin{quote}
+Please, start a new line right here!\cmd{newline} Thank you!
+
+The above should place 'Thank you!' on a separate line\cmd{footnote\{this
+is a footnote appearing right after the word 'line'\}}.
+\end{quote}
+
+In the above tagged text, we used the \cmd{newline} tag to force a new
+line. We also used the \cmd{footnote} command, which takes an argument
+within curly braces.
+
+
+
+%% Input File Structure
+%% ~~~~~~~~~~~~~~~~~~~~
+
+%% When the importer processes an input file, it expects the file to
+%% follow a certain structure.
+
+%% At the head of an input file, there can be an optional header
+%% containing meta-data information in the form of the \title, \tagger,
+%% and \date tags. The following is an example:
+
+
+%% -----------------------------
+%% \title{The Life Divine}
+%% \tagger{Dr. Goodman}
+%% \date{12th February, 2011}
+
+%% ...the tagged text 
+%% ...
+%% Simple is {\it beaufitul}.
+%% ...
+%% -----------------------------
+
+%% Thereafter, the body of the tagged text follows.
+
+\subsection{Input File Structure}
+
+When the importer processes an input file, it expects the file to
+follow a certain structure.
+
+At the head of an input file, there can be an optional header
+containing meta-data information in the form of the \cmd{title},
+\cmd{tagger}, and \cmd{date} tags. The following is an example:
+
+\begin{quote}
+  \cmd{title\{The Life Divine\}}\\
+  \cmd{tagger\{Dr. Goodman\}}\\
+  \cmd{date\{12th February, 2011\}}\\
+\\
+  ...the tagged text \\
+  Simple is \{\cmd{it} beaufitul\}.\\
+\end{quote}
+
+%% Tagging Text
+%% ------------
+
+\section{Tagging Text}
+
+%% Paragraphs
+%% ~~~~~~~~~~
+\subsection{Paragraphs}
+
+%% The most important text unit in a tagged document is the paragraph. We
+%% call it a "text unit" because a paragraph is the typographical form
+%% which should reflect one coherent thought, or one idea. If a new
+%% thought begins, a new paragraph should begin, and if not, only
+%% linebreaks should be used.
+
+%% Paragraphs should be tagged as beginning with a +\par+, or a
+%% +\firstpar+ in the case where the paragraph is the first within its
+%% parent container (such as the first paragraph of a chapter).
+
+%% Although an empty line also marks the end of a paragraph, it is better
+%% to be explicit about it through the use of +\par+ at the beginning of
+%% a paragraph. If an empty line is used to separate paragraphs, a +\par+
+%% is assumed by default, instead of a +\firstpar+.
+
+The most important text unit in a tagged document is the paragraph. We
+call it a ``text unit" because a paragraph is the typographical form
+which should reflect one coherent thought, or one idea. If a new
+thought begins, a new paragraph should begin, and if not, only
+linebreaks should be used.
+
+Paragraphs should be tagged as beginning wihh a \cmd{par}, or a
+\cmd{firstpar} in the case where the paragraph is the first within its
+parent container (such as the first paragraph of a chapter).
+
+Although an empty line also marks the end of a paragraph, it is better
+to be explicit about it through the use of \cmd{par} at the beginning
+of a paragraph. If an empty line is used to separate paragraphs, a
+\cmd{par} is assumed by default, instead of a \cmd{firstpar}.
+
+%% Paragraph Containers
+%% ~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Paragraph Containers}
+
+Paragraphs of a text may either stand independently, or, as is
+commonly the case, they may be structured logically into a higherarchy
+of levels: chapters, book-parts, and so on.
+
+We shall not assume or adopt any single hierarchy of these groupings
+since such a choice cannot not be consistent across the many works we
+wish to encode; but rather we will limit ourselves to a logical scheme
+for these containers and permit the tagger to select the appropriate
+categorization in each case--the table-of-contents for a work should
+suggest this hierarchy quite simply in most cases.
+
+In order to simplify the task of expressing the container hierarchy
+without getting caught up in the details of levels and level-numbers,
+only the following tags are made available to the tagger.
+
+\begin{quote}
+  \cmd{hn} Heading Number\\
+  \cmd{ht} Heading Title\\
+  \cmd{push}\\
+  \cmd{pop}\\
+\end{quote}
+
+Any text is assumed to begin with the current container level set to
+the highest possible logical value---so for instance, we know that
+``The Life Divine" begins with ``Book One", and so the tagger can
+assume that at the beginning of the text the current container level
+is that of a ``Book". The tagger need not specify this level of
+detail---that the starting container is a Book,---the information
+required to be extracted from the tagged text doesn't depend on this
+kind of detail.
+
+At any time, a new container can be introduced (at the current level)
+by using either of the following naming tags: \cmd{hn} (which
+introduces a container through a heading-number) or \cmd{ht} (which
+introduces a heading-title). When used in conjunction, \cmd{ht} and
+\cmd{ht} describe the same container heading.
+
+So, for instance, the following is one way to introduce Book One in
+the Life Divine:
+
+\begin{quote}
+  \cmd{par}\\
+  \cmd{hn} BOOK ONE\\
+  \cmd{ht} Omnipresent Reality \cmd{newline} And \cmd{newlilne} The Universe
+\end{quote}
+
+\noindent Continuing with this example, we can descend from the level of a Book
+into Chapters using the following tag:
+
+\begin{quote}
+  \cmd{push}
+\end{quote}
+
+\noindent Thereafter, ``Chapter I" within the book can be tagged as follows:
+
+\begin{quote}
+  \cmd{par}\\
+  \cmd{hn} Chapter I\\
+  \cmd{ht} The Human Aspiration
+\end{quote}
+
+\noindent If only one of a heading-number or heading-title is
+specified, that still introduces a new container at the current
+level--usually, both the number and the title are available.
+
+When all the containers at the current level have been
+exhausted, it is possible to jump back to the parent level using the
+following tag:
+
+\begin{quote}
+  \cmd{pop}
+\end{quote}
+
+Using this simple scheme, it should be possible to define any kind of
+hierarchy to an arbitrary level of depth. Note that there should be as
+many occurrences of \cmd{pop} as there are for \cmd{push}; i.e. the
+document should end up with the current container level being at the
+top.
+
+%% Linebreaking and Pagebreaking
+%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Linebreaking and Pagebreaking}
+
+
+%% Often books are typeset with each line having the same length. For our
+%% purposes, however, since the content will most likely be displayed on
+%% a web browser, we should not depend on assumptions about line
+%% widths. Pagebreaks, however, are still important--we would like to
+%% retain this information so that the users can easily switch between
+%% electronic and hard-copy versions of a book.
+
+%% The manner in which the paragraphs are eventually typeset on the
+%% display depends on the current container level and the attributes of
+%% the paragraph--and the tagger should mostly remain isolated from these
+%% details.
+
+%% Normally the first line of every paragraph is indented by default
+%% (except the first paragraph within a container). If the indenting for
+%% a paragraph is to be dropped, then a +\noindent+ should be used
+%% immediately following the +\par+; similarly if indenting is required
+%% it may be explicitly requested using a +\indent+.
+
+%% In special cases, it might be necessary to order a linebreak--as is
+%% often necessary when defining container headings. For these cases,
+%% +\newline+ starts a new line without starting a new
+%% paragraph. Similarly, +\newpage{pagenumber}+ starts a new page. With
+%% +\newpage+, the pagenumber within the square brackets is an optional
+%% argument. It can be left empty if there is no pagenumber to be
+%% displayed; otherwise it should be specified.
+
+
+Often books are typeset with each line having the same length. For our
+purposes, however, since the content will most likely be displayed on
+a web browser, we should not depend on assumptions about line
+widths. Pagebreaks, however, are still important---we would like to
+retain this information so that the users can easily switch between
+electronic and hard-copy versions of a book.
+
+The manner in which the paragraphs are eventually typeset on the
+display depends on the current container level and the attributes of
+the paragraph---and the tagger should mostly remain isolated from these
+details.
+
+Normally the first line of every paragraph is indented by default
+(except the first paragraph within a container). If the indenting for
+a paragraph is to be dropped, then a \cmd{noindent} should be used
+immediately following the \cmd{par}; similarly if indenting is
+required it may be explicitly requested using a \cmd{indent}.
+
+In special cases, it might be necessary to order a linebreak--as is
+often necessary when defining container headings. For these cases,
+\cmd{newline} starts a new line without starting a new
+paragraph. Similarly, \cmd{newpage\{pagenumber\}} starts a new
+page. With \cmd{newpage}, the pagenumber within the curly brackets is
+an optional argument. It can be left empty if there is no pagenumber
+to be displayed; otherwise it should be specified.
+
+%% Special Characters and Symbols
+%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Special Characters and Symbols}
+
+%% Quotation Marks
+%% ^^^^^^^^^^^^^^^
+\subsubsection{Quotation Marks}
+
+You may use the " character for quotation marks as you would on a
+typewriter, but there are better alternatives. In publishing there are
+special opening and closing quotation marks. Use two `s (grave
+accents) for opening quotation marks and two 's (apostrophe) for
+closing quotation marks. For single quotes, you use just one of each.
+
+\begin{quote}
+\begin{verbatim}
+  Here is an example of how you would ``quote''.
+\end{verbatim}
+\end{quote}
+
+%% Dashes and Hyphens
+%% ^^^^^^^^^^^^^^^^^^
+\subsubsection{Dashes and Hyphens}
+
+
+%% You can use three kinds of dashes. You can use these with different
+%% numbers of consecutive dashes. The names for these dashes are: '-'
+%% hyphen, '--' en-dash, and '---' em-dash. An en-dash is used to obtain
+%% a dash the same width as an 'n'. Likewise, an em-dash gives a dash as
+%% wide as the letter 'm'. A hyphen is used to separate word-parts or to
+%% specify number ranges.
+
+You can use three kinds of dashes. You can use these with different
+numbers of consecutive dashes. The names for these dashes are: `{\tt
+  -}' hyphen, `{\tt --}' en-dash, and `{\tt ---}' em-dash. An en-dash
+is used to obtain a dash the same width as an 'n'. Likewise, an
+em-dash gives a dash as wide as the letter 'm'. A hyphen is used to
+separate word-parts or to specify number ranges.
+
+
+%% Elipsis (...)
+%% ^^^^^^^^^^^^^^
+
+\subsubsection{Elipsis (\ldots)}
+
+On a typewriter, a comma or a period takes the same amount of space as
+any other letter. In publishing, these characters occupy only a little
+space and are set very close to the preceding letter. Therefore you
+cannot enter `ellipsis' by just typing three dots, as the spacing
+would be wrong. There is a special command for these dots, it is
+called \cmd{dots}.
+
+%% Accents and Special Characters
+%% ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\subsubsection{Accents and Special Characters}
+
+We support the use of accents and special characters from many
+languages. The following table shows all accents being applied to the
+letter {\tt o}. Naturally, other letters work too.
+
+%% [width="15%"]
+%% |===============================
+%% |\=o | latexmath:[$\text{\={o}}$]
+%% |\.o | latexmath:[$\text{\.{o}}$]
+%% |\,o | latexmath:[$\text{\,{o}}$]
+%% |\'o | latexmath:[$\text{\'{o}}$]
+%% |\"o | latexmath:[$\text{\"{o}}$]
+%% |\^o | latexmath:[$\text{\^{o}}$]
+%% |\`o | latexmath:[$\text{\`{o}}$]
+%% |\~o | latexmath:[$\text{\~{o}}$]
+%% |\co | latexmath:[$\text{\c{o}}$]
+%% |\do | latexmath:[$\text{\d{o}}$]
+%% |===============================
+
+\vspace{0.4cm}
+\begin{tabular}{c|c}
+  sequence & produces\\
+\hline
+  \cmd{=o} & \=o \\
+  \cmd{.o} & \.o \\
+  \cmd{'o} & \'o \\
+  \cmd{"o} & \"o \\
+  \cmd{\textasciicircum o} & \^o \\
+  \cmd{`o} & \`o \\
+  \cmd{\textasciitilde o} & \~o \\
+  \cmd{co} & \c{o}\\
+  \cmd{do} & \d{o}\\
+%% |\co | latexmath:[$\text{\c{o}}$]
+%% |\do | latexmath:[$\text{\d{o}}$]
+\end{tabular}
+\vspace{0.4cm}
+
+If you need to use characters outside the Latin alphabet, you can
+enter Unicode Codepoints directly. To do this, use a sequence such as
+\cmd{uxxxx} where the {\tt xxxx} stands for the 4 digit hexadecimal
+codepoint. So, for instance, the character \~o, which is represented
+by the codepoint {\tt 0x00F5}, can be written anywhere in the document
+as \cmd{u00f5}.
+
+
+%% Footnotes
+%% ~~~~~~~~~
+
+%% With the command +\footnote{footnote text}+ a footnote is printed at
+%% the foot of the current page. Footnotes should always be put after the
+%% word or sentence they refer to. Footnotes referring to a sentence or a
+%% part of it should therefore be put after the comma or period.
+
+\subsubsection{Footnotes}
+
+With the command \cmd{footnote\{footnote text\}} a footnote is printed
+at the foot of the current page. Footnotes should always be put after
+the word or sentence they refer to. Footnotes referring to a sentence
+or a part of it sould therefore be put after the comma or period.
+
+%% Emphasized Words
+%% ~~~~~~~~~~~~~~~~
+
+%% Words or ranges of words may be emphasized by typesetting them in an
+%% italic font. We provide the command +\emph{text}+ to emphasize
+%% text. In addition to this command, we also provide the +\it+ tag which
+%% sets-up italics for the text which follows in the current paragraph or
+%% the current block (within the surrounding \{ and \}).
+
+\subsubsection{Emphasized Words}
+
+Words or ranges of words may be emphasized by typesetting them in an
+italic font. We provide the tag \cmd{it} to emphasize text. It sets-up
+italics for the following text in the current paragraph or the current
+block--i.e. until the end of the surrounding \{ and \} block.
+
+\begin{quote}
+  The use \{\cmd{it} hello world\} will setup the text ``hello world''
+  in italics.
+\end{quote}
+
+
+%% Bold Face
+%% ~~~~~~~~~
+
+%% Similar to emphasizing text with italics, we provide +\bf{text}+ for bold face
+%% text.
+
+
+\subsubsection{Bold Face}
+
+Similar to emphasizing text with italics, we provide the \cmd{bf} tag
+for bold face text.  It sets-up bold-face font for the following text
+in the current paragraph or the current block--i.e. until the end of
+the surrounding \{ and \} block.
+
+
+\subsubsection{Quotation Following a Heading}
+
+The tag \cmd{hquote} should be used to mark the current paragraph as
+containing a quotation which immediately follows a chapter (or
+high-level container) heading. So, the following is the tagged version
+of the quote which follows Chapter I of Book One of ``The Life Divine'':
+
+\begin{quote}
+  \cmd{par}\cmd{hquote} She follows to the goal of those that are
+  passing on beyond, she is the first in the eternal succession of the
+  dawns that are coming,{\tt ---}Usha widens bringing out that which lives,
+  awakening someone who was dead. \cmd{dots} What is her scope when she
+  harmonises with the dawns that shone out before and those that now
+  must shine? She desires the ancient mornings and fulfils their
+  light; projecting forwards her illumination she enters into
+  communion with the rest that are to come.
+\end{quote}
+
+%% Quotation References
+%% ~~~~~~~~~~~~~~~~~~~~
+
+%% We provide the command +\ref{text}+ for adding references to
+%% quotations.
+
+\subsubsection{References for \cmd{hquote}}
+
+We provide the command \cmd{hquoteref\{text\}} for adding references
+for \cmd{hquote} paragraphs. So, the following is the tagged version
+of the second quote which follows Chapter 1 of Book 1 of ``The Life
+Divine'':
+
+\begin{quote}
+  \cmd{par}\cmd{hquote} Threefold are those supreme births of this
+  divine force that is in the world, they are true, they are
+  desirable; he moves there wide-overt within the Infinite and shines
+  pure, luminous and fulfilling. \cmd{dots} That which is immortal in
+  mortals and possessed of the truth, is a god and established
+  inwardly as an energy working out in our divine powers. \cmd{dots}
+  Become high-uplifted, O Strength, pierce all veils, manifest in us
+  the things of the Godhead.
+  \cmd{hquoteref}\{\cmd{it} Vamadeva{\tt ---}Rig Veda.\}
+\end{quote}
+
+\subsubsection{Quotation and Verse Paragraphs}
+
+The tag \cmd{quote} should be used to mark the current paragraph as
+containing a quotation, an important phrase, or an example. Quotation
+paragraphs are typically indented as a whole. The \cmd{verse} tag is
+useful for poems where preserving the linebreaks is important.
+
+%% Itemize and Enumerate
+%% ~~~~~~~~~~~~~~~~~~~~~
+
+%% The +\itemize+ tag is suitable for simple lists (using bullets). It
+%% applies to the current paragraph.
+
+%% +\enumerate{number}+ generates lists with numbers as supplied by the tagger.
+
+\subsubsection{Itemize and Enumerate}
+
+The \cmd{itemize} tag is suitable for simple lists (using
+bullets). \cmd{enumerate\{number\}} generates lists with numbers as
+supplied by the tagger. They apply to the current paragraph.
+
+%% Alignment
+%% ~~~~~~~~~
+
+%% The tags +\flushleft+ and +\flushright+ generate paragraphs which are
+%% either left- or right-aligned. The +\center+ tag generated centered
+%% text. These tags apply to the current paragraph.
+
+\subsubsection{Alignment}
+
+The tags \cmd{flushleft} and \cmd{flushright} generate paragraphs
+which are either left- or right-aligned. The \cmd{center} tag
+generated centered text. These tags apply to the current paragraph.
+
+%% Printing Verbatim
+%% ~~~~~~~~~~~~~~~~~
+
+%% Paragraphs containing the +\verbatim+ tag will have their text taken
+%% literally, as if they were typed on a typewriter, with all the
+%% linebreaks and spaces, without any other formatting. This tag can
+%% prove to be a useful fall back for the cases where supported tags are
+%% unable to describe text as it appears in the original work.
+
+\subsubsection{Printing Verbatim}
+
+The command \cmd{verbatim\{\}} will have its text taken literally, as
+if it was typed on a typewriter, with all the linebreaks and spaces,
+without any other formatting. This tag can prove to be a useful
+fall-back for the cases where supported tags are unable to describe
+text as it appears in the original work. The following is an example:
+
+\begin{quote}
+  \cmd{par}\cmd{verbatim}\{
+\begin{verbatim}
+Text with special formating    ..    right-justified text
+
+Author's signature.
+\end{verbatim}
+\}
+\end{quote}
+
+\noindent Note that linebreaks are preseved within the verbatim
+command. Verbatim, if used, should be the only tag within the
+containing paragraph.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
