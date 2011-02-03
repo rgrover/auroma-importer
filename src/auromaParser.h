@@ -3,6 +3,8 @@
 #ifndef auromaParser_h_included
 #define auromaParser_h_included
 
+using namespace std;
+
 // $insert baseclass
 #include "auromaParserbase.h"
 
@@ -10,44 +12,62 @@
 #define yyFlexLexer auromaFlexLexer
 #include <FlexLexer.h>
 
+extern auromaParserBase::STYPE__ d_val;
 
 #undef auromaParser
 class auromaParser: public auromaParserBase
 {
-        
-    public:
-        auromaParser(yyFlexLexer *lexerIn) :
-            lexer(lexerIn)
+
+public:
+    auromaParser(yyFlexLexer *lexerIn) :
+        lexer(lexerIn)
         {
             /* empty */
         }
-    
-        int parse();
 
-    private:
-        yyFlexLexer *lexer;
+    int parse();
 
-        void error(char const *msg);    // called on (syntax) errors
-        int lex();                      // returns the next token from the
-                                        // lexical scanner. 
-        void print();                   // use, e.g., d_token, d_loc
+private:
+    yyFlexLexer *lexer;
+
+    void error(char const *msg);    // called on (syntax) errors
+    int lex();                      // returns the next token from the
+    // lexical scanner.
+
+    void print();                   // use, e.g., d_token, d_loc
+
+    void setDval(STYPE__ val) {
+        d_val__ = val;
+    }
 
     // support functions for parse():
-        void executeAction(int ruleNr);
-        void errorRecovery();
-        int lookup(bool recovery);
-        void nextToken();
+    void executeAction(int ruleNr);
+    void errorRecovery();
+    int lookup(bool recovery);
+    void nextToken();
 };
 
-inline int auromaParser::lex()
+inline int
+auromaParser::lex()
 {
-    return lexer->yylex();
+    int token;
+
+    token = lexer->yylex();     // Get a token.
+    setDval(d_val);             // Assign the semantic value in the
+                                // global 'd_val' into the parser's
+                                // private d_val__
+
+    // cout << "token: " << token << " dval: '" << d_val << "'" << endl;
+
+    return (token);
 }
 
 
 inline void auromaParser::error(char const *msg)
 {
-    std::cerr << msg << '\n';
+    std::cerr << "\033[01;31mpaser: line "
+              << lexer->lineno() << ":\033[00m "
+              << msg << '\n';
 }
 
 // $insert lex

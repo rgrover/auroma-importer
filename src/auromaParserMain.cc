@@ -5,6 +5,7 @@
 
 #include "auromaParser.ih"
 
+auromaParserBase::STYPE__ d_val;
 
 int
 main(int argc, const char *argv[])

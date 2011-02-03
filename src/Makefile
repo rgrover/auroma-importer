@@ -1,6 +1,6 @@
 CXX = g++
 
-all: auromaParser auromaLexer
+all: auromaLexer auromaParser
 
 auromaParser: parser.auroma.o                   \
               lex.auroma.o                      \
@@ -12,10 +12,10 @@ auromaLexer: lex.auroma.o                       \
              auromaParserbase.h
 	$(CXX) $^ -o $@
 
-lex.auroma.cc: auroma.lex
+lex.auroma.cc: auroma.lex auromaParserbase.h
 	flex -o $@ $^
 
-parser.auroma.cc auromaParserbase.h auromaParser.h auromaParser.ih : auroma.y
+parser.auroma.cc auromaParserbase.h: auroma.y
 	bisonc++ $^
 
 parser.auroma.o: auromaParser.h auromaParser.ih

@@ -3,12 +3,20 @@
 
 #include <cstdlib>
 
+using namespace std;
+
 #undef yyFlexLexer
 #define yyFlexLexer auromaFlexLexer
 #include <FlexLexer.h>
 
-using namespace std;
 
+/*
+ * We need to declare a global variable to hold the semantic value of
+ * tokens; this isn't required for the lexer, but is necessary for the
+ * parser.
+ */
+#include "auromaParserbase.h"
+auromaParserBase::STYPE__ d_val;
 
 
 int
