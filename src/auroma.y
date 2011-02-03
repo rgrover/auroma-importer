@@ -3,16 +3,7 @@
 
 %stype const char *
 
-
-/* %{ */
-/* #define YYSTYPE int */
-
-/* #undef yyFlexLexer */
-/* #define yyFlexLexer auromaFlexLexer */
-/* #include <FlexLexer.h> */
-
-/* void yyerror (char const *); */
-/* %} */
+%expect 1
 
 /* %token BOOK_PART_TITLE_CMD      /\* For part titles. *\/ */
 /* %token BOOK_PART_NUMBER_CMD     /\* For part numbers. *\/ */
@@ -21,7 +12,7 @@
 /* %token CHAPTER_GROUP_TITLE_CMD  /\* Title for a group of chapters. *\/ */
 /* %token CHAPTER_GROUP_SUBTITLE_CMD /\* Title for chapter within a chap-group.*\/ */
 /* %token CHAPTER_TERMINATOR_CENTERED_CMD /\* Centered text to end a chapter. *\/ */
-/* %token PARA_CMD */
+%token PARA_CMD
 /* %token CHAPTER_HEAD_QUOTE_CMD /\* Quotations following a chapter heading. *\/ */
 /* %token QUOTE_CMD              /\* Indented quotations. *\/ */
 /* %token REFERENCE_CMD          /\* References for quotations. *\/ */
@@ -69,30 +60,68 @@
 input :
     /* empty */
 |
-    input line
-;
-
-line :
-    NEWLINE
-    {
-        cout << endl;
-    }
+    input
+    paragraph
 |
-    stringsOnALine NEWLINE
+    input
+    emptyLine
+;
+
+paragraph :
+    optionalWhiteSpace
+    PARA_CMD
     {
-        cout << endl;
+        currentPara = new Para();
+    }
+    stuffWithinParagraph
+    {
+        cout << "PARA FINISHED" << endl;
     }
 ;
 
-stringsOnALine :
+stuffWithinParagraph :
+    firstLineOfAParagraph
+|
+    stuffWithinParagraph
+    nonEmptyLineWithoutParCmd
+;
+
+firstLineOfAParagraph :
+    optionalWhiteSpace
+    NEWLINE
+|
+    nonEmptyLineWithoutParCmd
+;
+
+
+nonEmptyLineWithoutParCmd :
+    nonEmptyLineWithoutParCmdOrLineBreak
+    optionalWhiteSpace
+    NEWLINE
+;
+
+nonEmptyLineWithoutParCmdOrLineBreak :
+    optionalWhiteSpace
     STRING
     {
-        cout << $1;
+        cout << "will append '" << $2 << "' to para" << endl;
     }
 |
-    stringsOnALine
-    WHITE_SPACE STRING
+    nonEmptyLineWithoutParCmdOrLineBreak
+    WHITE_SPACE
+    STRING
     {
-        cout << $3;
+        cout << "will append '" << $3 << "' to para" << endl;
     }
+;
+
+emptyLine :
+    optionalWhiteSpace
+    NEWLINE
+;
+
+optionalWhiteSpace :
+    /* empty */
+|
+    WHITE_SPACE
 ;

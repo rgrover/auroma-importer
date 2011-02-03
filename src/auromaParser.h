@@ -14,6 +14,9 @@ using namespace std;
 
 extern auromaParserBase::STYPE__ d_val;
 
+#include "para.h"
+extern Para *currentPara;
+
 #undef auromaParser
 class auromaParser: public auromaParserBase
 {
@@ -57,7 +60,13 @@ auromaParser::lex()
                                 // global 'd_val' into the parser's
                                 // private d_val__
 
-    // cout << "token: " << token << " dval: '" << d_val << "'" << endl;
+    switch (token) {
+    case auromaParserBase::STRING:
+        cout << lexer->lineno() << " token: " << token << " dval: '" << d_val << "'" << endl;
+        break;
+    default:
+        cout << lexer->lineno() << " token: " << token << endl;
+    }
 
     return (token);
 }

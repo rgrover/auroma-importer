@@ -5,7 +5,9 @@
 
 #include "auromaParser.ih"
 
+/* definitions of some globals */
 auromaParserBase::STYPE__ d_val;
+Para *currentPara = NULL;
 
 int
 main(int argc, const char *argv[])
