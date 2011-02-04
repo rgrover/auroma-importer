@@ -74,7 +74,6 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:prose)$        return auromaParserBase::PROSE_CMD;
 \\(?i:prose)/{EOC}   return auromaParserBase::PROSE_CMD;
 \\(?i:sitem)/{EOC}   return 1;/* return auromaParserBase::ENUMERATION_ITEM_CMD; */
-\\(?i:fnquad)/{EOC}           /* ignore  */
 \\(?i:ftext)$        return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:ftext)/{EOC}   return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:drop)$         return auromaParserBase::DROP_CMD;
@@ -83,11 +82,18 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
 \\(?i:nl)$           return auromaParserBase::LINE_BREAK_CMD;
 \\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
-\\(?i:s)/{EOC}       return 1;/* return auromaParserBase::SLANT_CMD; */
-\\(?i:sforced)/{EOC} return 1;/* return auromaParserBase::SLANT_CMD; */
-\\(?i:ftextbi)/{EOC} return 1;/* return auromaParserBase::BOLD_ITALICS_FACE_CMD; */
-\\(?i:ftextb)/{EOC}  return 1;/* return auromaParserBase::BOLD_FACE_CMD; */
-\\(?i:it)/{EOC}      return 1;/* return auromaParserBase::ITALICS_FACE_CMD; */
+
+\\(?i:s)$            return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:s)/{EOC}       return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:sforced)$      return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:sforced)/{EOC} return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:ftextbi)$      return auromaParserBase::BOLD_ITALICS_FACE_CMD;
+\\(?i:ftextbi)/{EOC} return auromaParserBase::BOLD_ITALICS_FACE_CMD;
+\\(?i:ftextb)$       return auromaParserBase::BOLD_FACE_CMD;
+\\(?i:ftextb)/{EOC}  return auromaParserBase::BOLD_FACE_CMD;
+\\(?i:it)$           return auromaParserBase::ITALICS_FACE_CMD;
+\\(?i:it)/{EOC}      return auromaParserBase::ITALICS_FACE_CMD;
+
 \\(?i:dots)$         return auromaParserBase::DOTS_CMD;
 \\(?i:dots)/{EOC}    return auromaParserBase::DOTS_CMD;
 \\(?i:sdots)$        return auromaParserBase::DOTS_CMD;
@@ -96,30 +102,55 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:dotsns)/{EOC}  return auromaParserBase::DOTS_CMD;
 \\(?i:tstar)$        return auromaParserBase::TSTAR_CMD;
 \\(?i:tstar)/{EOC}   return auromaParserBase::TSTAR_CMD;
+
 ^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
 
-\\(?i:text)/{EOC} /* ignore */
-\\(?i:BC)/{EOC}   /* ignore */
-\\(?i:hbox)/{EOC} /* ignore */
-\\(?i:nh)/{EOC}   /* ignore */
-\\(?i:si)/{EOC}   /* ignore */
-\\(?i:rl)/{EOC}   /* ignore */
-\\(?i:pi)/{EOC}   /* ignore */
-\\(?i:quad)/{EOC} /* ignore */
-\\(?i:pnotes)/{EOC}  /* ignore */
-\\(?i:lnotes)/{EOC}  /* ignore */
-\\(?i:oquad)/{EOC}   /* ignore */
-\\(?i:qquad)/{EOC}   /* ignore */
-\\(?i:medskip)/{EOC} /* ignore */
-\\(?i:bigskip)/{EOC} /* ignore */
-\\(?i:relax)/{EOC}   /* ignore */
-\\(?i:phantom)/{EOC} /* ignore */
-\\(?i:fsqstart)/{EOC} /* ignore */
-\\(?i:fsqend)/{EOC}   /* ignore */
-\\(?i:dropquote)/{EOC}  /* ignore */
-\\(?i:emptypage)/{EOC}  /* ignore */
-\\(?i:shortlines)/{EOC} /* ignore; but needs to be addressed */
-\\[[:digit:]]/{EOC}     /* ignore; but needs to be addressed */
+\\(?i:fnquad)$                 /* ignore  */
+\\(?i:fnquad)/{EOC}            /* ignore  */
+\\(?i:text)$                   /* ignore */
+\\(?i:text)/{EOC}              /* ignore */
+\\(?i:BC)$                     /* ignore */
+\\(?i:BC)/{EOC}                /* ignore */
+\\(?i:hbox)$                   /* ignore */
+\\(?i:hbox)/{EOC}              /* ignore */
+\\(?i:nh)$                     /* ignore */
+\\(?i:nh)/{EOC}                /* ignore */
+\\(?i:si)$                     /* ignore */
+\\(?i:si)/{EOC}                /* ignore */
+\\(?i:rl)$                     /* ignore */
+\\(?i:rl)/{EOC}                /* ignore */
+\\(?i:pi)$                     /* ignore */
+\\(?i:pi)/{EOC}                /* ignore */
+\\(?i:quad)$                   /* ignore */
+\\(?i:quad)/{EOC}              /* ignore */
+\\(?i:pnotes)$                 /* ignore */
+\\(?i:pnotes)/{EOC}            /* ignore */
+\\(?i:lnotes)$                 /* ignore */
+\\(?i:lnotes)/{EOC}            /* ignore */
+\\(?i:oquad)$                  /* ignore */
+\\(?i:oquad)/{EOC}             /* ignore */
+\\(?i:qquad)$                  /* ignore */
+\\(?i:qquad)/{EOC}             /* ignore */
+\\(?i:medskip)$                /* ignore */
+\\(?i:medskip)/{EOC}           /* ignore */
+\\(?i:bigskip)$                /* ignore */
+\\(?i:bigskip)/{EOC}           /* ignore */
+\\(?i:relax)$                  /* ignore */
+\\(?i:relax)/{EOC}             /* ignore */
+\\(?i:phantom)$                /* ignore */
+\\(?i:phantom)/{EOC}           /* ignore */
+\\(?i:fsqstart)$               /* ignore */
+\\(?i:fsqstart)/{EOC}          /* ignore */
+\\(?i:fsqend)$                 /* ignore */
+\\(?i:fsqend)/{EOC}            /* ignore */
+\\(?i:dropquote)$              /* ignore */
+\\(?i:dropquote)/{EOC}         /* ignore */
+\\(?i:emptypage)$              /* ignore */
+\\(?i:emptypage)/{EOC}         /* ignore */
+\\(?i:shortlines)$             /* ignore; but needs to be addressed */
+\\(?i:shortlines)/{EOC}        /* ignore; but needs to be addressed */
+\\[[:digit:]]$                 /* ignore; but needs to be addressed */
+\\[[:digit:]]/{EOC}            /* ignore; but needs to be addressed */
 
     /* Punctuations marks */
 \[                              return '[';

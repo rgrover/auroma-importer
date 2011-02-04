@@ -3,7 +3,7 @@
 
 %stype const char *
 
-%expect 1
+%expect 1                       /* expect one shift-reduce conflict :-) */
 
 /* %token BOOK_PART_TITLE_CMD      /\* For part titles. *\/ */
 /* %token BOOK_PART_NUMBER_CMD     /\* For part numbers. *\/ */
@@ -20,10 +20,9 @@
 %token POEM_CMD                /* Enter poem mode. */
 %token PROSE_CMD               /* return to default (prose) mode */
 /* %token ENUMERATION_ITEM_CMD */
-/* %token BOLD_ITALICS_FACE_CMD    /\* Bold and italics. *\/ */
-/* %token BOLD_FACE_CMD */
-/* %token ITALICS_FACE_CMD */
-/* %token SLANT_CMD            /\* Slanted text. *\/ */
+%token BOLD_ITALICS_FACE_CMD    /* Bold and italics. */
+%token BOLD_FACE_CMD
+%token ITALICS_FACE_CMD
 %token NOINDENT_CMD         /* Begin paragraph without indentation. */
 %token FOOTER_CENTERED_TEXT_CMD /* Centered text at the footer of a page.*/
 %token DROP_CMD            /* Enlarge the first letter which follows*/
@@ -209,6 +208,31 @@ paragraphElement:
     {
         assert(currentContainerIsPara());
         currentContainer()->append(new PageBreakParaElement($3));
+    }
+|
+    ITALICS_FACE_CMD
+    {
+        ModifierParaElement *mod =
+            new ModifierParaElement(ParaElement::ITALICS);
+        currentContainer()->append(mod);
+    }
+|
+    BOLD_FACE_CMD
+    {
+        ModifierParaElement *mod =
+            new ModifierParaElement(ParaElement::BOLD);
+        currentContainer()->append(mod);
+    }
+|
+    BOLD_ITALICS_FACE_CMD
+    {
+        ModifierParaElement *mod;
+
+        mod = new ModifierParaElement(ParaElement::BOLD);
+        currentContainer()->append(mod);
+
+        mod = new ModifierParaElement(ParaElement::ITALICS);
+        currentContainer()->append(mod);
     }
 |
     N_DASH

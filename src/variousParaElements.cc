@@ -32,12 +32,31 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cassert>
 #include "variousParaElements.h"
 
 void
 StringParaElement::display(void)
 {
     cout << str;
+}
+
+void
+ModifierParaElement::display(void)
+{
+    switch (modifier) {
+    case ParaElement::ITALICS:
+        cout << "[it]";
+        break;
+    case ParaElement::BOLD:
+        cout << "[bf]";
+        break;
+    case ParaElement::SMALL_CAPS:
+        cout << "[sc]";
+        break;
+    default:
+        assert(0);
+    }
 }
 
 void

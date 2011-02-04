@@ -37,6 +37,13 @@
 
 class ParaElement {
 public:
+    /* font modifiers */
+    enum FontModifiers {
+        ITALICS,
+        BOLD,
+        SMALL_CAPS,
+    };
+
     /* nothing for now */
     ParaElement(void)
         {

@@ -65,6 +65,20 @@ private:
     bool   prevSep;
 };
 
+class ModifierParaElement : public ParaElement
+{
+public:
+    ModifierParaElement(FontModifiers mod)
+        : modifier(mod)
+        {
+        }
+
+    void display(void);
+
+private:
+    FontModifiers modifier;
+};
+
 class DotsParaElement : public ParaElement
 {
 public:
