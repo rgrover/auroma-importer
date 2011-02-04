@@ -50,6 +50,9 @@ private:
     void nextToken();
 };
 
+/* 
+ * This is where we connect the parser with the lexical analyser.
+ */
 inline int
 auromaParser::lex()
 {
@@ -60,13 +63,13 @@ auromaParser::lex()
                                 // global 'd_val' into the parser's
                                 // private d_val__
 
-    switch (token) {
-    case auromaParserBase::STRING:
-        cout << lexer->lineno() << " token: " << token << " dval: '" << d_val << "'" << endl;
-        break;
-    default:
-        cout << lexer->lineno() << " token: " << token << endl;
-    }
+    /* switch (token) { */
+    /* case auromaParserBase::STRING: */
+    /*     cout << lexer->lineno() << " token: " << token << " dval: '" << d_val << "'" << endl; */
+    /*     break; */
+    /* default: */
+    /*     cout << lexer->lineno() << " token: " << token << endl; */
+    /* } */
 
     return (token);
 }

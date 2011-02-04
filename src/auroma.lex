@@ -119,12 +119,13 @@ extern auromaParserBase::STYPE__ d_val;
 \x94|''                         return 1;/* return auromaParserBase::CLOSING_DOUBLE_QUOTES; */
 \'                              return 1;/* return auromaParserBase::SINGLE_QUOTE; */
 \"                              return 1;/* return auromaParserBase::DOUBLE_QUOTES; */
-\(                              return 1;/* return auromaParserBase::OPENING_PAREN; */
-\)                              return 1;/* return auromaParserBase::CLOSING_PAREN; */
 \[                              return 1;/* return auromaParserBase::OPENING_SQUARE_BRACKET; */
 \]                              return 1;/* return auromaParserBase::CLOSING_SQUARE_BRACKET; */
  /* The default rule for punctuation */
-[[:punct:]]                     return 1;/* return auromaParserBase::PUNCTUATION_MARK; */
+[[:punct:]]                     {
+    d_val = YYText();
+    return auromaParserBase::PUNCTUATION_MARK;
+ }
 
 
     /* String */

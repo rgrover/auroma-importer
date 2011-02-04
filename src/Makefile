@@ -1,18 +1,30 @@
 CXX = g++
+CXXFLAGS += -g
 
-all: auromaLexer auromaParser
+PARSER_SRCS =					\
+       parser.auroma.cc				\
+       lex.auroma.cc				\
+       auromaParserMain.cc                      \
+       paraElement.cc                           \
+       paraElementContainer.cc                  \
+       para.cc                                  \
+       stringParaElement.cc
 
-auromaParser: parser.auroma.o                   \
-              lex.auroma.o                      \
-              auromaParserMain.o		\
-              para.o				\
-              paraElement.o
-	g++ $^ -o $@
+PARSER_OBJS = $(patsubst %.cc,%.o,$(PARSER_SRCS))
 
-auromaLexer: auromaParserbase.h
+LEXER_SRCS =                                    \
+       lex.auroma.cc                            \
+       auromaLexerMain.cc
 
-auromaLexer: lex.auroma.o auromaLexerMain.o
-	$(CXX) lex.auroma.o auromaLexerMain.o -o $@
+LEXER_OBJS = $(patsubst %.cc,%.o,$(LEXER_SRCS))
+
+all: .dep auromaLexer auromaParser
+
+auromaParser: $(PARSER_OBJS)
+	$(CXX) $(CXXFLAGS) $(PARSER_OBJS) -o $@
+
+auromaLexer: auromaParserbase.h $(LEXER_OBJS)
+	$(CXX) $(CXXFLAGS) $(LEXER_OBJS) -o $@
 
 lex.auroma.cc: auroma.lex auromaParserbase.h
 	flex --batch -o $@ $^
@@ -20,13 +32,15 @@ lex.auroma.cc: auroma.lex auromaParserbase.h
 parser.auroma.cc auromaParserbase.h: auroma.y
 	bisonc++ $^
 
-parser.auroma.o: auromaParser.h auromaParser.ih
+%.o : .dep
 
-para.o: para.cc para.h paraElement.h
-paraElement.o: paraElement.h
-stringParaElement.o: stringParaElement.h
+
+.dep : $(sort $(PARSER_SRCS) $(LEXER_SRCS)) *.h
+	g++ -MM $^ > .dep
+
+include .dep
 
 clean:
-	rm -f *~ lex.*.cc *.o			\
-            parser.auroma.cc auromaParserbase.h	\
+	rm -f *~ lex.*.cc *.o .dep              \
+            parser.auroma.cc auromaParserbase.h \
             auromaLexer auromaParser

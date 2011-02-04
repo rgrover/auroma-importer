@@ -46,11 +46,9 @@
 /* %token OPENING_SINGLE_QUOTE */
 /* %token OPENING_DOUBLE_QUOTES */
 /* %token CLOSING_DOUBLE_QUOTES */
-/* %token OPENING_PAREN */
-/* %token CLOSING_PAREN */
 /* %token OPENING_SQUARE_BRACKET */
 /* %token CLOSING_SQUARE_BRACKET */
-/* %token PUNCTUATION_MARK */
+%token PUNCTUATION_MARK
 
 %token NEWLINE
 %token WHITE_SPACE
@@ -75,7 +73,7 @@ paragraph :
     }
     stuffWithinParagraph
     {
-        cout << "PARA FINISHED" << endl;
+        currentPara->display();
     }
 ;
 
@@ -102,16 +100,22 @@ nonEmptyLineWithoutParCmd :
 
 nonEmptyLineWithoutParCmdOrLineBreak :
     optionalWhiteSpace
-    STRING
-    {
-        cout << "will append '" << $2 << "' to para" << endl;
-    }
+    paragraphElement
 |
     nonEmptyLineWithoutParCmdOrLineBreak
-    WHITE_SPACE
+    optionalWhiteSpace
+    paragraphElement
+;
+
+paragraphElement:
     STRING
     {
-        cout << "will append '" << $3 << "' to para" << endl;
+        currentPara->append($1);
+    }
+|
+    PUNCTUATION_MARK
+    {
+        currentPara->append($1);
     }
 ;
 

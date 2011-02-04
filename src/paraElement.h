@@ -7,12 +7,11 @@ public:
     ParaElement(void)
         {
         }
-    ~ParaElement()
+    virtual ~ParaElement()
         {
         }
 
-    void display(void) {
-    }
+    virtual void display(void) = 0;
 
 private:
 };
