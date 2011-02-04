@@ -14,21 +14,21 @@
 /* %token CHAPTER_TERMINATOR_CENTERED_CMD /\* Centered text to end a chapter. *\/ */
 %token PARA_CMD
 /* %token CHAPTER_HEAD_QUOTE_CMD /\* Quotations following a chapter heading. *\/ */
-/* %token QUOTE_CMD              /\* Indented quotations. *\/ */
+%token QUOTE_CMD              /* Indented quotations. */
 /* %token REFERENCE_CMD          /\* References for quotations. *\/ */
 /* %token FOOTNOTE_CMD */
 /* %token FOOTNOTE_QUADSPACE_CMD  /\* 12pt. space in a footnote context *\/ */
-/* %token POEM_CMD                /\* Enter poem mode. *\/ */
-/* %token PROSE_CMD               /\* return to default (prose) mode *\/ */
+%token POEM_CMD                /* Enter poem mode. */
+%token PROSE_CMD               /* return to default (prose) mode */
 /* %token ENUMERATION_ITEM_CMD */
 /* %token BOLD_ITALICS_FACE_CMD    /\* Bold and italics. *\/ */
 /* %token BOLD_FACE_CMD */
 /* %token ITALICS_FACE_CMD */
 /* %token SLANT_CMD            /\* Slanted text. *\/ */
-/* %token NOINDENT_CMD         /\* Begin paragraph without indentation. *\/ */
-/* %token FOOTER_CENTERED_TEXT_CMD /\* Centered text at the footer of a page.*\/ */
-/* %token DROP_CMD            /\* Enlarge the first letter which follows*\/ */
-/* %token NODROP_CMD */
+%token NOINDENT_CMD         /* Begin paragraph without indentation. */
+%token FOOTER_CENTERED_TEXT_CMD /* Centered text at the footer of a page.*/
+%token DROP_CMD            /* Enlarge the first letter which follows*/
+%token NODROP_CMD
 /* %token LINE_BREAK_CMD */
 /* %token DOTS_CMD              /\* ... *\/ */
 /* %token DOTSNS_CMD            /\* Dots without a space following them *\/ */
@@ -116,6 +116,63 @@ paragraphElement:
     PUNCTUATION_MARK
     {
         currentContainer()->append($1);
+    }
+|
+    NOINDENT_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::INDENT);
+    }
+|
+    QUOTE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::QUOTE);
+    }
+|
+    POEM_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::POEM);
+    }
+|
+    PROSE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::POEM);
+    }
+|
+    FOOTER_CENTERED_TEXT_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::FOOTER);
+        para->setAttribute(Para::CENTER);
+    }
+|
+    DROP_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::DROP);
+    }
+|
+    NODROP_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::DROP);
     }
 ;
 

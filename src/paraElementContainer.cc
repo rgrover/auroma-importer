@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "paraElementContainer.h"
-#include "stringParaElement.h"
+#include "variousParaElements.h"
 
 void
 ParaElementContainer::display(void)

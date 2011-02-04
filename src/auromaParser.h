@@ -41,6 +41,8 @@ public:
     void popSubContainer(void);
 
     ParaElementContainer *currentContainer(void);
+    bool                  currentContainerIsPara(void);
+
     void display();
 
 private:
@@ -107,6 +109,12 @@ inline ParaElementContainer *
 auromaParser::currentContainer(void)
 {
     return containerStack.top();
+}
+
+inline bool
+auromaParser::currentContainerIsPara(void)
+{
+    return (containerStack.size() == 1);
 }
 
 inline void

@@ -32,22 +32,27 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef PARA_ELEMENT_H
-#define PARA_ELEMENT_H
+#ifndef VARIOUS_PARA_ELEMENTS
+#define VARIOUS_PARA_ELEMENTS
 
-class ParaElement {
+#include <iostream>
+#include <string>
+using namespace std;
+
+#include "paraElement.h"
+
+class StringParaElement : public ParaElement {
 public:
-    /* nothing for now */
-    ParaElement(void)
+    StringParaElement(const char *strIn)
+        : str(strIn)
         {
-        }
-    virtual ~ParaElement()
-        {
+            // empty
         }
 
-    virtual void display(void) = 0;
+    void display(void);
 
 private:
+    string str;
 };
 
-#endif // #ifndef PARA_ELEMENT_H
+#endif /* #ifdef VARIOUS_PARA_ELEMENTS */

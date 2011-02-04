@@ -56,24 +56,31 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
 \\(?i:pf)/{EOC}      return 1;/* return auromaParserBase::NOINDENT_CMD; */
-\\(?i:noindent)/{EOC} return 1;/* return auromaParserBase::NOINDENT_CMD; */
+\\(?i:noindent)$     return auromaParserBase::NOINDENT_CMD;
+\\(?i:noindent)/{EOC} return auromaParserBase::NOINDENT_CMD;
 \\(?i:bf)/{EOC}      return 1;/* return auromaParserBase::NOINDENT_CMD;/\* not sure about this *\/ */
 \\(?i:csf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
 \\(?i:sf)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
-\\(?i:quote)/{EOC}   return 1;/* return auromaParserBase::QUOTE_CMD; */
+\\(?i:quote)$        return auromaParserBase::QUOTE_CMD;
+\\(?i:quote)/{EOC}   return auromaParserBase::QUOTE_CMD;
 \\(?i:sref)/{EOC}    return 1;/* return auromaParserBase::REFERENCE_CMD; */
 \\(?i:pnote)/{EOC}   return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
 \\(?i:note)/{EOC}    return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
 \\(?i:lnote)/{EOC}   return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
-\\(?i:poem)/{EOC}    return 1;/* return auromaParserBase::POEM_CMD; */
-\\(?i:prose)/{EOC}   return 1;/* return auromaParserBase::PROSE_CMD; */
+\\(?i:poem)$         return auromaParserBase::POEM_CMD;
+\\(?i:poem)/{EOC}    return auromaParserBase::POEM_CMD;
+\\(?i:prose)$        return auromaParserBase::PROSE_CMD;
+\\(?i:prose)/{EOC}   return auromaParserBase::PROSE_CMD;
 \\(?i:sitem)/{EOC}   return 1;/* return auromaParserBase::ENUMERATION_ITEM_CMD; */
 \\(?i:fnquad)/{EOC}  return 1;/* return auromaParserBase::FOOTNOTE_QUADSPACE_CMD; */
 \\(?i:s)/{EOC}       return 1;/* return auromaParserBase::SLANT_CMD; */
 \\(?i:sforced)/{EOC} return 1;/* return auromaParserBase::SLANT_CMD; */
-\\(?i:ftext)/{EOC}   return 1;/* return auromaParserBase::FOOTER_CENTERED_TEXT_CMD; */
-\\(?i:drop)/{EOC}    return 1;/* return auromaParserBase::DROP_CMD; */
-\\(?i:nodrop)/{EOC}  return 1;/* return auromaParserBase::NODROP_CMD; */
+\\(?i:ftext)$        return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
+\\(?i:ftext)/{EOC}   return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
+\\(?i:drop)$         return auromaParserBase::DROP_CMD;
+\\(?i:drop)/{EOC}    return auromaParserBase::DROP_CMD;
+\\(?i:nodrop)$       return auromaParserBase::NODROP_CMD;
+\\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
 \\(?i:ftextbi)/{EOC} return 1;/* return auromaParserBase::BOLD_ITALICS_FACE_CMD; */
 \\(?i:ftextb)/{EOC}  return 1;/* return auromaParserBase::BOLD_FACE_CMD; */
 \\(?i:it)/{EOC}      return 1;/* return auromaParserBase::ITALICS_FACE_CMD; */
