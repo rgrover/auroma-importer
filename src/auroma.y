@@ -69,11 +69,11 @@ paragraph :
     optionalWhiteSpace
     PARA_CMD
     {
-        currentPara = new Para();
+        newPara();
     }
     stuffWithinParagraph
     {
-        currentPara->display();
+        finishPara();
     }
 ;
 
@@ -110,12 +110,12 @@ nonEmptyLineWithoutParCmdOrLineBreak :
 paragraphElement:
     STRING
     {
-        currentPara->append($1);
+        currentContainer()->append($1);
     }
 |
     PUNCTUATION_MARK
     {
-        currentPara->append($1);
+        currentContainer()->append($1);
     }
 ;
 

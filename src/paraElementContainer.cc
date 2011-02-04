@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "paraElementContainer.h"
+#include "stringParaElement.h"
 
 void
 ParaElementContainer::display(void)
@@ -19,7 +20,14 @@ ParaElementContainer::display(void)
 }
 
 void
-ParaElementContainer::appendParaElement(ParaElement *element)
+ParaElementContainer::append(ParaElement *element)
 {
     elements.push_back(element);
+}
+
+void
+ParaElementContainer::append(const char *str)
+{
+    ParaElement *p = new StringParaElement(str);
+    append(p);
 }

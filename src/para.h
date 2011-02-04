@@ -9,7 +9,7 @@ class Para : public ParaElementContainer
 public:
     Para(void)
         {
-            cout << "creating a new paragraph" << endl;
+            // cout << "creating a new paragraph" << endl;
         }
     ~Para(void)
         {

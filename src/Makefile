@@ -1,9 +1,10 @@
 CXX = g++
 CXXFLAGS += -g
 
-PARSER_SRCS =					\
-       parser.auroma.cc				\
-       lex.auroma.cc				\
+PARSER_SRCS =                                   \
+       parser.auroma.cc                         \
+       lex.auroma.cc                            \
+       auromaParserExt.cc                       \
        auromaParserMain.cc                      \
        paraElement.cc                           \
        paraElementContainer.cc                  \

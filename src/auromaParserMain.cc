@@ -28,5 +28,7 @@ main(int argc, const char *argv[])
 
     parser.parse();
 
-    return 0;
+    parser.display();
+
+    return (0);
 }

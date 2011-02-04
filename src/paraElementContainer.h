@@ -25,7 +25,9 @@ public:
         }
 
 
-    void appendParaElement(ParaElement *element);
+    void append(ParaElement *element);
+    void append(const char *str);
+
     void display(void);
 
 protected:

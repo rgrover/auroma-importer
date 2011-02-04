@@ -3,6 +3,9 @@
 #ifndef auromaParser_h_included
 #define auromaParser_h_included
 
+#include <stack>
+#include <cassert>
+
 using namespace std;
 
 // $insert baseclass
@@ -15,11 +18,13 @@ using namespace std;
 extern auromaParserBase::STYPE__ d_val;
 
 #include "para.h"
-extern Para *currentPara;
+#include "paraElementContainer.h"
 
 #undef auromaParser
 class auromaParser: public auromaParserBase
 {
+  public:
+    ~auromaParser();
 
 public:
     auromaParser(yyFlexLexer *lexerIn) :
@@ -30,8 +35,19 @@ public:
 
     int parse();
 
+    void newPara(void);
+    void finishPara(void);
+    void pushSubContainer(void);
+    void popSubContainer(void);
+
+    ParaElementContainer *currentContainer(void);
+    void display();
+
 private:
     yyFlexLexer *lexer;
+
+    vector<Para *>                paragraphs;
+    stack<ParaElementContainer *> containerStack;
 
     void error(char const *msg);    // called on (syntax) errors
     int lex();                      // returns the next token from the
@@ -49,6 +65,19 @@ private:
     int lookup(bool recovery);
     void nextToken();
 };
+
+inline
+auromaParser::~auromaParser()
+{
+    assert(containerStack.empty());
+
+    // free up all the paragraphs
+    vector<Para *>::iterator iter;
+    for (iter = paragraphs.begin(); iter != paragraphs.end(); iter++) {
+        delete (*iter);
+    }
+}
+
 
 /* 
  * This is where we connect the parser with the lexical analyser.
@@ -74,18 +103,26 @@ auromaParser::lex()
     return (token);
 }
 
+inline ParaElementContainer *
+auromaParser::currentContainer(void)
+{
+    return containerStack.top();
+}
 
-inline void auromaParser::error(char const *msg)
+inline void
+auromaParser::error(char const *msg)
 {
     std::cerr << "\033[01;31mpaser: line "
               << lexer->lineno() << ":\033[00m "
               << msg << '\n';
 }
 
-// $insert lex
 
 // $insert print
-inline void auromaParser::print()
-{}
+inline void
+auromaParser::print()
+{
+
+}
 
 #endif
