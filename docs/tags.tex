@@ -2,19 +2,21 @@
 
 %% Things to add:
 
-%%  * Make it extra clear that the input should be plain ascii. If
+%%  * Make it extra clear that the input should be plain ASCII. If
 %%    anyone uses a special editor like Word, then they should avoid
 %%    introducing Word specific formatting.
 %%  * Diacritical marks cannot be verified visually until the end of
 %%    the import process. This poses a special challenge; people
 %%    involved have to be very careful.
 %%  * Rename \newpage{} to \pagebreak[]
-%%  * Blank lines should be avoided when switching pages.
+%%  * Blank lines should be avoided when switching pages; otherwise
+%%    they may be mis-interpreted as paragraph endings.
 %%  * Allow for comments beginning with %
 %%  * Files must be saved in plain text format.
 %%  * Add \sc for small caps.
 %%  * paragraphs MUST begin on a new line with a \par command
 %%  * Talk about blocks within { and }
+%%  * nothing spans a paragraph.
 
 
 \newcommand{\cmd}[1]{{\tt $\backslash$#1}}
