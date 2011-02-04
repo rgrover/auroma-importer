@@ -9,7 +9,7 @@
 %x AT_HEAD                      
 
  /* Definitions */
-EOC                  [[:space:][:punct:]]              /* command terminator */
+EOC                  [[:blank:][:punct:]]              /* command terminator */
 
 %{
 using namespace std;
@@ -53,6 +53,7 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:tcsub)/{EOC}   return 1;/* return auromaParserBase::CHAPTER_GROUP_SUBTITLE_CMD; */
 \\(?i:tcn)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_NUMBER_CMD; */
 \\(?i:tscc)/{EOC}    return 1;/* return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD; */
+\\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
 \\(?i:pf)/{EOC}      return 1;/* return auromaParserBase::NOINDENT_CMD; */
 \\(?i:noindent)/{EOC} return 1;/* return auromaParserBase::NOINDENT_CMD; */
