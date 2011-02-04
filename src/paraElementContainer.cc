@@ -12,8 +12,10 @@ ParaElementContainer::display(void) const
 
     vector<ParaElement *>::const_iterator iter;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
+        if (iter != elements.begin() && (*iter)->separatedFromPrevBySpace()) {
+            cout << " ";     // add a white space to precede this element
+        }
         (*iter)->display();
-        cout << " ";            // add a white space to separate elements
     }
 
     cout << endl;
@@ -30,4 +32,12 @@ ParaElementContainer::append(const char *str)
 {
     ParaElement *p = new StringParaElement(str);
     append(p);
+}
+
+void
+ParaElementContainer::appendWithoutPrevSep(const char *str)
+{
+    StringParaElement *s = new StringParaElement(str);
+    s->unsetPrevSep();
+    append(s);
 }

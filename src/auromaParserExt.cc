@@ -32,6 +32,8 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cstring>
+#include <cstdlib>
 #include "auromaParser.ih"
 
 void
@@ -71,6 +73,29 @@ void
 auromaParser::popSubContainer(void)
 {
     assert(0);                  // for now
+}
+
+
+void
+auromaParser::updatePrecedingWhiteSpace(const char *in)
+{
+    if (precedingWhiteSpace == NULL) {
+        if (in != NULL) {
+            precedingWhiteSpace = strdup(in);
+            assert(precedingWhiteSpace != NULL);
+        }
+    } else {
+        if (in == NULL) {
+            free(const_cast<char *>(precedingWhiteSpace));
+            precedingWhiteSpace = NULL;
+        } else {
+            if (strcmp(in, precedingWhiteSpace) != 0) {
+                free(const_cast<char *>(precedingWhiteSpace));
+                precedingWhiteSpace = strdup(in);
+                assert(precedingWhiteSpace != NULL);
+            }
+        }
+    }
 }
 
 

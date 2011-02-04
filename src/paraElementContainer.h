@@ -24,9 +24,11 @@ public:
             }
         }
 
-
     void append(ParaElement *element);
     void append(const char *str);
+
+    // append a string with its prevSep turned off
+    void appendWithoutPrevSep(const char *str);
 
     virtual void display(void) const;
 

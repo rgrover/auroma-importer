@@ -35,7 +35,6 @@
 %token STRING
 /* %token UNKNOWN_COMMAND */
 
-%token PERIOD
 %token N_DASH
 %token M_DASH
 %token OPENING_SINGLE_QUOTE
@@ -44,7 +43,7 @@
 %token PUNCTUATION_MARK
 
 %token NEWLINE
-%token WHITE_SPACE
+%token BLANK_SPACE
 
 %%
 
@@ -59,7 +58,7 @@ input :
 ;
 
 paragraph :
-    optionalWhiteSpace
+    optionalBlankSpace
     PARA_CMD
     {
         newPara();
@@ -78,8 +77,8 @@ stuffWithinParagraph :
 ;
 
 firstLineOfAParagraph :
-    optionalWhiteSpace
-    NEWLINE
+    optionalBlankSpace
+    newline
 |
     nonEmptyLineWithoutParCmd
 ;
@@ -87,28 +86,49 @@ firstLineOfAParagraph :
 
 nonEmptyLineWithoutParCmd :
     nonEmptyLineWithoutParCmdOrLineBreak
-    optionalWhiteSpace
-    NEWLINE
+    optionalBlankSpace
+    newline
 ;
 
 nonEmptyLineWithoutParCmdOrLineBreak :
-    optionalWhiteSpace
+    paragraphElement
+|
+    BLANK_SPACE
+    {
+        updatePrecedingWhiteSpace($1);
+    }
     paragraphElement
 |
     nonEmptyLineWithoutParCmdOrLineBreak
-    optionalWhiteSpace
+    optionalBlankSpace
     paragraphElement
 ;
 
 paragraphElement:
     STRING
     {
-        currentContainer()->append($1);
+        /* Pay attention to any blank space preceding the string */
+        if (precedingWhiteSpace != NULL) {
+            currentContainer()->append($1); /* Appended as a normal
+                                             * string with space to
+                                             * separate it from the
+                                             * preceding element. */
+        } else {
+            currentContainer()->appendWithoutPrevSep($1);
+        }
     }
 |
     PUNCTUATION_MARK
     {
-        currentContainer()->append($1);
+        /* Pay attention to any blank space preceding the punctuation mark */
+        if (precedingWhiteSpace != NULL) {
+            currentContainer()->append($1); /* Appended as a normal
+                                             * string with space to
+                                             * separate it from the
+                                             * preceding element. */
+        } else {
+            currentContainer()->appendWithoutPrevSep($1);
+        }
     }
 |
     NOINDENT_CMD
@@ -184,7 +204,7 @@ paragraphElement:
     }
 |
     PAGE_CMD
-    WHITE_SPACE
+    BLANK_SPACE
     pageNumber
     {
         assert(currentContainerIsPara());
@@ -201,11 +221,6 @@ paragraphElement:
         currentContainer()->append(new MDashParaElement());
     }
 |
-    '.'
-    {
-        currentContainer()->append(new PeriodParaElement);
-    }
-|
     '['
     {
         currentContainer()->append("[");
@@ -213,17 +228,7 @@ paragraphElement:
 |
     ']'
     {
-        currentContainer()->append("]");
-    }
-|
-    '\''
-    {
-        currentContainer()->append("'");
-    }
-|
-    '\"'
-    {
-        currentContainer()->append("\"");
+        currentContainer()->appendWithoutPrevSep("]");
     }
 |
     OPENING_SINGLE_QUOTE
@@ -252,12 +257,25 @@ pageNumber:
 ;
 
 emptyLine :
-    optionalWhiteSpace
-    NEWLINE
+    optionalBlankSpace
+    newline
 ;
 
-optionalWhiteSpace :
+newline:
+    NEWLINE
+    {
+        updatePrecedingWhiteSpace("\n");
+    }
+;
+
+optionalBlankSpace :
     /* empty */
+    {
+        updatePrecedingWhiteSpace(NULL);
+    }
 |
-    WHITE_SPACE
+    BLANK_SPACE
+    {
+        updatePrecedingWhiteSpace($1);
+    }
 ;

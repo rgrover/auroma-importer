@@ -64,11 +64,6 @@ PageBreakParaElement::display(void)
     cout << "PAGE[" << pageNumber << "] " << endl;
 }
 
-void PeriodParaElement::display(void)
-{
-    cout << ".";
-};
-
 void NDashParaElement::display(void)
 {
     cout << "--";

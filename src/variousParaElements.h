@@ -45,20 +45,32 @@ class StringParaElement : public ParaElement
 {
 public:
     StringParaElement(const char *strIn)
-        : str(strIn)
+        : str(strIn), prevSep(true)
         {
             // empty
         }
+
+    bool separatedFromPrevBySpace(void) {
+        return prevSep;
+    }
+
+    void unsetPrevSep(void) {
+        prevSep = false;
+    }
 
     void display(void);
 
 private:
     string str;
+    bool   prevSep;
 };
 
 class DotsParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     void display(void);
 };
 
@@ -71,12 +83,18 @@ public:
 class LineBreakParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     void display(void);
 };
 
 class PageBreakParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     PageBreakParaElement(const char *number)
         : pageNumber(number)
         {
@@ -88,21 +106,21 @@ private:
     string pageNumber;
 };
 
-class PeriodParaElement : public ParaElement
-{
-public:
-    void display(void);
-};
-
 class NDashParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     void display(void);
 };
 
 class MDashParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     void display(void);
 };
 
@@ -121,6 +139,9 @@ public:
 class ClosingDoubleQuotesParaElement : public ParaElement
 {
 public:
+    bool separatedFromPrevBySpace(void) {
+        return false;
+    }
     void display(void);
 };
 

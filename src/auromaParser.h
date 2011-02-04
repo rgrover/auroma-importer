@@ -3,6 +3,7 @@
 #ifndef auromaParser_h_included
 #define auromaParser_h_included
 
+#include <cstring>
 #include <stack>
 #include <cassert>
 
@@ -28,21 +29,25 @@ class auromaParser: public auromaParserBase
 
 public:
     auromaParser(yyFlexLexer *lexerIn) :
-        lexer(lexerIn)
+        lexer(lexerIn), precedingWhiteSpace(NULL)
         {
             /* empty */
         }
 
+    // The main parser function
     int parse();
 
+    // support for the stack of elementContainers
     void newPara(void);
     void finishPara(void);
     void pushSubContainer(void);
     void popSubContainer(void);
-
     ParaElementContainer *currentContainer(void);
     bool                  currentContainerIsPara(void);
 
+    void updatePrecedingWhiteSpace(const char *precedingWhiteSpace);
+
+    // for debugging the parse tree
     void display();
 
 private:
@@ -50,6 +55,9 @@ private:
 
     vector<Para *>                paragraphs;
     stack<ParaElementContainer *> containerStack;
+
+    // a temporary location to hold blank spaces as they are encountered
+    const char *precedingWhiteSpace;
 
     void error(char const *msg);    // called on (syntax) errors
     int lex();                      // returns the next token from the

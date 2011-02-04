@@ -45,6 +45,12 @@ public:
         {
         }
 
+    /*
+     * Should this element be separated from its preceding element
+     * with a space?
+     */
+    virtual bool separatedFromPrevBySpace(void);
+
     virtual void display(void) = 0;
 
 private:

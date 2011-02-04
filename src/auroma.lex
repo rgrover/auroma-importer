@@ -122,9 +122,6 @@ extern auromaParserBase::STYPE__ d_val;
 \\[[:digit:]]/{EOC}     /* ignore; but needs to be addressed */
 
     /* Punctuations marks */
-\.                              return '.';
-\'                              return '\'';
-\"                              return '"';
 \[                              return '[';
 \]                              return ']';
 \{                              return '{';
@@ -134,6 +131,12 @@ extern auromaParserBase::STYPE__ d_val;
 `                               return auromaParserBase::OPENING_SINGLE_QUOTE;
 \x93|``                         return auromaParserBase::OPENING_DOUBLE_QUOTES;
 \x94|\'\'                       return auromaParserBase::CLOSING_DOUBLE_QUOTES;
+ /* The default rule for punctuation */
+[[:punct:]]                     {
+    d_val = YYText();
+    return auromaParserBase::PUNCTUATION_MARK;
+ }
+
 \.\.\.                    {
     cerr << "\033[01;31mscanner: line " << yylineno
          << ": found occurrence of '...', "
@@ -144,13 +147,6 @@ extern auromaParserBase::STYPE__ d_val;
          << ": found occurrence of triple-star, "
          << "please replace with \\tstar\033[00m" << endl;
  }
-
- /* The default rule for punctuation */
-[[:punct:]]                     {
-    d_val = YYText();
-    return auromaParserBase::PUNCTUATION_MARK;
- }
-
 
     /* String */
 (?x:
@@ -231,7 +227,11 @@ extern auromaParserBase::STYPE__ d_val;
  }
 
 
-[[:blank:]]+                    /* ECHO;  */return auromaParserBase::WHITE_SPACE;
+[[:blank:]]+                    {
+    /* ECHO;  */
+    d_val = YYText();
+    return auromaParserBase::BLANK_SPACE;
+ }
 
  /*
   * Default catch-all rules; error reporting
