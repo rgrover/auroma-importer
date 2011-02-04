@@ -39,3 +39,57 @@ StringParaElement::display(void)
 {
     cout << str;
 }
+
+void
+DotsParaElement::display(void)
+{
+    cout << "...";
+}
+
+void
+TstarParaElement::display(void)
+{
+    cout << "***";
+}
+
+void
+LineBreakParaElement::display(void)
+{
+    cout << endl;
+}
+
+void
+PageBreakParaElement::display(void)
+{
+    cout << "PAGE[" << pageNumber << "] " << endl;
+}
+
+void PeriodParaElement::display(void)
+{
+    cout << ".";
+};
+
+void NDashParaElement::display(void)
+{
+    cout << "--";
+};
+
+void MDashParaElement::display(void)
+{
+    cout << "---";
+};
+
+void OpeningSingleQuoteParaElement::display(void)
+{
+    cout << "`";
+}
+
+void OpeningDoubleQuotesParaElement::display(void)
+{
+    cout << "``";
+}
+
+void ClosingDoubleQuotesParaElement::display(void)
+{
+    cout << "''";
+}

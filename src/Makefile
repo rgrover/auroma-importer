@@ -28,7 +28,7 @@ auromaLexer: auromaParserbase.h $(LEXER_OBJS)
 	$(CXX) $(CXXFLAGS) $(LEXER_OBJS) -o $@
 
 lex.auroma.cc: auroma.lex auromaParserbase.h
-	flex --batch -o $@ $^
+	flex --batch -o $@ auroma.lex
 
 parser.auroma.cc auromaParserbase.h: auroma.y
 	bisonc++ $^

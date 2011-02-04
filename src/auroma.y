@@ -17,7 +17,6 @@
 %token QUOTE_CMD              /* Indented quotations. */
 /* %token REFERENCE_CMD          /\* References for quotations. *\/ */
 /* %token FOOTNOTE_CMD */
-/* %token FOOTNOTE_QUADSPACE_CMD  /\* 12pt. space in a footnote context *\/ */
 %token POEM_CMD                /* Enter poem mode. */
 %token PROSE_CMD               /* return to default (prose) mode */
 /* %token ENUMERATION_ITEM_CMD */
@@ -29,25 +28,19 @@
 %token FOOTER_CENTERED_TEXT_CMD /* Centered text at the footer of a page.*/
 %token DROP_CMD            /* Enlarge the first letter which follows*/
 %token NODROP_CMD
-/* %token LINE_BREAK_CMD */
-/* %token DOTS_CMD              /\* ... *\/ */
-/* %token DOTSNS_CMD            /\* Dots without a space following them *\/ */
-/* %token TSTAR_CMD             /\* Triple star, centered. *\/ */
-/* %token PAGE_CMD              /\* Page break *\/ */
-/* %token UNKNOWN_COMMAND */
-/* %token BEGIN_BLOCK */
-/* %token END_BLOCK */
+%token LINE_BREAK_CMD
+%token DOTS_CMD              /* ... */
+%token TSTAR_CMD             /* Triple star, centered. */
+%token PAGE_CMD              /* Page break */
 %token STRING
+/* %token UNKNOWN_COMMAND */
 
-/* %token N_DASH */
-/* %token M_DASH */
-/* %token SINGLE_QUOTE */
-/* %token DOUBLE_QUOTES */
-/* %token OPENING_SINGLE_QUOTE */
-/* %token OPENING_DOUBLE_QUOTES */
-/* %token CLOSING_DOUBLE_QUOTES */
-/* %token OPENING_SQUARE_BRACKET */
-/* %token CLOSING_SQUARE_BRACKET */
+%token PERIOD
+%token N_DASH
+%token M_DASH
+%token OPENING_SINGLE_QUOTE
+%token OPENING_DOUBLE_QUOTES
+%token CLOSING_DOUBLE_QUOTES
 %token PUNCTUATION_MARK
 
 %token NEWLINE
@@ -173,6 +166,88 @@ paragraphElement:
 
         Para *para = reinterpret_cast<Para *>(currentContainer());
         para->unsetAttribute(Para::DROP);
+    }
+|
+    DOTS_CMD
+    {
+        currentContainer()->append(new DotsParaElement());
+    }
+|
+    TSTAR_CMD
+    {
+        currentContainer()->append(new TstarParaElement());
+    }
+|
+    LINE_BREAK_CMD
+    {
+        currentContainer()->append(new LineBreakParaElement());
+    }
+|
+    PAGE_CMD
+    WHITE_SPACE
+    pageNumber
+    {
+        assert(currentContainerIsPara());
+        currentContainer()->append(new PageBreakParaElement($3));
+    }
+|
+    N_DASH
+    {
+        currentContainer()->append(new NDashParaElement());
+    }
+|
+    M_DASH
+    {
+        currentContainer()->append(new MDashParaElement());
+    }
+|
+    '.'
+    {
+        currentContainer()->append(new PeriodParaElement);
+    }
+|
+    '['
+    {
+        currentContainer()->append("[");
+    }
+|
+    ']'
+    {
+        currentContainer()->append("]");
+    }
+|
+    '\''
+    {
+        currentContainer()->append("'");
+    }
+|
+    '\"'
+    {
+        currentContainer()->append("\"");
+    }
+|
+    OPENING_SINGLE_QUOTE
+    {
+        currentContainer()->append(new OpeningSingleQuoteParaElement());
+    }
+|
+    OPENING_DOUBLE_QUOTES
+    {
+        currentContainer()->append(new OpeningDoubleQuotesParaElement());
+    }
+|
+    CLOSING_DOUBLE_QUOTES
+    {
+        currentContainer()->append(new ClosingDoubleQuotesParaElement());
+    }
+;
+
+pageNumber:
+    STRING
+|
+    N_DASH
+    {
+        $$ = "--";
     }
 ;
 

@@ -41,7 +41,8 @@ using namespace std;
 
 #include "paraElement.h"
 
-class StringParaElement : public ParaElement {
+class StringParaElement : public ParaElement
+{
 public:
     StringParaElement(const char *strIn)
         : str(strIn)
@@ -53,6 +54,74 @@ public:
 
 private:
     string str;
+};
+
+class DotsParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class TstarParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class LineBreakParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class PageBreakParaElement : public ParaElement
+{
+public:
+    PageBreakParaElement(const char *number)
+        : pageNumber(number)
+        {
+        }
+
+    void display(void);
+
+private:
+    string pageNumber;
+};
+
+class PeriodParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class NDashParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class MDashParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class OpeningSingleQuoteParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class OpeningDoubleQuotesParaElement : public ParaElement
+{
+public:
+    void display(void);
+};
+
+class ClosingDoubleQuotesParaElement : public ParaElement
+{
+public:
+    void display(void);
 };
 
 #endif /* #ifdef VARIOUS_PARA_ELEMENTS */

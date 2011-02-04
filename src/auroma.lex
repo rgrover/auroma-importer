@@ -55,10 +55,12 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:tscc)/{EOC}    return 1;/* return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD; */
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
-\\(?i:pf)/{EOC}      return 1;/* return auromaParserBase::NOINDENT_CMD; */
+\\(?i:pf)$           return auromaParserBase::NOINDENT_CMD;
+\\(?i:pf)/{EOC}      return auromaParserBase::NOINDENT_CMD;
 \\(?i:noindent)$     return auromaParserBase::NOINDENT_CMD;
 \\(?i:noindent)/{EOC} return auromaParserBase::NOINDENT_CMD;
-\\(?i:bf)/{EOC}      return 1;/* return auromaParserBase::NOINDENT_CMD;/\* not sure about this *\/ */
+\\(?i:bf)$           return auromaParserBase::NOINDENT_CMD;
+\\(?i:bf)/{EOC}      return auromaParserBase::NOINDENT_CMD;
 \\(?i:csf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
 \\(?i:sf)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
 \\(?i:quote)$        return auromaParserBase::QUOTE_CMD;
@@ -72,24 +74,29 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:prose)$        return auromaParserBase::PROSE_CMD;
 \\(?i:prose)/{EOC}   return auromaParserBase::PROSE_CMD;
 \\(?i:sitem)/{EOC}   return 1;/* return auromaParserBase::ENUMERATION_ITEM_CMD; */
-\\(?i:fnquad)/{EOC}  return 1;/* return auromaParserBase::FOOTNOTE_QUADSPACE_CMD; */
-\\(?i:s)/{EOC}       return 1;/* return auromaParserBase::SLANT_CMD; */
-\\(?i:sforced)/{EOC} return 1;/* return auromaParserBase::SLANT_CMD; */
+\\(?i:fnquad)/{EOC}           /* ignore  */
 \\(?i:ftext)$        return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:ftext)/{EOC}   return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:drop)$         return auromaParserBase::DROP_CMD;
 \\(?i:drop)/{EOC}    return auromaParserBase::DROP_CMD;
 \\(?i:nodrop)$       return auromaParserBase::NODROP_CMD;
 \\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
+\\(?i:nl)$           return auromaParserBase::LINE_BREAK_CMD;
+\\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
+\\(?i:s)/{EOC}       return 1;/* return auromaParserBase::SLANT_CMD; */
+\\(?i:sforced)/{EOC} return 1;/* return auromaParserBase::SLANT_CMD; */
 \\(?i:ftextbi)/{EOC} return 1;/* return auromaParserBase::BOLD_ITALICS_FACE_CMD; */
 \\(?i:ftextb)/{EOC}  return 1;/* return auromaParserBase::BOLD_FACE_CMD; */
 \\(?i:it)/{EOC}      return 1;/* return auromaParserBase::ITALICS_FACE_CMD; */
-\\(?i:nl)/{EOC}      return 1;/* return auromaParserBase::LINE_BREAK_CMD; */
-\\(?i:dots)/{EOC}    return 1;/* return auromaParserBase::DOTS_CMD; */
-\\(?i:sdots)/{EOC}   return 1;/* return auromaParserBase::DOTS_CMD; */
-\\(?i:dotsns)/{EOC}  return 1;/* return auromaParserBase::DOTSNS_CMD; */
-\\(?i:tstar)/{EOC}   return 1;/* return auromaParserBase::TSTAR_CMD; */
-^Page/[[:blank:]](--|[[:digit:]]+) return 1;/* return auromaParserBase::PAGE_CMD; */
+\\(?i:dots)$         return auromaParserBase::DOTS_CMD;
+\\(?i:dots)/{EOC}    return auromaParserBase::DOTS_CMD;
+\\(?i:sdots)$        return auromaParserBase::DOTS_CMD;
+\\(?i:sdots)/{EOC}   return auromaParserBase::DOTS_CMD;
+\\(?i:dotsns)$       return auromaParserBase::DOTS_CMD;
+\\(?i:dotsns)/{EOC}  return auromaParserBase::DOTS_CMD;
+\\(?i:tstar)$        return auromaParserBase::TSTAR_CMD;
+\\(?i:tstar)/{EOC}   return auromaParserBase::TSTAR_CMD;
+^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
 
 \\(?i:text)/{EOC} /* ignore */
 \\(?i:BC)/{EOC}   /* ignore */
@@ -114,21 +121,30 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:shortlines)/{EOC} /* ignore; but needs to be addressed */
 \\[[:digit:]]/{EOC}     /* ignore; but needs to be addressed */
 
-\.\.\.                          /* ignore dots; handled by \dots */
-[[:blank:]]*\*[[:blank:]]*\*[[:blank:]]*\* /* ignore tstar */
-\{                                 return 1;/* return auromaParserBase::BEGIN_BLOCK; */
-\}                                 return 1;/* return auromaParserBase::END_BLOCK; */
-
     /* Punctuations marks */
-\-\-                            return 1;/* return auromaParserBase::N_DASH; */
-\-\-\-|\x97                     return 1;/* return auromaParserBase::M_DASH; */
-`                               return 1;/* return auromaParserBase::OPENING_SINGLE_QUOTE; */
-\x93|``                         return 1;/* return auromaParserBase::OPENING_DOUBLE_QUOTES; */
-\x94|''                         return 1;/* return auromaParserBase::CLOSING_DOUBLE_QUOTES; */
-\'                              return 1;/* return auromaParserBase::SINGLE_QUOTE; */
-\"                              return 1;/* return auromaParserBase::DOUBLE_QUOTES; */
-\[                              return 1;/* return auromaParserBase::OPENING_SQUARE_BRACKET; */
-\]                              return 1;/* return auromaParserBase::CLOSING_SQUARE_BRACKET; */
+\.                              return '.';
+\'                              return '\'';
+\"                              return '"';
+\[                              return '[';
+\]                              return ']';
+\{                              return '{';
+\}                              return '}';
+\-\-                            return auromaParserBase::N_DASH;
+\-\-\-|\x97                     return auromaParserBase::M_DASH;
+`                               return auromaParserBase::OPENING_SINGLE_QUOTE;
+\x93|``                         return auromaParserBase::OPENING_DOUBLE_QUOTES;
+\x94|\'\'                       return auromaParserBase::CLOSING_DOUBLE_QUOTES;
+\.\.\.                    {
+    cerr << "\033[01;31mscanner: line " << yylineno
+         << ": found occurrence of '...', "
+         << "please replace with \\dots\033[00m" << endl;
+ }
+[[:blank:]]*\*[[:blank:]]*\*[[:blank:]]*\* {
+    cerr << "\033[01;31mscanner: line " << yylineno
+         << ": found occurrence of triple-star, "
+         << "please replace with \\tstar\033[00m" << endl;
+ }
+
  /* The default rule for punctuation */
 [[:punct:]]                     {
     d_val = YYText();
@@ -151,7 +167,7 @@ extern auromaParserBase::STYPE__ d_val;
    \\~  |
    \\c  |
    \\,  |
-   \\d  )[[:alpha:]]
+   \\d  )\{[[:alpha:]]\}
   )
  /* followed by other characters, which may even contain some punctuations */
  ([[:alnum:]]           |
@@ -167,9 +183,18 @@ extern auromaParserBase::STYPE__ d_val;
    \\~  |
    \\c  |
    \\,  |
-   \\d  )[[:alpha:]]    |
-  \'                    |
-  \- | \x96             |       /* allow hyphens or n-dashes */
+   \\d  )\{[[:alpha:]]\}|
+  (\\=  |
+   \\\. |
+   \\,  |
+   \\\' |
+   \\\" |
+   \\^  |
+   \\`  |
+   \\~  |
+   \\,  )[[:alpha:]]    |
+  \'[[:alpha:]]         |
+  (\- | \x96)[[:alpha:]]|       /* allow hyphens */
   \\[ ]               /* allow escaped spaces to be part of strings */
   )*
  /* Handle the apostrophe followed by s */
