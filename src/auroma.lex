@@ -214,21 +214,21 @@ extern auromaParserBase::STYPE__ d_val;
 
  /* The unknown command! */
 \\[[:alnum:]]+                  {
-    cerr << "\033[01;31mline:"
-         << yylineno << " Unknown Command:\033[00m'" << YYText() << "'"
+    cerr << "\033[01;31mscanner: line "
+         << yylineno << ": Unknown Command:\033[00m'" << YYText() << "'"
          << endl;
     return 1; /* return auromaParserBase::UNKNOWN_COMMAND; */
  }
 
  /* for unsupported diacritical combinations */
 \\[^[:alnum:][:blank:]][[:alpha:]] {
-    cerr << "\033[01;31mline:" << yylineno
+    cerr << "\033[01;31mscanner: line " << yylineno
          << ": unknown diacritical mark: \033[00m'" << YYText() << "'" << endl;
  }
 
  /* For unknown byte--this is the default match. */
 .                               {
-    cerr << "\033[01;31mline:" << yylineno
+    cerr << "\033[01;31mscanner: line " << yylineno
          << ": unexpected byte: \033[00m'" << YYText() << "'" << endl;
  }
 

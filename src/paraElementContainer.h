@@ -28,7 +28,7 @@ public:
     void append(ParaElement *element);
     void append(const char *str);
 
-    void display(void);
+    virtual void display(void) const;
 
 protected:
     vector<ParaElement *> elements;

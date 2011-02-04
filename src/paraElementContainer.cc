@@ -6,7 +6,7 @@ using namespace std;
 #include "variousParaElements.h"
 
 void
-ParaElementContainer::display(void)
+ParaElementContainer::display(void) const
 {
     // cout << elements.size() << endl;
 

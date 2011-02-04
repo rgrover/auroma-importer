@@ -32,12 +32,13 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cassert>
 #include "para.h"
 
 void
 Para::setAttribute(ParaAttributes attr)
 {
-    cout << "seting PARA attribute: " << attr << endl;
+    // cout << "seting PARA attribute: " << attr << endl;
     switch (attr) {
     case FLUSH_LEFT:
         attributes[FLUSH_LEFT] = true;
@@ -52,6 +53,54 @@ Para::setAttribute(ParaAttributes attr)
 void
 Para::unsetAttribute(ParaAttributes attr)
 {
-    cout << "unseting PARA attribute: " << attr << endl;
+    // cout << "unseting PARA attribute: " << attr << endl;
     attributes[attr] = false;
+}
+
+void
+Para::display(void) const
+{
+    // for (unsigned i = 0; i < attributes.size(); ++i) {
+    //     switch (i) {
+    //     case INDENT:
+    //         if (attributes[i] == false) {
+    //             cout << "<noindent>";
+    //         }
+    //         break;
+    //     case CENTER:
+    //         if (attributes[i]) {
+    //             cout << "<center>";
+    //         }
+    //         break;
+    //     case FLUSH_LEFT:
+    //         if (attributes[i] == false) {
+    //             cout << "<flushright>";
+    //         }
+    //         break;
+    //     case DROP:
+    //         if (attributes[i]) {
+    //             cout << "<drop>";
+    //         }
+    //         break;
+    //     case QUOTE:
+    //         if (attributes[i]) {
+    //             cout << "<quote>";
+    //         }
+    //         break;
+    //     case POEM:
+    //         if (attributes[i]) {
+    //             cout << "<poem>";
+    //         }
+    //         break;
+    //     case FOOTER:
+    //         if (attributes[i]) {
+    //             cout << "<footer>";
+    //         }
+    //         break;
+    //     default:
+    //         assert(0);
+    //     }
+    // }
+
+    ParaElementContainer::display();
 }

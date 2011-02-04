@@ -77,6 +77,8 @@ public:
 
     void append(const char *str);
 
+    void display(void) const;
+
 private:
     vector<bool> attributes;
 };
