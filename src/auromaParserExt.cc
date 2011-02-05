@@ -66,13 +66,26 @@ auromaParser::finishPara(void)
 void
 auromaParser::pushSubContainer(void)
 {
-    assert(0);                  // for now
+    assert(containerStack.empty() == false);
+
+    ParaElementContainer *container = new ParaElementContainer();
+    containerStack.push(container);
 }
 
 void
 auromaParser::popSubContainer(void)
 {
-    assert(0);                  // for now
+    assert(containerStack.empty() == false);
+
+    // pop the top level container off the stack; the stack shouldn't
+    // become empty as a result--there should be a paragraph container
+    // at the bottom.
+    ParaElementContainer *container;
+    container = containerStack.top();
+    containerStack.pop();
+    assert(containerStack.empty() == false);
+
+    // add this container to the paragraph as an element
 }
 
 

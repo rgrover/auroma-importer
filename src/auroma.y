@@ -103,7 +103,38 @@ nonEmptyLineWithoutParCmdOrLineBreak :
     paragraphElement
 ;
 
+block:
+    optionalBlankSpace
+    newline
+|
+    paragraphElement
+|
+    BLANK_SPACE
+    {
+        updatePrecedingWhiteSpace($1);
+    }
+    paragraphElement
+|
+    block
+    optionalBlankSpace
+    newline
+|
+    block
+    optionalBlankSpace
+    paragraphElement
+;
+
 paragraphElement:
+    '{'
+    {
+        pushSubContainer();
+    }
+    block
+    '}'
+    {
+        popSubContainer();
+    }
+|
     STRING
     {
         /* Pay attention to any blank space preceding the string */
