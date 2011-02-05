@@ -103,13 +103,13 @@ paragraph :
 ;
 
 stuffWithinParagraph :
-    firstLineOfAParagraph
+    possiblyEmptyParaLine
 |
     stuffWithinParagraph
     nonEmptyLineWithoutParCmd
 ;
 
-firstLineOfAParagraph :
+possiblyEmptyParaLine :
     optionalBlankSpace
     newline
 |
@@ -138,14 +138,14 @@ block:
     optionalBlankSpace
     newline
 |
-    paragraphElement
+    blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
                                          // following paraElement.
     }
 |
     blankSpace
-    paragraphElement
+    blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
                                          // following paraElement.
@@ -156,7 +156,7 @@ block:
     newline
 |
     block
-    paragraphElement
+    blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
                                          // following paraElement.
@@ -164,14 +164,89 @@ block:
 |
     block
     blankSpace
-    paragraphElement
+    blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
                                          // following paraElement.
     }
 ;
 
-paragraphElement:
+paragraphElement :
+    blockElement
+|
+    paraAttributeCommand
+;
+
+paraAttributeCommand :
+    NOINDENT_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::INDENT);
+    }
+|
+    QUOTE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::QUOTE);
+    }
+|
+    POEM_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::POEM);
+    }
+|
+    PROSE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::POEM);
+    }
+|
+    FOOTER_CENTERED_TEXT_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::FOOTER);
+        para->setAttribute(Para::CENTER);
+    }
+|
+    DROP_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::DROP);
+    }
+|
+    NODROP_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::DROP);
+    }
+|
+    ENUMERATION_ITEM_CMD
+    optionalBlankSpace
+    '{'
+    block
+    '}'
+     {
+         /* empty for now */
+         assert(0);
+     }
+;
+
+blockElement:
     '{'
     {
         pushSubContainer();
@@ -247,63 +322,7 @@ paragraphElement:
             currentContainer()->appendWithoutPrevSep($1);
         }
     }
-|
-    NOINDENT_CMD
-    {
-        assert(currentContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->unsetAttribute(Para::INDENT);
-    }
-|
-    QUOTE_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->setAttribute(Para::QUOTE);
-    }
-|
-    POEM_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->setAttribute(Para::POEM);
-    }
-|
-    PROSE_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->unsetAttribute(Para::POEM);
-    }
-|
-    FOOTER_CENTERED_TEXT_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->setAttribute(Para::FOOTER);
-        para->setAttribute(Para::CENTER);
-    }
-|
-    DROP_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->setAttribute(Para::DROP);
-    }
-|
-    NODROP_CMD
-    {
-        assert(currentContainerIsPara());
-
-        Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->unsetAttribute(Para::DROP);
-    }
 |
     DOTS_CMD
     {
