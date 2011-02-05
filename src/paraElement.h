@@ -46,11 +46,16 @@ public:
 
     /* nothing for now */
     ParaElement(void)
+        : prevSep(true)
         {
         }
     virtual ~ParaElement()
         {
         }
+
+    void unsetPrevSep(void) {
+        prevSep = false;
+    }
 
     /*
      * Should this element be separated from its preceding element
@@ -60,7 +65,10 @@ public:
 
     virtual void display(void) const = 0;
 
-private:
+protected:
+    bool   prevSep;             /* Is this element separated from its
+                                 * previous element by a white
+                                 * space? */
 };
 
 #endif // #ifndef PARA_ELEMENT_H

@@ -45,7 +45,7 @@ class StringParaElement : public ParaElement
 {
 public:
     StringParaElement(const char *strIn)
-        : str(strIn), prevSep(true)
+        : ParaElement(), str(strIn)
         {
             // empty
         }
@@ -54,22 +54,17 @@ public:
         return prevSep;
     }
 
-    void unsetPrevSep(void) {
-        prevSep = false;
-    }
-
     void display(void) const;
 
 private:
     string str;
-    bool   prevSep;
 };
 
 class ModifierParaElement : public ParaElement
 {
 public:
     ModifierParaElement(FontModifiers mod)
-        : modifier(mod)
+        : ParaElement(), modifier(mod)
         {
         }
 
@@ -82,9 +77,13 @@ private:
 class DotsParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
+
+    DotsParaElement()
+        : ParaElement()
+        {
+            prevSep = false;
+        }
+
     void display(void) const;
 };
 
@@ -97,21 +96,28 @@ public:
 class LineBreakParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
+    LineBreakParaElement()
+        : ParaElement()
+        {
+            prevSep = false;
+        }
+
     void display(void) const;
 };
 
 class PageBreakParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
-    PageBreakParaElement(const char *number)
-        : pageNumber(number)
+    PageBreakParaElement()
+        : ParaElement()
         {
+            prevSep = false;
+        }
+
+    PageBreakParaElement(const char *number)
+        : ParaElement(), pageNumber(number)
+        {
+            prevSep = false;
         }
 
     void display(void) const;
@@ -123,18 +129,24 @@ private:
 class NDashParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
+    NDashParaElement()
+        : ParaElement()
+        {
+            prevSep = false;
+        }
+
     void display(void) const;
 };
 
 class MDashParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
+    MDashParaElement()
+        : ParaElement()
+        {
+            prevSep = false;
+        }
+
     void display(void) const;
 };
 
@@ -153,9 +165,12 @@ public:
 class ClosingDoubleQuotesParaElement : public ParaElement
 {
 public:
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
+    ClosingDoubleQuotesParaElement()
+        : ParaElement()
+        {
+            prevSep = false;
+        }
+
     void display(void) const;
 };
 

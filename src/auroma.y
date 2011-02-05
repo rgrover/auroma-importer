@@ -105,9 +105,17 @@ block:
     newline
 |
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 |
     blankSpace
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 |
     block
     optionalBlankSpace
@@ -115,10 +123,18 @@ block:
 |
     block
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 |
     block
     blankSpace
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 ;
 
 paragraphElement:
@@ -289,12 +305,23 @@ paragraphElement:
 |
     OPENING_SINGLE_QUOTE
     {
-        currentContainer()->append(new OpeningSingleQuoteParaElement());
+        OpeningSingleQuoteParaElement *quote;
+        quote = new OpeningSingleQuoteParaElement();
+        if (!precedingWhiteSpace) {
+            quote->unsetPrevSep();
+        }
+        currentContainer()->append(quote);
     }
 |
     OPENING_DOUBLE_QUOTES
     {
-        currentContainer()->append(new OpeningDoubleQuotesParaElement());
+        OpeningDoubleQuotesParaElement *quotes;
+        quotes = new OpeningDoubleQuotesParaElement();
+        if (!precedingWhiteSpace) {
+            quotes->unsetPrevSep();
+        }
+
+        currentContainer()->append(quotes);
     }
 |
     CLOSING_DOUBLE_QUOTES

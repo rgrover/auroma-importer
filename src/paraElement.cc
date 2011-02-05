@@ -3,5 +3,5 @@
 bool
 ParaElement::separatedFromPrevBySpace(void)
 {
-    return true;
+    return prevSep;
 }
