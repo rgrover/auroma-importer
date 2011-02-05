@@ -77,6 +77,21 @@ private:
 };
 
 
+class ReferenceParaElement : public ParaElement
+{
+public:
+    ReferenceParaElement(ParaElementContainer *blockIn)
+        : block(blockIn)
+        {
+        }
+
+    void display(void) const;
+
+private:
+    ParaElementContainer *block;
+};
+
+
 class ModifierParaElement : public ParaElement
 {
 public:

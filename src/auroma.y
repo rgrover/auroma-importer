@@ -1,9 +1,43 @@
+/*
+ * Copyright (c) 2011, Rohit Grover
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ *
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in
+ *   the documentation and/or other materials provided with the
+ *   distribution.
+ *
+ * - Neither Aurokruti nor the names of its contributors may be used
+ *   to endorse or promote products derived from this software without
+ *   specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 %parsefun-source parser.auroma.cc
 %class-name auromaParser
 
 %stype const char *
 
-%expect 1                       /* expect one shift-reduce conflict :-) */
+%expect 1                   /* expect one shift-reduce conflict :-) */
 
 /* %token BOOK_PART_TITLE_CMD      /\* For part titles. *\/ */
 /* %token BOOK_PART_NUMBER_CMD     /\* For part numbers. *\/ */
@@ -14,23 +48,23 @@
 /* %token CHAPTER_TERMINATOR_CENTERED_CMD /\* Centered text to end a chapter. *\/ */
 %token PARA_CMD
 /* %token CHAPTER_HEAD_QUOTE_CMD /\* Quotations following a chapter heading. *\/ */
-%token QUOTE_CMD              /* Indented quotations. */
-/* %token REFERENCE_CMD          /\* References for quotations. *\/ */
+%token QUOTE_CMD                /* Indented quotations. */
+%token REFERENCE_CMD            /* References for quotations. */
 %token FOOTNOTE_CMD
-%token POEM_CMD                /* Enter poem mode. */
-%token PROSE_CMD               /* return to default (prose) mode */
-/* %token ENUMERATION_ITEM_CMD */
+%token POEM_CMD                 /* Enter poem mode. */
+%token PROSE_CMD                /* return to default (prose) mode */
+%token ENUMERATION_ITEM_CMD
 %token BOLD_ITALICS_FACE_CMD    /* Bold and italics. */
 %token BOLD_FACE_CMD
 %token ITALICS_FACE_CMD
-%token NOINDENT_CMD         /* Begin paragraph without indentation. */
+%token NOINDENT_CMD             /* Begin paragraph without indentation. */
 %token FOOTER_CENTERED_TEXT_CMD /* Centered text at the footer of a page.*/
-%token DROP_CMD            /* Enlarge the first letter which follows*/
+%token DROP_CMD                 /* Enlarge the first letter which follows*/
 %token NODROP_CMD
 %token LINE_BREAK_CMD
-%token DOTS_CMD              /* ... */
-%token TSTAR_CMD             /* Triple star, centered. */
-%token PAGE_CMD              /* Page break */
+%token DOTS_CMD                 /* ... */
+%token TSTAR_CMD                /* Triple star, centered. */
+%token PAGE_CMD                 /* Page break */
 %token STRING
 /* %token UNKNOWN_COMMAND */
 
@@ -181,6 +215,24 @@ paragraphElement:
         FootnoteParaElement *fn;
         fn = new FootnoteParaElement(block);
         currentContainer()->append(fn); // add the footnote as a paraElement
+    }
+|
+    REFERENCE_CMD
+    optionalBlankSpace
+    '{'
+    {
+        pushSubContainer();
+    }
+    block
+    '}'
+    {
+        ParaElementContainer *block;
+        block = currentContainer(); /* get a ref to the block's container */
+        popSubContainer();          // pop the block out of the stack
+
+        ReferenceParaElement *ref;
+        ref = new ReferenceParaElement(block);
+        currentContainer()->append(ref); // add the reference as a paraElement
     }
 |
     PUNCTUATION_MARK

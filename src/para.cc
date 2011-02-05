@@ -60,47 +60,48 @@ Para::unsetAttribute(ParaAttributes attr)
 void
 Para::display(void) const
 {
-    // for (unsigned i = 0; i < attributes.size(); ++i) {
-    //     switch (i) {
-    //     case INDENT:
-    //         if (attributes[i] == false) {
-    //             cout << "<noindent>";
-    //         }
-    //         break;
-    //     case CENTER:
-    //         if (attributes[i]) {
-    //             cout << "<center>";
-    //         }
-    //         break;
-    //     case FLUSH_LEFT:
-    //         if (attributes[i] == false) {
-    //             cout << "<flushright>";
-    //         }
-    //         break;
-    //     case DROP:
-    //         if (attributes[i]) {
-    //             cout << "<drop>";
-    //         }
-    //         break;
-    //     case QUOTE:
-    //         if (attributes[i]) {
-    //             cout << "<quote>";
-    //         }
-    //         break;
-    //     case POEM:
-    //         if (attributes[i]) {
-    //             cout << "<poem>";
-    //         }
-    //         break;
-    //     case FOOTER:
-    //         if (attributes[i]) {
-    //             cout << "<footer>";
-    //         }
-    //         break;
-    //     default:
-    //         assert(0);
-    //     }
-    // }
+    for (unsigned i = 0; i < attributes.size(); ++i) {
+        switch (i) {
+        case INDENT:
+            if (attributes[i] == false) {
+                cout << "<noindent>";
+            }
+            break;
+        case CENTER:
+            if (attributes[i]) {
+                cout << "<center>";
+            }
+            break;
+        case FLUSH_LEFT:
+            if (attributes[i] == false) {
+                cout << "<flushright>";
+            }
+            break;
+        case DROP:
+            if (attributes[i]) {
+                cout << "<drop>";
+            }
+            break;
+        case QUOTE:
+            if (attributes[i]) {
+                cout << "<quote>";
+            }
+            break;
+        case POEM:
+            if (attributes[i]) {
+                cout << "<poem>";
+            }
+            break;
+        case FOOTER:
+            if (attributes[i]) {
+                cout << "<footer>";
+            }
+            break;
+        default:
+            assert(0);
+        }
+    }
 
     ParaElementContainer::display();
+    cout << endl;
 }

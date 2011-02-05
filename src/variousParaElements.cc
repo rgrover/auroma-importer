@@ -50,6 +50,14 @@ FootnoteParaElement::display(void) const
 }
 
 void
+ReferenceParaElement::display(void) const
+{
+    cout << "[ref]{";
+    block->display();
+    cout << "}";
+}
+
+void
 ModifierParaElement::display(void) const
 {
     switch (modifier) {
@@ -88,7 +96,7 @@ LineBreakParaElement::display(void) const
 void
 PageBreakParaElement::display(void) const
 {
-    cout << "PAGE[" << pageNumber << "] " << endl;
+    cout << endl << "PAGE[" << pageNumber << "] " << endl;
 }
 
 void NDashParaElement::display(void) const
