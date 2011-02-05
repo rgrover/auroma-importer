@@ -135,35 +135,15 @@ nonEmptyLineWithoutParCmdOrLineBreak :
 ;
 
 block:
-    optionalBlankSpace
-    newline
-|
-    blockElement
-    {
-        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
-                                         // following paraElement.
-    }
-|
-    blankSpace
-    blockElement
-    {
-        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
-                                         // following paraElement.
-    }
+    /* empty */
 |
     block
-    optionalBlankSpace
     newline
 |
     block
-    blockElement
-    {
-        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
-                                         // following paraElement.
-    }
+    blankSpace
 |
     block
-    blankSpace
     blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
