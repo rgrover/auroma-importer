@@ -92,10 +92,7 @@ nonEmptyLineWithoutParCmd :
 nonEmptyLineWithoutParCmdOrLineBreak :
     paragraphElement
 |
-    BLANK_SPACE
-    {
-        updatePrecedingWhiteSpace($1);
-    }
+    blankSpace
     paragraphElement
 |
     nonEmptyLineWithoutParCmdOrLineBreak
@@ -109,10 +106,7 @@ block:
 |
     paragraphElement
 |
-    BLANK_SPACE
-    {
-        updatePrecedingWhiteSpace($1);
-    }
+    blankSpace
     paragraphElement
 |
     block
@@ -120,7 +114,10 @@ block:
     newline
 |
     block
-    optionalBlankSpace
+    paragraphElement
+|
+    block
+    blankSpace
     paragraphElement
 ;
 
@@ -132,7 +129,11 @@ paragraphElement:
     block
     '}'
     {
-        popSubContainer();
+        ParaElementContainer *block;
+
+        block = currentContainer(); /* get a ref to the block's container */
+        popSubContainer();          // pop the block out of the stack
+        currentContainer()->append(block); // add the block as a paraElement
     }
 |
     STRING
@@ -234,7 +235,7 @@ paragraphElement:
     }
 |
     PAGE_CMD
-    BLANK_SPACE
+    blankSpace
     pageNumber
     {
         assert(currentContainerIsPara());
@@ -329,6 +330,10 @@ optionalBlankSpace :
         updatePrecedingWhiteSpace(NULL);
     }
 |
+    blankSpace
+;
+
+blankSpace:
     BLANK_SPACE
     {
         updatePrecedingWhiteSpace($1);

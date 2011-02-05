@@ -58,7 +58,7 @@ public:
      */
     virtual bool separatedFromPrevBySpace(void);
 
-    virtual void display(void) = 0;
+    virtual void display(void) const = 0;
 
 private:
 };

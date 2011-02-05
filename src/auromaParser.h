@@ -116,6 +116,7 @@ auromaParser::lex()
 inline ParaElementContainer *
 auromaParser::currentContainer(void)
 {
+    /* cout << "top: " << containerStack.top() << endl; */
     return containerStack.top();
 }
 

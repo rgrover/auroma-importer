@@ -6,7 +6,7 @@ using namespace std;
 
 #include "paraElement.h"
 
-class ParaElementContainer
+class ParaElementContainer : public ParaElement
 {
 public:
     // empty constructor

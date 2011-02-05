@@ -36,13 +36,13 @@
 #include "variousParaElements.h"
 
 void
-StringParaElement::display(void)
+StringParaElement::display(void) const
 {
     cout << str;
 }
 
 void
-ModifierParaElement::display(void)
+ModifierParaElement::display(void) const
 {
     switch (modifier) {
     case ParaElement::ITALICS:
@@ -60,50 +60,50 @@ ModifierParaElement::display(void)
 }
 
 void
-DotsParaElement::display(void)
+DotsParaElement::display(void) const
 {
     cout << "...";
 }
 
 void
-TstarParaElement::display(void)
+TstarParaElement::display(void) const
 {
     cout << "***";
 }
 
 void
-LineBreakParaElement::display(void)
+LineBreakParaElement::display(void) const
 {
     cout << endl;
 }
 
 void
-PageBreakParaElement::display(void)
+PageBreakParaElement::display(void) const
 {
     cout << "PAGE[" << pageNumber << "] " << endl;
 }
 
-void NDashParaElement::display(void)
+void NDashParaElement::display(void) const
 {
     cout << "--";
 };
 
-void MDashParaElement::display(void)
+void MDashParaElement::display(void) const
 {
     cout << "---";
 };
 
-void OpeningSingleQuoteParaElement::display(void)
+void OpeningSingleQuoteParaElement::display(void) const
 {
     cout << "`";
 }
 
-void OpeningDoubleQuotesParaElement::display(void)
+void OpeningDoubleQuotesParaElement::display(void) const
 {
     cout << "``";
 }
 
-void ClosingDoubleQuotesParaElement::display(void)
+void ClosingDoubleQuotesParaElement::display(void) const
 {
     cout << "''";
 }

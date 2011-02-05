@@ -58,7 +58,7 @@ public:
         prevSep = false;
     }
 
-    void display(void);
+    void display(void) const;
 
 private:
     string str;
@@ -73,7 +73,7 @@ public:
         {
         }
 
-    void display(void);
+    void display(void) const;
 
 private:
     FontModifiers modifier;
@@ -85,13 +85,13 @@ public:
     bool separatedFromPrevBySpace(void) {
         return false;
     }
-    void display(void);
+    void display(void) const;
 };
 
 class TstarParaElement : public ParaElement
 {
 public:
-    void display(void);
+    void display(void) const;
 };
 
 class LineBreakParaElement : public ParaElement
@@ -100,7 +100,7 @@ public:
     bool separatedFromPrevBySpace(void) {
         return false;
     }
-    void display(void);
+    void display(void) const;
 };
 
 class PageBreakParaElement : public ParaElement
@@ -114,7 +114,7 @@ public:
         {
         }
 
-    void display(void);
+    void display(void) const;
 
 private:
     string pageNumber;
@@ -126,7 +126,7 @@ public:
     bool separatedFromPrevBySpace(void) {
         return false;
     }
-    void display(void);
+    void display(void) const;
 };
 
 class MDashParaElement : public ParaElement
@@ -135,19 +135,19 @@ public:
     bool separatedFromPrevBySpace(void) {
         return false;
     }
-    void display(void);
+    void display(void) const;
 };
 
 class OpeningSingleQuoteParaElement : public ParaElement
 {
 public:
-    void display(void);
+    void display(void) const;
 };
 
 class OpeningDoubleQuotesParaElement : public ParaElement
 {
 public:
-    void display(void);
+    void display(void) const;
 };
 
 class ClosingDoubleQuotesParaElement : public ParaElement
@@ -156,7 +156,7 @@ public:
     bool separatedFromPrevBySpace(void) {
         return false;
     }
-    void display(void);
+    void display(void) const;
 };
 
 #endif /* #ifdef VARIOUS_PARA_ELEMENTS */

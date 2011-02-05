@@ -39,12 +39,12 @@
 void
 auromaParser::newPara(void)
 {
-    // cout << "creating new para" << endl;
-
     // create a new paragraph and push it to the stack
     assert(containerStack.empty());
     Para *p = new Para();
     containerStack.push(p);
+
+    // cout << "creating new para: " << p << endl;
 }
 
 void
@@ -52,12 +52,11 @@ auromaParser::finishPara(void)
 {
     Para *para;
 
-    // cout << "finished creating para" << endl;
-
     // get the paragraph at the top of the containerStack
     para = reinterpret_cast<Para *>(containerStack.top());
     containerStack.pop();
     assert(containerStack.empty());
+    // cout << "finished para " << para << endl;
 
     // push this paragraph to our vector of global paragraphs
     paragraphs.push_back(para);
@@ -68,7 +67,10 @@ auromaParser::pushSubContainer(void)
 {
     assert(containerStack.empty() == false);
 
-    ParaElementContainer *container = new ParaElementContainer();
+    ParaElementContainer *container;
+    container = new ParaElementContainer();
+    // cout << "creating new container: " << container << endl;
+
     containerStack.push(container);
 }
 
@@ -83,6 +85,8 @@ auromaParser::popSubContainer(void)
     ParaElementContainer *container;
     container = containerStack.top();
     containerStack.pop();
+    // cout << "popped container: " << container << endl;
+
     assert(containerStack.empty() == false);
 
     // add this container to the paragraph as an element
