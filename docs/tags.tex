@@ -1,7 +1,6 @@
 \documentclass[11pt]{article}
 
 %% Things to add:
-
 %%  * Make it extra clear that the input should be plain ASCII. If
 %%    anyone uses a special editor like Word, then they should avoid
 %%    introducing Word specific formatting.
@@ -15,7 +14,8 @@
 %%  * Files must be saved in plain text format.
 %%  * Add \sc for small caps.
 %%  * paragraphs MUST begin on a new line with a \par command
-%%  * Talk about blocks within { and }
+%%  * Talk about blocks within { and }; blocks should not span
+%%    paragrpahs (empty lines) unless in a verbatim context.
 %%  * nothing spans a paragraph.
 %%  * Add tag for Footer text.
 %%  * Add tag for Drop.
@@ -23,7 +23,6 @@
 %%    discussed together: \indent \noindent \center \drop \nodrop
 %%    \quote \poem \footer \flushleft \flushright
 %%  * diacritical marks need a { } around the character
-
 
 
 \newcommand{\cmd}[1]{{\tt $\backslash$#1}}
