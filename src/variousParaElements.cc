@@ -42,6 +42,14 @@ StringParaElement::display(void) const
 }
 
 void
+FootnoteParaElement::display(void) const
+{
+    cout << "[fn]{";
+    block->display();
+    cout << "}";
+}
+
+void
 ModifierParaElement::display(void) const
 {
     switch (modifier) {

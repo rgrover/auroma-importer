@@ -16,7 +16,7 @@
 /* %token CHAPTER_HEAD_QUOTE_CMD /\* Quotations following a chapter heading. *\/ */
 %token QUOTE_CMD              /* Indented quotations. */
 /* %token REFERENCE_CMD          /\* References for quotations. *\/ */
-/* %token FOOTNOTE_CMD */
+%token FOOTNOTE_CMD
 %token POEM_CMD                /* Enter poem mode. */
 %token PROSE_CMD               /* return to default (prose) mode */
 /* %token ENUMERATION_ITEM_CMD */
@@ -163,6 +163,24 @@ paragraphElement:
         } else {
             currentContainer()->appendWithoutPrevSep($1);
         }
+    }
+|
+    FOOTNOTE_CMD
+    optionalBlankSpace
+    '{'
+    {
+        pushSubContainer();
+    }
+    block
+    '}'
+    {
+        ParaElementContainer *block;
+        block = currentContainer(); /* get a ref to the block's container */
+        popSubContainer();          // pop the block out of the stack
+
+        FootnoteParaElement *fn;
+        fn = new FootnoteParaElement(block);
+        currentContainer()->append(fn); // add the footnote as a paraElement
     }
 |
     PUNCTUATION_MARK

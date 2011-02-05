@@ -17,8 +17,6 @@ ParaElementContainer::display(void) const
         }
         (*iter)->display();
     }
-
-    cout << endl;
 }
 
 void

@@ -40,6 +40,7 @@
 using namespace std;
 
 #include "paraElement.h"
+#include "paraElementContainer.h"
 
 class StringParaElement : public ParaElement
 {
@@ -59,6 +60,22 @@ public:
 private:
     string str;
 };
+
+
+class FootnoteParaElement : public ParaElement
+{
+public:
+    FootnoteParaElement(ParaElementContainer *blockIn)
+        : block(blockIn)
+        {
+        }
+
+    void display(void) const;
+
+private:
+    ParaElementContainer *block;
+};
+
 
 class ModifierParaElement : public ParaElement
 {

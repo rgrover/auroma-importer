@@ -45,6 +45,8 @@ extern auromaParserBase::STYPE__ d_val;
     /*
      * Handle commands.
      */
+\\(?i:par)$          return auromaParserBase::PARA_CMD;
+\\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
 \\(?i:tpt)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_TITLE_CMD; */
 \\(?i:tpn)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_NUMBER_CMD; */
 \\(?i:tc)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_TITLE_CMD; */
@@ -53,35 +55,37 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:tcsub)/{EOC}   return 1;/* return auromaParserBase::CHAPTER_GROUP_SUBTITLE_CMD; */
 \\(?i:tcn)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_NUMBER_CMD; */
 \\(?i:tscc)/{EOC}    return 1;/* return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD; */
-\\(?i:par)$          return auromaParserBase::PARA_CMD;
-\\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
+
+\\(?i:csf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
+\\(?i:sf)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
+\\(?i:sref)/{EOC}    return 1;/* return auromaParserBase::REFERENCE_CMD; */
+\\(?i:sitem)/{EOC}   return 1;/* return auromaParserBase::ENUMERATION_ITEM_CMD; */
+
+\\(?i:pnote)$        return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:pnote)/{EOC}   return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:note)$         return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:note)/{EOC}    return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:lnote)$        return auromaParserBase::FOOTNOTE_CMD;
+\\(?i:lnote)/{EOC}   return auromaParserBase::FOOTNOTE_CMD;
+
+\\(?i:quote)$        return auromaParserBase::QUOTE_CMD;
+\\(?i:quote)/{EOC}   return auromaParserBase::QUOTE_CMD;
 \\(?i:pf)$           return auromaParserBase::NOINDENT_CMD;
 \\(?i:pf)/{EOC}      return auromaParserBase::NOINDENT_CMD;
 \\(?i:noindent)$     return auromaParserBase::NOINDENT_CMD;
 \\(?i:noindent)/{EOC} return auromaParserBase::NOINDENT_CMD;
 \\(?i:bf)$           return auromaParserBase::NOINDENT_CMD;
 \\(?i:bf)/{EOC}      return auromaParserBase::NOINDENT_CMD;
-\\(?i:csf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
-\\(?i:sf)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
-\\(?i:quote)$        return auromaParserBase::QUOTE_CMD;
-\\(?i:quote)/{EOC}   return auromaParserBase::QUOTE_CMD;
-\\(?i:sref)/{EOC}    return 1;/* return auromaParserBase::REFERENCE_CMD; */
-\\(?i:pnote)/{EOC}   return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
-\\(?i:note)/{EOC}    return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
-\\(?i:lnote)/{EOC}   return 1;/* return auromaParserBase::FOOTNOTE_CMD; */
 \\(?i:poem)$         return auromaParserBase::POEM_CMD;
 \\(?i:poem)/{EOC}    return auromaParserBase::POEM_CMD;
 \\(?i:prose)$        return auromaParserBase::PROSE_CMD;
 \\(?i:prose)/{EOC}   return auromaParserBase::PROSE_CMD;
-\\(?i:sitem)/{EOC}   return 1;/* return auromaParserBase::ENUMERATION_ITEM_CMD; */
 \\(?i:ftext)$        return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:ftext)/{EOC}   return auromaParserBase::FOOTER_CENTERED_TEXT_CMD;
 \\(?i:drop)$         return auromaParserBase::DROP_CMD;
 \\(?i:drop)/{EOC}    return auromaParserBase::DROP_CMD;
 \\(?i:nodrop)$       return auromaParserBase::NODROP_CMD;
 \\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
-\\(?i:nl)$           return auromaParserBase::LINE_BREAK_CMD;
-\\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
 
 \\(?i:s)$            return auromaParserBase::ITALICS_FACE_CMD;
 \\(?i:s)/{EOC}       return auromaParserBase::ITALICS_FACE_CMD;
@@ -103,6 +107,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:tstar)$        return auromaParserBase::TSTAR_CMD;
 \\(?i:tstar)/{EOC}   return auromaParserBase::TSTAR_CMD;
 
+\\(?i:nl)$           return auromaParserBase::LINE_BREAK_CMD;
+\\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
 ^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
 
 \\(?i:fnquad)$                 /* ignore  */
