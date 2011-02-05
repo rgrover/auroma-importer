@@ -44,16 +44,18 @@ class Para : public ParaElementContainer
 {
 public:
     Para(void) :
-        attributes(NUM_PARA_ATTRIBUTES)
+        attributes(NUM_PARA_ATTRIBUTES),
+        enumBlock(NULL)
         {
             // cout << "creating a new paragraph" << endl;
-            attributes[INDENT]     = true; // indent is turned on by default
-            attributes[CENTER]     = false;
-            attributes[FLUSH_LEFT] = true;
-            attributes[DROP]       = false;
-            attributes[QUOTE]      = false;
-            attributes[POEM]       = false;
-            attributes[FOOTER]     = false;
+            attributes[INDENT]      = true; // indent is turned on by default
+            attributes[CENTER]      = false;
+            attributes[FLUSH_LEFT]  = true;
+            attributes[DROP]        = false;
+            attributes[QUOTE]       = false;
+            attributes[POEM]        = false;
+            attributes[FOOTER]      = false;
+            attributes[ENUMERATION] = false;
         }
 
     ~Para(void)
@@ -69,11 +71,14 @@ public:
         QUOTE,
         POEM,
         FOOTER,
+        ENUMERATION,
         NUM_PARA_ATTRIBUTES     // This should be the last in the enum.
     };
 
     void setAttribute(ParaAttributes attr);
     void unsetAttribute(ParaAttributes attr);
+
+    bool setEnumerationBlock(ParaElementContainer *block);
 
     void append(const char *str);
 
@@ -81,6 +86,7 @@ public:
 
 private:
     vector<bool> attributes;
+    ParaElementContainer *enumBlock;
 };
 
 #endif

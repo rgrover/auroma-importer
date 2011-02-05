@@ -37,7 +37,12 @@
 
 %stype const char *
 
-%expect 1                   /* expect one shift-reduce conflict :-) */
+%expect 2                 /*
+                           * Expect two shift-reduce conflicts:
+                           *   - one for white spaces within paragraphs.
+                           *   - another for commands which take
+                           *     optinal blocks, e.g. \sitem
+                           */
 
 /* %token BOOK_PART_TITLE_CMD      /\* For part titles. *\/ */
 /* %token BOOK_PART_NUMBER_CMD     /\* For part numbers. *\/ */
@@ -128,10 +133,18 @@ nonEmptyLineWithoutParCmdOrLineBreak :
 |
     blankSpace
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 |
     nonEmptyLineWithoutParCmdOrLineBreak
     optionalBlankSpace
     paragraphElement
+    {
+        updatePrecedingWhiteSpace(NULL); // reset blank-space for the
+                                         // following paraElement.
+    }
 ;
 
 block:
@@ -147,7 +160,7 @@ block:
     blockElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
-                                         // following paraElement.
+                                         // following blockElement.
     }
 ;
 
@@ -215,15 +228,40 @@ paraAttributeCommand :
         para->unsetAttribute(Para::DROP);
     }
 |
+    enumeration
+;
+
+enumeration:
     ENUMERATION_ITEM_CMD
-    optionalBlankSpace
+    optionalEnumerationBlock
+;
+
+optionalEnumerationBlock:
+/* empty */
+    {
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::ENUMERATION);
+    }
+|
     '{'
+    {
+        pushSubContainer();
+    }
     block
     '}'
-     {
-         /* empty for now */
-         assert(0);
-     }
+    {
+        ParaElementContainer *block;
+        block = currentContainer(); /* get a ref to the block's container */
+        popSubContainer();          // pop the block out of the stack
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        if (!para->setEnumerationBlock(block)) {
+            std::cerr << "\033[01;31mpaser: line "
+                      << lexer->lineno() << ":\033[00m "
+                      << "attempting to define multiple enumerations "
+                      << "for the same paragraph"<< endl;
+        }
+    }
 ;
 
 blockElement:

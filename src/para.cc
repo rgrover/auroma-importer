@@ -97,6 +97,16 @@ Para::display(void) const
                 cout << "<footer>";
             }
             break;
+        case ENUMERATION:
+            if (attributes[i]) {
+                cout << "<enumeration>";
+                if (enumBlock) {
+                    cout << "[";
+                    enumBlock->display();
+                    cout << "]";
+                }
+            }
+            break;
         default:
             assert(0);
         }
@@ -104,4 +114,22 @@ Para::display(void) const
 
     ParaElementContainer::display();
     cout << endl;
+}
+
+bool
+Para::setEnumerationBlock(ParaElementContainer *block)
+{
+    assert(block != NULL);
+
+    /*
+     * Ensure that we did not already have an enumeration attribute
+     * for this paragraph
+     */
+    if (enumBlock != NULL) {
+        return (false);
+    }
+
+    setAttribute(ENUMERATION);
+    enumBlock = block;
+    return (true);
 }
