@@ -4,5 +4,5 @@ lex.auroma.cc
 parser.auroma.cc
 auromaParserbase.h
 parse.cc
-test.txt
+*.txt
 .dep
