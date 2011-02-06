@@ -56,6 +56,7 @@ public:
             attributes[POEM]        = false;
             attributes[FOOTER]      = false;
             attributes[ENUMERATION] = false;
+            attributes[HEAD_QUOTE]  = false;
         }
 
     ~Para(void)
@@ -72,6 +73,7 @@ public:
         POEM,
         FOOTER,
         ENUMERATION,
+        HEAD_QUOTE,
         NUM_PARA_ATTRIBUTES     // This should be the last in the enum.
     };
 

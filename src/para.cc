@@ -107,6 +107,11 @@ Para::display(void) const
                 }
             }
             break;
+        case HEAD_QUOTE:
+            if (attributes[i]) {
+                cout << "<headquote>";
+            }
+            break;
         default:
             assert(0);
         }

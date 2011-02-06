@@ -90,9 +90,6 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:tcn)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_NUMBER_CMD; */
 \\(?i:tscc)/{EOC}    return 1;/* return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD; */
 
-\\(?i:csf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
-\\(?i:sf)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD; */
-
 \\(?i:sref)$         return auromaParserBase::REFERENCE_CMD;
 \\(?i:sref)/{EOC}    return auromaParserBase::REFERENCE_CMD;
 \\(?i:sitem)$        return auromaParserBase::ENUMERATION_ITEM_CMD;
@@ -105,6 +102,10 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:lnote)$        return auromaParserBase::FOOTNOTE_CMD;
 \\(?i:lnote)/{EOC}   return auromaParserBase::FOOTNOTE_CMD;
 
+\\(?i:csf)$          return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:csf)/{EOC}     return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:sf)$           return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
+\\(?i:sf)/{EOC}      return auromaParserBase::CHAPTER_HEAD_QUOTE_CMD;
 \\(?i:quote)$        return auromaParserBase::QUOTE_CMD;
 \\(?i:quote)/{EOC}   return auromaParserBase::QUOTE_CMD;
 \\(?i:pf)$           return auromaParserBase::NOINDENT_CMD;

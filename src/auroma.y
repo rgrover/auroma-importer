@@ -52,7 +52,7 @@
 /* %token CHAPTER_GROUP_SUBTITLE_CMD /\* Title for chapter within a chap-group.*\/ */
 /* %token CHAPTER_TERMINATOR_CENTERED_CMD /\* Centered text to end a chapter. *\/ */
 %token PARA_CMD
-/* %token CHAPTER_HEAD_QUOTE_CMD /\* Quotations following a chapter heading. *\/ */
+%token CHAPTER_HEAD_QUOTE_CMD   /* Quotations following a chapter heading. */
 %token QUOTE_CMD                /* Indented quotations. */
 %token REFERENCE_CMD            /* References for quotations. */
 %token FOOTNOTE_CMD
@@ -229,6 +229,14 @@ paraAttributeCommand :
     }
 |
     enumeration
+|
+    CHAPTER_HEAD_QUOTE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::HEAD_QUOTE);
+    }
 ;
 
 enumeration:
