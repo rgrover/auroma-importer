@@ -1,9 +1,6 @@
 \documentclass[11pt]{article}
 
 %% Things to add:
-%%  * Make it extra clear that the input should be plain ASCII. If
-%%    anyone uses a special editor like Word, then they should avoid
-%%    introducing Word specific formatting.
 %%  * Diacritical marks cannot be verified visually until the end of
 %%    the import process. This poses a special challenge; people
 %%    involved have to be very careful.
@@ -75,10 +72,21 @@ processing tool-chain manageable in its complexity.
 
 \section{Input Files}
 
-Each tagged text to be sent to the ``importer'' will be a plain ASCII
-text file containing an entire work. It should be possible to create
-it with any editor. It will contain the text of the document as well
-as have tags added to highlight special semantic properties.
+Each tagged text to be sent to the ``importer'' will be {\it a plain
+  ASCII text file}---containing the text of a document or work
+together with tags added to highlight special semantic properties.
+The importer will work with a single input file at a time, and
+typically an entire work will be submitted to the import process in a
+file.
+
+The taggers should be able to create and work with tagged files using
+any editor; however they should take extra care that their chosen
+editor doesn't introduce any non-ASCII characters into the text. If a
+tagger introduces any special non-ASCII character particular to an
+editor, or perhaps if the OCR process introduces special characters
+and if the taggers let such characters remain in the text, then the
+importer will complain about the occurrences and reject the input.
+
 
 %% Spaces
 %% ~~~~~~
@@ -149,7 +157,7 @@ $\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
 %% ~~~~
 
 %% Tags and commands are case sensitive. They usually start with a
-%% backslash \ and then have a name consisiting of letters only. Command
+%% backslash \ and then have a name consisting of letters only. Command
 %% names are terminated by a space, a number, or any other punctuation
 %% mark.
 
@@ -173,19 +181,19 @@ $\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
 
 Tags and commands are case sensitive. They usually start with a
 backslash $\backslash$ and then have a name consisiting of letters
-only; such as \cmd{newline}. In some cases, tags can take an argument,
+only; such as \cmd{linebreak}. In some cases, tags can take an argument,
 such as: \cmd{footnote\{some text\}}\ ---such tags are called
 commands. Tags and commands may be terminated by a space, a number, or
 any other punctuation mark. The following is an example of the use of
 tags and commands in text:
 \begin{quote}
-Please, start a new line right here!\cmd{newline} Thank you!
+Please, start a new line right here!\cmd{linebreak} Thank you!
 
 The above should place 'Thank you!' on a separate line\cmd{footnote\{this
 is a footnote appearing right after the word 'line'\}}.
 \end{quote}
 
-In the above tagged text, we used the \cmd{newline} tag to force a new
+In the above tagged text, we used the \cmd{linebreak} tag to force a new
 line. We also used the \cmd{footnote} command, which takes an argument
 within curly braces.
 
@@ -209,7 +217,7 @@ within curly braces.
 
 %% ...the tagged text
 %% ...
-%% Simple is {\it beaufitul}.
+%% Simple is {\it beautiful}.
 %% ...
 %% -----------------------------
 
@@ -320,7 +328,7 @@ the Life Divine:
 \begin{quote}
   \cmd{par}\\
   \cmd{hn} BOOK ONE\\
-  \cmd{ht} Omnipresent Reality \cmd{newline} And \cmd{newlilne} The Universe
+  \cmd{ht} Omnipresent Reality \cmd{linebreak} And \cmd{linebreak} The Universe
 \end{quote}
 
 \noindent Continuing with this example, we can descend from the level of a Book
@@ -408,8 +416,8 @@ required it may be explicitly requested using a \cmd{indent}.
 
 In special cases, it might be necessary to order a linebreak--as is
 often necessary when defining container headings. For these cases,
-\cmd{newline} starts a new line without starting a new
-paragraph. Similarly, \cmd{newpage\{pagenumber\}} starts a new
+\cmd{linebreak} starts a new line without starting a new
+paragraph. Similarly, \cmd{pagebreak\{pagenumber\}} starts a new
 page. With \cmd{newpage}, the pagenumber within the curly brackets is
 an optional argument. It can be left empty if there is no pagenumber
 to be displayed; otherwise it should be specified.
