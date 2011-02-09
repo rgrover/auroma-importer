@@ -55,7 +55,8 @@ public:
         return prevSep;
     }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 
 private:
     string str;
@@ -70,7 +71,8 @@ public:
         {
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 
 private:
     ParaElementContainer *block;
@@ -85,7 +87,8 @@ public:
         {
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 
 private:
     ParaElementContainer *block;
@@ -100,7 +103,8 @@ public:
         {
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 
 private:
     FontModifiers modifier;
@@ -116,13 +120,15 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class TstarParaElement : public ParaElement
 {
 public:
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class LineBreakParaElement : public ParaElement
@@ -134,7 +140,8 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class PageBreakParaElement : public ParaElement
@@ -152,7 +159,8 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 
 private:
     string pageNumber;
@@ -167,7 +175,8 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class MDashParaElement : public ParaElement
@@ -179,19 +188,22 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class OpeningSingleQuoteParaElement : public ParaElement
 {
 public:
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class OpeningDoubleQuotesParaElement : public ParaElement
 {
 public:
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 class ClosingDoubleQuotesParaElement : public ParaElement
@@ -203,7 +215,8 @@ public:
             prevSep = false;
         }
 
-    void display(void) const;
+    void emitXML(unsigned indentation,
+                 bool &parentStartedElements) const;
 };
 
 #endif /* #ifdef VARIOUS_PARA_ELEMENTS */

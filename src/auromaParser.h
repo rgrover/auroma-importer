@@ -75,14 +75,14 @@ public:
     void newPara(void);
     void finishPara(void);
     void pushSubContainer(void);
+    void pushSubContainer(const char *containerType);
     void popSubContainer(void);
     ParaElementContainer *currentContainer(void);
     bool                  currentContainerIsPara(void);
 
     void updatePrecedingWhiteSpace(const char *precedingWhiteSpace);
 
-    // for debugging the parse tree
-    void display();
+    void emitXML();
 
 private:
     yyFlexLexer *lexer;

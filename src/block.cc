@@ -32,63 +32,18 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "block.h"
 
-#ifndef PARA_H
-#define PARA_H
-
-#include <vector>
-#include "paraElementContainer.h"
-#include "variousParaElements.h"
-
-class Para : public ParaElementContainer
+void
+Block::emitXML(unsigned indentation,
+               bool &parentStartedElements) const
 {
-public:
-    Para(void) :
-        attributes(NUM_PARA_ATTRIBUTES),
-        enumBlock(NULL)
-        {
-            // cout << "creating a new paragraph" << endl;
-            attributes[INDENT]      = true; // indent is turned on by default
-            attributes[CENTER]      = false;
-            attributes[FLUSH_LEFT]  = true;
-            attributes[DROP]        = false;
-            attributes[QUOTE]       = false;
-            attributes[POEM]        = false;
-            attributes[FOOTER]      = false;
-            attributes[ENUMERATION] = false;
-            attributes[HEAD_QUOTE]  = false;
-        }
+    spaces(indentation);
+    cout << "<block type=\"" << blockTypeString << "\">" << endl;
+    
+    bool startedElements = false;
+    ParaElementContainer::emitXML(indentation + INDENT_STEP, startedElements);
 
-    ~Para(void)
-        {
-        }
-
-    // The attributes applicable to a paragraph.
-    enum ParaAttributes {
-        INDENT = 0,
-        CENTER,
-        FLUSH_LEFT,
-        DROP,
-        QUOTE,
-        POEM,
-        FOOTER,
-        ENUMERATION,
-        HEAD_QUOTE,
-        NUM_PARA_ATTRIBUTES     // This should be the last in the enum.
-    };
-
-    void setAttribute(ParaAttributes attr);
-    void unsetAttribute(ParaAttributes attr);
-
-    bool setEnumerationBlock(ParaElementContainer *block);
-
-    void append(const char *str);
-
-    virtual void emitXML(unsigned indentation) const;
-
-private:
-    vector<bool> attributes;
-    ParaElementContainer *enumBlock;
-};
-
-#endif
+    spaces(indentation);
+    cout << "</block>" << endl;
+}

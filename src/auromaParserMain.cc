@@ -28,7 +28,7 @@ main(int argc, const char *argv[])
 
     parser.parse();
 
-    parser.display();
+    parser.emitXML();
 
     return (0);
 }

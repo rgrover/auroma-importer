@@ -253,7 +253,7 @@ optionalEnumerationBlock:
 |
     '{'
     {
-        pushSubContainer();
+        pushSubContainer("enumeration");
     }
     block
     '}'
@@ -304,7 +304,7 @@ blockElement:
     optionalBlankSpace
     '{'
     {
-        pushSubContainer();
+        pushSubContainer("footnote");
     }
     block
     '}'
@@ -322,7 +322,7 @@ blockElement:
     optionalBlankSpace
     '{'
     {
-        pushSubContainer();
+        pushSubContainer("reference");
     }
     block
     '}'

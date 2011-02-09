@@ -30,10 +30,11 @@ public:
     // append a string with its prevSep turned off
     void appendWithoutPrevSep(const char *str);
 
-    virtual void display(void) const;
+    virtual void emitXML(unsigned indentation,
+                         bool &parentStartedElements) const;
 
 protected:
-    vector<ParaElement *> elements;
+    vector<ParaElement *>  elements;
 };
 
 

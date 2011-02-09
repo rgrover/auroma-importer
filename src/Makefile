@@ -8,7 +8,8 @@ PARSER_SRCS =                                   \
        auromaParserMain.cc                      \
        paraElement.cc                           \
        paraElementContainer.cc                  \
-       para.cc                                  \
+       para.cc					\
+       block.cc					\
        variousParaElements.cc
 
 PARSER_OBJS = $(patsubst %.cc,%.o,$(PARSER_SRCS))

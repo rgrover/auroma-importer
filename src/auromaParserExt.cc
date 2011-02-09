@@ -35,6 +35,7 @@
 #include <cstring>
 #include <cstdlib>
 #include "auromaParser.ih"
+#include "block.h"
 
 void
 auromaParser::newPara(void)
@@ -68,8 +69,19 @@ auromaParser::pushSubContainer(void)
     assert(containerStack.empty() == false);
 
     ParaElementContainer *container;
-    container = new ParaElementContainer();
-    // cout << "creating new container: " << container << endl;
+    container = new Block();
+
+    containerStack.push(container);
+}
+
+
+void
+auromaParser::pushSubContainer(const char *blockType)
+{
+    assert(containerStack.empty() == false);
+
+    ParaElementContainer *container;
+    container = new Block(blockType);
 
     containerStack.push(container);
 }
@@ -117,14 +129,11 @@ auromaParser::updatePrecedingWhiteSpace(const char *in)
 
 
 void
-auromaParser::display(void)
+auromaParser::emitXML(void)
 {
-    // cout << "in display" << endl;
-
-    // free up all the paragraphs
-    vector<Para *>::iterator iter;
-    for (iter = paragraphs.begin(); iter != paragraphs.end(); iter++) {
-        cout << "PARA: ";
-        (*iter)->display();
+    for (vector<Para *>::iterator iter = paragraphs.begin();
+         iter != paragraphs.end();
+         iter++) {
+        (*iter)->emitXML(0);
     }
 }

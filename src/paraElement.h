@@ -35,6 +35,9 @@
 #ifndef PARA_ELEMENT_H
 #define PARA_ELEMENT_H
 
+#include <iostream>
+using namespace std;
+
 class ParaElement {
 public:
     /* font modifiers */
@@ -43,6 +46,8 @@ public:
         BOLD,
         SMALL_CAPS,
     };
+
+    const static unsigned INDENT_STEP = 4;
 
     /* nothing for now */
     ParaElement(void)
@@ -63,12 +68,21 @@ public:
      */
     virtual bool separatedFromPrevBySpace(void);
 
-    virtual void display(void) const = 0;
+    virtual void emitXML(unsigned indentation,
+                         bool& startedElements) const = 0;
 
 protected:
     bool   prevSep;             /* Is this element separated from its
                                  * previous element by a white
                                  * space? */
+
+    void spaces(unsigned int indentation) const
+    {
+        for (unsigned i = 0; i < indentation; i++) {
+            cout << " ";
+        }
+    }
+
 };
 
 #endif // #ifndef PARA_ELEMENT_H

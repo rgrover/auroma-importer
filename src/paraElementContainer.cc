@@ -1,21 +1,43 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 using namespace std;
 
 #include "paraElementContainer.h"
 #include "variousParaElements.h"
 
 void
-ParaElementContainer::display(void) const
+ParaElementContainer::emitXML(unsigned indentation,
+                              bool &parentStartedElements) const
 {
-    // cout << elements.size() << endl;
+    // cout << "ParaElementContainer::emitXML(" << indentation
+    //      << ", " << parentStartedElements << ");" << endl;
 
+    // The parent of a paraElementContainer should not have started an
+    // <elements>...
+    assert(parentStartedElements == false);
+
+    bool startedElements = false;
     vector<ParaElement *>::const_iterator iter;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
-        if (iter != elements.begin() && (*iter)->separatedFromPrevBySpace()) {
-            cout << " ";     // add a white space to precede this element
+        if (iter == elements.begin()) {
+            (*iter)->emitXML(indentation, startedElements);
+        } else {
+            if ((*iter)->separatedFromPrevBySpace()) {
+                if (startedElements) {
+                    cout << " "; // add a white space to precede this element
+                } else {
+                    spaces(indentation);
+                    cout << "<element type=\"space\"> </element>" << endl;
+                }
+            }
+            (*iter)->emitXML(indentation, startedElements);
         }
-        (*iter)->display();
+    }
+
+    if (startedElements) {
+        cout << "</elements>" << endl;
+        startedElements = false;
     }
 }
 

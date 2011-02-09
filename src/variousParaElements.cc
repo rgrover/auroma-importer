@@ -36,29 +36,44 @@
 #include "variousParaElements.h"
 
 void
-StringParaElement::display(void) const
+StringParaElement::emitXML(unsigned indentation,
+                           bool &parentStartedElements) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        cout << "<elements>";
+        parentStartedElements = true;
+    }
     cout << str;
 }
 
 void
-FootnoteParaElement::display(void) const
+FootnoteParaElement::emitXML(unsigned indentation,
+                             bool &parentStartedElements) const
 {
-    cout << "[fn]{";
-    block->display();
-    cout << "}";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    bool startedElements = false;
+    block->emitXML(indentation, startedElements);
 }
 
 void
-ReferenceParaElement::display(void) const
+ReferenceParaElement::emitXML(unsigned indentation,
+                              bool &parentStartedElements) const
 {
-    cout << "[ref]{";
-    block->display();
-    cout << "}";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    bool startedElements = false;
+    block->emitXML(indentation, startedElements);
 }
 
 void
-ModifierParaElement::display(void) const
+ModifierParaElement::emitXML(unsigned indentation,
+                             bool &parentStartedElements) const
 {
     switch (modifier) {
     case ParaElement::ITALICS:
@@ -76,50 +91,108 @@ ModifierParaElement::display(void) const
 }
 
 void
-DotsParaElement::display(void) const
+DotsParaElement::emitXML(unsigned indentation,
+                         bool &parentStartedElements) const
 {
-    cout << "...";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    spaces(indentation);
+    cout << "<element type=\"dots\">...</element>" << endl;
 }
 
 void
-TstarParaElement::display(void) const
+TstarParaElement::emitXML(unsigned indentation,
+                          bool &parentStartedElements) const
 {
-    cout << "***";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    spaces(indentation);
+    cout << "<element type=\"tstar\">***</element>" << endl;
 }
 
 void
-LineBreakParaElement::display(void) const
+LineBreakParaElement::emitXML(unsigned indentation,
+                              bool &parentStartedElements) const
 {
-    cout << endl;
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    cout << "<linebreak/>" << endl;
 }
 
 void
-PageBreakParaElement::display(void) const
+PageBreakParaElement::emitXML(unsigned indentation,
+                              bool &parentStartedElements) const
 {
-    cout << endl << "PAGE[" << pageNumber << "] " << endl;
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    spaces(indentation);
+    cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl;
 }
 
-void NDashParaElement::display(void) const
+void
+NDashParaElement::emitXML(unsigned indentation,
+                          bool &parentStartedElements) const
 {
-    cout << "--";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    spaces(indentation);
+    cout << "<element type=\"ndash\">--</element>" << endl;
 };
 
-void MDashParaElement::display(void) const
+void
+MDashParaElement::emitXML(unsigned indentation,
+                          bool &parentStartedElements) const
 {
-    cout << "---";
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+    spaces(indentation);
+    cout << "<element type=\"mdash\">---</element>" << endl;
 };
 
-void OpeningSingleQuoteParaElement::display(void) const
+void
+OpeningSingleQuoteParaElement::emitXML(unsigned indentation,
+                                       bool &parentStartedElements) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        cout << "<elements>";
+        parentStartedElements = true;
+    }
     cout << "`";
 }
 
-void OpeningDoubleQuotesParaElement::display(void) const
+void
+OpeningDoubleQuotesParaElement::emitXML(unsigned indentation,
+                                        bool &parentStartedElements) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        cout << "<elements>";
+        parentStartedElements = true;
+    }
     cout << "``";
 }
 
-void ClosingDoubleQuotesParaElement::display(void) const
+void
+ClosingDoubleQuotesParaElement::emitXML(unsigned indentation,
+                                        bool &parentStartedElements) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        cout << "<elements>";
+        parentStartedElements = true;
+    }
     cout << "''";
 }

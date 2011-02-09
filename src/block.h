@@ -33,62 +33,33 @@
  */
 
 
-#ifndef PARA_H
-#define PARA_H
+#ifndef BLOCK_H
+#define BLOCK_H
 
 #include <vector>
 #include "paraElementContainer.h"
-#include "variousParaElements.h"
 
-class Para : public ParaElementContainer
+class Block : public ParaElementContainer
 {
 public:
-    Para(void) :
-        attributes(NUM_PARA_ATTRIBUTES),
-        enumBlock(NULL)
-        {
-            // cout << "creating a new paragraph" << endl;
-            attributes[INDENT]      = true; // indent is turned on by default
-            attributes[CENTER]      = false;
-            attributes[FLUSH_LEFT]  = true;
-            attributes[DROP]        = false;
-            attributes[QUOTE]       = false;
-            attributes[POEM]        = false;
-            attributes[FOOTER]      = false;
-            attributes[ENUMERATION] = false;
-            attributes[HEAD_QUOTE]  = false;
-        }
-
-    ~Para(void)
+    Block()
         {
         }
 
-    // The attributes applicable to a paragraph.
-    enum ParaAttributes {
-        INDENT = 0,
-        CENTER,
-        FLUSH_LEFT,
-        DROP,
-        QUOTE,
-        POEM,
-        FOOTER,
-        ENUMERATION,
-        HEAD_QUOTE,
-        NUM_PARA_ATTRIBUTES     // This should be the last in the enum.
-    };
+    Block(const char *str) :
+        blockTypeString(str)
+        {
+        }
 
-    void setAttribute(ParaAttributes attr);
-    void unsetAttribute(ParaAttributes attr);
+    ~Block(void)
+        {
+        }
 
-    bool setEnumerationBlock(ParaElementContainer *block);
-
-    void append(const char *str);
-
-    virtual void emitXML(unsigned indentation) const;
+    virtual void emitXML(unsigned indentation,
+                         bool &parentStartedElements) const;
 
 private:
-    vector<bool> attributes;
-    ParaElementContainer *enumBlock;
+    const char *blockTypeString;
 };
 
 #endif
