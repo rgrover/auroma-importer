@@ -14,9 +14,9 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Aurokruti nor the names of its contributors may be used
- *   to endorse or promote products derived from this software without
- *   specific prior written permission.
+ * - Neither Rohit Grover, nor Aurokruti nor the names of Aurokruti's
+ *   contributors may be used to endorse or promote products derived
+ *   from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -55,8 +55,9 @@ public:
         return prevSep;
     }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 
 private:
     string str;
@@ -71,8 +72,9 @@ public:
         {
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 
 private:
     ParaElementContainer *block;
@@ -87,8 +89,9 @@ public:
         {
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 
 private:
     ParaElementContainer *block;
@@ -103,8 +106,9 @@ public:
         {
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 
 private:
     FontModifiers modifier;
@@ -120,15 +124,17 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class TstarParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class LineBreakParaElement : public ParaElement
@@ -140,8 +146,9 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class PageBreakParaElement : public ParaElement
@@ -159,8 +166,9 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 
 private:
     string pageNumber;
@@ -175,8 +183,9 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class MDashParaElement : public ParaElement
@@ -188,22 +197,25 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class OpeningSingleQuoteParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class OpeningDoubleQuotesParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 class ClosingDoubleQuotesParaElement : public ParaElement
@@ -215,8 +227,9 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned indentation,
-                 bool &parentStartedElements) const;
+    void emitXML(unsigned            indentation,
+                 bool               &parentStartedElements,
+                 set<FontModifiers> &fontModifiers) const;
 };
 
 #endif /* #ifdef VARIOUS_PARA_ELEMENTS */

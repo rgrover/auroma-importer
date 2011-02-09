@@ -14,9 +14,9 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Aurokruti nor the names of its contributors may be used
- *   to endorse or promote products derived from this software without
- *   specific prior written permission.
+ * - Neither Rohit Grover, nor Aurokruti nor the names of Aurokruti's
+ *   contributors may be used to endorse or promote products derived
+ *   from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -35,21 +35,19 @@
 #ifndef PARA_ELEMENT_H
 #define PARA_ELEMENT_H
 
+#include <set>
 #include <iostream>
 using namespace std;
 
 class ParaElement {
 public:
-    /* font modifiers */
+   /* font modifiers */
     enum FontModifiers {
         ITALICS,
         BOLD,
         SMALL_CAPS,
     };
 
-    const static unsigned INDENT_STEP = 4;
-
-    /* nothing for now */
     ParaElement(void)
         : prevSep(true)
         {
@@ -68,13 +66,19 @@ public:
      */
     virtual bool separatedFromPrevBySpace(void);
 
-    virtual void emitXML(unsigned indentation,
-                         bool& startedElements) const = 0;
+    virtual void emitXML(unsigned            indentation,
+                         bool               &startedElements,
+                         set<FontModifiers> &fontModifiers) const = 0;
+
+
+    const static unsigned INDENT_STEP = 4;
 
 protected:
     bool   prevSep;             /* Is this element separated from its
                                  * previous element by a white
                                  * space? */
+
+    static void emitFontModifierString(set<FontModifiers> fontModifiers);
 
     void spaces(unsigned int indentation) const
     {
@@ -84,5 +88,6 @@ protected:
     }
 
 };
+
 
 #endif // #ifndef PARA_ELEMENT_H

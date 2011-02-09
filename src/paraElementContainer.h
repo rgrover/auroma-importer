@@ -1,6 +1,7 @@
 #ifndef PARA_ELEMENT_CONTAINER
 #define PARA_ELEMENT_CONTAINER
 
+#include <set>
 #include <vector>
 using namespace std;
 
@@ -31,7 +32,8 @@ public:
     void appendWithoutPrevSep(const char *str);
 
     virtual void emitXML(unsigned indentation,
-                         bool &parentStartedElements) const;
+                         bool &parentStartedElements,
+                         set<FontModifiers> &fontModifiers) const;
 
 protected:
     vector<ParaElement *>  elements;

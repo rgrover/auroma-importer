@@ -7,8 +7,9 @@ using namespace std;
 #include "variousParaElements.h"
 
 void
-ParaElementContainer::emitXML(unsigned indentation,
-                              bool &parentStartedElements) const
+ParaElementContainer::emitXML(unsigned            indentation,
+                              bool               &parentStartedElements,
+                              set<FontModifiers> &fontModifiers) const
 {
     // cout << "ParaElementContainer::emitXML(" << indentation
     //      << ", " << parentStartedElements << ");" << endl;
@@ -21,7 +22,7 @@ ParaElementContainer::emitXML(unsigned indentation,
     vector<ParaElement *>::const_iterator iter;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
         if (iter == elements.begin()) {
-            (*iter)->emitXML(indentation, startedElements);
+            (*iter)->emitXML(indentation, startedElements, fontModifiers);
         } else {
             if ((*iter)->separatedFromPrevBySpace()) {
                 if (startedElements) {
@@ -31,7 +32,7 @@ ParaElementContainer::emitXML(unsigned indentation,
                     cout << "<element type=\"space\"> </element>" << endl;
                 }
             }
-            (*iter)->emitXML(indentation, startedElements);
+            (*iter)->emitXML(indentation, startedElements, fontModifiers);
         }
     }
 

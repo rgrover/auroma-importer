@@ -14,9 +14,9 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Aurokruti nor the names of its contributors may be used
- *   to endorse or promote products derived from this software without
- *   specific prior written permission.
+ * - Neither Rohit Grover, nor Aurokruti nor the names of Aurokruti's
+ *   contributors may be used to endorse or promote products derived
+ *   from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -38,4 +38,31 @@ bool
 ParaElement::separatedFromPrevBySpace(void)
 {
     return prevSep;
+}
+
+
+void
+ParaElement::emitFontModifierString(set<FontModifiers> fontModifiers)
+{
+    for (set<FontModifiers>::iterator iter = fontModifiers.begin();
+         iter != fontModifiers.end();
+         iter++) {
+        if (iter != fontModifiers.begin()) {
+            cout << ",";
+        }
+
+        switch (*iter) {
+        case ITALICS:
+            cout << "italics";
+            break;
+        case BOLD:
+            cout << "bold";
+            break;
+        case SMALL_CAPS:
+            cout << "small_caps";
+            break;
+        default:
+            break;
+        }
+    }
 }

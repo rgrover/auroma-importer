@@ -14,9 +14,9 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Aurokruti nor the names of its contributors may be used
- *   to endorse or promote products derived from this software without
- *   specific prior written permission.
+ * - Neither Rohit Grover, nor Aurokruti, nor the names of Aurokruti's
+ *   contributors may be used to endorse or promote products derived
+ *   from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -35,14 +35,32 @@
 #include "block.h"
 
 void
-Block::emitXML(unsigned indentation,
-               bool &parentStartedElements) const
+Block::emitXML(unsigned            indentation,
+               bool               &parentStartedElements,
+               set<FontModifiers> &fontModifiersIn) const
 {
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
+    }
+
     spaces(indentation);
-    cout << "<block type=\"" << blockTypeString << "\">" << endl;
+    if (blockTypeString) {
+        cout << "<block type=\"" << blockTypeString << "\">" << endl;
+    } else {
+        cout << "<block>" << endl;
+    }
     
     bool startedElements = false;
-    ParaElementContainer::emitXML(indentation + INDENT_STEP, startedElements);
+    set<FontModifiers> fontModifiers(fontModifiersIn); // make a copy
+                                                       // of the
+                                                       // parent's
+                                                       // font-modifiers
+                                                       // for this
+                                                       // block
+    ParaElementContainer::emitXML(indentation + INDENT_STEP,
+                                  startedElements,
+                                  fontModifiers);
 
     spaces(indentation);
     cout << "</block>" << endl;
