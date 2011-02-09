@@ -51,10 +51,6 @@ public:
             // empty
         }
 
-    bool separatedFromPrevBySpace(void) {
-        return prevSep;
-    }
-
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
                  set<FontModifiers> &fontModifiers) const;
@@ -70,6 +66,7 @@ public:
     FootnoteParaElement(ParaElementContainer *blockIn)
         : block(blockIn)
         {
+            prevSep = false;
         }
 
     void emitXML(unsigned            indentation,
@@ -104,7 +101,18 @@ public:
     ModifierParaElement(FontModifiers mod)
         : ParaElement(), modifier(mod)
         {
+            prevSep = false;
         }
+
+    /*
+     * Modifier paraElements are phantoms when it comes to the notion
+     * of 'separatedFromPrevBySpace'. This virtual function returns
+     * false by default, but should be overridden by all phantom
+     * elements to return true in order to handle spaces properly.
+     */
+    bool isPhantom(void) const {
+        return true;
+    }
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,

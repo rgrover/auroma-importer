@@ -35,9 +35,15 @@
 #include "paraElement.h"
 
 bool
-ParaElement::separatedFromPrevBySpace(void)
+ParaElement::separatedFromPrevBySpace(void) const
 {
     return prevSep;
+}
+
+bool
+ParaElement::isPhantom(void) const
+{
+    return false;
 }
 
 

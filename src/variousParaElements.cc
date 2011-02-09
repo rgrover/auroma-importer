@@ -50,7 +50,14 @@ StringParaElement::emitXML(unsigned            indentation,
             cout << "<elements>";
         }
         parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (separatedFromPrevBySpace()) {
+            cout << " ";
+        }
     }
+
     cout << str;
 }
 

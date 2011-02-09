@@ -11,25 +11,23 @@ ParaElementContainer::emitXML(unsigned            indentation,
                               bool               &parentStartedElements,
                               set<FontModifiers> &fontModifiers) const
 {
-    // cout << "ParaElementContainer::emitXML(" << indentation
-    //      << ", " << parentStartedElements << ");" << endl;
-
     // The parent of a paraElementContainer should not have started an
     // <elements>...
     assert(parentStartedElements == false);
 
     bool startedElements = false;
     vector<ParaElement *>::const_iterator iter;
+    bool seenNonPhantom = false;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
-        if (iter == elements.begin()) {
+        if (iter == elements.begin() || (seenNonPhantom == false)) {
             (*iter)->emitXML(indentation, startedElements, fontModifiers);
+            if ((*iter)->isPhantom() == false) {
+                seenNonPhantom = true;
+            }
         } else {
             if ((*iter)->separatedFromPrevBySpace()) {
                 if (startedElements) {
                     cout << " "; // add a white space to precede this element
-                } else {
-                    spaces(indentation);
-                    cout << "<element type=\"space\"> </element>" << endl;
                 }
             }
             (*iter)->emitXML(indentation, startedElements, fontModifiers);

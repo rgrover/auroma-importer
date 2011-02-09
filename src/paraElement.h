@@ -64,7 +64,15 @@ public:
      * Should this element be separated from its preceding element
      * with a space?
      */
-    virtual bool separatedFromPrevBySpace(void);
+    virtual bool separatedFromPrevBySpace(void) const;
+
+    /*
+     * Modifier paraElements are phantoms when it comes to the notion
+     * of 'separatedFromPrevBySpace'. This virtual function returns
+     * false by default, but should be overridden by all phantom
+     * elements to return true in order to handle spaces properly.
+     */
+    virtual bool isPhantom(void) const;
 
     virtual void emitXML(unsigned            indentation,
                          bool               &startedElements,
