@@ -46,13 +46,6 @@ Block::emitXML(unsigned            indentation,
         parentStartedElements = false;
     }
 
-    spaces(indentation);
-    if (blockTypeString) {
-        cout << "<block type=\"" << blockTypeString << "\">" << endl;
-    } else {
-        cout << "<block>" << endl;
-    }
-    
     bool startedElements = false;
     set<FontModifiers> fontModifiers(fontModifiersIn); // make a copy
                                                        // of the
@@ -60,10 +53,24 @@ Block::emitXML(unsigned            indentation,
                                                        // font-modifiers
                                                        // for this
                                                        // block
-    ParaElementContainer::emitXML(indentation + INDENT_STEP,
-                                  startedElements,
-                                  fontModifiers);
 
-    spaces(indentation);
-    cout << "</block>" << endl;
+    if (blockTypeString) {
+        /* If this block has a specific typeString associated with it,
+         * then emit a separate XML container to wrap the block. */
+        spaces(indentation);
+        cout << "<block type=\"" << blockTypeString << "\">" << endl;
+
+        ParaElementContainer::emitXML(indentation + INDENT_STEP,
+                                      startedElements,
+                                      fontModifiers);
+
+        spaces(indentation);
+        cout << "</block>" << endl;
+    } else {
+        /* emit the block at the same indentation level as the parent. */
+        ParaElementContainer::emitXML(indentation, /* same indentation
+                                                    * as the parent */
+                                      startedElements,
+                                      fontModifiers);
+    }
 }
