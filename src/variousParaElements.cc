@@ -244,24 +244,19 @@ OpeningSingleQuoteParaElement::emitXML(unsigned            indentation,
                                        bool                firstElement
     ) const
 {
-    if (parentStartedElements == false) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<elements font=\"";
-            emitFontModifierString(fontModifiers);
-            cout << "\">";
-        } else {
-            cout << "<elements>";
-        }
-        parentStartedElements = true;
-
-        /* If we're starting out <elements>, we should also take care
-         * of the space before the first element. */
-        if (!firstElement && separatedFromPrevBySpace()) {
-            cout << " ";
-        }
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
     }
-    cout << "`";
+
+    spaces(indentation);
+    if (fontModifiers.size()) {
+        cout << "<element type=\"open_single_quote\" font=\"";
+        emitFontModifierString(fontModifiers);
+        cout << "\">`</element>" << endl;
+    } else {
+        cout << "<element type=\"open_single_quote\">`</element>" << endl;
+    }
 }
 
 void
@@ -271,24 +266,19 @@ OpeningDoubleQuotesParaElement::emitXML(unsigned            indentation,
                                         bool                firstElement
     ) const
 {
-    if (parentStartedElements == false) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<elements font=\"";
-            emitFontModifierString(fontModifiers);
-            cout << "\">";
-        } else {
-            cout << "<elements>";
-        }
-        parentStartedElements = true;
-
-        /* If we're starting out <elements>, we should also take care
-         * of the space before the first element. */
-        if (!firstElement && separatedFromPrevBySpace()) {
-            cout << " ";
-        }
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
     }
-    cout << "``";
+
+    spaces(indentation);
+    if (fontModifiers.size()) {
+        cout << "<element type=\"open_double_quotes\" font=\"";
+        emitFontModifierString(fontModifiers);
+        cout << "\">``</element>" << endl;
+    } else {
+        cout << "<element type=\"open_double_quotes\">``</element>" << endl;
+    }
 }
 
 void
@@ -298,22 +288,17 @@ ClosingDoubleQuotesParaElement::emitXML(unsigned            indentation,
                                         bool                firstElement
     ) const
 {
-    if (parentStartedElements == false) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<elements font=\"";
-            emitFontModifierString(fontModifiers);
-            cout << "\">";
-        } else {
-            cout << "<elements>";
-        }
-        parentStartedElements = true;
-
-        /* If we're starting out <elements>, we should also take care
-         * of the space before the first element. */
-        if (!firstElement && separatedFromPrevBySpace()) {
-            cout << " ";
-        }
+    if (parentStartedElements) {
+        cout << "</elements>" << endl;
+        parentStartedElements = false;
     }
-    cout << "''";
+
+    spaces(indentation);
+    if (fontModifiers.size()) {
+        cout << "<element type=\"close_double_quotes\" font=\"";
+        emitFontModifierString(fontModifiers);
+        cout << "\">''</element>" << endl;
+    } else {
+        cout << "<element type=\"close_double_quotes\">''</element>" << endl;
+    }
 }
