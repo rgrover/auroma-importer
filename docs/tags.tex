@@ -1,15 +1,7 @@
 \documentclass[11pt]{article}
 
 %% Things to add:
-%%  * Diacritical marks cannot be verified visually until the end of
-%%    the import process. This poses a special challenge; people
-%%    involved have to be very careful.
-%%  * Rename \newpage{} to \pagebreak[]
-%%  * Blank lines should be avoided when switching pages; otherwise
-%%    they may be mis-interpreted as paragraph endings.
 %%  * Allow for comments beginning with %
-%%  * Files must be saved in plain text format.
-%%  * Add \sc for small caps.
 %%  * paragraphs MUST begin on a new line with a \par command
 %%  * Talk about blocks within { and }; blocks should not span
 %%    paragrpahs (empty lines) unless in a verbatim context.
@@ -36,6 +28,10 @@
 \date{Draft V0.1, February, 2011}
 \begin{document}
 \maketitle
+
+\newpage
+
+\tableofcontents
 
 \newpage
 
@@ -72,20 +68,22 @@ processing tool-chain manageable in its complexity.
 
 \section{Input Files}
 
-Each tagged text to be sent to the ``importer'' will be {\it a plain
-  ASCII text file}---containing the text of a document or work
+Each tagged text to be sent to the ``importer'' will be \emph{a plain
+  ASCII text file} typically containing the text of a document or work
 together with tags added to highlight special semantic properties.
-The importer will work with a single input file at a time, and
+The import process will work with a single input file at a time, and
 typically an entire work will be submitted to the import process in a
 file.
 
-The taggers should be able to create and work with tagged files using
+The taggers should be able to edit text files (containing tags) using
 any editor; however they should take extra care that their chosen
-editor doesn't introduce any non-ASCII characters into the text. If a
-tagger introduces any special non-ASCII character particular to an
-editor, or perhaps if the OCR process introduces special characters
-and if the taggers let such characters remain in the text, then the
-importer will complain about the occurrences and reject the input.
+editor doesn't introduce any special non-ASCII characters into the
+text. It is our intention to capture all special characters using one
+of the sequences known to the importer. If a tagger introduces any
+special non-ASCII character which may be particular to an editor, or
+perhaps if the OCR process introduces special characters and if the
+taggers let such characters remain in the text, then the importer will
+complain about the occurrences and reject the input.
 
 
 %% Spaces
@@ -134,9 +132,7 @@ tag--this is the recommended approach.
 %% accents) or using Unicode Character-points directly (such as \Uxxxx,
 %% where +xxxx+ is the UTF-16 representation of a character).
 
-\newpage
-
-\subsection{Special Characters}
+\subsection{Characters with Special Meaning}
 
 The following symbols are reserved characters that have special
 meaning:
@@ -177,15 +173,15 @@ $\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
 %% line. We also used the \footnote tag, which takes an argument within
 %% curly braces.
 
-\subsection{Tags}
+\subsection{Tags and Commands}
 
 Tags and commands are case sensitive. They usually start with a
-backslash $\backslash$ and then have a name consisiting of letters
-only; such as \cmd{linebreak}. In some cases, tags can take an argument,
-such as: \cmd{footnote\{some text\}}\ ---such tags are called
-commands. Tags and commands may be terminated by a space, a number, or
-any other punctuation mark. The following is an example of the use of
-tags and commands in text:
+backslash $\backslash$\ and then have a name consisiting of letters
+only; such as \cmd{linebreak}. In some cases, tags can take an
+argument, such as: \cmd{footnote\{some text\}}\ ---such tags are
+called commands. Tags and commands may be terminated by a space, a
+number, or any punctuation mark. The following is an example of the
+use of tags and commands in text:
 \begin{quote}
 Please, start a new line right here!\cmd{linebreak} Thank you!
 
@@ -196,7 +192,6 @@ is a footnote appearing right after the word 'line'\}}.
 In the above tagged text, we used the \cmd{linebreak} tag to force a new
 line. We also used the \cmd{footnote} command, which takes an argument
 within curly braces.
-
 
 
 %% Input File Structure
@@ -271,14 +266,18 @@ which should reflect one coherent thought, or one idea. If a new
 thought begins, a new paragraph should begin, and if not, only
 linebreaks should be used.
 
-Paragraphs should be tagged as beginning wihh a \cmd{par}, or a
+Paragraphs must be tagged as beginning with a \cmd{par}, or a
 \cmd{firstpar} in the case where the paragraph is the first within its
 parent container (such as the first paragraph of a chapter).
 
-Although an empty line also marks the end of a paragraph, it is better
-to be explicit about it through the use of \cmd{par} at the beginning
-of a paragraph. If an empty line is used to separate paragraphs, a
-\cmd{par} is assumed by default, instead of a \cmd{firstpar}.
+An empty line marks the end of a paragraph---a paragraph following a
+sequence of empty lines must begin with the use of \cmd{par}.
+
+Normally the first line of every paragraph is indented by default;
+except the first paragraph within a container (such as a chapter). If
+a paragraph is not to be indented, then a \cmd{noindent} should be
+used immediately following the \cmd{par}; similarly if indenting is
+required it may be explicitly requested using a \cmd{indent}.
 
 %% Paragraph Containers
 %% ~~~~~~~~~~~~~~~~~~~~
@@ -301,8 +300,8 @@ without getting caught up in the details of levels and level-numbers,
 only the following tags are made available to the tagger.
 
 \begin{quote}
-  \cmd{hn} Heading Number\\
-  \cmd{ht} Heading Title\\
+  \cmd{hn} \emph{Heading Number}\\
+  \cmd{ht} \emph{Heading Title}\\
   \cmd{push}\\
   \cmd{pop}\\
 \end{quote}
@@ -328,7 +327,8 @@ the Life Divine:
 \begin{quote}
   \cmd{par}\\
   \cmd{hn} BOOK ONE\\
-  \cmd{ht} Omnipresent Reality \cmd{linebreak} And \cmd{linebreak} The Universe
+  \cmd{par}\\
+  \cmd{ht} Omnipresent Reality\cmd{linebreak}\ And\cmd{linebreak}\  The Universe
 \end{quote}
 
 \noindent Continuing with this example, we can descend from the level of a Book
@@ -343,6 +343,7 @@ into Chapters using the following tag:
 \begin{quote}
   \cmd{par}\\
   \cmd{hn} Chapter I\\
+  \cmd{par}\\
   \cmd{ht} The Human Aspiration
 \end{quote}
 
@@ -408,19 +409,23 @@ display depends on the current container level and the attributes of
 the paragraph---and the tagger should mostly remain isolated from these
 details.
 
-Normally the first line of every paragraph is indented by default
-(except the first paragraph within a container). If the indenting for
-a paragraph is to be dropped, then a \cmd{noindent} should be used
-immediately following the \cmd{par}; similarly if indenting is
-required it may be explicitly requested using a \cmd{indent}.
-
 In special cases, it might be necessary to order a linebreak--as is
 often necessary when defining container headings. For these cases,
 \cmd{linebreak} starts a new line without starting a new
-paragraph. Similarly, \cmd{pagebreak\{pagenumber\}} starts a new
-page. With \cmd{newpage}, the pagenumber within the curly brackets is
-an optional argument. It can be left empty if there is no pagenumber
-to be displayed; otherwise it should be specified.
+paragraph.
+
+Similarly, \cmd{pagebreak[pagenumber text]} starts a new page. The
+pagenumber text within the square brackets is an optional argument. It
+can be left empty if there is no pagenumber displayed on a page of the
+original text; otherwise the pagenumber should be specified within
+square brackets. The choice of using square brackets is a derivative
+from the \LaTeX typesetting language; as is much else in this tagging
+language.
+
+Often paragraphs can be found to span page boundaries. The command
+\cmd{pagebreak} can occur in the middle of of a paragraph. \emph{Blank
+  lines around \cmd{pagebreak} should be avoided when switching
+  pages}; otherwise they may be mis-interpreted as paragraph endings.
 
 %% Special Characters and Symbols
 %% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -432,14 +437,12 @@ to be displayed; otherwise it should be specified.
 
 You may use the " character for quotation marks as you would on a
 typewriter, but there are better alternatives. In publishing there are
-special opening and closing quotation marks. Use two `s (grave
-accents) for opening quotation marks and two 's (apostrophe) for
+special opening and closing quotation marks. Use two \`{}s (grave
+accents) for opening quotation marks and two \'{}s (apostrophe) for
 closing quotation marks. For single quotes, you use just one of each.
 
 \begin{quote}
-\begin{verbatim}
-  Here is an example of how you would ``quote''.
-\end{verbatim}
+  Here is an example of how you would \`{}\`{}quote\'{}\'{}.
 \end{quote}
 
 %% Dashes and Hyphens
@@ -484,32 +487,32 @@ letter {\tt o}. Naturally, other letters work too.
 
 %% [width="15%"]
 %% |===============================
-%% |\=o | latexmath:[$\text{\={o}}$]
-%% |\.o | latexmath:[$\text{\.{o}}$]
-%% |\,o | latexmath:[$\text{\,{o}}$]
-%% |\'o | latexmath:[$\text{\'{o}}$]
-%% |\"o | latexmath:[$\text{\"{o}}$]
-%% |\^o | latexmath:[$\text{\^{o}}$]
-%% |\`o | latexmath:[$\text{\`{o}}$]
-%% |\~o | latexmath:[$\text{\~{o}}$]
-%% |\co | latexmath:[$\text{\c{o}}$]
-%% |\do | latexmath:[$\text{\d{o}}$]
+%% |\={o} | latexmath:[$\text{\={o}}$]
+%% |\.{o} | latexmath:[$\text{\.{o}}$]
+%% |\,{o} | latexmath:[$\text{\,{o}}$]
+%% |\'{o} | latexmath:[$\text{\'{o}}$]
+%% |\"{o} | latexmath:[$\text{\"{o}}$]
+%% |\^{o} | latexmath:[$\text{\^{o}}$]
+%% |\`{o} | latexmath:[$\text{\`{o}}$]
+%% |\~{o} | latexmath:[$\text{\~{o}}$]
+%% |\c{o} | latexmath:[$\text{\c{o}}$]
+%% |\d{o} | latexmath:[$\text{\d{o}}$]
 %% |===============================
 
 \vspace{0.4cm}
 \begin{tabular}{c|c}
   Sequence & Produces\\
 \hline
-  \cmd{=o} & \=o \\
-  \cmd{.o} & \.o \\
-  \cmd{'o} & \'o \\
-  \cmd{"o} & \"o \\
-  \cmd{\textasciicircum o} & \^o \\
-  \cmd{`o} & \`o \\
-  \cmd{\textasciitilde o} & \~o \\
-  \cmd{co} & \c{o}\\
-  \cmd{,o} & \d{o}\\
-  \cmd{do} & \d{o}\\
+  \cmd{=\{o\}} & \=o \\
+  \cmd{.\{o\}} & \.o \\
+  \cmd{'\{o\}} & \'o \\
+  \cmd{"\{o\}} & \"o \\
+  \cmd{\textasciicircum \{o\}} & \^o \\
+  \cmd{`\{o\}} & \`o \\
+  \cmd{\textasciitilde \{o\}} & \~o \\
+  \cmd{c\{o\}} & \c{o}\\
+  \cmd{,\{o\}} & \d{o}\\
+  \cmd{d\{o\}} & \d{o}\\
 \end{tabular}
 \vspace{0.4cm}
 
@@ -520,6 +523,14 @@ codepoint. So, for instance, the character \~o, which is represented
 by the codepoint {\tt 0x00F5}, can be written anywhere in the document
 as \cmd{u00f5}.
 
+The work of the taggers is made a bit harder by the fact that they
+cannot immediately see the effects of using such special
+sequences. The tagged text needs to go through a long chain of tools
+and processes before the special characters appear in a visible form,
+perhaps on a web page as currently envisaged. This poses a special
+challenge for correctness.  Perhaps the taggers should attempt to make
+a note of the use of special character sequences so that they can be
+verified visually at a later stage.
 
 %% Footnotes
 %% ~~~~~~~~~
@@ -529,12 +540,13 @@ as \cmd{u00f5}.
 %% word or sentence they refer to. Footnotes referring to a sentence or a
 %% part of it should therefore be put after the comma or period.
 
-\subsubsection{Footnotes}
+\subsection{Footnotes}
 
-With the command \cmd{footnote\{footnote text\}} a footnote is printed
-at the foot of the current page. Footnotes should always be put after
-the word or sentence they refer to. Footnotes referring to a sentence
-or a part of it sould therefore be put after the comma or period.
+With the command \cmd{footnote\{footnote text\}} a
+footnote\footnote{footnote text} is printed at the foot of the current
+page. Footnotes should always be put after the word or sentence they
+refer to. Footnotes referring to a sentence or a part of it sould
+therefore be put after the comma or period.
 
 %% Emphasized Words
 %% ~~~~~~~~~~~~~~~~
@@ -545,12 +557,13 @@ or a part of it sould therefore be put after the comma or period.
 %% sets-up italics for the text which follows in the current paragraph or
 %% the current block (within the surrounding \{ and \}).
 
-\subsubsection{Emphasized Words}
+\subsection{\emph{Emphasized Words}}
 
 Words or ranges of words may be emphasized by typesetting them in an
 italic font. We provide the tag \cmd{it} to emphasize text. It sets-up
-italics for the following text in the current paragraph or the current
-block--i.e. until the end of the surrounding \{ and \} block.
+italics for the text following the tag within in the current paragraph
+or the current block---i.e. until the end of the surrounding \{ and \}
+block.
 
 \begin{quote}
   The use \{\cmd{it} hello world\} will setup the text ``hello world''
@@ -565,15 +578,16 @@ block--i.e. until the end of the surrounding \{ and \} block.
 %% text.
 
 
-\subsubsection{Bold Face}
+\subsubsection{\textbf{Bold Face} and {\sc Small Caps}}
 
 Similar to emphasizing text with italics, we provide the \cmd{bf} tag
-for bold face text.  It sets-up bold-face font for the following text
-in the current paragraph or the current block--i.e. until the end of
-the surrounding \{ and \} block.
+for bold face text and \cmd{sc} for small caps.  It sets-up bold-face
+or small-caps font for the following text in the current paragraph or
+the current block--i.e. until the end of the surrounding \{ and \}
+block.
 
 
-\subsubsection{Quotation Following a Heading}
+\subsection{Quotations Following a Chapter Heading}
 
 The tag \cmd{hquote} should be used to mark the current paragraph as
 containing a quotation which immediately follows a chapter (or
@@ -584,11 +598,9 @@ of the quote which follows Chapter I of Book One of ``The Life Divine'':
   \cmd{par}\cmd{hquote} She follows to the goal of those that are
   passing on beyond, she is the first in the eternal succession of the
   dawns that are coming,{\tt ---}Usha widens bringing out that which lives,
-  awakening someone who was dead. \cmd{dots} What is her scope when she
+  awakening someone who was dead.\cmd{dots} What is her scope when she
   harmonises with the dawns that shone out before and those that now
-  must shine? She desires the ancient mornings and fulfils their
-  light; projecting forwards her illumination she enters into
-  communion with the rest that are to come.
+  must shine?\ldots
 \end{quote}
 
 %% Quotation References
@@ -597,7 +609,7 @@ of the quote which follows Chapter I of Book One of ``The Life Divine'':
 %% We provide the command +\ref{text}+ for adding references to
 %% quotations.
 
-\subsubsection{References for \cmd{hquote}}
+\subsection{References for \cmd{hquote}}
 
 We provide the command \cmd{hquoteref\{text\}} for adding references
 for \cmd{hquote} paragraphs. So, the following is the tagged version
@@ -608,15 +620,15 @@ Divine'':
   \cmd{par}\cmd{hquote} Threefold are those supreme births of this
   divine force that is in the world, they are true, they are
   desirable; he moves there wide-overt within the Infinite and shines
-  pure, luminous and fulfilling. \cmd{dots} That which is immortal in
+  pure, luminous and fulfilling.\cmd{dots} That which is immortal in
   mortals and possessed of the truth, is a god and established
-  inwardly as an energy working out in our divine powers. \cmd{dots}
+  inwardly as an energy working out in our divine powers.\cmd{dots}
   Become high-uplifted, O Strength, pierce all veils, manifest in us
   the things of the Godhead.
   \cmd{hquoteref}\{\cmd{it} Vamadeva{\tt ---}Rig Veda.\}
 \end{quote}
 
-\subsubsection{Quotation and Verse Paragraphs}
+\subsection{Quotation and Verse Paragraphs}
 
 The tag \cmd{quote} should be used to mark the current paragraph as
 containing a quotation, an important phrase, or an example. Quotation
@@ -631,7 +643,7 @@ useful for poems where preserving the linebreaks is important.
 
 %% +\enumerate{number}+ generates lists with numbers as supplied by the tagger.
 
-\subsubsection{Itemize and Enumerate}
+\subsection{Itemize and Enumerate}
 
 The \cmd{itemize} tag is suitable for simple lists (using
 bullets). \cmd{enumerate\{number\}} generates lists with numbers as
@@ -644,7 +656,7 @@ supplied by the tagger. They apply to the current paragraph.
 %% either left- or right-aligned. The +\center+ tag generated centered
 %% text. These tags apply to the current paragraph.
 
-\subsubsection{Alignment}
+\subsection{Alignment}
 
 The tags \cmd{flushleft} and \cmd{flushright} generate paragraphs
 which are either left- or right-aligned. The \cmd{center} tag
@@ -659,7 +671,7 @@ generated centered text. These tags apply to the current paragraph.
 %% prove to be a useful fall back for the cases where supported tags are
 %% unable to describe text as it appears in the original work.
 
-\subsubsection{Printing Verbatim}
+\subsection{Printing Verbatim}
 
 The command \cmd{verbatim\{\}} will have its text taken literally, as
 if it was typed on a typewriter, with all the linebreaks and spaces,
