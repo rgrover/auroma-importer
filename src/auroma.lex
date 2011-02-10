@@ -81,18 +81,15 @@ extern auromaParserBase::STYPE__ d_val;
      */
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
+
 \\(?i:hn)$           return auromaParserBase::HEADING_NUMBER_CMD;
 \\(?i:hn)/{EOC}      return auromaParserBase::HEADING_NUMBER_CMD;
 \\(?i:ht)$           return auromaParserBase::HEADING_TITLE_CMD;
 \\(?i:ht)/{EOC}      return auromaParserBase::HEADING_TITLE_CMD;
-\\(?i:tpt)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_TITLE_CMD; */
-\\(?i:tpn)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_NUMBER_CMD; */
-\\(?i:tc)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_TITLE_CMD; */
-\\(?i:tcf)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_TITLE_CMD; */
-\\(?i:tcfup)/{EOC}   return 1;/* return auromaParserBase::CHAPTER_GROUP_TITLE_CMD; */
-\\(?i:tcsub)/{EOC}   return 1;/* return auromaParserBase::CHAPTER_GROUP_SUBTITLE_CMD; */
-\\(?i:tcn)/{EOC}     return 1;/* return auromaParserBase::CHAPTER_NUMBER_CMD; */
-\\(?i:tscc)/{EOC}    return 1;/* return auromaParserBase::CHAPTER_TERMINATOR_CENTERED_CMD; */
+\\(?i:push)$         return auromaParserBase::PUSH_CMD;
+\\(?i:push)/{EOC}    return auromaParserBase::PUSH_CMD;
+\\(?i:pop)$         return auromaParserBase::POP_CMD;
+\\(?i:pop)/{EOC}    return auromaParserBase::POP_CMD;
 
 \\(?i:sref)$         return auromaParserBase::REFERENCE_CMD;
 \\(?i:sref)/{EOC}    return auromaParserBase::REFERENCE_CMD;
@@ -154,19 +151,19 @@ extern auromaParserBase::STYPE__ d_val;
 ^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
 
 \\(?i:fnquad)$                 /* ignore */
-\\(?i:fnquad)/{EOC}            /* ignore */
+\\(?i:fnquad)[[:blank:]]*      /* ignore */
 \\(?i:text)$                   /* ignore */
-\\(?i:text)/{EOC}              /* ignore */
+\\(?i:text)[[:blank:]]*        /* ignore */
 \\(?i:BC)$                     /* ignore */
-\\(?i:BC)/{EOC}                /* ignore */
+\\(?i:BC)[[:blank:]]*          /* ignore */
 \\(?i:hbox)$                   /* ignore */
-\\(?i:hbox)/{EOC}              /* ignore */
+\\(?i:hbox)[[:blank:]]*        /* ignore */
 \\(?i:nh)$                     /* ignore */
-\\(?i:nh)/{EOC}                /* ignore */
+\\(?i:nh)[[:blank:]]*          /* ignore */
 \\(?i:si)$                     /* ignore */
-\\(?i:si)/{EOC}                /* ignore */
+\\(?i:si)[[:blank:]]*          /* ignore */
 \\(?i:rl)$                     /* ignore */
-\\(?i:rl)/{EOC}                /* ignore */
+\\(?i:rl)[[:blank:]]*          /* ignore */
 \\(?i:pi)$                     /* ignore */
 \\(?i:pi)/{EOC}                /* ignore */
 \\(?i:quad)$                   /* ignore */

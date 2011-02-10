@@ -42,7 +42,8 @@
 class Block : public ParaElementContainer
 {
 public:
-    Block()
+    Block() :
+        blockTypeString(NULL)
         {
         }
 

@@ -37,16 +37,21 @@
 
 %stype const char *
 
-%expect 2                 /*
+%expect 3                 /*
                            * Expect two shift-reduce conflicts:
                            *   - one for white spaces within paragraphs.
                            *   - another for commands which take
                            *     optinal blocks, e.g. \sitem
+                           *   - another for \it (or \s) which can take
+                           *     an optional block
                            */
 
+
+%token PARA_CMD
 %token HEADING_NUMBER_CMD       /* e.g. Chapter IX */
 %token HEADING_TITLE_CMD        /* e.g. Chapter Headings. */
-%token PARA_CMD
+%token PUSH_CMD
+%token POP_CMD
 %token CHAPTER_HEAD_QUOTE_CMD   /* Quotations following a chapter heading. */
 %token QUOTE_CMD                /* Indented quotations. */
 %token REFERENCE_CMD            /* References for quotations. */
@@ -88,6 +93,12 @@ input :
 |
     input
     emptyLine
+|
+    input
+    pushContainerLevel
+|
+    input
+    popContainerLevel
 ;
 
 paragraph :
@@ -391,6 +402,24 @@ blockElement:
         currentContainer()->append(mod);
     }
 |
+    ITALICS_FACE_CMD
+    '{'
+    {
+        pushSubContainer();
+        ModifierParaElement *mod =
+            new ModifierParaElement(ParaElement::ITALICS);
+        currentContainer()->append(mod);
+    }
+    block
+    '}'
+    {
+        ParaElementContainer *block;
+        block = currentContainer(); /* get a ref to the block's container */
+        popSubContainer();          // pop the block out of the stack
+
+        currentContainer()->append(block); // add the block as a paraElement
+    }
+|
     BOLD_FACE_CMD
     {
         ModifierParaElement *mod =
@@ -453,6 +482,26 @@ blockElement:
     CLOSING_DOUBLE_QUOTES
     {
         currentContainer()->append(new ClosingDoubleQuotesParaElement());
+    }
+;
+
+pushContainerLevel :
+    optionalBlankSpace
+    PUSH_CMD
+    optionalBlankSpace
+    newline
+    {
+        Para::pushContainerLevel();
+    }
+;
+
+popContainerLevel :
+    optionalBlankSpace
+    POP_CMD
+    optionalBlankSpace
+    newline
+    {
+        Para::popContainerLevel();
     }
 ;
 

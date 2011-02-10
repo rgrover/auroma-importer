@@ -254,6 +254,12 @@ OpeningSingleQuoteParaElement::emitXML(unsigned            indentation,
             cout << "<elements>";
         }
         parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (!firstElement && separatedFromPrevBySpace()) {
+            cout << " ";
+        }
     }
     cout << "`";
 }
@@ -275,6 +281,12 @@ OpeningDoubleQuotesParaElement::emitXML(unsigned            indentation,
             cout << "<elements>";
         }
         parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (!firstElement && separatedFromPrevBySpace()) {
+            cout << " ";
+        }
     }
     cout << "``";
 }
@@ -296,6 +308,12 @@ ClosingDoubleQuotesParaElement::emitXML(unsigned            indentation,
             cout << "<elements>";
         }
         parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (!firstElement && separatedFromPrevBySpace()) {
+            cout << " ";
+        }
     }
     cout << "''";
 }

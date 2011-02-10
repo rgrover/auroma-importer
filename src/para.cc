@@ -42,6 +42,19 @@ unsigned Para::currentLevel = 1;
 extern auromaFlexLexer *lexer;
 
 void
+Para::pushContainerLevel(void)
+{
+    ++currentLevel;
+}
+
+void
+Para::popContainerLevel(void)
+{
+    assert(currentLevel > 1);
+    --currentLevel;
+}
+
+void
 Para::setAttribute(ParaAttributes attr)
 {
     // cout << "seting PARA attribute: " << attr << endl;

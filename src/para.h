@@ -84,6 +84,9 @@ public:
         {
         }
 
+    static void pushContainerLevel(void);
+    static void popContainerLevel(void);
+
     void setAttribute(ParaAttributes attr);
     void unsetAttribute(ParaAttributes attr);
 
@@ -96,8 +99,8 @@ public:
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;
+    unsigned        level;        /* paragraph level */
 
-    unsigned        level;
     static unsigned currentLevel; /* current container level */
 };
 
