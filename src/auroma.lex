@@ -81,6 +81,10 @@ extern auromaParserBase::STYPE__ d_val;
      */
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
+\\(?i:hn)$           return auromaParserBase::HEADING_NUMBER_CMD;
+\\(?i:hn)/{EOC}      return auromaParserBase::HEADING_NUMBER_CMD;
+\\(?i:ht)$           return auromaParserBase::HEADING_TITLE_CMD;
+\\(?i:ht)/{EOC}      return auromaParserBase::HEADING_TITLE_CMD;
 \\(?i:tpt)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_TITLE_CMD; */
 \\(?i:tpn)/{EOC}     return 1;/* return auromaParserBase::BOOK_PART_NUMBER_CMD; */
 \\(?i:tc)/{EOC}      return 1;/* return auromaParserBase::CHAPTER_TITLE_CMD; */

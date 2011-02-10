@@ -38,7 +38,9 @@
 void
 StringParaElement::emitXML(unsigned            indentation,
                            bool               &parentStartedElements,
-                           set<FontModifiers> &fontModifiers) const
+                           set<FontModifiers> &fontModifiers,
+                           bool                firstElement
+    ) const
 {
     if (parentStartedElements == false) {
         spaces(indentation);
@@ -53,7 +55,7 @@ StringParaElement::emitXML(unsigned            indentation,
 
         /* If we're starting out <elements>, we should also take care
          * of the space before the first element. */
-        if (separatedFromPrevBySpace()) {
+        if (!firstElement && separatedFromPrevBySpace()) {
             cout << " ";
         }
     }
@@ -64,7 +66,9 @@ StringParaElement::emitXML(unsigned            indentation,
 void
 FootnoteParaElement::emitXML(unsigned            indentation,
                              bool               &parentStartedElements,
-                             set<FontModifiers> &fontModifiers) const
+                             set<FontModifiers> &fontModifiers,
+                             bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -77,7 +81,9 @@ FootnoteParaElement::emitXML(unsigned            indentation,
 void
 ReferenceParaElement::emitXML(unsigned            indentation,
                               bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers) const
+                              set<FontModifiers> &fontModifiers,
+                              bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -90,7 +96,9 @@ ReferenceParaElement::emitXML(unsigned            indentation,
 void
 ModifierParaElement::emitXML(unsigned            indentation,
                              bool               &parentStartedElements,
-                             set<FontModifiers> &fontModifiers) const
+                             set<FontModifiers> &fontModifiers,
+                             bool                firstElement
+    ) const
 {
     pair<set<FontModifiers>::iterator, bool> ret;
 
@@ -127,7 +135,9 @@ ModifierParaElement::emitXML(unsigned            indentation,
 void
 DotsParaElement::emitXML(unsigned            indentation,
                          bool               &parentStartedElements,
-                         set<FontModifiers> &fontModifiers) const
+                         set<FontModifiers> &fontModifiers,
+                         bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -140,7 +150,9 @@ DotsParaElement::emitXML(unsigned            indentation,
 void
 TstarParaElement::emitXML(unsigned            indentation,
                           bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers) const
+                          set<FontModifiers> &fontModifiers,
+                          bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -153,19 +165,24 @@ TstarParaElement::emitXML(unsigned            indentation,
 void
 LineBreakParaElement::emitXML(unsigned            indentation,
                               bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers) const
+                              set<FontModifiers> &fontModifiers,
+                              bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
         parentStartedElements = false;
     }
+    spaces(indentation);
     cout << "<linebreak/>" << endl;
 }
 
 void
 PageBreakParaElement::emitXML(unsigned            indentation,
                               bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers) const
+                              set<FontModifiers> &fontModifiers,
+                              bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -178,7 +195,9 @@ PageBreakParaElement::emitXML(unsigned            indentation,
 void
 NDashParaElement::emitXML(unsigned            indentation,
                           bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers) const
+                          set<FontModifiers> &fontModifiers,
+                          bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -199,7 +218,9 @@ NDashParaElement::emitXML(unsigned            indentation,
 void
 MDashParaElement::emitXML(unsigned            indentation,
                           bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers) const
+                          set<FontModifiers> &fontModifiers,
+                          bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;
@@ -219,7 +240,9 @@ MDashParaElement::emitXML(unsigned            indentation,
 void
 OpeningSingleQuoteParaElement::emitXML(unsigned            indentation,
                                        bool               &parentStartedElements,
-                                       set<FontModifiers> &fontModifiers) const
+                                       set<FontModifiers> &fontModifiers,
+                                       bool                firstElement
+    ) const
 {
     if (parentStartedElements == false) {
         spaces(indentation);
@@ -238,7 +261,9 @@ OpeningSingleQuoteParaElement::emitXML(unsigned            indentation,
 void
 OpeningDoubleQuotesParaElement::emitXML(unsigned            indentation,
                                         bool               &parentStartedElements,
-                                        set<FontModifiers> &fontModifiers) const
+                                        set<FontModifiers> &fontModifiers,
+                                        bool                firstElement
+    ) const
 {
     if (parentStartedElements == false) {
         spaces(indentation);
@@ -257,7 +282,9 @@ OpeningDoubleQuotesParaElement::emitXML(unsigned            indentation,
 void
 ClosingDoubleQuotesParaElement::emitXML(unsigned            indentation,
                                         bool               &parentStartedElements,
-                                        set<FontModifiers> &fontModifiers) const
+                                        set<FontModifiers> &fontModifiers,
+                                        bool                firstElement
+    ) const
 {
     if (parentStartedElements == false) {
         spaces(indentation);

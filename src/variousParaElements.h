@@ -53,7 +53,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 
 private:
     string str;
@@ -71,7 +73,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 
 private:
     ParaElementContainer *block;
@@ -88,7 +92,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 
 private:
     ParaElementContainer *block;
@@ -116,7 +122,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 
 private:
     FontModifiers modifier;
@@ -134,7 +142,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class TstarParaElement : public ParaElement
@@ -142,7 +152,9 @@ class TstarParaElement : public ParaElement
 public:
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class LineBreakParaElement : public ParaElement
@@ -156,7 +168,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class PageBreakParaElement : public ParaElement
@@ -176,7 +190,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 
 private:
     string pageNumber;
@@ -193,7 +209,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class MDashParaElement : public ParaElement
@@ -207,7 +225,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class OpeningSingleQuoteParaElement : public ParaElement
@@ -215,7 +235,9 @@ class OpeningSingleQuoteParaElement : public ParaElement
 public:
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class OpeningDoubleQuotesParaElement : public ParaElement
@@ -223,7 +245,9 @@ class OpeningDoubleQuotesParaElement : public ParaElement
 public:
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 class ClosingDoubleQuotesParaElement : public ParaElement
@@ -237,7 +261,9 @@ public:
 
     void emitXML(unsigned            indentation,
                  bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers) const;
+                 set<FontModifiers> &fontModifiers,
+                 bool                firstElement = false
+        ) const;
 };
 
 #endif /* #ifdef VARIOUS_PARA_ELEMENTS */

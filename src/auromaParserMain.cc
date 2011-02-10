@@ -9,6 +9,8 @@
 auromaParserBase::STYPE__ d_val;
 Para *currentPara = NULL;
 
+auromaFlexLexer *lexer;
+
 int
 main(int argc, const char *argv[])
 {
@@ -23,7 +25,7 @@ main(int argc, const char *argv[])
         exit(-1);
     }
 
-    auromaFlexLexer *lexer = new auromaFlexLexer(yyin);
+    lexer = new auromaFlexLexer(yyin);
     auromaParser parser(lexer);
 
     parser.parse();

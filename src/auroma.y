@@ -44,13 +44,8 @@
                            *     optinal blocks, e.g. \sitem
                            */
 
-/* %token BOOK_PART_TITLE_CMD      /\* For part titles. *\/ */
-/* %token BOOK_PART_NUMBER_CMD     /\* For part numbers. *\/ */
-/* %token CHAPTER_NUMBER_CMD       /\* e.g. Chapter IX *\/ */
-/* %token CHAPTER_TITLE_CMD        /\* Chapter Headings. *\/ */
-/* %token CHAPTER_GROUP_TITLE_CMD  /\* Title for a group of chapters. *\/ */
-/* %token CHAPTER_GROUP_SUBTITLE_CMD /\* Title for chapter within a chap-group.*\/ */
-/* %token CHAPTER_TERMINATOR_CENTERED_CMD /\* Centered text to end a chapter. *\/ */
+%token HEADING_NUMBER_CMD       /* e.g. Chapter IX */
+%token HEADING_TITLE_CMD        /* e.g. Chapter Headings. */
 %token PARA_CMD
 %token CHAPTER_HEAD_QUOTE_CMD   /* Quotations following a chapter heading. */
 %token QUOTE_CMD                /* Indented quotations. */
@@ -171,6 +166,22 @@ paragraphElement :
 ;
 
 paraAttributeCommand :
+    HEADING_NUMBER_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::HEADING_NUMBER);
+    }
+|
+    HEADING_TITLE_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->setAttribute(Para::HEADING_TITLE);
+    }
+|
     NOINDENT_CMD
     {
         assert(currentContainerIsPara());

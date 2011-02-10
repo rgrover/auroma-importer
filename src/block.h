@@ -61,7 +61,9 @@ public:
 
     virtual void emitXML(unsigned            indentation,
                          bool               &parentStartedElements,
-                         set<FontModifiers> &fontModifiers) const;
+                         set<FontModifiers> &fontModifiers,
+                         bool                firstElement = false
+        ) const;
 
 private:
     const char *blockTypeString;

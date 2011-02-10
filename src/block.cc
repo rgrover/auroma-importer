@@ -37,7 +37,9 @@
 void
 Block::emitXML(unsigned            indentation,
                bool               &parentStartedElements,
-               set<FontModifiers> &fontModifiersIn) const
+               set<FontModifiers> &fontModifiersIn,
+               bool                firstElement
+    ) const
 {
     if (parentStartedElements) {
         cout << "</elements>" << endl;

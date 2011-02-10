@@ -76,7 +76,9 @@ public:
 
     virtual void emitXML(unsigned            indentation,
                          bool               &startedElements,
-                         set<FontModifiers> &fontModifiers) const = 0;
+                         set<FontModifiers> &fontModifiers,
+                         bool                firstElement = false
+        ) const = 0;
 
 
     const static unsigned INDENT_STEP = 4;

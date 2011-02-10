@@ -43,29 +43,11 @@
 class Para : public ParaElementContainer
 {
 public:
-    Para(void) :
-        attributes(NUM_PARA_ATTRIBUTES),
-        enumBlock(NULL)
-        {
-            // cout << "creating a new paragraph" << endl;
-            attributes[INDENT]      = true; // indent is turned on by default
-            attributes[CENTER]      = false;
-            attributes[FLUSH_LEFT]  = true;
-            attributes[DROP]        = false;
-            attributes[QUOTE]       = false;
-            attributes[POEM]        = false;
-            attributes[FOOTER]      = false;
-            attributes[ENUMERATION] = false;
-            attributes[HEAD_QUOTE]  = false;
-        }
-
-    ~Para(void)
-        {
-        }
-
     // The attributes applicable to a paragraph.
     enum ParaAttributes {
-        INDENT = 0,
+        HEADING_NUMBER,
+        HEADING_TITLE,
+        INDENT,
         CENTER,
         FLUSH_LEFT,
         DROP,
@@ -76,6 +58,31 @@ public:
         HEAD_QUOTE,
         NUM_PARA_ATTRIBUTES     // This should be the last in the enum.
     };
+
+    Para(void) :
+        attributes(NUM_PARA_ATTRIBUTES),
+        enumBlock(NULL)
+        {
+            // cout << "creating a new paragraph" << endl;
+            attributes[HEADING_NUMBER] = false;
+            attributes[HEADING_TITLE]  = false;
+            attributes[CENTER]         = false;
+            attributes[INDENT]         = true; // indent is turned on by default
+            attributes[CENTER]         = false;
+            attributes[FLUSH_LEFT]     = true;
+            attributes[DROP]           = false;
+            attributes[QUOTE]          = false;
+            attributes[POEM]           = false;
+            attributes[FOOTER]         = false;
+            attributes[ENUMERATION]    = false;
+            attributes[HEAD_QUOTE]     = false;
+
+            level = currentLevel;
+        }
+
+    ~Para(void)
+        {
+        }
 
     void setAttribute(ParaAttributes attr);
     void unsetAttribute(ParaAttributes attr);
@@ -89,6 +96,9 @@ public:
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;
+
+    unsigned        level;
+    static unsigned currentLevel; /* current container level */
 };
 
 #endif

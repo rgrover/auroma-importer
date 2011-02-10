@@ -35,6 +35,12 @@
 #include <cassert>
 #include "para.h"
 
+#include "auromaParser.ih"
+
+unsigned Para::currentLevel = 1;
+
+extern auromaFlexLexer *lexer;
+
 void
 Para::setAttribute(ParaAttributes attr)
 {
@@ -44,8 +50,28 @@ Para::setAttribute(ParaAttributes attr)
         attributes[FLUSH_LEFT] = true;
         attributes[CENTER]     = false;
         break;
+    case HEADING_TITLE:
+        if (attributes[HEADING_NUMBER]) {
+            std::cerr << "\033[01;31mpaser: line "
+                      << lexer->lineno() << ":\033[00m "
+                      << "attempting to set heading title and "
+                      << "heading number within the same paragraph" << endl;
+            return;
+        }
+        attributes[HEADING_TITLE] = true;
+        break;
+    case HEADING_NUMBER:
+        if (attributes[HEADING_TITLE]) {
+            std::cerr << "\033[01;31mpaser: line "
+                      << lexer->lineno() << ":\033[00m "
+                      << "attempting to set heading title and "
+                      << "heading number within the same paragraph" << endl;
+            return;
+        }
+        attributes[HEADING_NUMBER] = true;
+        break;
     default:
-        attributes[attr]       = true;
+        attributes[attr] = true;
         break;
     }
 }
@@ -81,7 +107,9 @@ Para::emitXML(unsigned indentation) const
     spaces(indentation);
     cout << "<para";
 
-    if ((attributes[INDENT] == false) ||
+    if (attributes[HEADING_NUMBER] ||
+        attributes[HEADING_TITLE] ||
+        (attributes[INDENT] == false) ||
         attributes[CENTER] ||
         (attributes[FLUSH_LEFT] == false) ||
         attributes[DROP] ||
@@ -95,6 +123,24 @@ Para::emitXML(unsigned indentation) const
         bool someAttributeEmitted = false;
         for (unsigned i = 0; i < attributes.size(); ++i) {
             switch (i) {
+            case HEADING_NUMBER:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "heading_number";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case HEADING_TITLE:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "heading_title";
+                    someAttributeEmitted = true;
+                }
+                break;
             case INDENT:
                 if (attributes[i] == false) {
                     if (someAttributeEmitted) {
@@ -185,11 +231,12 @@ Para::emitXML(unsigned indentation) const
                 assert(0);
             }
         }
-        cout << "\">";
-    } else {
-        cout << ">";
+        cout << "\"";
+        if (attributes[HEADING_NUMBER] || attributes[HEADING_TITLE]) {
+            cout << " level=\"" << level << "\"";
+        }
     }
-    cout << endl;
+    cout << ">" << endl;
 
     bool startedElements = false;
     set<FontModifiers> fontModifiers;

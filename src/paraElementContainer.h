@@ -31,9 +31,11 @@ public:
     // append a string with its prevSep turned off
     void appendWithoutPrevSep(const char *str);
 
-    virtual void emitXML(unsigned indentation,
-                         bool &parentStartedElements,
-                         set<FontModifiers> &fontModifiers) const;
+    virtual void emitXML(unsigned            indentation,
+                         bool               &parentStartedElements,
+                         set<FontModifiers> &fontModifiers,
+                         bool                firstElement = false
+        ) const;
 
 protected:
     vector<ParaElement *>  elements;

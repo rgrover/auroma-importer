@@ -9,7 +9,9 @@ using namespace std;
 void
 ParaElementContainer::emitXML(unsigned            indentation,
                               bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers) const
+                              set<FontModifiers> &fontModifiers,
+                              bool                firstElement /* unused */
+    ) const
 {
     // The parent of a paraElementContainer should not have started an
     // <elements>...
@@ -20,7 +22,11 @@ ParaElementContainer::emitXML(unsigned            indentation,
     bool seenNonPhantom = false;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
         if (iter == elements.begin() || (seenNonPhantom == false)) {
-            (*iter)->emitXML(indentation, startedElements, fontModifiers);
+            (*iter)->emitXML(indentation,
+                             startedElements,
+                             fontModifiers,
+                             true /* first element */
+                );
             if ((*iter)->isPhantom() == false) {
                 seenNonPhantom = true;
             }
@@ -30,7 +36,9 @@ ParaElementContainer::emitXML(unsigned            indentation,
                     cout << " "; // add a white space to precede this element
                 }
             }
-            (*iter)->emitXML(indentation, startedElements, fontModifiers);
+            (*iter)->emitXML(indentation,
+                             startedElements,
+                             fontModifiers);
         }
     }
 
