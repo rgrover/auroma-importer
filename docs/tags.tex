@@ -1,21 +1,5 @@
 \documentclass[11pt]{article}
 
-%% Things to add:
-%%  * Allow for comments beginning with %
-%%  * paragraphs MUST begin on a new line with a \par command
-%%  * Talk about blocks within { and }; blocks should not span
-%%    paragrpahs (empty lines) unless in a verbatim context.
-%%  * nothing spans a paragraph.
-%%  * Add tag for Footer text.
-%%  * Add tag for Drop.
-%%  * The following tags apply to a paragraph; they should be
-%%    discussed together: \indent \noindent \center \drop \nodrop
-%%    \quote \poem \footer \flushleft \flushright
-%%  * diacritical marks need a { } around the character
-%%  * For commands, i.e. tags which take an argument, there should be
-%%    no space between the tag and the opening curly brace.
-
-
 \newcommand{\cmd}[1]{{\tt $\backslash$#1}}
 
 %% Description of the Language to be used for Tagging
@@ -25,7 +9,7 @@
 %% Draft version.
 \title{Description of the Language to be used for Tagging\\(Draft Version)}
 \author{Rohit Grover}
-\date{Draft V0.1, February, 2011}
+\date{Draft V0.2, 12 February, 2011}
 \begin{document}
 \maketitle
 
@@ -85,6 +69,8 @@ perhaps if the OCR process introduces special characters and if the
 taggers let such characters remain in the text, then the importer will
 complain about the occurrences and reject the input.
 
+\section{Tagging Text}
+
 
 %% Spaces
 %% ~~~~~~
@@ -100,15 +86,16 @@ complain about the occurrences and reject the input.
 
 \subsection{Spaces}
 
-``Whitespace" characters in the text, such as blanks or tabs, will be
-treated uniformly as ``space." Several consecutive white space
-characters will be treated the same as one single "space." A single
-linebreak is treated as a ``whitespace."
+``Whitespace'' characters in the text, such as blanks, tabs, and
+newlines, will be treated uniformly as ``space.'' Several consecutive
+white space characters will be treated the same as one single ``space.''
+A single linebreak is treated as a ``whitespace.''
 
-Any empty line between two lines of text defines the end of a
-paragraph. Several empty lines are treated the same as one empty
-line. A new paragraph can also be begun with a {\tt $\backslash$par}
-tag--this is the recommended approach.
+Please note that any empty line(s) between two lines of text defines
+the end of a paragraph. Several empty lines are treated the same as
+one empty line. A new paragraph should be started with a \cmd{par}
+tag; or with \cmd{firstpar} if it is the first text paragraph of a
+chapter.
 
 %% Special Characters
 %% ~~~~~~~~~~~~~~~~~~
@@ -136,18 +123,43 @@ tag--this is the recommended approach.
 
 The following symbols are reserved characters that have special
 meaning:
-
 \begin{quote}
-$\backslash$ \{ \}
+$\backslash$ \hspace{0.25cm} \{\  \hspace{0.25cm} \}\ \hspace{0.25cm}  [\  \hspace{0.25cm} ]
 \end{quote}
-
 \noindent As you will see, these characters can be used in your documents
 by adding a backslash prefix:
-
 \begin{quote}
-$\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
+
+$\backslash$$\backslash$ \hspace{0.25cm} $\backslash$\{ \hspace{0.25cm} $\backslash$\} \hspace{0.25cm} $\backslash$[ \hspace{0.25cm} $\backslash$]
 \end{quote}
 
+\subsection{Blocks}
+
+\noindent \{ and \} are special because they can be used to define a ``block''
+of text which is like a special environment in which certain
+properties can be enabled. For instance:
+
+\begin{quote}
+The following text \{is a new block where italics font can be enabled
+from this \cmd{it} point onwards\}
+\end{quote}
+
+\noindent and the result of the above tagging may be something like:
+
+\begin{quote}
+The following text {is a new block where italics font can be enabled
+from this \it point onwards}
+\end{quote}
+
+The above means that a block is like a sandbox where new properties
+may be introduced while keeping such changes limited to the range of
+the block. A paragraph can also be considered to create an implicit
+block---text properties introduced within a paragrpah do not extend
+beyond it.
+
+Note: blocks should not span paragraphs or contain empty
+lines unless in a ``verbatim'' context. Blocks are meant to be small
+sandboxes.
 
 %% Tags
 %% ~~~~
@@ -175,23 +187,50 @@ $\backslash$$\backslash$ $\backslash$\{ $\backslash$\}
 
 \subsection{Tags and Commands}
 
-Tags and commands are case sensitive. They usually start with a
-backslash $\backslash$\ and then have a name consisiting of letters
-only; such as \cmd{linebreak}. In some cases, tags can take an
-argument, such as: \cmd{footnote\{some text\}}\ ---such tags are
-called commands. Tags and commands may be terminated by a space, a
-number, or any punctuation mark. The following is an example of the
-use of tags and commands in text:
-\begin{quote}
-Please, start a new line right here!\cmd{linebreak} Thank you!
+Semantic properties of the source text can be specified using
+``tags.'' We have seen a few examples of this already. The following
+is an another exmaple where the tag \cmd{hquote} is used to mark the
+paragraph as a {\it quotation block which follows a chapter
+  heading}. This example is taken from Chapter V of ``The Life
+Divine.''
 
-The above should place 'Thank you!' on a separate line\cmd{footnote\{this
-is a footnote appearing right after the word 'line'\}}.
+\begin{quote}
+\cmd{par}\cmd{hquote} By the Ignorance they cross beyond Death and by
+the Knowledge enjoy Immortality.\cmd{dots} By the Non-Birth they cross
+beyond Death and by the Birth enjoy Immortality.
+\cmd{hquoteref}\{\cmd{it} Isha Upanishad\}.
+\cmd{footnote}\{Verses 11, 14.\}
 \end{quote}
 
-In the above tagged text, we used the \cmd{linebreak} tag to force a new
-line. We also used the \cmd{footnote} command, which takes an argument
-within curly braces.
+In the above example, we can observe the use of other tags like
+\cmd{dots} (for elipsis), and even ``commands'' like \cmd{hquoteref}
+and \cmd{footnote}. Commands, like \cmd{footnote}\{\ldots\}, take a
+``block'' (text within curly braces) as an argument. As with normal
+blocks, command blocks create a sandbox within which text properties
+may be changed temporarily---as we can see in the above example where
+italics font is enabled for the text argument of the \cmd{hquoteref}
+command.
+
+Tags and commands are case sensitive. They usually start with a
+backslash $\backslash$\ and then have a name consisiting of letters
+only; such as \cmd{linebreak}. Tags are terminated by a space, a
+number, or any punctuation mark. Commands take an additional block
+(text within curly braces) as an argument---note: there should be no
+space between the name of the command and the opening curly brace of
+the following block.
+
+\noindent The following is another example of the use of tags:
+\begin{quote}
+\cmd{par}\\
+\cmd{hn} Chapter XXVIII\\
+\cmd{par}\\
+\cmd{ht} Supermind, Mind and the\cmd{linebreak} Overmind Maya
+\end{quote}
+
+In the above tagged text, we used the \cmd{hn} to mark the paragrah as
+defining a chapter number. Similarly, \cmd{ht} can be used to mark a
+paragrpah as defining a chapter title. \cmd{linebreak} forces a new
+line.
 
 
 %% Input File Structure
@@ -223,23 +262,22 @@ within curly braces.
 When the importer processes an input file, it expects the file to
 follow a certain structure.
 
-At the head of an input file, there can be an optional header
+At the head of an input file, there can be an \emph{optional} header
 containing meta-data information in the form of the \cmd{title},
 \cmd{tagger}, and \cmd{date} tags. The following is an example:
 
 \begin{quote}
   \cmd{title\{The Life Divine\}}\\
   \cmd{tagger\{Dr. Goodman\}}\\
-  \cmd{date\{12th February, 2011\}}\\
-\\
-  ...the tagged text \\
-  Simple is \{\cmd{it} beaufitul\}.\\
+  \cmd{date\{12th February, 2011\}}
 \end{quote}
+
+\noindent And then this is followed by a collection of \emph{paragraphs}
+containing tagged text for a document
+
 
 %% Tagging Text
 %% ------------
-
-\section{Tagging Text}
 
 %% Paragraphs
 %% ~~~~~~~~~~
@@ -261,23 +299,59 @@ containing meta-data information in the form of the \cmd{title},
 %% is assumed by default, instead of a +\firstpar+.
 
 The most important text unit in a tagged document is the paragraph. We
-call it a ``text unit" because a paragraph is the typographical form
+call it a ``text unit'' because a paragraph is the typographical form
 which should reflect one coherent thought, or one idea. If a new
 thought begins, a new paragraph should begin, and if not, only
 linebreaks should be used.
 
-Paragraphs must be tagged as beginning with a \cmd{par}, or a
+Paragraphs \emph{must} be tagged as beginning with a \cmd{par}, or a
 \cmd{firstpar} in the case where the paragraph is the first within its
-parent container (such as the first paragraph of a chapter).
-
-An empty line marks the end of a paragraph---a paragraph following a
-sequence of empty lines must begin with the use of \cmd{par}.
+parent container (such as the first paragraph of a chapter). An empty
+line marks the end of a paragraph.
 
 Normally the first line of every paragraph is indented by default;
 except the first paragraph within a container (such as a chapter). If
 a paragraph is not to be indented, then a \cmd{noindent} should be
 used immediately following the \cmd{par}; similarly if indenting is
 required it may be explicitly requested using a \cmd{indent}.
+
+No command, block, or text property can span a paragraph. If a font
+property applies to multiple paragraphs, then it should be defined
+repeatedly for each one of those paragraphs.
+
+\subsubsection{Tags for Paragraph Properties}
+
+The following tags modify attributes for the containing paragraph, and
+may follow the \cmd{par} or \cmd{firstpar} at the beginning.
+
+\begin{tabular}{l|l}
+  Tag & Implication\\
+\hline
+  \cmd{hn} &  Paragraph contains a \emph{heading-number} for a container. \\
+  \cmd{ht} &  Paragraph contains a \emph{heading-title} for a container. \\
+  \cmd{indent} & The first line of the paragraph should be indented.\\
+  \cmd{noindent} & The first line of the paragraph should \emph{not}
+  be indented.\\
+
+  \cmd{center} & Text in this paragraph should be centered.\\
+  \cmd{flushleft} & Text in this paragraph should be left justified.\\
+  \cmd{flushright} & Text in this paragraph should be right justified.\\
+  \cmd{drop} & The first letter should be enlarged and allowed to drop.\\
+  \cmd{nodrop} & The first letter should \emph{not} be enlarged.\\
+  \cmd{quote} & Para is a quotation. It should be indented as a whole.\\
+  \cmd{poem} & Paragraph is a part of a poem.\\
+  \cmd{footer} & Paragraph is to be placed at the foot of the page.\\
+  \cmd{enumeration} & Paragraph contains an item for a list.\\
+  \cmd{hquote} & Para contains a quotation following a container heading.
+\end{tabular}
+\vspace{0.25cm}
+
+It is permissible to use multiple of the above modifier attributes in
+combination for a single paragraph; although some of these are direct
+opposites of each other and should not be used together. The
+attributes \cmd{indent}, \cmd{flushleft}, and \cmd{nodrop} are
+implicit for all paragraphs; except that the first paragraph of a
+container may be expected to have an implicit \cmd{noindent}.
 
 %% Paragraph Containers
 %% ~~~~~~~~~~~~~~~~~~~~
@@ -303,14 +377,14 @@ only the following tags are made available to the tagger.
   \cmd{hn} \emph{Heading Number}\\
   \cmd{ht} \emph{Heading Title}\\
   \cmd{push}\\
-  \cmd{pop}\\
+  \cmd{pop}
 \end{quote}
 
 Any text is assumed to begin with the current container level set to
 the highest possible logical value---so for instance, we know that
-``The Life Divine" begins with ``Book One", and so the tagger can
+``The Life Divine'' begins with ``Book One,'' and so the tagger can
 assume that at the beginning of the text the current container level
-is that of a ``Book". The tagger need not specify this level of
+is that of a ``Book.'' The tagger need not specify this level of
 detail---that the starting container is a Book,---the information
 required to be extracted from the tagged text doesn't depend on this
 kind of detail.
@@ -338,7 +412,7 @@ into Chapters using the following tag:
   \cmd{push}
 \end{quote}
 
-\noindent Thereafter, ``Chapter I" within the book can be tagged as follows:
+\noindent Thereafter, ``Chapter I'' within the book can be tagged as follows:
 
 \begin{quote}
   \cmd{par}\\
@@ -690,7 +764,8 @@ Author's signature.
 \end{quote}
 
 \noindent Note that linebreaks are preseved within the verbatim
-command. Verbatim, if used, should be the only tag within the
+command. Verbatim, if used, should be the only command within the
 containing paragraph.
+
 
 \end{document}
