@@ -131,9 +131,11 @@ auromaParser::updatePrecedingWhiteSpace(const char *in)
 void
 auromaParser::emitXML(void)
 {
+    cout << "<document>" << endl;
     for (vector<Para *>::iterator iter = paragraphs.begin();
          iter != paragraphs.end();
          iter++) {
-        (*iter)->emitXML(0);
+        (*iter)->emitXML(4);
     }
+    cout << "</document>" << endl;
 }
