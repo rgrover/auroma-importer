@@ -239,7 +239,16 @@ extern auromaParserBase::STYPE__ d_val;
    \\~  |
    \\c  |
    \\,  |
-   \\d  )\{[[:alpha:]]\}
+   \\d  )\{[[:alpha:]]\}|
+  (\\=  |
+   \\\. |
+   \\,  |
+   \\\' |
+   \\\" |
+   \\^  |
+   \\`  |
+   \\~  |
+   \\,  )[[:alpha:]]
   )
  /* followed by other characters, which may even contain some punctuations */
  ([[:alnum:]]           |
