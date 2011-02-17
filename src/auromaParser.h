@@ -140,8 +140,18 @@ auromaParser::lex()
     /* case auromaParserBase::STRING: */
     /*     cout << lexer->lineno() << " token: " << token << " dval: '" << d_val << "'" << endl; */
     /*     break; */
+    /* case auromaParserBase::PAGE_CMD: */
+    /*     cout << lexer->lineno() << " token: PAGE_CMD" << endl; */
+    /*     break; */
+    /* case auromaParserBase::NEWLINE: */
+    /*     cout << lexer->lineno() << " token: NEWLINE" << endl; */
+    /*     break; */
+    /* case auromaParserBase::BLANK_SPACE: */
+    /*     cout << lexer->lineno() << " token: BLANK" << endl; */
+    /*     break; */
     /* default: */
     /*     cout << lexer->lineno() << " token: " << token << endl; */
+    /*     break; */
     /* } */
 
     return (token);

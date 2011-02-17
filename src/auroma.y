@@ -66,6 +66,7 @@
 %token FOOTER_CENTERED_TEXT_CMD /* Centered text at the footer of a page.*/
 %token DROP_CMD                 /* Enlarge the first letter which follows*/
 %token NODROP_CMD
+%token CENTER_CMD
 %token LINE_BREAK_CMD
 %token DOTS_CMD                 /* ... */
 %token TSTAR_CMD                /* Triple star, centered. */
@@ -102,7 +103,7 @@ input :
 ;
 
 paragraph :
-    optionalBlankSpace
+    optionalBlankSpaces
     PARA_CMD
     {
         newPara();
@@ -121,7 +122,7 @@ stuffWithinParagraph :
 ;
 
 possiblyEmptyParaLine :
-    optionalBlankSpace
+    optionalBlankSpaces
     newline
 |
     nonEmptyLineWithoutParCmd
@@ -130,14 +131,14 @@ possiblyEmptyParaLine :
 
 nonEmptyLineWithoutParCmd :
     nonEmptyLineWithoutParCmdOrLineBreak
-    optionalBlankSpace
+    optionalBlankSpaces
     newline
 ;
 
 nonEmptyLineWithoutParCmdOrLineBreak :
     paragraphElement
 |
-    blankSpace
+    blankSpaces
     paragraphElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
@@ -145,7 +146,7 @@ nonEmptyLineWithoutParCmdOrLineBreak :
     }
 |
     nonEmptyLineWithoutParCmdOrLineBreak
-    optionalBlankSpace
+    optionalBlankSpaces
     paragraphElement
     {
         updatePrecedingWhiteSpace(NULL); // reset blank-space for the
@@ -250,6 +251,14 @@ paraAttributeCommand :
         para->unsetAttribute(Para::DROP);
     }
 |
+    CENTER_CMD
+    {
+        assert(currentContainerIsPara());
+
+        Para *para = reinterpret_cast<Para *>(currentContainer());
+        para->unsetAttribute(Para::CENTER);
+    }
+|
     enumeration
 |
     CHAPTER_HEAD_QUOTE_CMD
@@ -323,7 +332,7 @@ blockElement:
     }
 |
     FOOTNOTE_CMD
-    optionalBlankSpace
+    optionalBlankSpaces
     '{'
     {
         pushSubContainer("footnote");
@@ -341,7 +350,7 @@ blockElement:
     }
 |
     REFERENCE_CMD
-    optionalBlankSpace
+    optionalBlankSpaces
     '{'
     {
         pushSubContainer("reference");
@@ -486,9 +495,9 @@ blockElement:
 ;
 
 pushContainerLevel :
-    optionalBlankSpace
+    optionalBlankSpaces
     PUSH_CMD
-    optionalBlankSpace
+    optionalBlankSpaces
     newline
     {
         Para::pushContainerLevel();
@@ -496,9 +505,9 @@ pushContainerLevel :
 ;
 
 popContainerLevel :
-    optionalBlankSpace
+    optionalBlankSpaces
     POP_CMD
-    optionalBlankSpace
+    optionalBlankSpaces
     newline
     {
         Para::popContainerLevel();
@@ -515,7 +524,7 @@ pageNumber:
 ;
 
 emptyLine :
-    optionalBlankSpace
+    optionalBlankSpaces
     newline
 ;
 
@@ -526,13 +535,26 @@ newline:
     }
 ;
 
-optionalBlankSpace :
+optionalBlankSpaces :
     /* empty */
     {
         updatePrecedingWhiteSpace(NULL);
     }
 |
-    blankSpace
+    blankSpaces
+;
+
+blankSpaces:
+    BLANK_SPACE
+    {
+        updatePrecedingWhiteSpace($1);
+    }
+|
+    blankSpaces
+    BLANK_SPACE
+    {
+        updatePrecedingWhiteSpace($2);
+    }
 ;
 
 blankSpace:

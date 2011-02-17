@@ -40,7 +40,8 @@
 %option noyywrap
 
  /* Start condition needed to scan metadata. */
-%x AT_HEAD                      
+%x AT_HEAD
+%x PAGE_BREAK
 
  /* Definitions */
 EOC                  [[:blank:][:punct:]]              /* command terminator */
@@ -125,6 +126,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:drop)/{EOC}    return auromaParserBase::DROP_CMD;
 \\(?i:nodrop)$       return auromaParserBase::NODROP_CMD;
 \\(?i:nodrop)/{EOC}  return auromaParserBase::NODROP_CMD;
+\\(?i:center)$       return auromaParserBase::CENTER_CMD;
+\\(?i:center)/{EOC}  return auromaParserBase::CENTER_CMD;
 
 \\(?i:s)$            return auromaParserBase::ITALICS_FACE_CMD;
 \\(?i:s)/{EOC}       return auromaParserBase::ITALICS_FACE_CMD;
@@ -148,7 +151,14 @@ extern auromaParserBase::STYPE__ d_val;
 
 \\(?i:nl)$           return auromaParserBase::LINE_BREAK_CMD;
 \\(?i:nl)/{EOC}      return auromaParserBase::LINE_BREAK_CMD;
-^Page/[[:blank:]](--|[[:digit:]]+) return auromaParserBase::PAGE_CMD;
+^Page/[[:blank:]](--|[[:digit:]]+) {
+    BEGIN(PAGE_BREAK);
+    return auromaParserBase::PAGE_CMD;
+ }
+<PAGE_BREAK>\n+                              {
+    BEGIN(INITIAL);
+    return auromaParserBase::NEWLINE;
+ }
 
 \\(?i:fnquad)$                 /* ignore */
 \\(?i:fnquad)[[:blank:]]*      /* ignore */
@@ -202,7 +212,7 @@ extern auromaParserBase::STYPE__ d_val;
 \]                              return ']';
 \{                              return '{';
 \}                              return '}';
-\-\-                            return auromaParserBase::N_DASH;
+<*>\-\-|\x96                    return auromaParserBase::N_DASH;
 \-\-\-|\x97                     return auromaParserBase::M_DASH;
 `                               return auromaParserBase::OPENING_SINGLE_QUOTE;
 \x93|``                         return auromaParserBase::OPENING_DOUBLE_QUOTES;
@@ -225,7 +235,7 @@ extern auromaParserBase::STYPE__ d_val;
  }
 
     /* String */
-(?x:
+<*>(?x:
  /* The pattern for the first character of a string */
  ([[:alnum:]]           |
   \\[uU][[:xdigit:]]{4} |        /* allow for UTF-16 */
@@ -312,7 +322,7 @@ extern auromaParserBase::STYPE__ d_val;
  }
 
 
-[[:blank:]]+                    {
+<*>[[:blank:]]+                 {
     /* ECHO;  */
     d_val = YYText();
     return auromaParserBase::BLANK_SPACE;
