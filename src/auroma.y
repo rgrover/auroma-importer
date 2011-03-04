@@ -256,7 +256,7 @@ paraAttributeCommand :
         assert(currentContainerIsPara());
 
         Para *para = reinterpret_cast<Para *>(currentContainer());
-        para->unsetAttribute(Para::CENTER);
+        para->setAttribute(Para::CENTER);
     }
 |
     enumeration
