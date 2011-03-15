@@ -6,3 +6,4 @@ auromaParserbase.h
 parse.cc
 *.txt
 .dep
+out.xml
