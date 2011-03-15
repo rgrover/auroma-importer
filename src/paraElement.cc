@@ -34,6 +34,7 @@
 
 #include "paraElement.h"
 
+
 bool
 ParaElement::separatedFromPrevBySpace(void) const
 {
@@ -48,7 +49,8 @@ ParaElement::isPhantom(void) const
 
 
 void
-ParaElement::emitFontModifierString(set<FontModifiers> fontModifiers)
+ParaElement::emitFontModifierString(outputMode_t       mode,
+                                    set<FontModifiers> fontModifiers)
 {
     for (set<FontModifiers>::iterator iter = fontModifiers.begin();
          iter != fontModifiers.end();

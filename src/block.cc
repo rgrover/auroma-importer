@@ -35,14 +35,17 @@
 #include "block.h"
 
 void
-Block::emitXML(unsigned            indentation,
-               bool               &parentStartedElements,
-               set<FontModifiers> &fontModifiersIn,
-               bool                firstElement
+Block::emit(outputMode_t        mode,
+            unsigned            indentation,
+            bool               &parentStartedElements,
+            set<FontModifiers> &fontModifiersIn,
+            bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
 
@@ -60,17 +63,19 @@ Block::emitXML(unsigned            indentation,
         spaces(indentation);
         cout << "<block type=\"" << blockTypeString << "\">" << endl;
 
-        ParaElementContainer::emitXML(indentation + INDENT_STEP,
-                                      startedElements,
-                                      fontModifiers);
+        ParaElementContainer::emit(mode,
+                                   indentation + INDENT_STEP,
+                                   startedElements,
+                                   fontModifiers);
 
         spaces(indentation);
         cout << "</block>" << endl;
     } else {
         /* emit the block at the same indentation level as the parent. */
-        ParaElementContainer::emitXML(indentation, /* same indentation
-                                                    * as the parent */
-                                      startedElements,
-                                      fontModifiers);
+        ParaElementContainer::emit(mode,
+                                   indentation, /* same indentation
+                                                 * as the parent */
+                                   startedElements,
+                                   fontModifiers);
     }
 }

@@ -129,13 +129,29 @@ auromaParser::updatePrecedingWhiteSpace(const char *in)
 
 
 void
-auromaParser::emitXML(void)
+auromaParser::emit(outputMode_t outputMode)
 {
-    cout << "<document>" << endl;
+    switch (outputMode) {
+    case XML:
+        cout << "<document>" << endl;
+        break;
+    case HTML:
+        cout << "<div id=\"class\">" << endl;
+        break;
+    }
+
     for (vector<Para *>::iterator iter = paragraphs.begin();
          iter != paragraphs.end();
          iter++) {
-        (*iter)->emitXML(4);
+        (*iter)->emit(outputMode, 4);
     }
-    cout << "</document>" << endl;
+
+    switch (outputMode) {
+    case XML:
+        cout << "</document>" << endl;
+        break;
+    case HTML:
+        cout << "</div>" << endl;
+        break;
+    }
 }

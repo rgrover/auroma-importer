@@ -39,6 +39,8 @@
 #include <iostream>
 using namespace std;
 
+#include "outputMode.h"
+
 class ParaElement {
 public:
    /* font modifiers */
@@ -74,12 +76,12 @@ public:
      */
     virtual bool isPhantom(void) const;
 
-    virtual void emitXML(unsigned            indentation,
-                         bool               &startedElements,
-                         set<FontModifiers> &fontModifiers,
-                         bool                firstElement = false
+    virtual void emit(outputMode_t        mode,
+                      unsigned            indentation,
+                      bool               &startedElements,
+                      set<FontModifiers> &fontModifiers,
+                      bool                firstElement = false
         ) const = 0;
-
 
     const static unsigned INDENT_STEP = 4;
 
@@ -88,7 +90,8 @@ protected:
                                  * previous element by a white
                                  * space? */
 
-    static void emitFontModifierString(set<FontModifiers> fontModifiers);
+    static void emitFontModifierString(outputMode_t       mode,
+                                       set<FontModifiers> fontModifiers);
 
     void spaces(unsigned int indentation) const
     {

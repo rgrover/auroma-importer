@@ -36,20 +36,29 @@
 #include "variousParaElements.h"
 
 void
-StringParaElement::emitXML(unsigned            indentation,
-                           bool               &parentStartedElements,
-                           set<FontModifiers> &fontModifiers,
-                           bool                firstElement
+StringParaElement::emit(outputMode_t        mode,
+                        unsigned            indentation,
+                        bool               &parentStartedElements,
+                        set<FontModifiers> &fontModifiers,
+                        bool                firstElement
     ) const
 {
     if (parentStartedElements == false) {
-        spaces(indentation);
+        if (mode == XML) {
+            spaces(indentation);
+        }
         if (fontModifiers.size()) {
-            cout << "<elements font=\"";
-            emitFontModifierString(fontModifiers);
-            cout << "\">";
+            if (mode == XML) {
+                cout << "<elements font=\"";
+            }
+            emitFontModifierString(mode, fontModifiers);
+            if (mode == XML) {
+                cout << "\">";
+            }
         } else {
-            cout << "<elements>";
+            if (mode == XML) {
+                cout << "<elements>";
+            }
         }
         parentStartedElements = true;
 
@@ -64,40 +73,47 @@ StringParaElement::emitXML(unsigned            indentation,
 }
 
 void
-FootnoteParaElement::emitXML(unsigned            indentation,
-                             bool               &parentStartedElements,
-                             set<FontModifiers> &fontModifiers,
-                             bool                firstElement
+FootnoteParaElement::emit(outputMode_t        mode,
+                          unsigned            indentation,
+                          bool               &parentStartedElements,
+                          set<FontModifiers> &fontModifiers,
+                          bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
     bool startedElements = false;
-    block->emitXML(indentation, startedElements, fontModifiers);
+    block->emit(mode, indentation, startedElements, fontModifiers);
 }
 
 void
-ReferenceParaElement::emitXML(unsigned            indentation,
-                              bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers,
-                              bool                firstElement
+ReferenceParaElement::emit(outputMode_t        mode,
+                           unsigned            indentation,
+                           bool               &parentStartedElements,
+                           set<FontModifiers> &fontModifiers,
+                           bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
     bool startedElements = false;
-    block->emitXML(indentation, startedElements, fontModifiers);
+    block->emit(mode, indentation, startedElements, fontModifiers);
 }
 
 void
-ModifierParaElement::emitXML(unsigned            indentation,
-                             bool               &parentStartedElements,
-                             set<FontModifiers> &fontModifiers,
-                             bool                firstElement
+ModifierParaElement::emit(outputMode_t        mode,
+                          unsigned            indentation,
+                          bool               &parentStartedElements,
+                          set<FontModifiers> &fontModifiers,
+                          bool                firstElement
     ) const
 {
     pair<set<FontModifiers>::iterator, bool> ret;
@@ -120,185 +136,254 @@ ModifierParaElement::emitXML(unsigned            indentation,
     if (ret.second == true) {
         // we have added a new element to the set of font-modifiers
         if (parentStartedElements) {
-            // terminate an existing "elements"
-            cout << "</elements>" << endl;
+            if (mode == XML) {
+                // terminate an existing "elements"
+                cout << "</elements>" << endl;
 
-            // start a new one with updated fonts
-            spaces(indentation);
-            cout << "<elements font=\"";
-            emitFontModifierString(fontModifiers);
-            cout << "\">";
+                // start a new one with updated fonts
+                spaces(indentation);
+                cout << "<elements font=\"";
+            }
+            emitFontModifierString(mode, fontModifiers);
+            if (mode == XML) {
+                cout << "\">";
+            }
         }
     }
 }
 
 void
-DotsParaElement::emitXML(unsigned            indentation,
-                         bool               &parentStartedElements,
-                         set<FontModifiers> &fontModifiers,
-                         bool                firstElement
+DotsParaElement::emit(outputMode_t        mode,
+                      unsigned            indentation,
+                      bool               &parentStartedElements,
+                      set<FontModifiers> &fontModifiers,
+                      bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
-    spaces(indentation);
-    cout << "<element type=\"dots\">...</element>" << endl;
-}
-
-void
-TstarParaElement::emitXML(unsigned            indentation,
-                          bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers,
-                          bool                firstElement
-    ) const
-{
-    if (parentStartedElements) {
-        cout << "</elements>" << endl;
-        parentStartedElements = false;
-    }
-    spaces(indentation);
-    cout << "<element type=\"tstar\">***</element>" << endl;
-}
-
-void
-LineBreakParaElement::emitXML(unsigned            indentation,
-                              bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers,
-                              bool                firstElement
-    ) const
-{
-    if (parentStartedElements) {
-        cout << "</elements>" << endl;
-        parentStartedElements = false;
-    }
-    spaces(indentation);
-    cout << "<linebreak/>" << endl;
-}
-
-void
-PageBreakParaElement::emitXML(unsigned            indentation,
-                              bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers,
-                              bool                firstElement
-    ) const
-{
-    if (parentStartedElements) {
-        cout << "</elements>" << endl;
-        parentStartedElements = false;
-    }
-    spaces(indentation);
-    cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl;
-}
-
-void
-NDashParaElement::emitXML(unsigned            indentation,
-                          bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers,
-                          bool                firstElement
-    ) const
-{
-    if (parentStartedElements) {
-        cout << "</elements>" << endl;
-        parentStartedElements = false;
-    }
-
-    spaces(indentation);
-    if (fontModifiers.size()) {
-        cout << "<element type=\"ndash\" font=\"";
-        emitFontModifierString(fontModifiers);
-        cout << "\">--</element>" << endl;
+    if (mode == XML) {
+        spaces(indentation);
+        cout << "<element type=\"dots\">...</element>" << endl;
     } else {
-        cout << "<element type=\"ndash\">--</element>" << endl;
+        cout << "...";
+    }
+}
+
+void
+TstarParaElement::emit(outputMode_t        mode,
+                       unsigned            indentation,
+                       bool               &parentStartedElements,
+                       set<FontModifiers> &fontModifiers,
+                       bool                firstElement
+    ) const
+{
+    if (parentStartedElements) {
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
+        parentStartedElements = false;
+    }
+    if (mode == XML) {
+        spaces(indentation);
+        cout << "<element type=\"tstar\">***</element>" << endl;
+    } else {
+        cout << "***";
+    }
+}
+
+void
+LineBreakParaElement::emit(outputMode_t        mode,
+                           unsigned            indentation,
+                           bool               &parentStartedElements,
+                           set<FontModifiers> &fontModifiers,
+                           bool                firstElement
+    ) const
+{
+    if (parentStartedElements) {
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
+        parentStartedElements = false;
+    }
+    if (mode == XML) {
+        spaces(indentation);
+        cout << "<linebreak/>" << endl;
+    } else {
+        cout << "<br/>" << endl;
+    }
+}
+
+void
+PageBreakParaElement::emit(outputMode_t        mode,
+                           unsigned            indentation,
+                           bool               &parentStartedElements,
+                           set<FontModifiers> &fontModifiers,
+                           bool                firstElement
+    ) const
+{
+    if (parentStartedElements) {
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
+        parentStartedElements = false;
+    }
+    if (mode == XML) {
+        spaces(indentation);
+        cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl;
+    } else {
+        cout << endl;
+        spaces(indentation);
+        cout << "<!--nextpage-->" << endl;
+        spaces(indentation);
+    }
+}
+
+void
+NDashParaElement::emit(outputMode_t        mode,
+                       unsigned            indentation,
+                       bool               &parentStartedElements,
+                       set<FontModifiers> &fontModifiers,
+                       bool                firstElement
+    ) const
+{
+    if (parentStartedElements) {
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
+        parentStartedElements = false;
     }
 
+    if (mode == XML) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            cout << "<element type=\"ndash\" font=\"";
+            emitFontModifierString(mode, fontModifiers);
+            cout << "\">--</element>" << endl;
+        } else {
+            cout << "<element type=\"ndash\">--</element>" << endl;
+        }
+    } else {
+        cout << "--";
+    }
 };
 
 void
-MDashParaElement::emitXML(unsigned            indentation,
-                          bool               &parentStartedElements,
-                          set<FontModifiers> &fontModifiers,
-                          bool                firstElement
+MDashParaElement::emit(outputMode_t        mode,
+                       unsigned            indentation,
+                       bool               &parentStartedElements,
+                       set<FontModifiers> &fontModifiers,
+                       bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
 
-    spaces(indentation);
-    if (fontModifiers.size()) {
-        cout << "<element type=\"mdash\" font=\"";
-        emitFontModifierString(fontModifiers);
-        cout << "\">---</element>" << endl;
+    if (mode == XML) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            cout << "<element type=\"mdash\" font=\"";
+            emitFontModifierString(mode, fontModifiers);
+            cout << "\">---</element>" << endl;
+        } else {
+            cout << "<element type=\"mdash\">---</element>" << endl;
+        }
     } else {
-        cout << "<element type=\"mdash\">---</element>" << endl;
+        cout << "--";
     }
 };
 
 void
-OpeningSingleQuoteParaElement::emitXML(unsigned            indentation,
-                                       bool               &parentStartedElements,
-                                       set<FontModifiers> &fontModifiers,
-                                       bool                firstElement
+OpeningSingleQuoteParaElement::emit(outputMode_t        mode,
+                                    unsigned            indentation,
+                                    bool               &parentStartedElements,
+                                    set<FontModifiers> &fontModifiers,
+                                    bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
 
-    spaces(indentation);
-    if (fontModifiers.size()) {
-        cout << "<element type=\"open_single_quote\" font=\"";
-        emitFontModifierString(fontModifiers);
-        cout << "\">`</element>" << endl;
+    if (mode == XML) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            cout << "<element type=\"open_single_quote\" font=\"";
+            emitFontModifierString(mode, fontModifiers);
+            cout << "\">`</element>" << endl;
+        } else {
+            cout << "<element type=\"open_single_quote\">`</element>" << endl;
+        }
     } else {
-        cout << "<element type=\"open_single_quote\">`</element>" << endl;
+        cout << "\'";
     }
 }
 
 void
-OpeningDoubleQuotesParaElement::emitXML(unsigned            indentation,
-                                        bool               &parentStartedElements,
-                                        set<FontModifiers> &fontModifiers,
-                                        bool                firstElement
+OpeningDoubleQuotesParaElement::emit(outputMode_t        mode,
+                                     unsigned            indentation,
+                                     bool               &parentStartedElements,
+                                     set<FontModifiers> &fontModifiers,
+                                     bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
 
-    spaces(indentation);
-    if (fontModifiers.size()) {
-        cout << "<element type=\"open_double_quotes\" font=\"";
-        emitFontModifierString(fontModifiers);
-        cout << "\">``</element>" << endl;
+    if (mode == XML) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            cout << "<element type=\"open_double_quotes\" font=\"";
+            emitFontModifierString(mode, fontModifiers);
+            cout << "\">``</element>" << endl;
+        } else {
+            cout << "<element type=\"open_double_quotes\">``</element>" << endl;
+        }
     } else {
-        cout << "<element type=\"open_double_quotes\">``</element>" << endl;
+        cout << "\"";
     }
 }
 
 void
-ClosingDoubleQuotesParaElement::emitXML(unsigned            indentation,
-                                        bool               &parentStartedElements,
-                                        set<FontModifiers> &fontModifiers,
-                                        bool                firstElement
+ClosingDoubleQuotesParaElement::emit(outputMode_t        mode,
+                                     unsigned            indentation,
+                                     bool               &parentStartedElements,
+                                     set<FontModifiers> &fontModifiers,
+                                     bool                firstElement
     ) const
 {
     if (parentStartedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         parentStartedElements = false;
     }
 
-    spaces(indentation);
-    if (fontModifiers.size()) {
-        cout << "<element type=\"close_double_quotes\" font=\"";
-        emitFontModifierString(fontModifiers);
-        cout << "\">''</element>" << endl;
+    if (mode == XML) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            cout << "<element type=\"close_double_quotes\" font=\"";
+            emitFontModifierString(mode, fontModifiers);
+            cout << "\">''</element>" << endl;
+        } else {
+            cout << "<element type=\"close_double_quotes\">''</element>" << endl;
+        }
     } else {
-        cout << "<element type=\"close_double_quotes\">''</element>" << endl;
+        cout << "\"";
     }
 }

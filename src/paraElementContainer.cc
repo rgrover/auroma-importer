@@ -7,10 +7,11 @@ using namespace std;
 #include "variousParaElements.h"
 
 void
-ParaElementContainer::emitXML(unsigned            indentation,
-                              bool               &parentStartedElements,
-                              set<FontModifiers> &fontModifiers,
-                              bool                firstElement /* unused */
+ParaElementContainer::emit(outputMode_t        mode,
+                           unsigned            indentation,
+                           bool               &parentStartedElements,
+                           set<FontModifiers> &fontModifiers,
+                           bool                firstElement /* unused */
     ) const
 {
     // The parent of a paraElementContainer should not have started an
@@ -22,10 +23,11 @@ ParaElementContainer::emitXML(unsigned            indentation,
     bool seenNonPhantom = false;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
         if (iter == elements.begin() || (seenNonPhantom == false)) {
-            (*iter)->emitXML(indentation,
-                             startedElements,
-                             fontModifiers,
-                             true /* first element */
+            (*iter)->emit(mode,
+                          indentation,
+                          startedElements,
+                          fontModifiers,
+                          true /* first element */
                 );
             if ((*iter)->isPhantom() == false) {
                 seenNonPhantom = true;
@@ -36,14 +38,17 @@ ParaElementContainer::emitXML(unsigned            indentation,
                     cout << " "; // add a white space to precede this element
                 }
             }
-            (*iter)->emitXML(indentation,
-                             startedElements,
-                             fontModifiers);
+            (*iter)->emit(mode,
+                          indentation,
+                          startedElements,
+                          fontModifiers);
         }
     }
 
     if (startedElements) {
-        cout << "</elements>" << endl;
+        if (mode == XML) {
+            cout << "</elements>" << endl;
+        }
         startedElements = false;
     }
 }

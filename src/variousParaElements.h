@@ -51,10 +51,11 @@ public:
             // empty
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 
 private:
@@ -71,10 +72,11 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 
 private:
@@ -90,10 +92,11 @@ public:
         {
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 
 private:
@@ -120,10 +123,11 @@ public:
         return true;
     }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 
 private:
@@ -140,20 +144,22 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
 class TstarParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
@@ -166,10 +172,11 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
@@ -188,10 +195,11 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 
 private:
@@ -207,10 +215,11 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
@@ -223,30 +232,33 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
 class OpeningSingleQuoteParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
 class OpeningDoubleQuotesParaElement : public ParaElement
 {
 public:
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 
@@ -259,10 +271,11 @@ public:
             prevSep = false;
         }
 
-    void emitXML(unsigned            indentation,
-                 bool               &parentStartedElements,
-                 set<FontModifiers> &fontModifiers,
-                 bool                firstElement = false
+    void emit(outputMode_t        mode,
+              unsigned            indentation,
+              bool               &parentStartedElements,
+              set<FontModifiers> &fontModifiers,
+              bool                firstElement = false
         ) const;
 };
 

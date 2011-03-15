@@ -52,6 +52,7 @@ using namespace std;
 
 extern auromaParserBase::STYPE__ d_val;
 
+#include "outputMode.h"
 #include "para.h"
 #include "paraElementContainer.h"
 
@@ -82,7 +83,7 @@ public:
 
     void updatePrecedingWhiteSpace(const char *precedingWhiteSpace);
 
-    void emitXML();
+    void emit(outputMode_t outputMode);
 
 private:
     yyFlexLexer *lexer;

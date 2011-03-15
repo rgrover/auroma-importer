@@ -115,6 +115,22 @@ Para::setEnumerationBlock(ParaElementContainer *block)
 }
 
 void
+Para::emit(outputMode_t mode, unsigned indentation) const
+{
+    switch (mode) {
+    case XML:
+        emitXML(indentation);
+        break;
+		
+    case HTML:
+        emitHTML(indentation);
+        break;
+    default:
+        assert(0);
+    }
+}
+
+void
 Para::emitXML(unsigned indentation) const
 {
     spaces(indentation);
@@ -253,10 +269,150 @@ Para::emitXML(unsigned indentation) const
 
     bool startedElements = false;
     set<FontModifiers> fontModifiers;
-    ParaElementContainer::emitXML(indentation + INDENT_STEP,
-                                  startedElements,
-                                  fontModifiers);
+    ParaElementContainer::emit(XML,
+                               indentation + INDENT_STEP,
+                               startedElements,
+                               fontModifiers);
 
     spaces(indentation);
-    cout << "</para>" << endl;
+    cout << "</para>" << endl;    
 }
+
+void
+Para::emitHTML(unsigned indentation) const
+{
+    spaces(indentation);
+
+    if (attributes[HEADING_NUMBER] ||
+        attributes[HEADING_TITLE]) {
+        cout << "<h" << level << ">";
+    } else if ((attributes[INDENT] == false) ||
+               attributes[CENTER] ||
+               (attributes[FLUSH_LEFT] == false) ||
+               attributes[DROP] ||
+               attributes[QUOTE] ||
+               attributes[POEM] ||
+               attributes[FOOTER] ||
+               attributes[ENUMERATION] ||
+               attributes[HEAD_QUOTE]) {
+
+        cout << "<p class=\"";
+
+        bool someAttributeEmitted = false;
+        for (unsigned i = 0; i < attributes.size(); ++i) {
+            switch (i) {
+            case HEADING_TITLE:
+            case HEADING_NUMBER:
+                break;          /* headings have been handled elsewhere */
+            case INDENT:
+                if (attributes[i] == false) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "noindent";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case CENTER:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "center";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case FLUSH_LEFT:
+                if (attributes[i] == false) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "flushright";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case DROP:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "drop";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case QUOTE:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "quote";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case POEM:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "poem";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case FOOTER:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "footer";
+                    someAttributeEmitted = true;
+                }
+                break;
+            case ENUMERATION:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "enumeration";
+                    someAttributeEmitted = true;
+                    // if (enumBlock) {
+                    //     cout << "[";
+                    //     enumBlock->display();
+                    //     cout << "]";
+                    // }
+                }
+                break;
+            case HEAD_QUOTE:
+                if (attributes[i]) {
+                    if (someAttributeEmitted) {
+                        cout << ",";
+                    }
+                    cout << "headquote";
+                    someAttributeEmitted = true;
+                }
+                break;
+            default:
+                assert(0);
+            }
+        }
+        cout << "\">" << endl;
+    } else {
+        cout << "<p>";
+    }
+
+    bool startedElements = false;
+    set<FontModifiers> fontModifiers;
+    ParaElementContainer::emit(HTML,
+                               indentation + INDENT_STEP,
+                               startedElements,
+                               fontModifiers);
+
+    cout << endl;
+    spaces(indentation);
+
+    if (attributes[HEADING_NUMBER] || attributes[HEADING_TITLE]) {
+        cout << "</h" << level << ">" << endl;
+    } else {
+        cout << "</p>" << endl;
+    }    
+}
+

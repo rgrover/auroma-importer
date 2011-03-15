@@ -94,12 +94,15 @@ public:
 
     void append(const char *str);
 
-    virtual void emitXML(unsigned indentation) const;
+    virtual void emit(outputMode_t mode, unsigned indentation) const;
 
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;
     unsigned        level;        /* paragraph level */
+
+    void emitXML(unsigned indentation) const;
+    void emitHTML(unsigned indentation) const;
 
     static unsigned currentLevel; /* current container level */
 };

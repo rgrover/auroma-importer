@@ -14,7 +14,7 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Rohit Grover, nor Aurokruti, nor the names of its
+ * - Neither Rohit Grover, nor Aurokruti, nor the names of Aurokruti's
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  *
@@ -32,43 +32,12 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef OUTPUT_MODE_H
+#define OUTPUT_MODE_H
 
-#ifndef BLOCK_H
-#define BLOCK_H
-
-#include <vector>
-#include "paraElementContainer.h"
-
-class Block : public ParaElementContainer
-{
-public:
-    Block() :
-        blockTypeString(NULL)
-        {
-        }
-
-    Block(const char *str) :
-        blockTypeString(str)
-        {
-        }
-
-    ~Block(void)
-        {
-        }
-
-    bool separatedFromPrevBySpace(void) {
-        return false;
-    }
-
-    virtual void emit(outputMode_t        mode,
-                      unsigned            indentation,
-                      bool               &parentStartedElements,
-                      set<FontModifiers> &fontModifiers,
-                      bool                firstElement = false
-        ) const;
-
-private:
-    const char *blockTypeString;
+enum outputMode_t {
+    XML,
+    HTML
 };
 
-#endif
+#endif /* #ifndef OUTPUT_MODE_H */
