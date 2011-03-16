@@ -32,6 +32,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cstring>
 #include "block.h"
 
 void
@@ -45,11 +46,13 @@ Block::emit(outputMode_t        mode,
     if (parentStartedElements) {
         if (mode == XML) {
             cout << "</elements>" << endl;
+            parentStartedElements = false;
+        } else if ((mode == WORDPRESS) && (blockTypeString != NULL)) {
+            cout << endl;
+            parentStartedElements = false;
         }
-        parentStartedElements = false;
     }
 
-    bool startedElements = false;
     set<FontModifiers> fontModifiers(fontModifiersIn); // make a copy
                                                        // of the
                                                        // parent's
@@ -58,24 +61,43 @@ Block::emit(outputMode_t        mode,
                                                        // block
 
     if (blockTypeString) {
+        bool startedElements = false;
+
         /* If this block has a specific typeString associated with it,
          * then emit a separate XML container to wrap the block. */
         spaces(indentation);
-        cout << "<block type=\"" << blockTypeString << "\">" << endl;
+        if (strcmp(blockTypeString, "footnote") == 0) {
+            cout << "<div id=\"footnote\">" << endl;
+            spaces(indentation + INDENT_STEP);
+            cout << "<li id=\"" << getFootnoteHref() << "\">";
+            startedElements = true;
+        } else {
+            cout << "<block type=\"" << blockTypeString << "\">" << endl;
+        }
 
         ParaElementContainer::emit(mode,
                                    indentation + INDENT_STEP,
                                    startedElements,
                                    fontModifiers);
 
-        spaces(indentation);
-        cout << "</block>" << endl;
+        if (strcmp(blockTypeString, "footnote") == 0) {
+            cout << "<a href=\"#"
+                 << getFootnoteHref() << "-fn" << getFootnoteNumber()
+                 << "\">↑</a></li>"
+                 << endl;
+            spaces(indentation);
+            cout << "</div>" << endl;
+        } else {
+            cout << endl;
+            spaces(indentation);
+            cout << "</block>" << endl;
+        }
     } else {
         /* emit the block at the same indentation level as the parent. */
         ParaElementContainer::emit(mode,
                                    indentation, /* same indentation
                                                  * as the parent */
-                                   startedElements,
+                                   parentStartedElements,
                                    fontModifiers);
     }
 }

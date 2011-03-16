@@ -37,6 +37,9 @@
 
 #include <set>
 #include <iostream>
+#include <cstdlib>
+#include <string>
+#include <sstream>
 using namespace std;
 
 #include "outputMode.h"
@@ -90,8 +93,21 @@ protected:
                                  * previous element by a white
                                  * space? */
 
-    static void emitFontModifierString(outputMode_t       mode,
-                                       set<FontModifiers> fontModifiers);
+    static unsigned int footnoteNumber;
+    static string       footnoteHref;
+
+    static unsigned getFootnoteNumber(void);
+    static void     incrementFootnoteNumber(void);
+    static void     resetFootnoteNumber(void);
+
+    static void     updateFootnoteHref(void);
+    static string   getFootnoteHref(void);
+
+
+    static void emitStartFontModifier(outputMode_t       mode,
+                                      set<FontModifiers> fontModifiers);
+    static void emitEndFontModifier(outputMode_t       mode,
+                                    set<FontModifiers> fontModifiers);
 
     void spaces(unsigned int indentation) const
     {

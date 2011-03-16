@@ -14,18 +14,13 @@ ParaElementContainer::emit(outputMode_t        mode,
                            bool                firstElement /* unused */
     ) const
 {
-    // The parent of a paraElementContainer should not have started an
-    // <elements>...
-    assert(parentStartedElements == false);
-
-    bool startedElements = false;
     vector<ParaElement *>::const_iterator iter;
     bool seenNonPhantom = false;
     for (iter = elements.begin(); iter != elements.end(); iter++) {
         if (iter == elements.begin() || (seenNonPhantom == false)) {
             (*iter)->emit(mode,
                           indentation,
-                          startedElements,
+                          parentStartedElements,
                           fontModifiers,
                           true /* first element */
                 );
@@ -34,22 +29,26 @@ ParaElementContainer::emit(outputMode_t        mode,
             }
         } else {
             if ((*iter)->separatedFromPrevBySpace()) {
-                if (startedElements) {
+                if (parentStartedElements) {
                     cout << " "; // add a white space to precede this element
                 }
             }
             (*iter)->emit(mode,
                           indentation,
-                          startedElements,
+                          parentStartedElements,
                           fontModifiers);
         }
     }
 
-    if (startedElements) {
+    if (parentStartedElements) {
         if (mode == XML) {
-            cout << "</elements>" << endl;
+            cout << "</elements>";
+            parentStartedElements = false;
+        } else if (mode == WORDPRESS) {
+            if (fontModifiers.size()) {
+                emitEndFontModifier(mode, fontModifiers);
+            }
         }
-        startedElements = false;
     }
 }
 

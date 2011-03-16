@@ -122,8 +122,8 @@ Para::emit(outputMode_t mode, unsigned indentation) const
         emitXML(indentation);
         break;
 		
-    case HTML:
-        emitHTML(indentation);
+    case WORDPRESS:
+        emitWordpress(indentation);
         break;
     default:
         assert(0);
@@ -279,7 +279,7 @@ Para::emitXML(unsigned indentation) const
 }
 
 void
-Para::emitHTML(unsigned indentation) const
+Para::emitWordpress(unsigned indentation) const
 {
     spaces(indentation);
 
@@ -396,17 +396,19 @@ Para::emitHTML(unsigned indentation) const
         }
         cout << "\">" << endl;
     } else {
-        cout << "<p>";
+        cout << "<p>" << endl;
     }
 
     bool startedElements = false;
     set<FontModifiers> fontModifiers;
-    ParaElementContainer::emit(HTML,
+    ParaElementContainer::emit(WORDPRESS,
                                indentation + INDENT_STEP,
                                startedElements,
                                fontModifiers);
 
-    cout << endl;
+    if (startedElements) {
+        cout << endl;
+    }
     spaces(indentation);
 
     if (attributes[HEADING_NUMBER] || attributes[HEADING_TITLE]) {

@@ -102,7 +102,7 @@ private:
     unsigned        level;        /* paragraph level */
 
     void emitXML(unsigned indentation) const;
-    void emitHTML(unsigned indentation) const;
+    void emitWordpress(unsigned indentation) const;
 
     static unsigned currentLevel; /* current container level */
 };

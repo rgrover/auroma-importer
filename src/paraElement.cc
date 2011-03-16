@@ -32,7 +32,11 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <cassert>
 #include "paraElement.h"
+
+unsigned int ParaElement::footnoteNumber = 0;
+string       ParaElement::footnoteHref = string("");
 
 
 bool
@@ -49,28 +53,130 @@ ParaElement::isPhantom(void) const
 
 
 void
-ParaElement::emitFontModifierString(outputMode_t       mode,
-                                    set<FontModifiers> fontModifiers)
+ParaElement::emitStartFontModifier(outputMode_t       mode,
+                                   set<FontModifiers> fontModifiers)
 {
-    for (set<FontModifiers>::iterator iter = fontModifiers.begin();
-         iter != fontModifiers.end();
-         iter++) {
-        if (iter != fontModifiers.begin()) {
-            cout << ",";
-        }
+    if (mode == XML) {
+        cout << "<elements font=\"";
+        for (set<FontModifiers>::iterator iter = fontModifiers.begin();
+             iter != fontModifiers.end();
+             iter++) {
+            if (iter != fontModifiers.begin()) {
+                cout << ",";
+            }
 
+            switch (*iter) {
+            case ITALICS:
+                cout << "italics";
+                break;
+            case BOLD:
+                cout << "bold";
+                break;
+            case SMALL_CAPS:
+                cout << "small_caps";
+                break;
+            default:
+                break;
+            }
+        }
+        cout << "\">";
+    } else if (mode == WORDPRESS) {
+        for (set<FontModifiers>::iterator iter = fontModifiers.begin();
+             iter != fontModifiers.end();
+             iter++) {
+            switch (*iter) {
+            case ITALICS:
+                cout << "<i>";
+                break;
+            case BOLD:
+                cout << "<b>";
+                break;
+            case SMALL_CAPS:
+            default:
+                break;
+            }
+        }
+    }
+}
+
+void
+ParaElement::emitEndFontModifier(outputMode_t       mode,
+                                 set<FontModifiers> fontModifiers)
+{
+    assert(mode == WORDPRESS);
+    for (set<FontModifiers>::reverse_iterator iter = fontModifiers.rbegin();
+         iter != fontModifiers.rend();
+         iter++) {
         switch (*iter) {
         case ITALICS:
-            cout << "italics";
+            cout << "</i>";
             break;
         case BOLD:
-            cout << "bold";
+            cout << "</b>";
             break;
         case SMALL_CAPS:
-            cout << "small_caps";
-            break;
         default:
             break;
         }
     }
+}
+
+
+unsigned int
+ParaElement::getFootnoteNumber(void)
+{
+    if (footnoteNumber == 0) {
+        srand48(time(NULL)); /* initialize the random number generator */
+
+        footnoteNumber = 1;
+        updateFootnoteHref();
+    }
+
+    return footnoteNumber;
+}
+
+void
+ParaElement::incrementFootnoteNumber(void)
+{
+    ++footnoteNumber;
+    updateFootnoteHref();
+}
+
+void
+ParaElement::resetFootnoteNumber()
+{
+    if (footnoteNumber == 0) {
+        return;                 /* don't do anything just yet; wait
+                                 * for the first use of
+                                 * footnoteNumber */
+    }
+
+    /* otherwise, reset the footnote number and update the href string */
+    footnoteNumber = 1;
+    updateFootnoteHref();
+}
+
+string
+ParaElement::getFootnoteHref(void)
+{
+    assert(footnoteNumber != 0);
+    return footnoteHref;
+}
+
+void
+ParaElement::updateFootnoteHref(void)
+{
+    const unsigned int N = 3;
+    long int num[N];
+    unsigned int i;
+
+    stringstream tmpStr;
+    for (i = 0; i < N; i++) {
+        if (i != 0) {
+            tmpStr << "-";
+        }
+        tmpStr << lrand48();
+    }
+
+    footnoteHref = tmpStr.str();
 }

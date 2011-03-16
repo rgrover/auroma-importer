@@ -135,8 +135,8 @@ auromaParser::emit(outputMode_t outputMode)
     case XML:
         cout << "<document>" << endl;
         break;
-    case HTML:
-        cout << "<div id=\"class\">" << endl;
+    case WORDPRESS:
+        cout << "<div id=\"content\">" << endl;
         break;
     }
 
@@ -150,7 +150,7 @@ auromaParser::emit(outputMode_t outputMode)
     case XML:
         cout << "</document>" << endl;
         break;
-    case HTML:
+    case WORDPRESS:
         cout << "</div>" << endl;
         break;
     }

@@ -37,7 +37,7 @@
 
 enum outputMode_t {
     XML,
-    HTML
+    WORDPRESS
 };
 
 #endif /* #ifndef OUTPUT_MODE_H */

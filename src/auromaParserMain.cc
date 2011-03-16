@@ -28,10 +28,10 @@ parseOptions(int   argc,
          reinterpret_cast<int *>(&mode) /* flag */,
          XML                            /* val */
         },
-        {"html",
+        {"wordpress",
          0                              /* has_arg */,
          reinterpret_cast<int *>(&mode) /* flag */,
-         HTML                           /* val */
+         WORDPRESS                      /* val */
         },
         {0, 0, 0, 0}
     };
