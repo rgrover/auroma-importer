@@ -36,7 +36,7 @@
 #define OUTPUT_MODE_H
 
 enum outputMode_t {
-    XML,
+    DOCBOOK,
     WORDPRESS
 };
 

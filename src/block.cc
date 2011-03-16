@@ -44,7 +44,7 @@ Block::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         } else if ((mode == WORDPRESS) && (blockTypeString != NULL)) {

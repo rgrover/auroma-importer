@@ -56,7 +56,7 @@ void
 ParaElement::emitStartFontModifier(outputMode_t       mode,
                                    set<FontModifiers> fontModifiers)
 {
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         cout << "<elements font=\"";
         for (set<FontModifiers>::iterator iter = fontModifiers.begin();
              iter != fontModifiers.end();

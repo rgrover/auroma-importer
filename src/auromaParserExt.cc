@@ -132,7 +132,7 @@ void
 auromaParser::emit(outputMode_t outputMode)
 {
     switch (outputMode) {
-    case XML:
+    case DOCBOOK:
         cout << "<document>" << endl;
         break;
     case WORDPRESS:
@@ -147,7 +147,7 @@ auromaParser::emit(outputMode_t outputMode)
     }
 
     switch (outputMode) {
-    case XML:
+    case DOCBOOK:
         cout << "</document>" << endl;
         break;
     case WORDPRESS:

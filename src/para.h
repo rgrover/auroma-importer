@@ -101,7 +101,7 @@ private:
     ParaElementContainer *enumBlock;
     unsigned        level;        /* paragraph level */
 
-    void emitXML(unsigned indentation) const;
+    void emitDocbook(unsigned indentation) const;
     void emitWordpress(unsigned indentation) const;
 
     static unsigned currentLevel; /* current container level */

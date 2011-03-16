@@ -118,8 +118,8 @@ void
 Para::emit(outputMode_t mode, unsigned indentation) const
 {
     switch (mode) {
-    case XML:
-        emitXML(indentation);
+    case DOCBOOK:
+        emitDocbook(indentation);
         break;
 		
     case WORDPRESS:
@@ -131,7 +131,7 @@ Para::emit(outputMode_t mode, unsigned indentation) const
 }
 
 void
-Para::emitXML(unsigned indentation) const
+Para::emitDocbook(unsigned indentation) const
 {
     spaces(indentation);
     cout << "<para";
@@ -269,7 +269,7 @@ Para::emitXML(unsigned indentation) const
 
     bool startedElements = false;
     set<FontModifiers> fontModifiers;
-    ParaElementContainer::emit(XML,
+    ParaElementContainer::emit(DOCBOOK,
                                indentation + INDENT_STEP,
                                startedElements,
                                fontModifiers);

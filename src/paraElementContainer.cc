@@ -41,7 +41,7 @@ ParaElementContainer::emit(outputMode_t        mode,
     }
 
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>";
             parentStartedElements = false;
         } else if (mode == WORDPRESS) {

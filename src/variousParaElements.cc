@@ -48,7 +48,7 @@ StringParaElement::emit(outputMode_t        mode,
         if (fontModifiers.size()) {
             emitStartFontModifier(mode, fontModifiers);
         } else {
-            if (mode == XML) {
+            if (mode == DOCBOOK) {
                 cout << "<elements>";
             }
         }
@@ -73,7 +73,7 @@ FootnoteParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
         } else if (mode == WORDPRESS) {
             cout << endl;
@@ -107,7 +107,7 @@ ReferenceParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
         } else if (mode == WORDPRESS) {
             cout << endl;
@@ -147,7 +147,7 @@ ModifierParaElement::emit(outputMode_t        mode,
     if (ret.second == true) {
         // we have added a new element to the set of font-modifiers
         if (parentStartedElements) {
-            if (mode == XML) {
+            if (mode == DOCBOOK) {
                 // terminate an existing "elements"
                 cout << "</elements>" << endl;
 
@@ -174,12 +174,12 @@ DotsParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         cout << "<element type=\"dots\">...</element>" << endl;
     } else {
@@ -196,12 +196,12 @@ TstarParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         cout << "<element type=\"tstar\">***</element>" << endl;
     } else {
@@ -218,12 +218,12 @@ LineBreakParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         cout << "<linebreak/>" << endl;
     } else {
@@ -240,12 +240,12 @@ PageBreakParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl;
     } else {
@@ -266,13 +266,13 @@ NDashParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
 
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         if (fontModifiers.size()) {
             cout << "<element type=\"ndash\" font=\"";
@@ -295,13 +295,13 @@ MDashParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
 
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         if (fontModifiers.size()) {
             cout << "<element type=\"mdash\" font=\"";
@@ -324,13 +324,13 @@ OpeningSingleQuoteParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
 
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         if (fontModifiers.size()) {
             cout << "<element type=\"open_single_quote\" font=\"";
@@ -353,13 +353,13 @@ OpeningDoubleQuotesParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
 
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         if (fontModifiers.size()) {
             cout << "<element type=\"open_double_quotes\" font=\"";
@@ -382,13 +382,13 @@ ClosingDoubleQuotesParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == XML) {
+        if (mode == DOCBOOK) {
             cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
 
-    if (mode == XML) {
+    if (mode == DOCBOOK) {
         spaces(indentation);
         if (fontModifiers.size()) {
             cout << "<element type=\"close_double_quotes\" font=\"";
