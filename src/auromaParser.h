@@ -55,6 +55,8 @@ extern auromaParserBase::STYPE__ d_val;
 #include "outputMode.h"
 #include "para.h"
 #include "paraElementContainer.h"
+#include "paraContainer.h"
+#include "variousParaContainers.h"
 
 #undef auromaParser
 class auromaParser: public auromaParserBase
@@ -74,6 +76,7 @@ public:
 
     // support for the stack of elementContainers
     void newPara(void);
+    void newDirective(ContainerDirective *directive);
     void finishPara(void);
     void pushSubContainer(void);
     void pushSubContainer(const char *containerType);
@@ -88,8 +91,8 @@ public:
 private:
     yyFlexLexer *lexer;
 
-    vector<Para *>                paragraphs;
-    stack<ParaElementContainer *> containerStack;
+    vector<ParaOrDirective *>     pods;
+    stack<ParaElementContainer *> elementContainerStack;
 
     // a temporary location to hold blank spaces as they are encountered
     const char *precedingWhiteSpace;
@@ -114,12 +117,12 @@ private:
 inline
 auromaParser::~auromaParser()
 {
-    assert(containerStack.empty());
+    assert(elementContainerStack.empty());
 
     // free up all the paragraphs
-    vector<Para *>::iterator iter;
-    for (iter = paragraphs.begin(); iter != paragraphs.end(); iter++) {
-        delete (*iter);
+    vector<ParaOrDirective *>::iterator iter;
+    for (iter = pods.begin(); iter != pods.end(); iter++) {
+        delete(*iter);
     }
 }
 
@@ -162,13 +165,13 @@ inline ParaElementContainer *
 auromaParser::currentContainer(void)
 {
     /* cout << "top: " << containerStack.top() << endl; */
-    return containerStack.top();
+    return elementContainerStack.top();
 }
 
 inline bool
 auromaParser::currentContainerIsPara(void)
 {
-    return (containerStack.size() == 1);
+    return (elementContainerStack.size() == 1);
 }
 
 inline void

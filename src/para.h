@@ -37,10 +37,11 @@
 #define PARA_H
 
 #include <vector>
+#include "paraOrDirective.h"
 #include "paraElementContainer.h"
 #include "variousParaElements.h"
 
-class Para : public ParaElementContainer
+class Para : public ParaElementContainer, public ParaOrDirective
 {
 public:
     // The attributes applicable to a paragraph.
@@ -94,8 +95,12 @@ public:
 
     void append(const char *str);
 
-    virtual void emit(outputMode_t mode, unsigned indentation) const;
+    bool isDirective(void) const
+        {
+            return false;
+        }
 
+    void emit(outputMode_t mode, unsigned indentation) const;
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;

@@ -41,9 +41,9 @@ void
 auromaParser::newPara(void)
 {
     // create a new paragraph and push it to the stack
-    assert(containerStack.empty());
+    assert(elementContainerStack.empty());
     Para *p = new Para();
-    containerStack.push(p);
+    elementContainerStack.push(p);
 
     // cout << "creating new para: " << p << endl;
 }
@@ -53,53 +53,59 @@ auromaParser::finishPara(void)
 {
     Para *para;
 
-    // get the paragraph at the top of the containerStack
-    para = reinterpret_cast<Para *>(containerStack.top());
-    containerStack.pop();
-    assert(containerStack.empty());
+    // get the paragraph at the top of the elementContainerStack
+    para = reinterpret_cast<Para *>(elementContainerStack.top());
+    elementContainerStack.pop();
+    assert(elementContainerStack.empty());
     // cout << "finished para " << para << endl;
 
     // push this paragraph to our vector of global paragraphs
-    paragraphs.push_back(para);
+    pods.push_back(para);
+}
+
+void
+auromaParser::newDirective(ContainerDirective *directive)
+{
+    pods.push_back(directive);
 }
 
 void
 auromaParser::pushSubContainer(void)
 {
-    assert(containerStack.empty() == false);
+    assert(elementContainerStack.empty() == false);
 
     ParaElementContainer *container;
     container = new Block();
 
-    containerStack.push(container);
+    elementContainerStack.push(container);
 }
 
 
 void
 auromaParser::pushSubContainer(const char *blockType)
 {
-    assert(containerStack.empty() == false);
+    assert(elementContainerStack.empty() == false);
 
     ParaElementContainer *container;
     container = new Block(blockType);
 
-    containerStack.push(container);
+    elementContainerStack.push(container);
 }
 
 void
 auromaParser::popSubContainer(void)
 {
-    assert(containerStack.empty() == false);
+    assert(elementContainerStack.empty() == false);
 
     // pop the top level container off the stack; the stack shouldn't
     // become empty as a result--there should be a paragraph container
     // at the bottom.
     ParaElementContainer *container;
-    container = containerStack.top();
-    containerStack.pop();
+    container = elementContainerStack.top();
+    elementContainerStack.pop();
     // cout << "popped container: " << container << endl;
 
-    assert(containerStack.empty() == false);
+    assert(elementContainerStack.empty() == false);
 
     // add this container to the paragraph as an element
 }
@@ -133,22 +139,34 @@ auromaParser::emit(outputMode_t outputMode)
 {
     switch (outputMode) {
     case DOCBOOK:
-        cout << "<document>" << endl;
+        cout << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
+        cout << "<book xmlns=\"http://docbook.org/ns/docbook\">" << endl;
+        cout << "    <info>" << endl;
+        cout << "        <title>PLEASE FILL IN THE TITLE HERE</title>" << endl;
+        cout << "        <author><personname>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo</personname></author>" << endl;
+        cout << "        <copyright>" << endl;
+        cout << "            <year>[PLEASE UPDATE AS NECESSARY]2010</year>"
+             << endl;
+        cout << "            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
+        cout << "        </copyright>" << endl;
+        cout << "     </info>" << endl;
         break;
     case WORDPRESS:
         cout << "<div id=\"content\">" << endl;
         break;
     }
 
-    for (vector<Para *>::iterator iter = paragraphs.begin();
-         iter != paragraphs.end();
+    /* Loop over all paragraphs and emit code for them. */
+    for (vector<ParaOrDirective *>::iterator iter = pods.begin();
+         iter != pods.end();
          iter++) {
         (*iter)->emit(outputMode, 4);
+        break;
     }
 
     switch (outputMode) {
     case DOCBOOK:
-        cout << "</document>" << endl;
+        cout << "</book>" << endl;
         break;
     case WORDPRESS:
         cout << "</div>" << endl;

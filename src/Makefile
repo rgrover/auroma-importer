@@ -10,7 +10,9 @@ PARSER_SRCS =                                   \
        paraElementContainer.cc                  \
        para.cc					\
        block.cc					\
-       variousParaElements.cc
+       paraContainer.cc				\
+       variousParaElements.cc			\
+       variousParaContainers.cc
 
 PARSER_OBJS = $(patsubst %.cc,%.o,$(PARSER_SRCS))
 

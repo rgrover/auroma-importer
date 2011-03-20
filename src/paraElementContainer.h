@@ -26,10 +26,10 @@ public:
         }
 
     void append(ParaElement *element);
-    void append(const char *str);
+    void append(string str);
 
     // append a string with its prevSep turned off
-    void appendWithoutPrevSep(const char *str);
+    void appendWithoutPrevSep(string str);
 
     virtual void emit(outputMode_t        mode,
                       unsigned            indentation,

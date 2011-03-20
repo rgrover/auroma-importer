@@ -45,7 +45,7 @@ using namespace std;
 class StringParaElement : public ParaElement
 {
 public:
-    StringParaElement(const char *strIn)
+    StringParaElement(string strIn)
         : ParaElement(), str(strIn)
         {
             // empty
@@ -189,7 +189,7 @@ public:
             prevSep = false;
         }
 
-    PageBreakParaElement(const char *number)
+    PageBreakParaElement(string number)
         : ParaElement(), pageNumber(number)
         {
             prevSep = false;

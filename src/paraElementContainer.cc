@@ -59,14 +59,14 @@ ParaElementContainer::append(ParaElement *element)
 }
 
 void
-ParaElementContainer::append(const char *str)
+ParaElementContainer::append(string str)
 {
     ParaElement *p = new StringParaElement(str);
     append(p);
 }
 
 void
-ParaElementContainer::appendWithoutPrevSep(const char *str)
+ParaElementContainer::appendWithoutPrevSep(string str)
 {
     StringParaElement *s = new StringParaElement(str);
     s->unsetPrevSep();

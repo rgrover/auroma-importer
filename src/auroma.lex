@@ -80,6 +80,21 @@ extern auromaParserBase::STYPE__ d_val;
     /*
      * Handle commands.
      */
+\\(?i:set)$          return auromaParserBase::SET_CMD;
+\\(?i:set)/{EOC}     return auromaParserBase::SET_CMD;
+\\(?i:book)$         return auromaParserBase::BOOK_CMD;
+\\(?i:book)/{EOC}    return auromaParserBase::BOOK_CMD;
+\\(?i:preface)$      return auromaParserBase::PREFACE_CMD;
+\\(?i:preface)/{EOC} return auromaParserBase::PREFACE_CMD;
+\\(?i:part)$         return auromaParserBase::PART_CMD;
+\\(?i:part)/{EOC}    return auromaParserBase::PART_CMD;
+\\(?i:chapter)$      return auromaParserBase::CHAPTER_CMD;
+\\(?i:chapter)/{EOC} return auromaParserBase::CHAPTER_CMD;
+\\(?i:title)$        return auromaParserBase::TITLE_CMD;
+\\(?i:title)/{EOC}   return auromaParserBase::TITLE_CMD;
+\\(?i:author)$       return auromaParserBase::AUTHOR_CMD;
+\\(?i:author)/{EOC}  return auromaParserBase::AUTHOR_CMD;
+
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
 
@@ -87,10 +102,6 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:hn)/{EOC}      return auromaParserBase::HEADING_NUMBER_CMD;
 \\(?i:ht)$           return auromaParserBase::HEADING_TITLE_CMD;
 \\(?i:ht)/{EOC}      return auromaParserBase::HEADING_TITLE_CMD;
-\\(?i:push)$         return auromaParserBase::PUSH_CMD;
-\\(?i:push)/{EOC}    return auromaParserBase::PUSH_CMD;
-\\(?i:pop)$         return auromaParserBase::POP_CMD;
-\\(?i:pop)/{EOC}    return auromaParserBase::POP_CMD;
 
 \\(?i:sref)$         return auromaParserBase::REFERENCE_CMD;
 \\(?i:sref)/{EOC}    return auromaParserBase::REFERENCE_CMD;

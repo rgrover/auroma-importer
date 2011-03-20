@@ -35,7 +35,7 @@
 %parsefun-source parser.auroma.cc
 %class-name auromaParser
 
-%stype const char *
+%stype string
 
 %expect 3                 /*
                            * Expect two shift-reduce conflicts:
@@ -46,12 +46,17 @@
                            *     an optional block
                            */
 
+%token SET_CMD
+%token PREFACE_CMD
+%token BOOK_CMD
+%token PART_CMD
+%token CHAPTER_CMD
+%token TITLE_CMD
+%token AUTHOR_CMD
 
 %token PARA_CMD
 %token HEADING_NUMBER_CMD       /* e.g. Chapter IX */
 %token HEADING_TITLE_CMD        /* e.g. Chapter Headings. */
-%token PUSH_CMD
-%token POP_CMD
 %token CHAPTER_HEAD_QUOTE_CMD   /* Quotations following a chapter heading. */
 %token QUOTE_CMD                /* Indented quotations. */
 %token REFERENCE_CMD            /* References for quotations. */
@@ -96,10 +101,7 @@ input :
     emptyLine
 |
     input
-    pushContainerLevel
-|
-    input
-    popContainerLevel
+    paragraphContainerDirective
 ;
 
 paragraph :
@@ -494,23 +496,112 @@ blockElement:
     }
 ;
 
-pushContainerLevel :
-    optionalBlankSpaces
-    PUSH_CMD
-    optionalBlankSpaces
-    newline
+strings:
+    STRING
     {
-        Para::pushContainerLevel();
+        $$ = $1;
+    }
+|
+    strings
+    optionalBlankSpaces
+    STRING
+    {
+        $$ = $$ + " " + $3;
     }
 ;
 
-popContainerLevel :
+/* pushContainerLevel : */
+/*     optionalBlankSpaces */
+/*     PUSH_CMD */
+/*     optionalBlankSpaces */
+/*     newline */
+/*     { */
+/*         Para::pushContainerLevel(); */
+/*     } */
+/* ; */
+
+/* popContainerLevel : */
+/*     optionalBlankSpaces */
+/*     POP_CMD */
+/*     optionalBlankSpaces */
+/*     newline */
+/*     { */
+/*         Para::popContainerLevel(); */
+/*     } */
+/* ; */
+
+paragraphContainerDirective:
     optionalBlankSpaces
-    POP_CMD
+    SET_CMD
     optionalBlankSpaces
     newline
     {
-        Para::popContainerLevel();
+        ContainerDirective *set = new Set();
+        newDirective(set);
+    }
+|
+    optionalBlankSpaces
+    BOOK_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *book = new Book();
+        newDirective(book);
+    }
+|
+    optionalBlankSpaces
+    PART_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *part = new Part();
+        newDirective(part);
+    }
+|
+    optionalBlankSpaces
+    PREFACE_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *preface = new Preface();
+        newDirective(preface);
+    }
+|
+    optionalBlankSpaces
+    CHAPTER_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *chapter = new Chapter();
+        newDirective(chapter);
+    }
+|
+    optionalBlankSpaces
+    AUTHOR_CMD
+    optionalBlankSpaces
+    strings
+    optionalBlankSpaces
+    newline
+    {
+        assert(pods.back()->isDirective());
+
+        ContainerDirective *directive =
+            reinterpret_cast<ContainerDirective *>(pods.back());
+        directive->setAuthor($4);
+    }
+|
+    optionalBlankSpaces
+    TITLE_CMD
+    optionalBlankSpaces
+    strings
+    optionalBlankSpaces
+    newline
+    {
+        assert(pods.back()->isDirective());
+
+        ContainerDirective *directive =
+            reinterpret_cast<ContainerDirective *>(pods.back());
+        directive->setTitle($4);
     }
 ;
 
@@ -547,19 +638,19 @@ optionalBlankSpaces :
 blankSpaces:
     BLANK_SPACE
     {
-        updatePrecedingWhiteSpace($1);
+        updatePrecedingWhiteSpace($1.c_str());
     }
 |
     blankSpaces
     BLANK_SPACE
     {
-        updatePrecedingWhiteSpace($2);
+        updatePrecedingWhiteSpace($2.c_str());
     }
 ;
 
 blankSpace:
     BLANK_SPACE
     {
-        updatePrecedingWhiteSpace($1);
+        updatePrecedingWhiteSpace($1.c_str());
     }
 ;
