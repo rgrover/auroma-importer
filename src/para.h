@@ -38,7 +38,7 @@
 
 #include <vector>
 #include "paraOrDirective.h"
-#include "paraElementContainer.h"
+#include "containerDirective.h"
 #include "variousParaElements.h"
 
 class Para : public ParaElementContainer, public ParaOrDirective

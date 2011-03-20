@@ -40,7 +40,7 @@
 using namespace std;
 
 #include "paraElement.h"
-#include "paraElementContainer.h"
+#include "containerDirective.h"
 
 class StringParaElement : public ParaElement
 {

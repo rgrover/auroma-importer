@@ -54,9 +54,9 @@ extern auromaParserBase::STYPE__ d_val;
 
 #include "outputMode.h"
 #include "para.h"
-#include "paraElementContainer.h"
+#include "containerDirective.h"
 #include "paraContainer.h"
-#include "variousParaContainers.h"
+#include "variousContainerDirectives.h"
 
 #undef auromaParser
 class auromaParser: public auromaParserBase

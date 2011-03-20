@@ -37,7 +37,7 @@
 #define BLOCK_H
 
 #include <vector>
-#include "paraElementContainer.h"
+#include "containerDirective.h"
 
 class Block : public ParaElementContainer
 {
