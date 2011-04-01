@@ -37,6 +37,31 @@
 void
 Set::emit(outputMode_t mode, unsigned indentation) const
 {
+    assert(mode == DOCBOOK);
+
+    cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
+
+    string title = getTitle();
+    string author = getAuthor();
+
+    /* emit the info block */
+    if ((title != "") || (author != "")) {
+        cout << "    <info>" << endl;
+        cout << "        <title>" <<
+            ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
+             << "</title>"
+             << endl;
+        cout << "        <author><personname>"
+             << ((author == "") ? "[PLEASE UPDATE AS NECESSARY]Sri Aurobindo" : author)
+             << "</personname></author>"
+             << endl;
+        cout << "        <copyright>" << endl;
+        cout << "            <year>[PLEASE UPDATE AS NECESSARY]2010</year>"
+             << endl;
+        cout << "            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
+        cout << "        </copyright>" << endl;
+        cout << "     </info>" << endl;        
+    }
 }
 
 void

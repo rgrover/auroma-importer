@@ -56,7 +56,7 @@ public:
             author = name;
         }
 
-    string getAuthor(void)
+    string getAuthor(void) const
         {
             return author;
         }
@@ -77,13 +77,15 @@ public:
     ~Book(void) {
     }
 
-    void setAuthor(string name) {
+    void setAuthor(string name)
+        {
             author = name;
-    }
+        }
 
-    string getAuthor(void) {
-        return author;
-    }
+    string getAuthor(void) const
+        {
+            return author;
+        }
 
     void emit(outputMode_t mode, unsigned int) const;
 
@@ -96,19 +98,23 @@ class Part : public ContainerDirective
 {
 public:
 
-    Part(void) : ContainerDirective(PART) {
-    }
+    Part(void) : ContainerDirective(PART)
+        {
+        }
 
-    ~Part(void) {
-    }
+    ~Part(void)
+        {
+        }
 
-    void setAuthor(string name) {
-        assert(0);
-    }
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
 
-    string getAuthor(void) {
-        assert(0);
-    }
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
 
     void emit(outputMode_t mode, unsigned int) const;
 
@@ -119,19 +125,23 @@ class Preface : public ContainerDirective
 {
 public:
 
-    Preface(void) : ContainerDirective(PREFACE) {
-    }
+    Preface(void) : ContainerDirective(PREFACE)
+        {
+        }
 
-    ~Preface(void) {
-    }
+    ~Preface(void)
+        {
+        }
 
-    void setAuthor(string name) {
-        assert(0);
-    }
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
 
-    string getAuthor(void) {
-        assert(0);
-    }
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
 
     void emit(outputMode_t mode, unsigned int) const;
 
@@ -142,19 +152,23 @@ class Chapter : public ContainerDirective
 {
 public:
 
-    Chapter(void) : ContainerDirective(CHAPTER) {
-    }
+    Chapter(void) : ContainerDirective(CHAPTER)
+        {
+        }
 
-    ~Chapter(void) {
-    }
+    ~Chapter(void)
+        {
+        }
 
-    void setAuthor(string name) {
-        assert(0);
-    }
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
 
-    string getAuthor(void) {
-        assert(0);
-    }
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
 
     void emit(outputMode_t mode, unsigned int) const;
 

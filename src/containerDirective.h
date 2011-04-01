@@ -70,13 +70,13 @@ public:
             title = t;
         }
 
-    string getTitle(void)
+    string getTitle(void) const
         {
             return title;
         }
 
     virtual void   setAuthor(string author) = 0;
-    virtual string getAuthor(void)          = 0;
+    virtual string getAuthor(void) const    = 0;
 
     static ContainerDirective *currentParaContainer(void)
         {
