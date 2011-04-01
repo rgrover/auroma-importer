@@ -36,7 +36,7 @@
 #define VARIOUS_PARA_CONTAINERS
 
 #include <cassert>
-#include "paraContainer.h"
+#include "containerDirective.h"
 
 class Set : public ContainerDirective
 {
