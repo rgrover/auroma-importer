@@ -182,82 +182,82 @@ paragraphElement :
 paraAttributeCommand :
     HEADING_NUMBER_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::HEADING_NUMBER);
     }
 |
     HEADING_TITLE_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::HEADING_TITLE);
     }
 |
     NOINDENT_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->unsetAttribute(Para::INDENT);
     }
 |
     QUOTE_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::QUOTE);
     }
 |
     POEM_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::POEM);
     }
 |
     PROSE_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->unsetAttribute(Para::POEM);
     }
 |
     FOOTER_CENTERED_TEXT_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::FOOTER);
         para->setAttribute(Para::CENTER);
     }
 |
     DROP_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::DROP);
     }
 |
     NODROP_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->unsetAttribute(Para::DROP);
     }
 |
     CENTER_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::CENTER);
     }
 |
@@ -265,9 +265,9 @@ paraAttributeCommand :
 |
     CHAPTER_HEAD_QUOTE_CMD
     {
-        assert(currentContainerIsPara());
+        assert(currentElementContainerIsPara());
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::HEAD_QUOTE);
     }
 ;
@@ -280,22 +280,22 @@ enumeration:
 optionalEnumerationBlock:
 /* empty */
     {
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         para->setAttribute(Para::ENUMERATION);
     }
 |
     '{'
     {
-        pushSubContainer("enumeration");
+        pushElementSubContainer("enumeration");
     }
     block
     '}'
     {
         ParaElementContainer *block;
-        block = currentContainer(); /* get a ref to the block's container */
-        popSubContainer();          // pop the block out of the stack
+        block = currentElementContainer(); /* get a ref to the block's container */
+        popElementSubContainer();          // pop the block out of the stack
 
-        Para *para = reinterpret_cast<Para *>(currentContainer());
+        Para *para = reinterpret_cast<Para *>(currentElementContainer());
         if (!para->setEnumerationBlock(block)) {
             std::cerr << "\033[01;31mpaser: line "
                       << lexer->lineno() << ":\033[00m "
@@ -308,28 +308,28 @@ optionalEnumerationBlock:
 blockElement:
     '{'
     {
-        pushSubContainer();
+        pushElementSubContainer();
     }
     block
     '}'
     {
         ParaElementContainer *block;
 
-        block = currentContainer(); /* get a ref to the block's container */
-        popSubContainer();          // pop the block out of the stack
-        currentContainer()->append(block); // add the block as a paraElement
+        block = currentElementContainer(); /* get a ref to the block's container */
+        popElementSubContainer();          // pop the block out of the stack
+        currentElementContainer()->append(block); // add the block as a paraElement
     }
 |
     STRING
     {
         /* Pay attention to any blank space preceding the string */
         if (precedingWhiteSpace != NULL) {
-            currentContainer()->append($1); /* Appended as a normal
+            currentElementContainer()->append($1); /* Appended as a normal
                                              * string with space to
                                              * separate it from the
                                              * preceding element. */
         } else {
-            currentContainer()->appendWithoutPrevSep($1);
+            currentElementContainer()->appendWithoutPrevSep($1);
         }
     }
 |
@@ -337,105 +337,105 @@ blockElement:
     optionalBlankSpaces
     '{'
     {
-        pushSubContainer("footnote");
+        pushElementSubContainer("footnote");
     }
     block
     '}'
     {
         ParaElementContainer *block;
-        block = currentContainer(); /* get a ref to the block's container */
-        popSubContainer();          // pop the block out of the stack
+        block = currentElementContainer(); /* get a ref to the block's container */
+        popElementSubContainer();          // pop the block out of the stack
 
         FootnoteParaElement *fn;
         fn = new FootnoteParaElement(block);
-        currentContainer()->append(fn); // add the footnote as a paraElement
+        currentElementContainer()->append(fn); // add the footnote as a paraElement
     }
 |
     REFERENCE_CMD
     optionalBlankSpaces
     '{'
     {
-        pushSubContainer("reference");
+        pushElementSubContainer("reference");
     }
     block
     '}'
     {
         ParaElementContainer *block;
-        block = currentContainer(); /* get a ref to the block's container */
-        popSubContainer();          // pop the block out of the stack
+        block = currentElementContainer(); /* get a ref to the block's container */
+        popElementSubContainer();          // pop the block out of the stack
 
         ReferenceParaElement *ref;
         ref = new ReferenceParaElement(block);
-        currentContainer()->append(ref); // add the reference as a paraElement
+        currentElementContainer()->append(ref); // add the reference as a paraElement
     }
 |
     PUNCTUATION_MARK
     {
         /* Pay attention to any blank space preceding the punctuation mark */
         if (precedingWhiteSpace != NULL) {
-            currentContainer()->append($1); /* Appended as a normal
+            currentElementContainer()->append($1); /* Appended as a normal
                                              * string with space to
                                              * separate it from the
                                              * preceding element. */
         } else {
-            currentContainer()->appendWithoutPrevSep($1);
+            currentElementContainer()->appendWithoutPrevSep($1);
         }
     }
 
 |
     DOTS_CMD
     {
-        currentContainer()->append(new DotsParaElement());
+        currentElementContainer()->append(new DotsParaElement());
     }
 |
     TSTAR_CMD
     {
-        currentContainer()->append(new TstarParaElement());
+        currentElementContainer()->append(new TstarParaElement());
     }
 |
     LINE_BREAK_CMD
     {
-        currentContainer()->append(new LineBreakParaElement());
+        currentElementContainer()->append(new LineBreakParaElement());
     }
 |
     PAGE_CMD
     blankSpace
     pageNumber
     {
-        assert(currentContainerIsPara());
-        currentContainer()->append(new PageBreakParaElement($3));
+        assert(currentElementContainerIsPara());
+        currentElementContainer()->append(new PageBreakParaElement($3));
     }
 |
     ITALICS_FACE_CMD
     {
         ModifierParaElement *mod =
             new ModifierParaElement(ParaElement::ITALICS);
-        currentContainer()->append(mod);
+        currentElementContainer()->append(mod);
     }
 |
     ITALICS_FACE_CMD
     '{'
     {
-        pushSubContainer();
+        pushElementSubContainer();
         ModifierParaElement *mod =
             new ModifierParaElement(ParaElement::ITALICS);
-        currentContainer()->append(mod);
+        currentElementContainer()->append(mod);
     }
     block
     '}'
     {
         ParaElementContainer *block;
-        block = currentContainer(); /* get a ref to the block's container */
-        popSubContainer();          // pop the block out of the stack
+        block = currentElementContainer(); /* get a ref to the block's container */
+        popElementSubContainer();          // pop the block out of the stack
 
-        currentContainer()->append(block); // add the block as a paraElement
+        currentElementContainer()->append(block); // add the block as a paraElement
     }
 |
     BOLD_FACE_CMD
     {
         ModifierParaElement *mod =
             new ModifierParaElement(ParaElement::BOLD);
-        currentContainer()->append(mod);
+        currentElementContainer()->append(mod);
     }
 |
     BOLD_ITALICS_FACE_CMD
@@ -443,30 +443,30 @@ blockElement:
         ModifierParaElement *mod;
 
         mod = new ModifierParaElement(ParaElement::BOLD);
-        currentContainer()->append(mod);
+        currentElementContainer()->append(mod);
 
         mod = new ModifierParaElement(ParaElement::ITALICS);
-        currentContainer()->append(mod);
+        currentElementContainer()->append(mod);
     }
 |
     N_DASH
     {
-        currentContainer()->append(new NDashParaElement());
+        currentElementContainer()->append(new NDashParaElement());
     }
 |
     M_DASH
     {
-        currentContainer()->append(new MDashParaElement());
+        currentElementContainer()->append(new MDashParaElement());
     }
 |
     '['
     {
-        currentContainer()->append("[");
+        currentElementContainer()->append("[");
     }
 |
     ']'
     {
-        currentContainer()->appendWithoutPrevSep("]");
+        currentElementContainer()->appendWithoutPrevSep("]");
     }
 |
     OPENING_SINGLE_QUOTE
@@ -476,7 +476,7 @@ blockElement:
         if (!precedingWhiteSpace) {
             quote->unsetPrevSep();
         }
-        currentContainer()->append(quote);
+        currentElementContainer()->append(quote);
     }
 |
     OPENING_DOUBLE_QUOTES
@@ -487,12 +487,12 @@ blockElement:
             quotes->unsetPrevSep();
         }
 
-        currentContainer()->append(quotes);
+        currentElementContainer()->append(quotes);
     }
 |
     CLOSING_DOUBLE_QUOTES
     {
-        currentContainer()->append(new ClosingDoubleQuotesParaElement());
+        currentElementContainer()->append(new ClosingDoubleQuotesParaElement());
     }
 ;
 

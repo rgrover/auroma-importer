@@ -70,7 +70,7 @@ auromaParser::newDirective(ContainerDirective *directive)
 }
 
 void
-auromaParser::pushSubContainer(void)
+auromaParser::pushElementSubContainer(void)
 {
     assert(elementContainerStack.empty() == false);
 
@@ -82,7 +82,7 @@ auromaParser::pushSubContainer(void)
 
 
 void
-auromaParser::pushSubContainer(const char *blockType)
+auromaParser::pushElementSubContainer(const char *blockType)
 {
     assert(elementContainerStack.empty() == false);
 
@@ -93,7 +93,7 @@ auromaParser::pushSubContainer(const char *blockType)
 }
 
 void
-auromaParser::popSubContainer(void)
+auromaParser::popElementSubContainer(void)
 {
     assert(elementContainerStack.empty() == false);
 

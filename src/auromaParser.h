@@ -78,11 +78,11 @@ public:
     void newPara(void);
     void newDirective(ContainerDirective *directive);
     void finishPara(void);
-    void pushSubContainer(void);
-    void pushSubContainer(const char *containerType);
-    void popSubContainer(void);
-    ParaElementContainer *currentContainer(void);
-    bool                  currentContainerIsPara(void);
+    void pushElementSubContainer(void);
+    void pushElementSubContainer(const char *containerType);
+    void popElementSubContainer(void);
+    ParaElementContainer *currentElementContainer(void);
+    bool                  currentElementContainerIsPara(void);
 
     void updatePrecedingWhiteSpace(const char *precedingWhiteSpace);
 
@@ -162,14 +162,14 @@ auromaParser::lex()
 }
 
 inline ParaElementContainer *
-auromaParser::currentContainer(void)
+auromaParser::currentElementContainer(void)
 {
     /* cout << "top: " << containerStack.top() << endl; */
     return elementContainerStack.top();
 }
 
 inline bool
-auromaParser::currentContainerIsPara(void)
+auromaParser::currentElementContainerIsPara(void)
 {
     return (elementContainerStack.size() == 1);
 }
