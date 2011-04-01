@@ -137,13 +137,37 @@ auromaParser::updatePrecedingWhiteSpace(const char *in)
 void
 auromaParser::emit(outputMode_t outputMode)
 {
+    ParaOrDirective *firstPod = pods.front();
+    assert(firstPod->isDirective());
+
+    ContainerDirective *firstDirective =
+        reinterpret_cast<ContainerDirective *>(firstPod);
+
     switch (outputMode) {
     case DOCBOOK:
         cout << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << endl;
         cout << "<book xmlns=\"http://docbook.org/ns/docbook\">" << endl;
         cout << "    <info>" << endl;
-        cout << "        <title>PLEASE FILL IN THE TITLE HERE</title>" << endl;
-        cout << "        <author><personname>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo</personname></author>" << endl;
+
+        /* print title from the first directive */
+        {
+            string title = firstDirective->getTitle();
+            cout << "        <title>" <<
+                ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
+                 << "</title>"
+                 << endl;
+        }
+
+        /* print author from the first directive */
+        {
+            string author = firstDirective->getAuthor();
+
+            cout << "        <author><personname>"
+                 << ((author == "") ? "[PLEASE UPDATE AS NECESSARY]Sri Aurobindo" : author)
+                 << "</personname></author>"
+                 << endl;
+        }
+
         cout << "        <copyright>" << endl;
         cout << "            <year>[PLEASE UPDATE AS NECESSARY]2010</year>"
              << endl;
@@ -151,6 +175,7 @@ auromaParser::emit(outputMode_t outputMode)
         cout << "        </copyright>" << endl;
         cout << "     </info>" << endl;
         break;
+
     case WORDPRESS:
         cout << "<div id=\"content\">" << endl;
         break;
