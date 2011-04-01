@@ -11,9 +11,9 @@ PARSER_SRCS =                                   \
        containerDirective.cc                    \
        para.cc                                  \
        block.cc                                 \
-       containerDirective.cc                    \
-       variousParaElements.cc                   \
-       variousContainerDirectives.cc
+       variousParaElements.cc			\
+       variousContainerDirectives.cc		\
+       utils.cc
 
 PARSER_OBJS = $(patsubst %.cc,%.o,$(PARSER_SRCS))
 

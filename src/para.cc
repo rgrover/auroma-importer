@@ -33,6 +33,7 @@
  */
 
 #include <cassert>
+#include "utils.h"
 #include "para.h"
 
 #include "auromaParser.ih"
@@ -115,7 +116,7 @@ Para::setEnumerationBlock(ParaElementContainer *block)
 }
 
 void
-Para::emit(outputMode_t mode, unsigned indentation) const
+Para::emit(outputMode_t mode, unsigned indentation)
 {
     switch (mode) {
     case DOCBOOK:

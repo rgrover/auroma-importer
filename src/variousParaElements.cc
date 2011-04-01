@@ -33,6 +33,7 @@
  */
 
 #include <cassert>
+#include "utils.h"
 #include "variousParaElements.h"
 
 void

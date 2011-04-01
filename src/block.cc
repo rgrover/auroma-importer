@@ -33,6 +33,7 @@
  */
 
 #include <cstring>
+#include "utils.h"
 #include "block.h"
 
 void

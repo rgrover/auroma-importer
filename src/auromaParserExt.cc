@@ -163,7 +163,8 @@ auromaParser::emit(outputMode_t outputMode)
 
     switch (outputMode) {
     case DOCBOOK:
-        cout << "</book>" << endl;
+        ContainerDirective::setCurrentContainerDirective(NULL);
+        cout << "</xml>" << endl;
         break;
     case WORDPRESS:
         cout << "</div>" << endl;

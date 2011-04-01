@@ -14,7 +14,7 @@
  *   the documentation and/or other materials provided with the
  *   distribution.
  *
- * - Neither Rohit Grover, nor Aurokruti, nor the names of Aurokruti's
+ * - Neither Rohit Grover, nor Aurokruti nor the names of Aurokruti's
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  *
@@ -32,44 +32,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <cassert>
-#include "containerDirective.h"
+#ifndef UTILS_H
+#define UTILS_H
 
-stack<ContainerDirective *> ContainerDirective::directives;
+void spaces(unsigned int indentation);
 
-void
-ContainerDirective::setCurrentContainerDirective(ContainerDirective *directive)
-{
-    /* If this is the first directive, then simply push it to the stack. */
-    if (directives.empty()) {
-        assert((directive->level == SET) || (directive->level == BOOK));
-        directives.push(directive);
-        return;
-    }
-
-    if (directive == NULL) {
-        while(!directives.empty()) {
-            ContainerDirective *topDirective = directives.top();
-            topDirective->emitEnd();
-            directives.pop();
-        }
-    }
-}
-/* void */
-/* ContainerDirective::setCurrentParaContainer(ContainerDirective *newContainer) */
-/* { */
-
-
-/*     /\* If the type of the new container is more important than that of */
-/*      * the top container, then we need to pop enough containers until */
-/*      * we find one whose type is more important than that of the new */
-/*      * container to be pushed. *\/ */
-/*     while(containers.top()->level >= newContainer->level) { */
-/*         containers.top()->emitEnd(); */
-/*         containers.pop(); */
-
-/*         assert(!containers.empty()); */
-/*     } */
-
-/*     containers.push(newContainer); */
-/* } */
+#endif // #ifndef UTILS_H

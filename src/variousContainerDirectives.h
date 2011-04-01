@@ -61,7 +61,8 @@ public:
             return author;
         }
 
-    void emit(outputMode_t mode, unsigned int) const;
+    void emit(outputMode_t mode, unsigned int);
+    void emitEnd(void) const;
 
 private:
     string author;
@@ -87,7 +88,8 @@ public:
             return author;
         }
 
-    void emit(outputMode_t mode, unsigned int) const;
+    void emit(outputMode_t mode, unsigned int);
+    void emitEnd(void) const;
 
 private:
     string author;
@@ -116,7 +118,8 @@ public:
             assert(0);
         }
 
-    void emit(outputMode_t mode, unsigned int) const;
+    void emit(outputMode_t mode, unsigned int);
+    void emitEnd(void) const;
 
 private:
 };
@@ -143,7 +146,8 @@ public:
             assert(0);
         }
 
-    void emit(outputMode_t mode, unsigned int) const;
+    void emit(outputMode_t mode, unsigned int);
+    void emitEnd(void) const;
 
 private:
 };
@@ -170,7 +174,8 @@ public:
             assert(0);
         }
 
-    void emit(outputMode_t mode, unsigned int) const;
+    void emit(outputMode_t mode, unsigned int);
+    void emitEnd(void) const;
 
 private:
 };

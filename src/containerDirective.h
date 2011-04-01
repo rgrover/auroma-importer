@@ -65,6 +65,8 @@ public:
             return true;
         }
 
+    virtual void emitEnd(void) const = 0;
+
     virtual void setTitle(string t)
         {
             title = t;
@@ -78,18 +80,21 @@ public:
     virtual void   setAuthor(string author) = 0;
     virtual string getAuthor(void) const    = 0;
 
-    static ContainerDirective *currentParaContainer(void)
+    static ContainerDirective *currentContainerDirective(void)
         {
-            return containers.top();
+            return directives.top();
         }
-    /* static void setCurrentParaContainer(ContainerDirective *newContainer); */
+    static void setCurrentContainerDirective(ContainerDirective *directive);
 
 protected:
     ContainerLevel level;
     string         title;
 
+    outputMode_t   outputMode;
+    unsigned int   indentation;
+
     /* The stack of para containers */
-    static stack<ContainerDirective *> containers;
+    static stack<ContainerDirective *> directives;
 };
 
 #endif /* PARA_CONTAINER */

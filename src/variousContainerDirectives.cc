@@ -32,13 +32,22 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "utils.h"
 #include "variousContainerDirectives.h"
+#include "paraElement.h"
 
 void
-Set::emit(outputMode_t mode, unsigned indentation) const
+Set::emit(outputMode_t mode, unsigned indentationIn)
 {
     assert(mode == DOCBOOK);
 
+    /* update the emit-stack of containerDirectives */
+    assert(ContainerDirective::directives.empty());
+    outputMode  = mode;
+    indentation = indentationIn;
+    ContainerDirective::setCurrentContainerDirective(this);
+
+    spaces(indentation);
     cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
 
     string title = getTitle();
@@ -46,41 +55,93 @@ Set::emit(outputMode_t mode, unsigned indentation) const
 
     /* emit the info block */
     if ((title != "") || (author != "")) {
-        cout << "    <info>" << endl;
-        cout << "        <title>" <<
-            ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
+        spaces(indentation + ParaElement::INDENT_STEP);
+        cout << "<info>" << endl;
+        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<title>"
+             << ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
              << "</title>"
              << endl;
-        cout << "        <author><personname>"
+        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<author><personname>"
              << ((author == "") ? "[PLEASE UPDATE AS NECESSARY]Sri Aurobindo" : author)
              << "</personname></author>"
              << endl;
-        cout << "        <copyright>" << endl;
-        cout << "            <year>[PLEASE UPDATE AS NECESSARY]2010</year>"
-             << endl;
-        cout << "            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
-        cout << "        </copyright>" << endl;
-        cout << "     </info>" << endl;        
+        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<copyright>" << endl;
+        spaces(indentation + 3 * ParaElement::INDENT_STEP);
+        cout << "<year>[PLEASE UPDATE AS NECESSARY]2010</year>" << endl;
+        spaces(indentation + 3 * ParaElement::INDENT_STEP);
+        cout << "<holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
+        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        cout << "</copyright>" << endl;
+        spaces(indentation + ParaElement::INDENT_STEP);
+        cout << "</info>" << endl;
     }
 }
 
 void
-Book::emit(outputMode_t mode, unsigned indentation) const
+Set::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "</set>" << endl;
+}
+
+void
+Book::emit(outputMode_t mode, unsigned indentation)
 {
 }
 
 void
-Part::emit(outputMode_t mode, unsigned indentation) const
+Book::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "</book>" << endl;
+}
+
+void
+Part::emit(outputMode_t mode, unsigned indentation)
 {
 }
 
 void
-Preface::emit(outputMode_t mode, unsigned indentation) const
+Part::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "</part>" << endl;
+}
+
+
+void
+Preface::emit(outputMode_t mode, unsigned indentation)
 {
 }
 
 void
-Chapter::emit(outputMode_t mode, unsigned indentation) const
+Preface::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "</preface>" << endl;
+}
+
+void
+Chapter::emit(outputMode_t mode, unsigned indentation)
 {
 }
 
+void
+Chapter::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "</chapter>" << endl;
+}

@@ -108,14 +108,6 @@ protected:
                                       set<FontModifiers> fontModifiers);
     static void emitEndFontModifier(outputMode_t       mode,
                                     set<FontModifiers> fontModifiers);
-
-    void spaces(unsigned int indentation) const
-    {
-        for (unsigned i = 0; i < indentation; i++) {
-            cout << " ";
-        }
-    }
-
 };
 
 
