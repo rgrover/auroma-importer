@@ -48,10 +48,6 @@ StringParaElement::emit(outputMode_t        mode,
         spaces(indentation);
         if (fontModifiers.size()) {
             emitStartFontModifier(mode, fontModifiers);
-        } else {
-            if (mode == DOCBOOK) {
-                cout << "<elements>";
-            }
         }
         parentStartedElements = true;
 
@@ -220,13 +216,11 @@ LineBreakParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
             parentStartedElements = false;
         }
     }
     if (mode == DOCBOOK) {
-        spaces(indentation);
-        cout << "<linebreak/>" << endl;
+        cout << "<literallayout>" << endl << "</literallayout>" << endl;
     } else {
         cout << "<br/>" << endl;
     }

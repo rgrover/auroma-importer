@@ -95,6 +95,8 @@ public:
 
     void append(const char *str);
 
+    bool hasTitle(void) const;
+
     bool isDirective(void) const
         {
             return false;
@@ -103,6 +105,9 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+
+    void emitContainedElements(outputMode_t mode,
+                               unsigned     indentation);
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;

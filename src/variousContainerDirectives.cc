@@ -35,6 +35,7 @@
 #include "utils.h"
 #include "variousContainerDirectives.h"
 #include "paraElement.h"
+#include "para.h"
 
 void
 Set::emit(outputMode_t                         mode,
@@ -140,6 +141,24 @@ Preface::emit(outputMode_t                         mode,
 
     origIndentation = indentation;
     setCurrentContainerDirective(this, indentation);
+
+    /* If the following paragrpah has a title, then absorb that into
+     * the preface. */
+    ParaOrDirective *nextPod = *(podIterator + 1);
+    if (nextPod->isDirective() == false) { /* the following pod is a
+                                            * paragraph */
+        Para *para = dynamic_cast<Para *>(nextPod);
+        if (para->hasTitle()) {
+            spaces(indentation);
+            cout << "<title>";
+            para->emitContainedElements(mode, indentation);
+            cout << "</title>" << endl;
+
+            /* We've already consumed the following title-paragraph;
+             * increment the iterator for the top-level emit loop */
+            podIterator++;
+        }
+    }
 }
 
 void

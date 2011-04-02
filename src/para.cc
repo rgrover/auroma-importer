@@ -98,6 +98,12 @@ Para::unsetAttribute(ParaAttributes attr)
 }
 
 bool
+Para::hasTitle(void) const
+{
+    return attributes[HEADING_TITLE];
+}
+
+bool
 Para::setEnumerationBlock(ParaElementContainer *block)
 {
     assert(block != NULL);
@@ -131,6 +137,21 @@ Para::emit(outputMode_t                         mode,
     default:
         assert(0);
     }
+}
+
+void
+Para::emitContainedElements(outputMode_t mode,
+                            unsigned     indentation)
+{
+    assert(mode == DOCBOOK);
+
+    bool startedElements = true; /* assume that the wrappers have
+                                  * already been emitted */
+    set<FontModifiers> fontModifiers;
+    ParaElementContainer::emit(DOCBOOK,
+                               indentation,
+                               startedElements,
+                               fontModifiers);
 }
 
 void
