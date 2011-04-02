@@ -51,7 +51,7 @@ public:
 
 public:
     virtual bool isDirective(void) const = 0;
-    virtual void emit(outputMode_t mode, unsigned indentation) = 0;
+    virtual void emit(outputMode_t mode, unsigned &indentation) = 0;
 };
 
 #endif /* #ifndef PARA_OR_DIRECTIVE_H */

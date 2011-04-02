@@ -84,14 +84,17 @@ public:
         {
             return directives.top();
         }
-    static void setCurrentContainerDirective(ContainerDirective *directive);
+
+    static void setCurrentContainerDirective(
+        ContainerDirective *directive,
+        unsigned int &indentation);
 
 protected:
     ContainerLevel level;
     string         title;
 
     outputMode_t   outputMode;
-    unsigned int   indentation;
+    unsigned int   origIndentation;
 
     /* The stack of para containers */
     static stack<ContainerDirective *> directives;

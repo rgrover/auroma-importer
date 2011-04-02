@@ -127,7 +127,7 @@ auromaParser::~auromaParser()
 }
 
 
-/* 
+/*
  * This is where we connect the parser with the lexical analyser.
  */
 inline int

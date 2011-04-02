@@ -100,7 +100,7 @@ public:
             return false;
         }
 
-    void emit(outputMode_t mode, unsigned indentation);
+    void emit(outputMode_t mode, unsigned &indentation);
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;

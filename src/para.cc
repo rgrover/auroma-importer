@@ -116,13 +116,13 @@ Para::setEnumerationBlock(ParaElementContainer *block)
 }
 
 void
-Para::emit(outputMode_t mode, unsigned indentation)
+Para::emit(outputMode_t mode, unsigned &indentation)
 {
     switch (mode) {
     case DOCBOOK:
         emitDocbook(indentation);
         break;
-		
+
     case WORDPRESS:
         emitWordpress(indentation);
         break;
@@ -276,7 +276,7 @@ Para::emitDocbook(unsigned indentation) const
                                fontModifiers);
 
     spaces(indentation);
-    cout << "</para>" << endl;    
+    cout << "</para>" << endl;
 }
 
 void
@@ -416,6 +416,6 @@ Para::emitWordpress(unsigned indentation) const
         cout << "</h" << level << ">" << endl;
     } else {
         cout << "</p>" << endl;
-    }    
+    }
 }
 

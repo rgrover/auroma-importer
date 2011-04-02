@@ -33,43 +33,50 @@
  */
 
 #include <cassert>
+
 #include "containerDirective.h"
+#include "paraElement.h"
 
 stack<ContainerDirective *> ContainerDirective::directives;
 
 void
-ContainerDirective::setCurrentContainerDirective(ContainerDirective *directive)
+ContainerDirective::setCurrentContainerDirective(
+    ContainerDirective *newDirective,
+    unsigned int       &indentation)
 {
     /* If this is the first directive, then simply push it to the stack. */
     if (directives.empty()) {
-        assert((directive->level == SET) || (directive->level == BOOK));
-        directives.push(directive);
+        assert((newDirective->level == SET) || (newDirective->level == BOOK));
+        directives.push(newDirective);
+
+        indentation += ParaElement::INDENT_STEP;
+
         return;
     }
 
-    if (directive == NULL) {
+    /* If this is the end of the top level emit loop, then pop off all
+     * directives from the stack. */
+    if (newDirective == NULL) {
         while(!directives.empty()) {
-            ContainerDirective *topDirective = directives.top();
-            topDirective->emitEnd();
+            directives.top()->emitEnd();
             directives.pop();
+
+            indentation -= ParaElement::INDENT_STEP;
         }
+    } else {
+        /* If the type of the new directive is more important than that of
+         * the top directive, then we need to pop enough directives until
+         * we find one whose type is more important than that of the new
+         * directive to be pushed. */
+        while(directives.top()->level >= newDirective->level) {
+            directives.top()->emitEnd();
+            directives.pop();
+            assert(!directives.empty());
+
+            indentation -= ParaElement::INDENT_STEP;
+        }
+
+        indentation += ParaElement::INDENT_STEP;
+        directives.push(newDirective);
     }
 }
-/* void */
-/* ContainerDirective::setCurrentParaContainer(ContainerDirective *newContainer) */
-/* { */
-
-
-/*     /\* If the type of the new container is more important than that of */
-/*      * the top container, then we need to pop enough containers until */
-/*      * we find one whose type is more important than that of the new */
-/*      * container to be pushed. *\/ */
-/*     while(containers.top()->level >= newContainer->level) { */
-/*         containers.top()->emitEnd(); */
-/*         containers.pop(); */
-
-/*         assert(!containers.empty()); */
-/*     } */
-
-/*     containers.push(newContainer); */
-/* } */

@@ -37,45 +37,45 @@
 #include "paraElement.h"
 
 void
-Set::emit(outputMode_t mode, unsigned indentationIn)
+Set::emit(outputMode_t mode, unsigned &indentation)
 {
     assert(mode == DOCBOOK);
+
+    spaces(indentation);
+    cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
 
     /* update the emit-stack of containerDirectives */
     assert(ContainerDirective::directives.empty());
     outputMode  = mode;
-    indentation = indentationIn;
-    ContainerDirective::setCurrentContainerDirective(this);
-
-    spaces(indentation);
-    cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
+    origIndentation = indentation;
+    setCurrentContainerDirective(this, indentation);
 
     string title = getTitle();
     string author = getAuthor();
 
     /* emit the info block */
     if ((title != "") || (author != "")) {
-        spaces(indentation + ParaElement::INDENT_STEP);
+        spaces(origIndentation + ParaElement::INDENT_STEP);
         cout << "<info>" << endl;
-        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
         cout << "<title>"
              << ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
              << "</title>"
              << endl;
-        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
         cout << "<author><personname>"
              << ((author == "") ? "[PLEASE UPDATE AS NECESSARY]Sri Aurobindo" : author)
              << "</personname></author>"
              << endl;
-        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
         cout << "<copyright>" << endl;
-        spaces(indentation + 3 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 3 * ParaElement::INDENT_STEP);
         cout << "<year>[PLEASE UPDATE AS NECESSARY]2010</year>" << endl;
-        spaces(indentation + 3 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 3 * ParaElement::INDENT_STEP);
         cout << "<holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
-        spaces(indentation + 2 * ParaElement::INDENT_STEP);
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
         cout << "</copyright>" << endl;
-        spaces(indentation + ParaElement::INDENT_STEP);
+        spaces(origIndentation + ParaElement::INDENT_STEP);
         cout << "</info>" << endl;
     }
 }
@@ -85,12 +85,12 @@ Set::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
 
-    spaces(indentation);
+    spaces(origIndentation);
     cout << "</set>" << endl;
 }
 
 void
-Book::emit(outputMode_t mode, unsigned indentation)
+Book::emit(outputMode_t mode, unsigned &indentation)
 {
 }
 
@@ -99,12 +99,12 @@ Book::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
 
-    spaces(indentation);
+    spaces(origIndentation);
     cout << "</book>" << endl;
 }
 
 void
-Part::emit(outputMode_t mode, unsigned indentation)
+Part::emit(outputMode_t mode, unsigned &indentationIn)
 {
 }
 
@@ -113,14 +113,25 @@ Part::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
 
-    spaces(indentation);
+    spaces(origIndentation);
     cout << "</part>" << endl;
 }
 
 
 void
-Preface::emit(outputMode_t mode, unsigned indentation)
+Preface::emit(outputMode_t mode, unsigned &indentation)
 {
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!ContainerDirective::directives.empty());
+    outputMode  = mode;
+
+    spaces(indentation);
+    cout << "<preface>" << endl;
+
+    origIndentation = indentation;
+    setCurrentContainerDirective(this, indentation);
 }
 
 void
@@ -128,12 +139,12 @@ Preface::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
 
-    spaces(indentation);
+    spaces(origIndentation);
     cout << "</preface>" << endl;
 }
 
 void
-Chapter::emit(outputMode_t mode, unsigned indentation)
+Chapter::emit(outputMode_t mode, unsigned &indentationIn)
 {
 }
 
@@ -142,6 +153,6 @@ Chapter::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
 
-    spaces(indentation);
+    spaces(origIndentation);
     cout << "</chapter>" << endl;
 }
