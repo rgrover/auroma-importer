@@ -116,11 +116,13 @@ Para::setEnumerationBlock(ParaElementContainer *block)
 }
 
 void
-Para::emit(outputMode_t mode, unsigned &indentation)
+Para::emit(outputMode_t                         mode,
+           unsigned                            &indentation,
+           vector<ParaOrDirective *>::iterator &podIterator)
 {
     switch (mode) {
     case DOCBOOK:
-        emitDocbook(indentation);
+        emitDocbook(indentation, podIterator);
         break;
 
     case WORDPRESS:
@@ -132,7 +134,8 @@ Para::emit(outputMode_t mode, unsigned &indentation)
 }
 
 void
-Para::emitDocbook(unsigned indentation) const
+Para::emitDocbook(unsigned                             indentation,
+                  vector<ParaOrDirective *>::iterator &podIterator) const
 {
     spaces(indentation);
     cout << "<para";

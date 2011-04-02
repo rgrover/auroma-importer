@@ -155,10 +155,10 @@ auromaParser::emit(outputMode_t outputMode)
 
     /* Loop over all paragraphs and emit code for them. */
     unsigned int indentation = 4;
-    for (vector<ParaOrDirective *>::iterator iter = pods.begin();
-         iter != pods.end();
-         iter++) {
-        (*iter)->emit(outputMode, indentation);
+    for (vector<ParaOrDirective *>::iterator podIterator = pods.begin();
+         podIterator != pods.end();
+         podIterator++) {
+        (*podIterator)->emit(outputMode, indentation, podIterator);
     }
 
     switch (outputMode) {

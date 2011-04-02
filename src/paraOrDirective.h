@@ -36,7 +36,11 @@
 #ifndef PARA_OR_DIRECTIVE_H
 #define PARA_OR_DIRECTIVE_H
 
+#include <vector>
+
 #include "outputMode.h"
+
+using namespace std;
 
 class ParaOrDirective
 {
@@ -51,7 +55,19 @@ public:
 
 public:
     virtual bool isDirective(void) const = 0;
-    virtual void emit(outputMode_t mode, unsigned &indentation) = 0;
+
+    /*
+     * Emit XML for this paragraph-or-directive.
+     *
+     * In the case of a directive, it is possible that it might need
+     * to refer to its following paragraphs for the emit; to support
+     * this, we pass in a reference to the iterator used in the top
+     * level emit loop.
+     */
+    virtual void emit(
+        outputMode_t                         mode,
+        unsigned                            &indentation,
+        vector<ParaOrDirective *>::iterator &podIterator) = 0;
 };
 
 #endif /* #ifndef PARA_OR_DIRECTIVE_H */

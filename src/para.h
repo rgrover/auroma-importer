@@ -100,13 +100,16 @@ public:
             return false;
         }
 
-    void emit(outputMode_t mode, unsigned &indentation);
+    void emit(outputMode_t                         mode,
+              unsigned int                        &indentation,
+              vector<ParaOrDirective *>::iterator &podIterator);
 private:
     vector<bool> attributes;
     ParaElementContainer *enumBlock;
     unsigned        level;        /* paragraph level */
 
-    void emitDocbook(unsigned indentation) const;
+    void emitDocbook(unsigned indentation,
+                     vector<ParaOrDirective *>::iterator &podIterator) const;
     void emitWordpress(unsigned indentation) const;
 
     static unsigned currentLevel; /* current container level */
