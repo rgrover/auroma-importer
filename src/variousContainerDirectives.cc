@@ -44,14 +44,20 @@ Set::emit(outputMode_t                         mode,
 {
     assert(mode == DOCBOOK);
 
-    spaces(indentation);
-    cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
-
     /* update the emit-stack of containerDirectives */
     assert(ContainerDirective::directives.empty());
     outputMode  = mode;
     origIndentation = indentation;
     setCurrentContainerDirective(this, indentation);
+
+    emitBegin();
+}
+
+void
+Set::emitBegin(void)
+{
+    spaces(origIndentation);
+    cout << "<set xmlns=\"http://docbook.org/ns/docbook\">" << endl;
 
     string title = getTitle();
     string author = getAuthor();
@@ -100,6 +106,11 @@ Book::emit(outputMode_t                         mode,
 }
 
 void
+Book::emitBegin(void)
+{
+}
+
+void
 Book::emitEnd(void) const
 {
     assert(outputMode == DOCBOOK);
@@ -114,6 +125,12 @@ Part::emit(outputMode_t                         mode,
            vector<ParaOrDirective *>::iterator &podIterator)
 {
 }
+
+void
+Part::emitBegin(void)
+{
+}
+
 
 void
 Part::emitEnd(void) const
@@ -135,31 +152,19 @@ Preface::emit(outputMode_t                         mode,
     /* update the emit-stack of containerDirectives */
     assert(!ContainerDirective::directives.empty());
     outputMode  = mode;
-
-    spaces(indentation);
-    cout << "<preface>" << endl;
-
     origIndentation = indentation;
     setCurrentContainerDirective(this, indentation);
-
-    /* If the following paragrpah has a title, then absorb that into
-     * the preface. */
-    ParaOrDirective *nextPod = *(podIterator + 1);
-    if (nextPod->isDirective() == false) { /* the following pod is a
-                                            * paragraph */
-        Para *para = dynamic_cast<Para *>(nextPod);
-        if (para->hasTitle()) {
-            spaces(indentation);
-            cout << "<title>";
-            para->emitContainedElements(mode, indentation);
-            cout << "</title>" << endl;
-
-            /* We've already consumed the following title-paragraph;
-             * increment the iterator for the top-level emit loop */
-            podIterator++;
-        }
-    }
 }
+
+void
+Preface::emitBegin(void)
+{
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<preface>" << endl;
+}
+
 
 void
 Preface::emitEnd(void) const
@@ -174,6 +179,11 @@ void
 Chapter::emit(outputMode_t                         mode,
               unsigned                            &indentation,
               vector<ParaOrDirective *>::iterator &podIterator)
+{
+}
+
+void
+Chapter::emitBegin(void)
 {
 }
 

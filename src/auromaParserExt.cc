@@ -154,7 +154,7 @@ auromaParser::emit(outputMode_t outputMode)
     }
 
     /* Loop over all paragraphs and emit code for them. */
-    unsigned int indentation = 4;
+    unsigned int indentation = 0;
     for (vector<ParaOrDirective *>::iterator podIterator = pods.begin();
          podIterator != pods.end();
          podIterator++) {
@@ -164,7 +164,6 @@ auromaParser::emit(outputMode_t outputMode)
     switch (outputMode) {
     case DOCBOOK:
         ContainerDirective::setCurrentContainerDirective(NULL, indentation);
-        cout << "</xml>" << endl;
         break;
     case WORDPRESS:
         cout << "</div>" << endl;

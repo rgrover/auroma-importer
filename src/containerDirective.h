@@ -56,13 +56,21 @@ enum ContainerLevel
 class ContainerDirective: public ParaOrDirective
 {
 public:
-    ContainerDirective(ContainerLevel l): level(l)
+    ContainerDirective(ContainerLevel l): level(l), hasEmitedBegin(false)
         {
         }
 
     bool isDirective(void) const
         {
             return true;
+        }
+
+    virtual void emitBegin(void)
+        {
+            if (hasEmitedBegin) {
+                emitEnd();
+            }
+            hasEmitedBegin = true;
         }
 
     virtual void emitEnd(void) const = 0;
@@ -82,6 +90,7 @@ public:
 
     static ContainerDirective *currentContainerDirective(void)
         {
+            assert(!directives.empty());
             return directives.top();
         }
 
@@ -95,6 +104,7 @@ protected:
 
     outputMode_t   outputMode;
     unsigned int   origIndentation;
+    bool           hasEmitedBegin;
 
     /* The stack of para containers */
     static stack<ContainerDirective *> directives;

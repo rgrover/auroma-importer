@@ -64,6 +64,7 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+    void emitBegin(void);
     void emitEnd(void) const;
 
 private:
@@ -93,6 +94,7 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+    void emitBegin(void);
     void emitEnd(void) const;
 
 private:
@@ -125,6 +127,7 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+    void emitBegin(void);
     void emitEnd(void) const;
 
 private:
@@ -155,6 +158,7 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+    void emitBegin(void);
     void emitEnd(void) const;
 
 private:
@@ -185,6 +189,7 @@ public:
     void emit(outputMode_t                         mode,
               unsigned int                        &indentation,
               vector<ParaOrDirective *>::iterator &podIterator);
+    void emitBegin(void);
     void emitEnd(void) const;
 
 private:
