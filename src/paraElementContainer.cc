@@ -41,13 +41,12 @@ ParaElementContainer::emit(outputMode_t        mode,
     }
 
     if (parentStartedElements) {
+        if (fontModifiers.size()) {
+            emitEndFontModifier(mode, fontModifiers);
+        }
         if (mode == DOCBOOK) {
             cout << endl;
             parentStartedElements = false;
-        } else if (mode == WORDPRESS) {
-            if (fontModifiers.size()) {
-                emitEndFontModifier(mode, fontModifiers);
-            }
         }
     }
 }

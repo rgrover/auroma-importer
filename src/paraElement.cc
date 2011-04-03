@@ -57,29 +57,9 @@ ParaElement::emitStartFontModifier(outputMode_t       mode,
                                    set<FontModifiers> fontModifiers)
 {
     if (mode == DOCBOOK) {
-        cout << "<elements font=\"";
-        for (set<FontModifiers>::iterator iter = fontModifiers.begin();
-             iter != fontModifiers.end();
-             iter++) {
-            if (iter != fontModifiers.begin()) {
-                cout << ",";
-            }
-
-            switch (*iter) {
-            case ITALICS:
-                cout << "italics";
-                break;
-            case BOLD:
-                cout << "bold";
-                break;
-            case SMALL_CAPS:
-                cout << "small_caps";
-                break;
-            default:
-                break;
-            }
+        if (!fontModifiers.empty()) {
+            cout << "<emphasis>";
         }
-        cout << "\">";
     } else if (mode == WORDPRESS) {
         for (set<FontModifiers>::iterator iter = fontModifiers.begin();
              iter != fontModifiers.end();
@@ -103,21 +83,33 @@ void
 ParaElement::emitEndFontModifier(outputMode_t       mode,
                                  set<FontModifiers> fontModifiers)
 {
-    assert(mode == WORDPRESS);
-    for (set<FontModifiers>::reverse_iterator iter = fontModifiers.rbegin();
-         iter != fontModifiers.rend();
-         iter++) {
-        switch (*iter) {
-        case ITALICS:
-            cout << "</i>";
-            break;
-        case BOLD:
-            cout << "</b>";
-            break;
-        case SMALL_CAPS:
-        default:
-            break;
+    switch (mode) {
+    case DOCBOOK:
+        if (!fontModifiers.empty()) {
+            cout << "</emphasis>";
         }
+        break;
+
+    case WORDPRESS:
+        for (set<FontModifiers>::reverse_iterator iter = fontModifiers.rbegin();
+             iter != fontModifiers.rend();
+             iter++) {
+            switch (*iter) {
+            case ITALICS:
+                cout << "</i>";
+                break;
+            case BOLD:
+                cout << "</b>";
+                break;
+            case SMALL_CAPS:
+            default:
+                break;
+            }
+        }
+        break;
+
+    default:
+        assert(0);
     }
 }
 

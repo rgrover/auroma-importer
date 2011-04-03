@@ -146,7 +146,7 @@ ModifierParaElement::emit(outputMode_t        mode,
         if (parentStartedElements) {
             if (mode == DOCBOOK) {
                 // terminate an existing "elements"
-                cout << "</elements>" << endl;
+                cout << endl;
 
                 // start a new one with updated fonts
                 spaces(indentation);
@@ -236,13 +236,13 @@ PageBreakParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
+            cout << endl;
             parentStartedElements = false;
         }
     }
     if (mode == DOCBOOK) {
-        spaces(indentation);
-        cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl;
+        /* spaces(indentation); */
+        /* cout << "<pagebreak number=\"" << pageNumber << "\"/>" << endl; */
     } else {
         cout << endl;
         spaces(indentation);
