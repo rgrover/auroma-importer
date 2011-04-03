@@ -122,13 +122,11 @@ Para::setEnumerationBlock(ParaElementContainer *block)
 }
 
 void
-Para::emit(outputMode_t                         mode,
-           unsigned                            &indentation,
-           vector<ParaOrDirective *>::iterator &podIterator)
+Para::emit(outputMode_t mode, unsigned &indentation)
 {
     switch (mode) {
     case DOCBOOK:
-        emitDocbook(indentation, podIterator);
+        emitDocbook(indentation);
         break;
 
     case WORDPRESS:
@@ -155,8 +153,7 @@ Para::emitContainedElements(outputMode_t mode,
 }
 
 void
-Para::emitDocbook(unsigned                             indentation,
-                  vector<ParaOrDirective *>::iterator &podIterator) const
+Para::emitDocbook(unsigned indentation) const
 {
     if (attributes[HEADING_TITLE]) {
         ContainerDirective *directive =

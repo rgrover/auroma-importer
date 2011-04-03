@@ -102,9 +102,7 @@ public:
             return false;
         }
 
-    void emit(outputMode_t                         mode,
-              unsigned int                        &indentation,
-              vector<ParaOrDirective *>::iterator &podIterator);
+    void emit(outputMode_t mode, unsigned int &indentation);
 
     void emitContainedElements(outputMode_t mode,
                                unsigned     indentation);
@@ -113,8 +111,7 @@ private:
     ParaElementContainer *enumBlock;
     unsigned        level;        /* paragraph level */
 
-    void emitDocbook(unsigned indentation,
-                     vector<ParaOrDirective *>::iterator &podIterator) const;
+    void emitDocbook(unsigned indentation) const;
     void emitWordpress(unsigned indentation) const;
 
     static unsigned currentLevel; /* current container level */

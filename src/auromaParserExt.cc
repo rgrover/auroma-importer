@@ -158,7 +158,7 @@ auromaParser::emit(outputMode_t outputMode)
     for (vector<ParaOrDirective *>::iterator podIterator = pods.begin();
          podIterator != pods.end();
          podIterator++) {
-        (*podIterator)->emit(outputMode, indentation, podIterator);
+        (*podIterator)->emit(outputMode, indentation);
     }
 
     switch (outputMode) {

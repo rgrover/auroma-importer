@@ -38,9 +38,7 @@
 #include "para.h"
 
 void
-Set::emit(outputMode_t                         mode,
-          unsigned                            &indentation,
-          vector<ParaOrDirective *>::iterator &podIterator)
+Set::emit(outputMode_t mode, unsigned &indentation)
 {
     assert(mode == DOCBOOK);
 
@@ -100,8 +98,7 @@ Set::emitEnd(void) const
 
 void
 Book::emit(outputMode_t                         mode,
-           unsigned                            &indentation,
-           vector<ParaOrDirective *>::iterator &podIterator)
+           unsigned                            &indentation)
 {
 }
 
@@ -120,9 +117,8 @@ Book::emitEnd(void) const
 }
 
 void
-Part::emit(outputMode_t                         mode,
-           unsigned                            &indentation,
-           vector<ParaOrDirective *>::iterator &podIterator)
+Part::emit(outputMode_t   mode,
+           unsigned      &indentation)
 {
 }
 
@@ -143,9 +139,8 @@ Part::emitEnd(void) const
 
 
 void
-Preface::emit(outputMode_t                         mode,
-              unsigned                            &indentation,
-              vector<ParaOrDirective *>::iterator &podIterator)
+Preface::emit(outputMode_t  mode,
+              unsigned     &indentation)
 {
     assert(mode == DOCBOOK);
 
@@ -176,9 +171,8 @@ Preface::emitEnd(void) const
 }
 
 void
-Chapter::emit(outputMode_t                         mode,
-              unsigned                            &indentation,
-              vector<ParaOrDirective *>::iterator &podIterator)
+Chapter::emit(outputMode_t  mode,
+              unsigned     &indentation)
 {
 }
 
