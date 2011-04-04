@@ -49,7 +49,8 @@ ContainerDirective::setCurrentContainerDirective(
         assert((newDirective->level == SET) || (newDirective->level == BOOK));
         directives.push(newDirective);
 
-        indentation += ParaElement::INDENT_STEP;
+        newDirective->origIndentation =  0;
+        indentation                   += ParaElement::INDENT_STEP;
 
         return;
     }
@@ -76,7 +77,8 @@ ContainerDirective::setCurrentContainerDirective(
             indentation -= ParaElement::INDENT_STEP;
         }
 
-        indentation += ParaElement::INDENT_STEP;
+        newDirective->origIndentation  = indentation;
+        indentation                   += ParaElement::INDENT_STEP;
         directives.push(newDirective);
     }
 }

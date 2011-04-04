@@ -43,9 +43,8 @@ Set::emit(outputMode_t mode, unsigned &indentation)
     assert(mode == DOCBOOK);
 
     /* update the emit-stack of containerDirectives */
-    assert(ContainerDirective::directives.empty());
-    outputMode  = mode;
-    origIndentation = indentation;
+    assert(directives.empty());
+    outputMode      = mode;
     setCurrentContainerDirective(this, indentation);
 
     emitBegin();
@@ -97,14 +96,58 @@ Set::emitEnd(void) const
 }
 
 void
-Book::emit(outputMode_t                         mode,
-           unsigned                            &indentation)
+Book::emit(outputMode_t  mode,
+           unsigned     &indentation)
 {
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
+
+    emitBegin();
 }
 
 void
 Book::emitBegin(void)
 {
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    if (directives.empty()) {
+        cout << "<book xmlns=\"http://docbook.org/ns/docbook\">" << endl;
+    } else {
+        cout << "<book>" << endl;
+    }
+
+    string title = getTitle();
+    string author = getAuthor();
+
+    /* emit the info block */
+    if ((title != "") || (author != "")) {
+        spaces(origIndentation + ParaElement::INDENT_STEP);
+        cout << "<info>" << endl;
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<title>"
+             << ((title == "") ? "PLEASE FILL IN THE TITLE HERE" : title)
+             << "</title>"
+             << endl;
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<author><personname>"
+             << ((author == "") ? "[PLEASE UPDATE AS NECESSARY]Sri Aurobindo" : author)
+             << "</personname></author>"
+             << endl;
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
+        cout << "<copyright>" << endl;
+        spaces(origIndentation + 3 * ParaElement::INDENT_STEP);
+        cout << "<year>[PLEASE UPDATE AS NECESSARY]2010</year>" << endl;
+        spaces(origIndentation + 3 * ParaElement::INDENT_STEP);
+        cout << "<holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>" << endl;
+        spaces(origIndentation + 2 * ParaElement::INDENT_STEP);
+        cout << "</copyright>" << endl;
+        spaces(origIndentation + ParaElement::INDENT_STEP);
+        cout << "</info>" << endl;
+    }
 }
 
 void
@@ -146,8 +189,7 @@ Preface::emit(outputMode_t  mode,
 
     /* update the emit-stack of containerDirectives */
     assert(!ContainerDirective::directives.empty());
-    outputMode  = mode;
-    origIndentation = indentation;
+    outputMode = mode;
     setCurrentContainerDirective(this, indentation);
 }
 
