@@ -270,6 +270,7 @@ Para::emitDocbook(unsigned indentation) const
                                    startedElements,
                                    fontModifiers);
 
+        cout << endl;
         spaces(indentation);
         cout << "</para>" << endl;
     }

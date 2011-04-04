@@ -45,8 +45,7 @@ ParaElementContainer::emit(outputMode_t        mode,
             emitEndFontModifier(mode, fontModifiers);
         }
         if (mode == DOCBOOK) {
-            cout << endl;
-            parentStartedElements = false;
+            /* parentStartedElements = false; */
         }
     }
 }
