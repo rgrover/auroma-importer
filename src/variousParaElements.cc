@@ -172,16 +172,12 @@ DotsParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
+            /* cout << "</elements>" << endl; */
+            /* parentStartedElements = false; */
         }
     }
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        cout << "<element type=\"dots\">...</element>" << endl;
-    } else {
-        cout << "...";
-    }
+
+    cout << "...";
 }
 
 void
