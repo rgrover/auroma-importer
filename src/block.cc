@@ -64,16 +64,32 @@ Block::emit(outputMode_t        mode,
     if (blockTypeString) {
         bool startedElements = false;
 
-        /* If this block has a specific typeString associated with it,
-         * then emit a separate XML container to wrap the block. */
-        spaces(indentation);
-        if (strcmp(blockTypeString, "footnote") == 0) {
-            cout << "<div id=\"footnote\">" << endl;
-            spaces(indentation + INDENT_STEP);
-            cout << "<li id=\"" << getFootnoteHref() << "\">";
+        switch (mode) {
+        case DOCBOOK:
+            spaces(indentation);
+            if (strcmp(blockTypeString, "reference") == 0) {
+                cout << "<attribution>";
+            } else if (strcmp(blockTypeString, "footnote") == 0) {
+                cout << "<footnote><para>";
+            } else {
+                cout << "<block type=\"" << blockTypeString << "\">" << endl;
+            }
             startedElements = true;
-        } else {
-            cout << "<block type=\"" << blockTypeString << "\">" << endl;
+            break;
+
+        case WORDPRESS:
+            /* If this block has a specific typeString associated with it,
+             * then emit a separate XML container to wrap the block. */
+            spaces(indentation);
+            if (strcmp(blockTypeString, "footnote") == 0) {
+                cout << "<div id=\"footnote\">" << endl;
+                spaces(indentation + INDENT_STEP);
+                cout << "<li id=\"" << getFootnoteHref() << "\">";
+                startedElements = true;
+            } else {
+                cout << "<block type=\"" << blockTypeString << "\">" << endl;
+            }
+            break;
         }
 
         ParaElementContainer::emit(mode,
@@ -81,17 +97,31 @@ Block::emit(outputMode_t        mode,
                                    startedElements,
                                    fontModifiers);
 
-        if (strcmp(blockTypeString, "footnote") == 0) {
-            cout << "<a href=\"#"
-                 << getFootnoteHref() << "-fn" << getFootnoteNumber()
-                 << "\">↑</a></li>"
-                 << endl;
-            spaces(indentation);
-            cout << "</div>" << endl;
-        } else {
-            cout << endl;
-            spaces(indentation);
-            cout << "</block>" << endl;
+        switch (mode) {
+        case DOCBOOK:
+            if (strcmp(blockTypeString, "reference") == 0) {
+                cout << "</attribution>" << endl;
+            } else if (strcmp(blockTypeString, "footnote") == 0) {
+                cout << "</para></footnote>" << endl;
+            } else {
+                cout << "</block>" << endl;
+            }
+            break;
+
+        case WORDPRESS:
+            if (strcmp(blockTypeString, "footnote") == 0) {
+                cout << "<a href=\"#"
+                     << getFootnoteHref() << "-fn" << getFootnoteNumber()
+                     << "\">↑</a></li>"
+                     << endl;
+                spaces(indentation);
+                cout << "</div>" << endl;
+            } else {
+                cout << endl;
+                spaces(indentation);
+                cout << "</block>" << endl;
+            }
+            break;
         }
     } else {
         /* emit the block at the same indentation level as the parent. */

@@ -176,7 +176,7 @@ Para::emitDocbook(unsigned indentation) const
         /* nothing */
     } else if (attributes[HEAD_QUOTE]) {
         spaces(indentation);
-        cout << "<epigraph>";
+        cout << "<epigraph><para>";
 
         bool startedElements = true;
         set<FontModifiers> fontModifiers;
@@ -185,7 +185,7 @@ Para::emitDocbook(unsigned indentation) const
                                    startedElements,
                                    fontModifiers);
 
-        cout << "</epigraph>" << endl;
+        cout << "</para></epigraph>" << endl;
     } else {
         spaces(indentation);
         cout << "<para";
