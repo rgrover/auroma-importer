@@ -172,6 +172,8 @@ Para::emitDocbook(unsigned indentation) const
                                    fontModifiers);
 
         cout << "</title>" << endl;
+    } else if (attributes[HEADING_NUMBER]) {
+        /* nothing */
     } else {
         spaces(indentation);
         cout << "<para";

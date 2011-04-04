@@ -104,8 +104,6 @@ Book::emit(outputMode_t  mode,
     /* update the emit-stack of containerDirectives */
     outputMode = mode;
     setCurrentContainerDirective(this, indentation);
-
-    emitBegin();
 }
 
 void
