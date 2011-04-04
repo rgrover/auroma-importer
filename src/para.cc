@@ -174,6 +174,18 @@ Para::emitDocbook(unsigned indentation) const
         cout << "</title>" << endl;
     } else if (attributes[HEADING_NUMBER]) {
         /* nothing */
+    } else if (attributes[HEAD_QUOTE]) {
+        spaces(indentation);
+        cout << "<epigraph>";
+
+        bool startedElements = true;
+        set<FontModifiers> fontModifiers;
+        ParaElementContainer::emit(DOCBOOK,
+                                   indentation + INDENT_STEP,
+                                   startedElements,
+                                   fontModifiers);
+
+        cout << "</epigraph>" << endl;
     } else {
         spaces(indentation);
         cout << "<para";
@@ -186,8 +198,8 @@ Para::emitDocbook(unsigned indentation) const
             attributes[QUOTE] ||
             attributes[POEM] ||
             attributes[FOOTER] ||
-            attributes[ENUMERATION] ||
-            attributes[HEAD_QUOTE]) {
+            attributes[ENUMERATION]
+            ) {
             cout << " attributes=\"";
 
             bool someAttributeEmitted = false;
