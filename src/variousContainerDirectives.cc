@@ -214,11 +214,21 @@ void
 Chapter::emit(outputMode_t  mode,
               unsigned     &indentation)
 {
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!ContainerDirective::directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
 }
 
 void
 Chapter::emitBegin(void)
 {
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<chapter>" << endl;
 }
 
 void
