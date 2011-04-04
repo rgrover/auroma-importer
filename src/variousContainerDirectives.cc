@@ -161,11 +161,21 @@ void
 Part::emit(outputMode_t   mode,
            unsigned      &indentation)
 {
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
 }
 
 void
 Part::emitBegin(void)
 {
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<part>" << endl;
 }
 
 
@@ -217,7 +227,7 @@ Chapter::emit(outputMode_t  mode,
     assert(mode == DOCBOOK);
 
     /* update the emit-stack of containerDirectives */
-    assert(!ContainerDirective::directives.empty());
+    assert(!directives.empty());
     outputMode = mode;
     setCurrentContainerDirective(this, indentation);
 }

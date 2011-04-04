@@ -190,11 +190,8 @@ Para::emitDocbook(unsigned indentation) const
         spaces(indentation);
         cout << "<para";
 
-        if (attributes[HEADING_NUMBER] ||
+        if (
             (attributes[INDENT] == false) ||
-            attributes[CENTER] ||
-            (attributes[FLUSH_LEFT] == false) ||
-            attributes[DROP] ||
             attributes[QUOTE] ||
             attributes[POEM] ||
             attributes[FOOTER] ||
