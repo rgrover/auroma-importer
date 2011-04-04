@@ -70,11 +70,7 @@ FootnoteParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-        } else if (mode == WORDPRESS) {
-            cout << endl;
-        }
+        cout << endl;
         parentStartedElements = false;
     }
 
@@ -104,11 +100,7 @@ ReferenceParaElement::emit(outputMode_t        mode,
     ) const
 {
     if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-        } else if (mode == WORDPRESS) {
-            cout << endl;
-        }
+        cout << endl;
         parentStartedElements = false;
     }
     bool startedElements = false;
@@ -170,13 +162,6 @@ DotsParaElement::emit(outputMode_t        mode,
                       bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            /* cout << "</elements>" << endl; */
-            /* parentStartedElements = false; */
-        }
-    }
-
     cout << "...";
 }
 
@@ -188,18 +173,7 @@ TstarParaElement::emit(outputMode_t        mode,
                        bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        cout << "<element type=\"tstar\">***</element>" << endl;
-    } else {
-        cout << "***";
-    }
+    cout << "***";
 }
 
 void
@@ -256,25 +230,7 @@ NDashParaElement::emit(outputMode_t        mode,
                        bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<element type=\"ndash\" font=\"";
-            emitStartFontModifier(mode, fontModifiers);
-            cout << "\">--</element>" << endl;
-        } else {
-            cout << "<element type=\"ndash\">--</element>" << endl;
-        }
-    } else {
-        cout << "--";
-    }
+    cout << "--";
 };
 
 void
@@ -285,25 +241,7 @@ MDashParaElement::emit(outputMode_t        mode,
                        bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<element type=\"mdash\" font=\"";
-            emitStartFontModifier(mode, fontModifiers);
-            cout << "\">---</element>" << endl;
-        } else {
-            cout << "<element type=\"mdash\">---</element>" << endl;
-        }
-    } else {
-        cout << "--";
-    }
+    cout << "--";
 };
 
 void
@@ -314,25 +252,7 @@ OpeningSingleQuoteParaElement::emit(outputMode_t        mode,
                                     bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<element type=\"open_single_quote\" font=\"";
-            emitStartFontModifier(mode, fontModifiers);
-            cout << "\">`</element>" << endl;
-        } else {
-            cout << "<element type=\"open_single_quote\">`</element>" << endl;
-        }
-    } else {
-        cout << "\'";
-    }
+    cout << "\'";
 }
 
 void
@@ -343,25 +263,7 @@ OpeningDoubleQuotesParaElement::emit(outputMode_t        mode,
                                      bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<element type=\"open_double_quotes\" font=\"";
-            emitStartFontModifier(mode, fontModifiers);
-            cout << "\">``</element>" << endl;
-        } else {
-            cout << "<element type=\"open_double_quotes\">``</element>" << endl;
-        }
-    } else {
-        cout << "\"";
-    }
+    cout << "\"";
 }
 
 void
@@ -372,23 +274,5 @@ ClosingDoubleQuotesParaElement::emit(outputMode_t        mode,
                                      bool                firstElement
     ) const
 {
-    if (parentStartedElements) {
-        if (mode == DOCBOOK) {
-            cout << "</elements>" << endl;
-            parentStartedElements = false;
-        }
-    }
-
-    if (mode == DOCBOOK) {
-        spaces(indentation);
-        if (fontModifiers.size()) {
-            cout << "<element type=\"close_double_quotes\" font=\"";
-            emitStartFontModifier(mode, fontModifiers);
-            cout << "\">''</element>" << endl;
-        } else {
-            cout << "<element type=\"close_double_quotes\">''</element>" << endl;
-        }
-    } else {
-        cout << "\"";
-    }
+    cout << "\"";
 }
