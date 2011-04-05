@@ -197,6 +197,7 @@ Para::emitDocbook(unsigned indentation) const
             attributes[FOOTER] ||
             attributes[ENUMERATION]
             ) {
+            assert(0);          /* TODO DO. */
             cout << " attributes=\"";
 
             bool someAttributeEmitted = false;
