@@ -71,6 +71,7 @@ FootnoteParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         cout << endl;
+        emitEndFontModifier(mode, fontModifiers);
         parentStartedElements = false;
     }
 
@@ -101,6 +102,7 @@ ReferenceParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         cout << endl;
+        emitEndFontModifier(mode, fontModifiers);
         parentStartedElements = false;
     }
     bool startedElements = false;
@@ -186,6 +188,7 @@ LineBreakParaElement::emit(outputMode_t        mode,
 {
     if (parentStartedElements) {
         if (mode == DOCBOOK) {
+            emitEndFontModifier(mode, fontModifiers);
             parentStartedElements = false;
         }
     }
@@ -207,6 +210,7 @@ PageBreakParaElement::emit(outputMode_t        mode,
     if (parentStartedElements) {
         if (mode == DOCBOOK) {
             cout << endl;
+            emitEndFontModifier(mode, fontModifiers);
             parentStartedElements = false;
         }
     }
@@ -241,7 +245,7 @@ MDashParaElement::emit(outputMode_t        mode,
                        bool                firstElement
     ) const
 {
-    cout << "--";
+    cout << "---";
 };
 
 void

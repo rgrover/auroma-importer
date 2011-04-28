@@ -52,7 +52,7 @@ public:
         CENTER,
         FLUSH_LEFT,
         DROP,
-        QUOTE,
+        BLOCK_QUOTE,
         POEM,
         FOOTER,
         ENUMERATION,
@@ -72,7 +72,7 @@ public:
             attributes[CENTER]         = false;
             attributes[FLUSH_LEFT]     = true;
             attributes[DROP]           = false;
-            attributes[QUOTE]          = false;
+            attributes[BLOCK_QUOTE]    = false;
             attributes[POEM]           = false;
             attributes[FOOTER]         = false;
             attributes[ENUMERATION]    = false;

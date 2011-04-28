@@ -249,3 +249,96 @@ Chapter::emitEnd(void) const
     spaces(origIndentation);
     cout << "</chapter>" << endl;
 }
+
+
+void
+Section::emit(outputMode_t  mode,
+              unsigned     &indentation)
+{
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
+}
+
+void
+Section::emitBegin(void)
+{
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<section>" << endl;
+}
+
+void
+Section::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(origIndentation);
+    cout << "</section>" << endl;
+}
+
+
+void
+Section1::emit(outputMode_t  mode,
+              unsigned     &indentation)
+{
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
+}
+
+void
+Section1::emitBegin(void)
+{
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<sect1>" << endl;
+}
+
+void
+Section1::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(origIndentation);
+    cout << "</sect1>" << endl;
+}
+
+
+void
+Section2::emit(outputMode_t  mode,
+              unsigned     &indentation)
+{
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
+}
+
+void
+Section2::emitBegin(void)
+{
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<sect2>" << endl;
+}
+
+void
+Section2::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(origIndentation);
+    cout << "</sect2>" << endl;
+}

@@ -51,6 +51,9 @@
 %token BOOK_CMD
 %token PART_CMD
 %token CHAPTER_CMD
+%token SECTION_CMD
+%token SECTION1_CMD
+%token SECTION2_CMD
 %token TITLE_CMD
 %token AUTHOR_CMD
 
@@ -58,7 +61,7 @@
 %token HEADING_NUMBER_CMD       /* e.g. Chapter IX */
 %token HEADING_TITLE_CMD        /* e.g. Chapter Headings. */
 %token CHAPTER_HEAD_QUOTE_CMD   /* Quotations following a chapter heading. */
-%token QUOTE_CMD                /* Indented quotations. */
+%token BLOCK_QUOTE_CMD          /* Indented quotations. */
 %token REFERENCE_CMD            /* References for quotations. */
 %token FOOTNOTE_CMD
 %token POEM_CMD                 /* Enter poem mode. */
@@ -204,12 +207,12 @@ paraAttributeCommand :
         para->unsetAttribute(Para::INDENT);
     }
 |
-    QUOTE_CMD
+    BLOCK_QUOTE_CMD
     {
         assert(currentElementContainerIsPara());
 
         Para *para = reinterpret_cast<Para *>(currentElementContainer());
-        para->setAttribute(Para::QUOTE);
+        para->setAttribute(Para::BLOCK_QUOTE);
     }
 |
     POEM_CMD
@@ -574,6 +577,33 @@ paragraphContainerDirective:
     {
         ContainerDirective *chapter = new Chapter();
         newDirective(chapter);
+    }
+|
+    optionalBlankSpaces
+    SECTION_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *section = new Section();
+        newDirective(section);
+    }
+|
+    optionalBlankSpaces
+    SECTION1_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *section1 = new Section1();
+        newDirective(section1);
+    }
+|
+    optionalBlankSpaces
+    SECTION2_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *section2 = new Section2();
+        newDirective(section2);
     }
 |
     optionalBlankSpaces

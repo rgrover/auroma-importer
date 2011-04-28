@@ -186,4 +186,92 @@ private:
 };
 
 
+class Section : public ContainerDirective
+{
+public:
+
+    Section(void) : ContainerDirective(SECTION)
+        {
+        }
+
+    ~Section(void)
+        {
+        }
+
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
+
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
+
+    void emit(outputMode_t mode, unsigned int &indentation);
+    void emitBegin(void);
+    void emitEnd(void) const;
+
+private:
+};
+
+
+class Section1 : public ContainerDirective
+{
+public:
+
+    Section1(void) : ContainerDirective(SECTION1)
+        {
+        }
+
+    ~Section1(void)
+        {
+        }
+
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
+
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
+
+    void emit(outputMode_t mode, unsigned int &indentation);
+    void emitBegin(void);
+    void emitEnd(void) const;
+
+private:
+};
+
+class Section2 : public ContainerDirective
+{
+public:
+
+    Section2(void) : ContainerDirective(SECTION2)
+        {
+        }
+
+    ~Section2(void)
+        {
+        }
+
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
+
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
+
+    void emit(outputMode_t mode, unsigned int &indentation);
+    void emitBegin(void);
+    void emitEnd(void) const;
+
+private:
+};
+
 #endif /* VARIOUS_PARA_CONTAINERS */

@@ -43,6 +43,8 @@
 
 using namespace std;
 
+/* The following enumeration lists the various paragraph containers in
+ * decreasing order of importance. */
 enum ContainerLevel
 {
     UNKNOWN = -1,
@@ -51,6 +53,9 @@ enum ContainerLevel
     PART,
     PREFACE,
     CHAPTER,
+    SECTION,
+    SECTION1,
+    SECTION2,
 };
 
 class ContainerDirective: public ParaOrDirective

@@ -174,6 +174,30 @@ Para::emitDocbook(unsigned indentation) const
         cout << "</title>" << endl;
     } else if (attributes[HEADING_NUMBER]) {
         /* nothing */
+    } else if (attributes[INDENT] == false) {
+        spaces(indentation);
+        cout << "<para>";
+
+        bool startedElements = true;
+        set<FontModifiers> fontModifiers;
+        ParaElementContainer::emit(DOCBOOK,
+                                   indentation + INDENT_STEP,
+                                   startedElements,
+                                   fontModifiers);
+
+        cout << "</para>" << endl;
+    } else if (attributes[BLOCK_QUOTE]) {
+        spaces(indentation);
+        cout << "<blockquote><para>";
+
+        bool startedElements = true;
+        set<FontModifiers> fontModifiers;
+        ParaElementContainer::emit(DOCBOOK,
+                                   indentation + INDENT_STEP,
+                                   startedElements,
+                                   fontModifiers);
+
+        cout << "</para></blockquote>" << endl;
     } else if (attributes[HEAD_QUOTE]) {
         spaces(indentation);
         cout << "<epigraph><para>";
@@ -190,10 +214,7 @@ Para::emitDocbook(unsigned indentation) const
         spaces(indentation);
         cout << "<para";
 
-        if (
-            (attributes[INDENT] == false) ||
-            attributes[QUOTE] ||
-            attributes[POEM] ||
+        if (attributes[POEM] ||
             attributes[FOOTER] ||
             attributes[ENUMERATION]
             ) {
@@ -218,15 +239,6 @@ Para::emitDocbook(unsigned indentation) const
                             cout << ",";
                         }
                         cout << "drop";
-                        someAttributeEmitted = true;
-                    }
-                    break;
-                case QUOTE:
-                    if (attributes[i]) {
-                        if (someAttributeEmitted) {
-                            cout << ",";
-                        }
-                        cout << "quote";
                         someAttributeEmitted = true;
                     }
                     break;
@@ -298,7 +310,7 @@ Para::emitWordpress(unsigned indentation) const
                attributes[CENTER] ||
                (attributes[FLUSH_LEFT] == false) ||
                attributes[DROP] ||
-               attributes[QUOTE] ||
+               attributes[BLOCK_QUOTE] ||
                attributes[POEM] ||
                attributes[FOOTER] ||
                attributes[ENUMERATION] ||
@@ -348,7 +360,7 @@ Para::emitWordpress(unsigned indentation) const
                     someAttributeEmitted = true;
                 }
                 break;
-            case QUOTE:
+            case BLOCK_QUOTE:
                 if (attributes[i]) {
                     if (someAttributeEmitted) {
                         cout << ",";
