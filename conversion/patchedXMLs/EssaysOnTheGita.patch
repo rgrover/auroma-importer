@@ -1,0 +1,69 @@
+--- ../xmlsFromAuromaParser/EssaysOnTheGita.xml	2011-04-14 10:59:26.281102002 +0530
++++ EssaysOnTheGita.xml	2011-04-14 11:42:37.251102006 +0530
+@@ -4,8 +4,8 @@
+         <title>Essays On The Gita</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+@@ -36,9 +36,7 @@
+         <title>FIRST SERIES
+ </title>
+         <chapter>
+-            <title>Our Demand and Need<literallayout>
+-</literallayout>
+-                 from the Gita</title>
++            <title>Our Demand and Need from the Gita</title>
+             <para>
+                 The world abounds with scriptures sacred and profane, with revelations and half-revelations, with religions and philosophies, sects and schools and systems. To these the many minds of a half-ripe knowledge or no knowledge at all attach themselves with exclusiveness and passion and will have it that this or the other book is alone the eternal Word of God and all others are either impostures or at best imperfectly inspired, that this or that philosophy is the last word of the reasoning intellect and other systems are either errors or saved only by such partial truth in them as links them to the one true philosophical cult. Even the discoveries of physical Science have been elevated into a creed and in its name religion and spirituality banned as ignorance and superstition, philosophy as frippery and moonshine. And to these bigoted exclusions and vain wranglings even the wise have often lent themselves, misled by some spirit of darkness that has mingled with their light and overshadowed it with some cloud of intellectual egoism or spiritual pride. Mankind seems now indeed inclined to grow a little modester and wiser; we no longer slay our fellows in the name of God's truth or because they have minds differently trained or differently constituted from ours; we are less ready to curse and revile our neighbour because he is wicked or presumptuous enough to differ from us in opinion; we are ready even to admit that Truth is everywhere and cannot be our sole monopoly; we are beginning to look at other religions and philosophies for the truth and help they contain and no longer merely in order to damn them as false or criticise what we conceive to be their errors. But we are still apt to declare that our truth gives us 
+                 <emphasis>the</emphasis> supreme knowledge which other religions or philosophies
+@@ -1035,9 +1033,7 @@
+             </para>
+         </chapter>
+         <chapter>
+-            <title>The Possibility and Purpose<literallayout>
+-</literallayout>
+-                 of Avatarhood</title>
++            <title>The Possibility and Purpose of Avatarhood</title>
+             <para>
+                 In speaking of this Yoga in which action and knowledge become one, the Yoga of the sacrifice of works with knowledge, in which works are fulfilled in knowledge, knowledge supports, changes and enlightens works, and both are offered to the Purushottama, the supreme Divinity who becomes manifest within us as Narayana, Lord of all our being and action seated secret in our hearts for ever, who becomes manifest even in the human form as the Avatar, the divine birth taking possession of our humanity, Krishna has declared in passing that this was the ancient and original Yoga which he gave to Vivasvan, the Sun-God, Vivasvan gave it to Manu, the father of men, Manu gave it to Ikshvaku, head of the Solar line, and so it came down from royal sage to royal sage till it was lost in the great lapse of Time and is now renewed for Arjuna, because he is the lover and devotee, friend and comrade of the Avatar. For this, he says, is the highest secret,—thus claiming for it a superiority to all other forms of Yoga, because those others lead to the impersonal Brahman or to a personal Deity, to a liberation in actionless knowledge or a liberation in absorbed beatitude, but this gives the highest secret and the whole secret; it brings us to divine peace and divine works, to divine knowledge, action and ecstasy unified in a perfect freedom; it unites into itself all the Yogic paths as the highest being of the Divine reconciles and makes one in itself all the different and even contrary powers and principles of its manifested being. Therefore this Yoga of the Gita is not, as some contend, only the Karmayoga, one and the lowest, according to them, of the three paths, but a highest Yoga synthetic and integral directing Godward all the powers of our being.
+ 
+@@ -2067,9 +2063,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Synthesis of<literallayout>
+-</literallayout>
+-                     Devotion and Knowledge
++                <title>The Synthesis of Devotion and Knowledge
+                     <footnote><para>Gita, VII. 15-28.</para></footnote>
+ </title>
+                 <para>
+@@ -2838,9 +2832,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Vision of the World-Spirit<literallayout>
+-</literallayout>
+-                     Time the Destroyer</title>
++                <title>The Vision of the World-Spirit; Time the Destroyer</title>
+                 <para>
+                     The vision of the universal Purusha is one of the best known and most powerfully poetic passages in the Gita, but its place in the thought is not altogether on the surface. It is evidently intended for a poetic and revelatory symbol and we must see how it is brought in and for what purpose and discover to what it points in its significant aspects before we can capture its meaning. It is invited by Arjuna in his desire to see the living image, the visible greatness of the unseen Divine, the very embodiment of the Spirit and Power that governs the universe. He has heard the highest spiritual secret of existence, that all is from God and all is the Divine and in all things God dwells and is concealed and can be revealed in every finite appearance. The illusion which so persistently holds man's sense and mind, the idea that things at all exist in themselves or for themselves apart from God or that anything subject to Nature can be self-moved and self-guided, has passed from him,—that was the cause of his doubt and bewilderment and refusal of action. Now he knows what is the sense of the birth and passing away of existences. He knows that the imperishable greatness of the divine conscious Soul is the secret of all these appearances. All is a Yoga of this great eternal Spirit in things and all happenings are the result and expression of that Yoga; all Nature is full of the secret Godhead and in labour to reveal him in her. But he would see too the very form and body of this Godhead, if that be possible. He has heard of his attributes and understood the steps and ways of his self-revelation; but now he asks of this Master of the Yoga to discover his very imperishable Self to the eye of Yoga. Not, evidently, the formless silence of his actionless immutability, but the Supreme from whom is all energy and action, of whom forms
+                      are the masks, who reveals his force in the Vibhuti,—the Master of works, the Master of knowledge and adoration, the Lord of Nature and all her creatures. For this greatest all-comprehending vision he is made to ask because it is so, from the Spirit revealed in the universe, that he must receive the command to his part in the world-action.
+@@ -2903,10 +2895,8 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Vision of the World-Spirit
++                <title>The Vision of the World-Spirit;
+                     <footnote><para>Gita, XI. 35-55.</para></footnote>
+-<literallayout>
+-</literallayout>
+                      The Double Aspect</title>
+                 <para>
+                     Even while the effects of the terrible aspect of this vision are still upon him, the first words uttered by Arjuna after the Godhead has spoken are eloquent of a greater uplifting and reassuring reality behind this face of death and this destruction. "Rightly and in good place," he cries, "O Krishna, does the world rejoice and take pleasure in thy name, the Rakshasas are fleeing from thee in terror to all the quarters and the companies of the Siddhas bow down before thee in adoration. How should they not do thee homage, O great Spirit? For thou art the original Creator and Doer of works and greater even than creative Brahma. O thou Infinite, O thou Lord of the gods, O thou abode of the universe, thou art the Immutable and thou art what is and is not and thou art that which is the Supreme. Thou art the ancient Soul and the first and original Godhead and the supreme resting-place of this All; thou art the knower and that which is to be known and the highest status; O infinite in form, by thee was extended the universe. Thou art Yama and Vayu and Agni and Soma and Varuna and Prajapati, father of creatures, and the great-grandsire. Salutation to thee a thousand times over and again and yet again salutation, in front and behind and from every side, for thou art each and all that is. Infinite in might and immeasurable in strength of action thou pervadest all and art every one."

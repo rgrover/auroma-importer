@@ -1,0 +1,33 @@
+--- ../xmlsFromAuromaParser/TheRenaissanceInIndia.xml	2011-04-29 10:57:10.135896005 +0530
++++ TheRenaissanceInIndia.xml	2011-04-29 10:57:10.145896006 +0530
+@@ -4,8 +4,8 @@
+         <title>The Renaissance in India</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+@@ -2148,7 +2148,7 @@
+                     <emphasis>The Renaissance in India</emphasis>. Four essays appeared in the 
+                     <emphasis>Arya</emphasis> between August and November 1918 under the title 
+                     <emphasis>The Renaissance in India</emphasis>. In September 1920 they were published under the same title by the Prabartak Publishing House, Chandernagore, after being revised lightly by Sri Aurobindo. The publisher's note to this edition stated: "The subject matter of the book was written in a way of appreciation of Mr. James H. Cousins' book of the same name." Cousins' 
+-                    <emphasis>Renaissance in India</emphasis>, a series of articles on contemporary Indian art and other subjects, was published by Ganesh & Co., Madras, with a preface dated June 1918. New editions of Sri Aurobindo's 
++                    <emphasis>Renaissance in India</emphasis>, a series of articles on contemporary Indian art and other subjects, was published by Ganesh and Co., Madras, with a preface dated June 1918. New editions of Sri Aurobindo's 
+                     <emphasis>Renaissance in India</emphasis> were published in 1927, 1937, 1946, 1951 and 1966. The 1966 edition has been frequently reprinted. In 1971 and 1972 
+                     <emphasis>The Renaissance in India</emphasis> was published along with 
+                     <emphasis>The Foundations of Indian Culture</emphasis> (see below) as volume 14 of the Sri Aurobindo Birth Centenary Library (de luxe and popular editions).</para>
+@@ -2160,8 +2160,8 @@
+                 <para>
+                     <emphasis>"Is India Civilised?"</emphasis>. Three essays appeared in the 
+                     <emphasis>Arya</emphasis> under this title between December 1918 and February 1919. They were written in response to a book by Sir John Woodroffe entitled 
+-                    <emphasis>Is India Civilized? Essays on Indian Culture</emphasis> (Madras: Ganesh & Co., foreword dated 4 October 1918). Woodroffe's book was itself a response to a book by William Archer, 
+-                    <emphasis>India and the Future</emphasis> (London: Hutchinson & Co., 1917).</para>
++                    <emphasis>Is India Civilized? Essays on Indian Culture</emphasis> (Madras: Ganesh and Co., foreword dated 4 October 1918). Woodroffe's book was itself a response to a book by William Archer, 
++                    <emphasis>India and the Future</emphasis> (London: Hutchinson and Co., 1917).</para>
+                 <para>
+                     <emphasis>A Defence of Indian Culture</emphasis>. In the issue of the 
+                     <emphasis>Arya</emphasis> in which he concluded 

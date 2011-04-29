@@ -1,0 +1,128 @@
+--- ../xmlsFromAuromaParser/LettersOnYoga.xml	2011-04-27 15:30:01.020078000 +0530
++++ LettersOnYoga.xml	2011-04-27 22:41:34.646059000 +0530
+@@ -1,4 +1,13 @@
+ <?xml version="1.0" encoding="utf-8"?>
++<book>
++    <info>
++        <title>Letters On Yoga</title>
++        <author><personname>Sri Aurobindo</personname></author>
++        <copyright>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++        </copyright>
++    </info>
+     <preface>
+         <title>Publisher's Note</title>
+         <para>
+@@ -35,6 +44,7 @@
+             <para>
+ 
+             </para>
++	    <sect2>
+                 <para>
+                     There have been times when the seeking for spiritual attainment was, at least in certain civilisations, more intense and widespread than now or rather than it has been in the world in general during the past few centuries. For now the curve seems to be the beginning of a new turn of seeking which takes its start from what was achieved in the past and projects itself towards a greater future. But always, even in the age of the Vedas or in Egypt, the spiritual achievement or the occult knowledge was confined to a few, it was not spread in the whole mass of humanity. The mass of humanity evolves slowly, containing in itself all stages of the evolution from the material and the vital man to the mental man. A small minority has pushed beyond the barriers, opening the doors to occult and spiritual knowledge and preparing the ascent of the evolution beyond mental man into spiritual and supramental being. Sometimes this minority has exercised an enormous influence as in Vedic India, Egypt or, according to tradition, in Atlantis, and determined the civilisation of the race, giving it a strong stamp of the spiritual or the occult; sometimes they have stood apart in their secret schools or orders, not directly influencing a civilisation which was sunk in material ignorance or in chaos and darkness or in the hard external enlightenment which rejects spiritual knowledge.
+                 </para>
+@@ -3599,6 +3609,22 @@
+                 <para>
+                     There are several capital and common errors here:—
+                 </para>
++		<orderedlist numeration="arabic">
++		  <listitem>
++		    <para>That mind and spirit are the same thing.</para>
++		  </listitem>
++		  <listitem>
++		    <para>That all consciousness can be spoken of as "mind".</para>
++		  </listitem>
++		  <listitem>
++		    <para>That all consciousness therefore is of a spiritual substance.</para>
++		  </listitem>
++		  <listitem>
++		    <para>That the body is merely Matter, not
++conscious, therefore something quite different from the spiritual part
++of the nature.</para>
++		  </listitem>
++		</orderedlist>
+                 <para>
+                     First, the spirit and the mind are two different things and should not be confused together. The mind is an instrumental entity or instrumental consciousness whose function is to think and perceive—the spirit is an essential entity or consciousness which does not need to think or perceive either in the mental or the sensory way, because whatever knowledge it has is direct or essential knowledge, 
+                     <emphasis>svayaṁprakāśa</emphasis>.
+@@ -4235,6 +4261,31 @@
+             <sect2>
+                 <title>XIII</title>
+                 <para>The centres or Chakras are seven in number:—</para>
++		<orderedlist numeration="arabic">
++		  <listitem>
++		    <para>The thousand-petalled lotus on the top of the head.</para>
++		  </listitem>
++		  <listitem>
++		    <para>In the middle of the forehead—the Ajna
++Chakra—(will, vision, dynamic thought).</para>
++		  </listitem>
++		  <listitem>
++		    <para>Throat centre—externalising mind.</para>
++		  </listitem>
++		  <listitem>
++		    <para>Heart-lotus—emotional centre. The psychic is
++		    behind it.</para>
++		  </listitem>
++		  <listitem>
++		    <para>Navel—higher vital (proper).</para>
++		  </listitem>
++		  <listitem>
++		    <para>Below navel—lower vital.</para>
++		  </listitem>
++		  <listitem>
++		    <para>Muladhara—physical.</para>
++		  </listitem>
++		</orderedlist>
+                 <para>
+                     All these centres are in the middle of the body; they are supposed to be attached to the spinal cord; but in fact all these things are in the subtle body, 
+                     <emphasis>sūkṣma deha</emphasis>, though one has the feeling of their activities as if in the physical body when the consciousness is awake.
+@@ -6987,6 +7038,39 @@
+             </sect2>
+             <sect2>
+                 <title>IV</title>
++		<itemizedlist mark='bullet'>
++		  <listitem>
++		    <para><emphasis>Faith</emphasis>—a dynamic
++		      entire belief and acceptance.
++		    </para>
++		  </listitem>
++		  <listitem>
++		    <para><emphasis>Belief</emphasis>—intellectual
++		      acceptance only.
++		    </para>
++		  </listitem>
++		  <listitem>
++		    <para><emphasis>Conviction</emphasis>—intellectual
++		      belief held on what seems to be good reasons.
++		    </para>
++		  </listitem>
++		  <listitem>
++		    <para><emphasis>Reliance</emphasis>—dependence
++		      on another for something, based on trust.
++		    </para>
++		  </listitem>
++		  <listitem>
++		    <para><emphasis>Trust</emphasis>—the feeling of
++		      sure expectation of another's help and reliance
++		      on his word, character, etc.
++		    </para>
++		  </listitem>
++		  <listitem>
++		    <para><emphasis>Confidence</emphasis>—the sense
++		      of security that goes with trust.
++		    </para>
++		  </listitem>
++		</itemizedlist>
+                 <para>
+ ***
+                 </para>
+@@ -23656,7 +23740,7 @@
+                 <para>
+ ***
+                 </para>
+-                <para>It [retracing one's steps from the vital into the psychic] can be done, if you refuse to be preoccupied with the idea of your difficulties and concentrate on really helpful and positive things. Be cheerful and confident. Doubt and desire & Co. are there, no doubt, but the Divine is there also inside you. Open your eyes and look and look till the veil is rent and you see Him or Her!</para>
++                <para>It [retracing one's steps from the vital into the psychic] can be done, if you refuse to be preoccupied with the idea of your difficulties and concentrate on really helpful and positive things. Be cheerful and confident. Doubt and desire and Co. are there, no doubt, but the Divine is there also inside you. Open your eyes and look and look till the veil is rent and you see Him or Her!</para>
+                 <para>
+ ***
+                 </para>

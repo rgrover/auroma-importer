@@ -1,0 +1,215 @@
+--- ../xmlsFromAuromaParser/EssaysInPhilosophyAndYoga.xml	2011-04-29 11:55:27.185896012 +0530
++++ EssaysInPhilosophyAndYoga.xml	2011-04-29 12:16:20.795896005 +0530
+@@ -1,4 +1,13 @@
+ <?xml version="1.0" encoding="utf-8"?>
++<book>
++    <info>
++        <title>Essays In Philosophy and Yoga</title>
++        <author><personname>Sri Aurobindo</personname></author>
++        <copyright>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++        </copyright>
++    </info>
+     <preface>
+         <title>Publisher's Note</title>
+         <para>
+@@ -223,10 +232,24 @@
+             </para>
+             <para>
+                 The great and memorable vision of Kurukshetra when Sri Krishna manifesting his world-form declared himself as destroying Time, is significant of this deep perception of humanity. When Arjuna wished to cast aside his bow and quiver, when he said, "This is a sin we do and a great destruction of men and brothers, I will forbear," Sri Krishna after convincing his intellect of error, proceeded by that marvellous vision described in the eleventh canto of the Gita to stamp the truth of things upon his imagination. Thus run the mighty stanzas:
++	    </para>
++	    <para>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>kālo'smi lokakṣayakṛt pravṛddho</emphasis></member>
++		  <member><emphasis>lokān samāhartumiha pravṛttaḥ,</emphasis></member>
++		  <member><emphasis>ṛte'pi tvāṁ na bhaviṣyanti sarve</emphasis></member>
++		  <member><emphasis>ye'vasthitāḥ pratyanīkeṣu yodhāḥ.</emphasis></member>
++		  <member><emphasis>tasmāttvamuttiṣṭha yaśo labhasva</emphasis></member>
++		  <member><emphasis>jitvā śatrūn bhuṅkṣva rājyaṁ samṛddham,</emphasis></member>
++		  <member><emphasis>mayaivaite nihatāḥ pūrvameva</emphasis></member>
++		  <member><emphasis>nimittamātraṁ bhava savyasācin.</emphasis></member>
++		</simplelist>
++	      </blockquote>
+ 
+             </para>
+             <para>
+-                "I am Time who waste and destroy the peoples; lo, I have arisen in my might, I am here to swallow up the nations. Even without thee all they shall not be, the men of war who stand arrayed in the opposing squadrons. Therefore do thou arise and get thee great glory, conquer thy foes and enjoy a great and wealthy empire. For these, they were slain even before and it is I who have slain them; be the occasion only, O Savyasachin."
++	      "I am Time who waste and destroy the peoples; lo, I have arisen in my might, I am here to swallow up the nations. Even without thee all they shall not be, the men of war who stand arrayed in the opposing squadrons. Therefore do thou arise and get thee great glory, conquer thy foes and enjoy a great and wealthy empire. For these, they were slain even before and it is I who have slain them; be the occasion only, O Savyasachin."
+             </para>
+             <para>
+                 It is not as the slow process of Time that Sri Krishna manifests himself; it is as the Zeitgeist consummating in a moment the work carefully prepared for decades that He appears to Arjuna. All have been moving inevitably towards the catastrophe of Kurukshetra. Men did not know it: those who would have done everything possible to avert the calamity, helped its coming by their action or inaction; those who had a glimpse of it strove in vain to stop the wheels of Fate; Sri Krishna himself as the 
+@@ -249,11 +272,11 @@
+                  moves in Time and the very movement fulfils itself, creates its means, accomplishes its ends. It is not an accident that she works in one man more than in another. He is chosen because he is a likely vessel, and having chosen him she neither rejects him till the purpose is fulfilled nor allows him to reject her. Therefore Sri Krishna tells Arjuna:
+             </para>
+             <blockquote><para>
+-                <emphasis>yadahaṅkāramāśritya na yotsya iti manyase,</emphasis><literallayout>
+-</literallayout>
+-                <emphasis> mithyaiṣa vyavasāyaste prakṛtistvāṁ niyokṣyati.</emphasis></para></blockquote>
++		<simplelist type='horiz' columns='1'>
++                  <member><emphasis>yadahaṅkāramāśritya na yotsya iti manyase,</emphasis></member>
++                  <member><emphasis> mithyaiṣa vyavasāyaste prakṛtistvāṁ niyokṣyati.</emphasis></member></simplelist></para></blockquote>
+             <para>
+-                "The thought which thou thinkest and takest refuge in egoism saying 'I will not fight,' this thy resolve is a vain thing; Nature will yoke thee to thy work." When a man seems to have rejected his work, it merely means that his work is over and Kali leaves him for another. When a man who has carried out a great work is destroyed, it is for the egoism by which he has misused the force within that the force itself breaks him to pieces, as it broke Napoleon. Some instruments are treasured up, some are flung aside and shattered, but all are instruments. This is the greatness of great men, not that by their own strength they can determine great events, but that they are serviceable and specially-forged instruments of the Power which determines them. Mirabeau helped to create the French Revolution, no man more. When he set himself against it and strove, becoming a prop of monarchy, to hold back the wheel, did the French Revolution stop for the backsliding of France's mightiest? Kali put her foot on Mirabeau and he disappeared; but the Revolution went on, for the Revolution was the manifestation of the Zeitgeist, the Revolution was the will of God.
++"The thought which thou thinkest and takest refuge in egoism saying 'I will not fight,' this thy resolve is a vain thing; Nature will yoke thee to thy work." When a man seems to have rejected his work, it merely means that his work is over and Kali leaves him for another. When a man who has carried out a great work is destroyed, it is for the egoism by which he has misused the force within that the force itself breaks him to pieces, as it broke Napoleon. Some instruments are treasured up, some are flung aside and shattered, but all are instruments. This is the greatness of great men, not that by their own strength they can determine great events, but that they are serviceable and specially-forged instruments of the Power which determines them. Mirabeau helped to create the French Revolution, no man more. When he set himself against it and strove, becoming a prop of monarchy, to hold back the wheel, did the French Revolution stop for the backsliding of France's mightiest? Kali put her foot on Mirabeau and he disappeared; but the Revolution went on, for the Revolution was the manifestation of the Zeitgeist, the Revolution was the will of God.
+             </para>
+             <para>
+                 So it is always. The men who prided themselves that great events were their work, because they seemed to have an initial hand in them, go down into the trench of Time and others march forward over their shattered reputations. Those who are swept forward by Kali within them and make no terms with Fate, they alone survive. The greatness of individuals is the greatness of the eternal Energy within.
+@@ -593,7 +616,12 @@
+                 <emphasis>maccittaḥ sarvadurgāṇi matprasādāt tariṣyasi,</emphasis></para></blockquote>
+             <para>"By giving thyself up in heart and mind to Me, thou shalt cross over all difficulties and perils by My grace," and again,</para>
+             <blockquote><para>
+-                <emphasis>sarvadharmān parityajya māmekaṁ śaraṇaṁ vraja, ahaṁ tvā sarvapāpebhyo mokṣayiṣyāmi mā śucaḥ.</emphasis></para></blockquote>
++		<simplelist type='horiz' columns='1'>
++		  <member><emphasis>sarvadharmān parityajya māmekaṁ śaraṇaṁ vraja,</emphasis></member>
++		  <member><emphasis>ahaṁ tvā sarvapāpebhyo mokṣayiṣyāmi mā śucaḥ.</emphasis></member>
++		</simplelist>
++              </para>
++	    </blockquote>
+             <para>"Abandon all 
+                 <emphasis>dharmas</emphasis> (all law, rule, means and codes of every kind whether formed by previous habit and belief or imposed from outside) and take refuge in Me alone; I will deliver thee from all sin and evil,—do not grieve." "I will deliver",—you have not to be troubled or struggle yourself as if the responsibility were yours or the result depended on your efforts, a mightier than you is busy with the matter. Neither disease nor calamity nor the rising of sin and impurity in you should cause any alarm. Hold fast only to him. "I will deliver thee from all sin and evil." But the release does not come by a sudden miracle, it comes by a process of purification and these things are a part of the process. They are like the dust that rises in clouds when a room long uncleaned is at last swept out. Though the dust seem to choke you, yet persevere, 
+                 <emphasis>mā śucaḥ</emphasis>.</para>
+@@ -643,9 +671,9 @@
+                 <emphasis>ānandaṁ brahmaṇo vidvān na bibheti kutaścana,</emphasis></para></blockquote>
+             <para>"He who possesses the delight of the Brahman has no fear from anything in the world,"and that other in the Isha Upanishad,</para>
+             <blockquote><para>
+-                <emphasis>yasmin sarvāṇi bhūtāni ātmaivābhūd vijānataḥ,</emphasis><literallayout>
+-</literallayout>
+-                <emphasis> tatra ko mohaḥ kaḥ śoka ekatvamanupaśyataḥ.</emphasis></para></blockquote>
++		<simplelist type='horiz' columns='1'>
++                  <member><emphasis>yasmin sarvāṇi bhūtāni ātmaivābhūd vijānataḥ,</emphasis></member>
++                  <member><emphasis> tatra ko mohaḥ kaḥ śoka ekatvamanupaśyataḥ.</emphasis></member></simplelist></para></blockquote>
+             <para>"When all created things become one with a man's self by his getting the knowledge ( 
+                 <emphasis>vijñāna</emphasis>), thereafter what bewilderment can he have or what grief, when in all things he sees their oneness?" The whole world then appears to us in a changed aspect, as an ocean of beauty, good, light, bliss, exultant movement on a basis of eternal strength and peace. We see all things as 
+                 <emphasis>śubha</emphasis>, 
+@@ -713,9 +741,9 @@
+                 <emphasis>tvayā hṛṣīkeśa hṛdi sthitena yathā niyukto'smi tathā karomi,</emphasis></para></blockquote>
+             <para>"According as I am appointed by Thee, O Hrishikesha! seated in my heart, so I act." When this has entered into your daily life, it will be easier to accomplish the second stage and live in the knowledge of the Gita,</para>
+             <blockquote><para>
+-                <emphasis>īśvaraḥ sarvabhūtānāṁ hṛddeśe'rjuna tiṣṭhati,</emphasis><literallayout>
+-</literallayout>
+-                <emphasis> bhrāmayan sarvabhūtāni yantrārūḍhāni māyayā.</emphasis></para></blockquote>
++		<simplelist type='horiz' columns='1'>
++                  <member><emphasis>īśvaraḥ sarvabhūtānāṁ hṛddeśe'rjuna tiṣṭhati,</emphasis></member>
++                  <member><emphasis> bhrāmayan sarvabhūtāni yantrārūḍhāni māyayā.</emphasis></member></simplelist></para></blockquote>
+             <para>"God stands in the heart of all beings, whirling round all, as on a wheel, by the Maya of the three 
+                 <emphasis>guṇas</emphasis>." You will then be able to perceive the action of the three 
+                 <emphasis>guṇas</emphasis> in you and watch the machinery at its work, no longer saying, 
+@@ -751,9 +779,9 @@
+                 <emphasis>yasya nāhaṁkṛto bhāvo buddhiryasya na lipyate,</emphasis></para></blockquote>
+             <para>"One whose state of being is free from egoism and whose understanding receives no stain." This is the surrender of action to which Sri Krishna gives so much importance.</para>
+             <blockquote><para>
+-                <emphasis>mayi sarvāṇi karmāṇi saṁnyasyādhyātmacetasā,</emphasis><literallayout>
+-</literallayout>
+-                <emphasis> nirāśīrnirmamo bhūtvā yudhyasva vigatajvaraḥ.</emphasis></para></blockquote>
++		<simplelist type='horiz' columns='1'>
++                  <member><emphasis>mayi sarvāṇi karmāṇi saṁnyasyādhyātmacetasā,</emphasis></member>
++                  <member><emphasis> nirāśīrnirmamo bhūtvā yudhyasva vigatajvaraḥ.</emphasis></member></simplelist></para></blockquote>
+             <para>"Laying down all actions upon Me, with thy whole conscious being in 
+                 <emphasis>adhyātmayoga</emphasis>, become free from desire and the sense of belongings; fight, let the fever of thy soul pass from thee." For this great and complete liberation it is necessary that you should be 
+                 <emphasis>niḥspṛha</emphasis>, 
+@@ -890,6 +918,7 @@
+ 
+             </para>
+         </sect1>
++	<preface>
+             <sect1>
+                 <title>Explanations of Some Words and Phrases</title>
+                 <blockquote><para>"Matter itself, you will one day realise, is not material, it is not substance but form of consciousness, 
+@@ -1076,6 +1105,12 @@
+                 </sect2>
+                 <sect2>
+                     <title>Yoga and Skill in Works</title>
++		    <para dir="rtl">
++		      Yoga is skill in works.
++		    </para>
++		    <para dir="rtl">
++		      <emphasis>Gita</emphasis>
++		    </para>
+                     <para>
+                         Yoga, says the Gita, is skill in works, and by this phrase the ancient Scripture meant that the transformation of mind and being to which it gave the name of Yoga brought with it a perfect inner state and faculty out of which the right principle of action and the right spiritual and divine result of works emerged naturally like a tree out of its seed. Certainly, it did not mean that the clever general or politician or lawyer or shoemaker deserves the name of a Yogin; it did not mean that any kind of skill in works was Yoga, but by Yoga it signified a spiritual condition of universal equality and God-union and by the skill of the Yogic worker it intended a perfect adaptation of the soul and its instruments to the rhythm of the divine and universal Spirit in a nature liberated from the shackles of egoism and the limitations of the sense-mind.
+                     </para>
+@@ -3278,6 +3313,23 @@
+                     <sect3>
+                         <title>Occult Knowledge and the Hindu Scriptures</title>
+                         <blockquote><para>Are any of the following queries touched in Sanatan Dharma books of philosophy?</para></blockquote>
++
++			<orderedlist numeration="arabic">
++			   <listitem><para>The nature and formation of
++			       animal souls.</para></listitem>
++			   <listitem><para>The shape, size,
++			       formations, nature and colour of subtle
++			       bodies.</para></listitem>
++			   <listitem><para>The difference between the
++			       subtle bodies of saints and ordinary
++			       people and the process of developing
++			       one into the other.</para></listitem>
++			   <listitem><para>The rationale of the
++			       reincarnation theory.</para></listitem>
++			   <listitem><para>The nature, constituents
++			       and situation of invisible
++			       worlds.</para></listitem>
++			</orderedlist>
+                         <para>The first three questions are of a curious interest, the last two cover a very wide field. All except the fourth belong more or less to a kind of knowledge pursued with eager interest by a growing number of inquirers, but still looked on askance by the human mind in general,—the occult sciences. The Hindu Scriptures and books of philosophy do not as a rule handle such questions very directly or in any systematic fashion. They are concerned either with the great and central questions which have always occupied the human mind, the origin and nature of the universe, the why, whence and whither of life, the highest good and the means of attaining it, the nature of man and the destiny of the human soul and its relation with the Supreme, or else they deal with the regulation of ethics, society and the conduct of daily life. Occult knowledge has been left to be acquired by occult teaching. Nevertheless it was possessed by the ancient sages and our correspondent will find a great deal of more or less scattered information on these and cognate questions in the Veda, Upanishads and Puranas. But it is doubtful whether he would obtain a satisfactory answer to his queries in the form in which he has put them. He will find for instance a long description of invisible
+                              worlds,—invisible, that is to say, to our physical senses,—in the Vishnu Purana, but it is picturesque rather than precise. We do not think he will find much about the constituents of the worlds or the size of subtle bodies.</para>
+                         <para>
+@@ -3350,7 +3402,7 @@
+                             M. Pierre Loti, in a letter addressed to the President of the Committee, thus expresses his veneration for India:—
+                         </para>
+                         <para>
+-                            "And now I salute thee with awe, with veneration and wonder, ancient India of whom I am the adept, the India of the highest splendours of Art and Philosophy, the India also of monstrous mysteries that terrify, India our cradle, India where all that has been produced since her beginnings was ever impetuous and colossal. May thy awakening astonish that Occident, decadent, mean, daily dwindling, slayer of nations, slayer of gods, slayer of souls, which yet bows down still, ancient India, before the prodigies of thy primordial conceptions."
++"And now I salute thee with awe, with veneration and wonder, ancient India of whom I am the adept, the India of the highest splendours of Art and Philosophy, the India also of monstrous mysteries that terrify, India our cradle, India where all that has been produced since her beginnings was ever impetuous and colossal. May thy awakening astonish that Occident, decadent, mean, daily dwindling, slayer of nations, slayer of gods, slayer of souls, which yet bows down still, ancient India, before the prodigies of thy primordial conceptions."
+                         </para>
+                         <para>
+                             We cannot but subscribe to the sentiment, if not to all the phrases, of this fine piece of literature.
+@@ -3368,7 +3420,7 @@
+                             In an interview with the representative of an Indian journal Mr. Bal Gangadhar Tilak has given a brief account of the work on the Gita which he has been writing during his six years' internment in Mandalay. He begins:—
+                         </para>
+                         <para>
+-                            "You know that the Gita is regarded generally as a book inculcating quietistic Vedanta or Bhakti. For myself, I have always regarded it as a work expounding the principles of human conduct from a Vedantic ethical point of view, that is, reconciling the philosophy of active life with the philosophy of knowledge and the philosophy of devotion to God."
++"You know that the Gita is regarded generally as a book inculcating quietistic Vedanta or Bhakti. For myself, I have always regarded it as a work expounding the principles of human conduct from a Vedantic ethical point of view, that is, reconciling the philosophy of active life with the philosophy of knowledge and the philosophy of devotion to God."
+                         </para>
+                         <para>
+                             Mr. Tilak then expresses his belief that before Shankara and Ramanuja, the great Southern philosophers, wrote their commentaries, the Gita was understood in its natural sense, but from that time forward artificial and sectarian interpretations prevailed and the element of Karmayoga in the Song Celestial was disregarded. His book is intended to restore this natural sense and central idea of the famous Scripture. It will contain a word for word rendering preceded by an introduction of some fifteen chapters in which he discusses the Vedanta and the ethics of the Gita and compares the ethical philosophy of Western thinkers with that of the Indian schools of thought. Although the book will be published first in Marathi, we are promised a version also in English.
+@@ -3380,6 +3432,11 @@
+                             Those who have studied the Gita with a free mind, still more
+                              those who have tried to live it, cannot doubt for a moment the justice of Mr. Tilak's point of view. But is not the tendency of the Gita towards a supra-ethical rather than an ethical activity? Ethics is, usually, the standardising of the highest current social ideals of conduct; the Song Celestial, while recognising their importance, seeks to fix the principle of action deeper in the centre of a man's soul and points us ultimately to the government of our outward life by the divine self within.
+                         </para>
++			<para>
++			  <blockquote>
++			    <attribution>August, 1914</attribution>
++			  </blockquote>
++			</para>
+                     </sect3>
+                     <sect3>
+                         <title>The War</title>
+@@ -3387,7 +3444,9 @@
+                             The "Arya", a Review of pure Philosophy, has no direct concern with political passions and interests and their results. But neither can it ignore the enormous convulsion which is at present in progress, nor at such a time can it affect to deal only with the pettier happenings of the intellectual world as if men were not dying in thousands daily, the existence of great empires threatened and the fate of the world hanging in the balance. The War has its aspects, of supreme importance to a synthetic Philosophy, with which we would have the right to deal. But now is not the hour, now in this moment of supreme tension and wide-spread agony. Therefore, for the time, we suppress this heading in our Review and shall replace it by brief notes on subjects of philosophical interest, whether general or of the day. Meanwhile, with the rest of the world, we await in silence the predestined result.
+                         </para>
+                         <para>
+-
++			  <blockquote>
++			    <attribution>September 1914</attribution>
++			  </blockquote>
+                         </para>
+                     </sect3>
+                 </sect2>
+@@ -4197,7 +4256,7 @@
+                         <emphasis>KARMAYOGIN</emphasis> (1909–1910)</title>
+                     <para>
+                         Sri Aurobindo was the editor of and principal writer for the 
+-                        <emphasis>Karmayogin</emphasis>, "A Weekly Review of National Religion, Literature, Science, Philosophy, &c.", between June 1909 and February 1910. Most of the contents of the 
++                        <emphasis>Karmayogin</emphasis>, "A Weekly Review of National Religion, Literature, Science, Philosophy, and c.", between June 1909 and February 1910. Most of the contents of the 
+                         <emphasis>Karmayogin</emphasis> are published in volume 8 of 
+                         The Complete Works of Sri Aurobindo. The fourteen pieces selected for inclusion in the present volume deal with philosophical and yogic subjects rather than with politics or literature. All but two of them were published in one or more of three booklets: 
+                         <emphasis>The Ideal of the Karmayogin</emphasis> (c. 1918, 1919, 1921, 1927, 1937, 1945, 1950 and subsequently), 
+@@ -4463,7 +4522,7 @@
+                         <emphasis>The Needed Synthesis.</emphasis> Published in the 
+                         <emphasis>Arya</emphasis> in August 1914.</para>
+                     <para>
+-                        <emphasis>"Arya"—Its Significance.</emphasis> Published in the 
++		      "<emphasis>Arya"—Its Significance.</emphasis> Published in the 
+                         <emphasis>Arya</emphasis> in September 1914.</para>
+                     <para>
+                         <emphasis>Meditation.</emphasis> Published in the 

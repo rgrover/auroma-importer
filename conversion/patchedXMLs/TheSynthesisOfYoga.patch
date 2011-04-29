@@ -1,0 +1,172 @@
+--- ../xmlsFromAuromaParser/TheSynthesisOfYoga.xml	2011-04-15 20:40:29.351445001 +0530
++++ TheSynthesisOfYoga.xml	2011-04-15 20:52:33.341444998 +0530
+@@ -4,8 +4,8 @@
+         <title>The Synthesis Of Yoga</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+@@ -443,6 +443,7 @@
+             </chapter>
+         </part>
+     </book>
++    <book>
+         <part>
+             <title>The Yoga of Divine Works</title>
+             <chapter>
+@@ -738,9 +739,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Self-Surrender in Works—<literallayout>
+-</literallayout>
+-                     The Way of the Gita</title>
++                <title>Self-Surrender in Works—The Way of the Gita</title>
+                 <para>
+                     Life, not a remote silent or high-uplifted ecstatic Beyond-Life alone, is the field of our Yoga. The transformation of our superficial, narrow and fragmentary human way of thinking, seeing, feeling and being into a deep and wide spiritual consciousness and an integrated inner and outer existence and of our ordinary human living into the divine way of life must be its central purpose. The means towards this supreme end is a self-giving of all our nature to the Divine. Everything must be given to the Divine within us, to the universal All and to the transcendent Supreme. An absolute concentration of our will, our heart and our thought on that one and manifold Divine, an unreserved self-consecration of our whole being to the Divine alone—this is the decisive movement, the turning of the ego to That which is infinitely greater than itself, its self-giving and indispensable surrender.
+                 </para>
+@@ -1300,9 +1299,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Standards of Conduct and<literallayout>
+-</literallayout>
+-                     Spiritual Freedom</title>
++                <title>Standards of Conduct and Spiritual Freedom</title>
+                 <para>
+                     The knowledge on which the doer of works in Yoga has to found all his action and development has for the keystone of its structure a more and more concrete perception of unity, the living sense of an all-pervading oneness; he moves in the increasing consciousness of all existence as an indivisible whole: all work too is part of this divine indivisible whole. His personal action and its results can no longer be or seem a separate movement mainly or entirely determined by the egoistic "free" will of an individual, himself separate in the mass. Our works are part of an indivisible cosmic action; they are put or, more accurately, put themselves into their place in the whole out of which they arise and their outcome is determined by forces that overpass us. That world action in its vast totality and in every petty detail is the indivisible movement of the One who manifests himself progressively in the cosmos. Man too becomes progressively conscious of the truth of himself and the truth of things in proportion as he awakens to this One within him and outside him and to the occult, miraculous and significant process of its forces in the motion of Nature. This action, this movement, is not confined even in ourselves and those around us to the little fragmentary portion of the cosmic activities of which we in our superficial consciousness are aware; it is supported by an immense underlying environing existence subliminal to our minds or subconscious, and it is attracted by an immense transcending existence which is superconscious to our nature. Our action arises, as we ourselves have emerged, out of a universality of which we are not aware; we give it a shape by our personal temperament, personal mind and will of thought or force of impulse or desire; but the true
+                      truth of things, the true law of action exceeds these personal and human formations. Every standpoint, every man-made rule of action which ignores the indivisible totality of the cosmic movement, whatever its utility in external practice, is to the eye of spiritual Truth an imperfect view and a law of the Ignorance.
+@@ -1896,17 +1893,13 @@
+             </chapter>
+             <preface>
+                 <title>
+-                     Appendix<literallayout>
+-</literallayout>
+-                     to Part I</title>
++                     Appendix to Part I</title>
+                 <para>
+                     The following chapter was left unfinished. It was not included in the edition of 
+                     <emphasis>The Synthesis of Yoga</emphasis>, Part I, that was published during Sri Aurobindo's lifetime.
+                 </para>
+-                <chapter>
+-                    <title>The Supermind and the<literallayout>
+-</literallayout>
+-                         Yoga of Works</title>
++                <section>
++                    <title>The Supermind and the Yoga of Works</title>
+                     <para>
+                         An integral Yoga includes as a vital and indispensable element in its total and ultimate aim the conversion of the whole being into a higher spiritual consciousness and a larger divine existence. Our parts of will and action, our parts of knowledge, our thinking being, our emotional being, our being of life, all our self and nature must seek the Divine, enter into the Infinite, unite with the Eternal. But man's present nature is limited, divided, unequal,—it is easiest for him to concentrate in the strongest part of his being and follow a definite line of progress proper to his nature: only rare individuals have the strength to take a large immediate plunge straight into the sea of the Divine Infinity. Some therefore must choose as a starting-point a concentration in thought or contemplation or the mind's one-pointedness to find the eternal reality of the Self in them; others can more easily withdraw into the heart to meet there the Divine, the Eternal: yet others are predominantly dynamic and active; for these it is best to centre themselves in the will and enlarge their being through works. United with the Self and source of all by their surrender of their will into its infinity, guided in their works by the secret Divinity within or surrendered to the Lord of the cosmic action as the master and mover of all their energies of thought, feeling, act, becoming by this enlargement of being selfless and universal, they can reach by works some first fullness of a spiritual status. But the path, whatever its point of starting, must debouch into a vaster dominion; it must proceed in the end through a totality of integrated knowledge, emotion, will of dynamic action, perfection of the being and the entire nature. In the supramental consciousness, on the level of the supramental existence this integration becomes consummate;
+                          there knowledge, will, emotion, the perfection of the self and the dynamic nature rise each to its absolute of itself and all to their perfect harmony and fusion with each other, to a divine integrality, a divine perfection. For the supermind is a Truth-Consciousness in which the Divine Reality, fully manifested, no longer works with the instrumentation of the Ignorance; a truth of status of being which is absolute becomes dynamic in a truth of energy and activity of the being which is self-existent and perfect. Every movement there is a movement of the self-aware truth of Divine Being and every part is in entire harmony with the whole. Even the most limited and finite action is in the Truth-Consciousness a movement of the Eternal and Infinite and partakes of the inherent absoluteness and perfection of the Eternal and Infinite. An ascent into the supramental Truth not only raises our spiritual and essential consciousness to that height but brings about a descent of this Light and Truth into all our being and all our parts of nature. All then becomes part of the Divine Truth, an element and means of the supreme union and oneness; this ascent and descent must be therefore an ultimate aim of this Yoga.
+@@ -1930,7 +1923,7 @@
+                     <para>
+ ***
+                     </para>
+-                </chapter>
++                </section>
+             </preface>
+         </part>
+         <part>
+@@ -2260,9 +2253,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Synthesis of the Disciplines<literallayout>
+-</literallayout>
+-                     of Knowledge</title>
++                <title>The Synthesis of the Disciplines of Knowledge</title>
+                 <para>
+                     In the last chapter we have spoken of renunciation in its most general scope, even as we spoke of concentration in all its possibilities; what has been said, applies therefore equally to the path of Works and the path of Devotion as to the path of Knowledge; for on all three concentration and renunciation are needed, though the way and spirit in which they are applied may vary. But we must now turn more particularly to the actual steps of the Path of Knowledge on which the double force of concentration and renunciation must aid us to advance. Practically, this path is a reascent up the great ladder of being down which the soul has descended into the material existence.
+                 </para>
+@@ -2315,9 +2306,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Release from Subjection<literallayout>
+-</literallayout>
+-                     to the Body</title>
++                <title>The Release from Subjection to the Body</title>
+                 <para>
+                     Our first step in this path of knowledge, having once determined in our intellect that what seems is not the Truth, that the self is not the body or life or mind, since these are only its forms, must be to set right our mind in its practical relation with the life and the body so that it may arrive at its own right relation with the Self. This it is easiest to do by a device with which we are already familiar, since it played a great part in our view of the Yoga of Works; it is to create a separation between the Prakriti and the Purusha. The Purusha, the soul that knows and commands has got himself involved in the workings of his executive conscious force, so that he mistakes this physical working of it which we call the body for himself; he forgets his own nature as the soul that knows and commands; he believes his mind and soul to be subject to the law and working of the body; he forgets that he is so much else besides that is greater than the physical form; he forgets that the mind is really greater than Matter and ought not to submit to its obscurations, reactions, habit of inertia, habit of incapacity; he forgets that he is more even than the mind, a Power which can raise the mental being above itself; that he is the Master, the Transcendent and it is not fit the Master should be enslaved to his own workings, the Transcendent imprisoned in a form which exists only as a trifle in its own being. All this forgetfulness has to be cured by the Purusha remembering his own true nature and first by his remembering that the body is only a working and only one working of Prakriti.
+                 </para>
+@@ -2358,9 +2347,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Release from the Heart<literallayout>
+-</literallayout>
+-                     and the Mind</title>
++                <title>The Release from the Heart and the Mind</title>
+                 <para>
+                     But the ascending soul has to separate itself not only from the life in the body but from the action of the life-energy in the mind; it has to make the mind say as the representative of the Purusha "I am not the Life; the Life is not the self of the Purusha, it is only a working and only one working of Prakriti." The characteristics of Life are action and movement, a reaching out to absorb and assimilate what is external to the individual and a principle of satisfaction or dissatisfaction in what it seizes upon or what comes to it, which is associated with the all-pervading phenomenon of attraction and repulsion. These three things are everywhere in Nature because Life is everywhere in Nature. But in us mental beings they are all given a mental value according to the mind which perceives and accepts them. They take the form of action, of desire and of liking and disliking, pleasure and pain. The Prana is everywhere in us supporting not only the action of our body, but of our sense-mind, our emotional mind, our thought-mind; and bringing its own law or dharma into all these, it confuses, it limits, it throws into discord their right action and creates that impurity of misplacement and that tangled confusion which is the whole evil of our psychological existence. In that confusion one law seems to reign, the law of desire. As the universal Divine Being, all-embracing and all-possessing, acts, moves, enjoys purely for the satisfaction of divine Delight, so the individual life acts, moves, enjoys and suffers predominantly for the satisfaction of desire. Therefore the psychic life-energy presents itself to our experience as a sort of desire-mind, which we have to conquer if we mean to get back to our true self.
+                 </para>
+@@ -3194,9 +3181,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Conditions of Attainment<literallayout>
+-</literallayout>
+-                     to the Gnosis</title>
++                <title>The Conditions of Attainment to the Gnosis</title>
+                 <para>
+                     Knowledge is the first principle of the Vijnana, but knowledge is not its only power. The Truth-consciousness, like every other plane, founds itself upon that particular principle which is naturally the key of all its motions; but it is not limited by it, it contains all the other powers of existence. Only the character and working of these other powers is modified and moulded into conformity with its own original and dominant law; intelligence, life, body, will, consciousness, bliss are all luminous, awake, instinct with divine knowledge. This is indeed the process of Purusha-Prakriti everywhere; it is the key-movement of all the hierarchy and graded harmonies of manifested existence.
+                 </para>
+@@ -3345,9 +3330,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Higher and the<literallayout>
+-</literallayout>
+-                     Lower Knowledge</title>
++                <title>The Higher and the Lower Knowledge</title>
+                 <para>
+                     We have now completed our view of the path of Knowledge and seen to what it leads. First, the end of Yoga of Knowledge is God-possession, it is to possess God and be possessed by him through consciousness, through identification, through reflection of the divine Reality. But not merely in some abstraction away from our present existence, but here also; therefore to possess the Divine in himself, the Divine in the world, the Divine within, the Divine in all things and all beings. It is to possess oneness with God and through that to possess also oneness with the universal, with the cosmos and all existences; therefore to possess the infinite diversity also in the oneness, but on the basis of oneness and not on the basis of division. It is to possess God in his personality and his impersonality; in his purity free from qualities and in his infinite qualities; in time and beyond time; in his action and in his silence; in the finite and in the infinite. It is to possess him not only in pure self, but in all self; not only in self, but in Nature; not only in spirit, but in supermind, mind, life and body; to possess him with the spirit, with the mind, with the vital and the physical consciousness; and it is again for all these to be possessed by him, so that our whole being is one with him, full of him, governed and driven by him. It is, since God is oneness, for our physical consciousness to be one with the soul and the nature of the material universe; for our life, to be one with all life; for our mind, to be one with the universal mind; for our spirit, to be identified with the universal spirit. It is to merge in him in the absolute and find him in all relations.
+                 </para>
+@@ -4817,9 +4800,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Soul-Force and the Fourfold<literallayout>
+-</literallayout>
+-                     Personality</title>
++                <title>Soul-Force and the Fourfold Personality</title>
+                 <para>
+                     The perfecting of the normal mind, heart, prana and body gives us only the perfection of the psycho-physical machine we have to use and creates certain right instrumental conditions for a divine life and works lived and done with a purer, greater, clearer power and knowledge. The next question is that of the Force which is poured into the instruments, 
+                     <emphasis>karaṇa</emphasis>, and the One who works it for his universal ends. The force at work in us must be the manifest divine Shakti, the supreme or the universal Force unveiled in the liberated individual being, 
+@@ -5270,9 +5251,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Supramental Thought<literallayout>
+-</literallayout>
+-                     and Knowledge</title>
++                <title>The Supramental Thought and Knowledge</title>
+                 <para>
+                     The transition from mind to supermind is not only the substitution of a greater instrument of thought and knowledge, but a change and conversion of the whole consciousness. There is evolved not only a supramental thought, but a supramental will, sense, feeling, a supramental substitute for all the activities that are now accomplished by the mind. All these higher activities are first manifested in the mind itself as descents, irruptions, messages or revelations of a superior power. Mostly they are mixed up with the more ordinary action of the mind and not easily distinguishable from them in our first inexperience except by their superior light and force and joy, the more so as the mind greatened or excited by their frequent coming quickens its own action and imitates the external characteristics of the supramental activity: its own operation is made more swift, luminous, strong and positive and it arrives even at a kind of imitative and often false intuition that strives to be but is not really the luminous, direct and self-existent truth. The next step is the formation of a luminous mind of intuitive experience, thought, will, feeling, sense from which the intermixture of the lesser mind and the imitative intuition are progressively eliminated: this is a process of purification, 
+                     <emphasis>śuddhi</emphasis>, necessary to the new formation and perfection, 
+@@ -5368,9 +5347,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Supramental Instruments—<literallayout>
+-</literallayout>
+-                     Thought-Process</title>
++                <title>The Supramental Instruments—Thought-Process</title>
+                 <para>
+                     The supermind, the divine gnosis, is not something entirely alien to our present consciousness: it is a superior instrumentation of the spirit and all the operations of our normal consciousness are limited and inferior derivations from the supramental, because these are tentatives and constructions, that the true and perfect, the spontaneous and harmonious nature and action of the spirit. Accordingly when we rise from mind to supermind, the new power of consciousness does not reject, but uplifts, enlarges and transfigures the operations of our soul and mind and life. It exalts and gives to them an ever greater reality of their power and performance. It does not limit itself either to the transformation of the superficial powers and action of the mind and psychic parts and the life, but it manifests and transforms also those rarer powers and that larger force and knowledge proper to our subliminal self that appear now to us as things occult, curiously psychic, abnormal. These things become in the supramental nature not at all abnormal but perfectly natural and normal, not separately psychic but spiritual, not occult and strange, but a direct, simple, inherent and spontaneous action. The spirit is not limited like the waking material consciousness, and the supermind when it takes possession of the waking consciousness, dematerialises it, delivers it from its limits, converts the material and the psychic into the nature of the spiritual being.
+                 </para>
+@@ -5656,9 +5633,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Towards the Supramental<literallayout>
+-</literallayout>
+-                     Time Vision</title>
++                <title>Towards the Supramental Time Vision</title>
+                 <para>
+                     All being, consciousness, knowledge moves, secretly for our present surface awareness, openly when we rise beyond it to the spiritual and supramental ranges, between two states and powers of existence, that of the timeless Infinite and that of the Infinite deploying in itself and organising all things in time. These two states are opposed to and incompatible with each other only for our mental logic with its constant embarrassed stumbling around a false conception of contradictions and a confronting of eternal opposites. In reality, as we find when we see things with a knowledge founded on the supramental identity and vision and think with the great, profound and flexible logic proper to that knowledge, the two are only coexistent and concurrent status and movement of the same truth of the Infinite. The timeless Infinite holds in itself, in its eternal truth of being, beyond this manifestation, all that it manifests in Time. Its time consciousness too is itself infinite and maintains in itself at once in a vision of totalities and of particularities, of mobile succession or moment sight and of total stabilising vision or abiding whole sight what appears to us as the past of things, their present and their future.
+                 </para>

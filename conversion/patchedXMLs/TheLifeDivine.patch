@@ -1,0 +1,249 @@
+--- ../xmlsFromAuromaParser/TheLifeDivine.xml	2011-04-29 11:05:58.775896012 +0530
++++ TheLifeDivine.xml	2011-04-29 11:07:15.075896012 +0530
+@@ -4,20 +4,11 @@
+         <title>The Life Divine</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+-        <title>THE LIFE DIVINE<literallayout>
+-</literallayout>
+-             Sri Aurobindo<literallayout>
+-</literallayout>
+-<literallayout>
+-</literallayout>
+-             Copyright (c) Sri Aurobindo Ashram Trust, Pondicherry, India.</title>
+-    </preface>
+-    <preface>
+         <title>Publisher's Note</title>
+         <para>
+             <emphasis>The Life Divine</emphasis> first appeared serially in the 
+@@ -33,14 +24,7 @@
+         </para>
+     </preface>
+     <book>
+-        <title>Book I</title>
+-    </book>
+-    <book>
+-        <title>Omnipresent Reality<literallayout>
+-</literallayout>
+-             and<literallayout>
+-</literallayout>
+-             the Universe
++        <title>Book I. Omnipresent Reality and the Universe
+ </title>
+         <chapter>
+             <title>The Human Aspiration</title>
+@@ -76,9 +60,7 @@
+             </para>
+         </chapter>
+         <chapter>
+-            <title>The Two Negations<literallayout>
+-</literallayout>
+-                 I. The Materialist Denial</title>
++            <title>The Two Negations; I. The Materialist Denial</title>
+             <epigraph><para>He energised conscious-force (in the austerity of thought) and came to the knowledge that Matter is the Brahman. For from Matter all existences are born; born, by Matter they increase and enter into Matter in their passing hence. Then he went to Varuna, his father, and said, "Lord, teach me of the Brahman." But he said to him: "Energise (again) the conscious-energy in thee; for the Energy is Brahman." 
+                 <attribution>
+                     <emphasis>Taittiriya Upanishad.</emphasis></attribution>
+@@ -202,9 +184,7 @@
+             </para>
+         </chapter>
+         <chapter>
+-            <title>The Two Negations<literallayout>
+-</literallayout>
+-                 II. The Refusal of the Ascetic</title>
++            <title>The Two Negations; II. The Refusal of the Ascetic</title>
+             <epigraph><para>All this is the Brahman; this Self is the Brahman and the Self is fourfold.</para></epigraph>
+             <blockquote><para>Beyond relation, featureless, unthinkable, in which all is still. 
+                 <attribution>
+@@ -2033,7 +2013,28 @@
+                  principles instead of seven, and then we perceive that our existence is a sort of refraction of the divine existence, in inverted order of ascent and descent, thus ranged,—
+             </para>
+             <para>
+-
++	      <blockquote>
++		<table>
++		  <tbody>
++		    <tr>
++		      <td>Existence</td>
++		      <td>Matter</td>
++		    </tr>
++		    <tr>
++		      <td>Consciousness-Force</td>
++		      <td>Life</td>
++		    </tr>
++		    <tr>
++		      <td>Bliss</td>
++		      <td>Psyche</td>
++		    </tr>
++		    <tr>
++		      <td>Supermind</td>
++		      <td>Mind.</td>
++		    </tr>
++		  </tbody>
++		</table>
++	      </blockquote>
+             </para>
+             <para>
+                 The Divine descends from pure existence through the play of Consciousness-Force and Bliss and the creative medium of Supermind into cosmic being; we ascend from Matter through a developing life, soul and mind and the illuminating medium of Supermind towards the divine being. The knot of the two, the higher and the lower hemisphere,
+@@ -2078,9 +2079,7 @@
+             </para>
+         </chapter>
+         <chapter>
+-            <title>Supermind, Mind and the<literallayout>
+-</literallayout>
+-                 Overmind Maya</title>
++            <title>Supermind, Mind and the Overmind Maya</title>
+             <epigraph><para>There is a Permanent, a Truth hidden by a Truth where the Sun unyokes his horses. The ten hundreds (of his rays) came together—That One. I saw the most glorious of the Forms of the Gods. 
+                 <attribution>
+                     <emphasis>Rig Veda.</emphasis></attribution>
+@@ -2182,27 +2181,11 @@
+         </chapter>
+     </book>
+     <book>
+-        <title>Book II</title>
+-    </book>
+-    <book>
+-        <title>The Knowledge and the Ignorance—<literallayout>
+-</literallayout>
+-             The Spiritual Evolution</title>
+-            <para>
+-
+-            </para>
++        <title>Book II. The Knowledge and the Ignorance—The Spiritual Evolution</title>
+         <part>
+-            <title>The Infinite Consciousness<literallayout>
+-</literallayout>
+-                 and<literallayout>
+-</literallayout>
+-                 the Ignorance</title>
++            <title>The Infinite Consciousness and the Ignorance</title>
+             <chapter>
+-                <title>Indeterminates,<literallayout>
+-</literallayout>
+-                     Cosmic Determinations<literallayout>
+-</literallayout>
+-                     and the Indeterminable</title>
++                <title>Indeterminates, Cosmic Determinations and the Indeterminable</title>
+                 <epigraph><para>The Unseen with whom there can be no pragmatic relations, unseizable, featureless, unthinkable, undesignable by name, whose substance is the certitude of One Self, in whom world-existence is stilled, who is all peace and bliss—that is the Self, that is what must be known. 
+                     <attribution>
+                         <emphasis>Mandukya Upanishad.</emphasis></attribution>
+@@ -2336,9 +2319,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Brahman, Purusha, Ishwara—<literallayout>
+-</literallayout>
+-                     Maya, Prakriti, Shakti</title>
++                <title>Brahman, Purusha, Ishwara—Maya, Prakriti, Shakti</title>
+                 <epigraph><para>It is there in beings indivisible and as if divided. 
+                     <attribution>
+                         <emphasis>Gita.</emphasis></attribution>
+@@ -2781,9 +2762,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Cosmic Illusion;<literallayout>
+-</literallayout>
+-                     Mind, Dream and Hallucination</title>
++                <title>The Cosmic Illusion; Mind, Dream and Hallucination</title>
+                 <epigraph><para>Thou who hast come to this transient and unhappy world, turn to Me. 
+                     <attribution>
+                         <emphasis>Gita.</emphasis></attribution>
+@@ -3256,9 +3235,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Memory, Self-Consciousness and<literallayout>
+-</literallayout>
+-                     the Ignorance</title>
++                <title>Memory, Self-Consciousness and the Ignorance</title>
+                 <epigraph><para>Some speak of the self-nature of things, others say that it is Time. 
+                     <attribution>
+                         <emphasis>Swetaswatara Upanishad.</emphasis></attribution>
+@@ -3418,9 +3395,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Knowledge by Identity and<literallayout>
+-</literallayout>
+-                     Separative Knowledge</title>
++                <title>Knowledge by Identity and Separative Knowledge</title>
+                 <epigraph><para>They see the Self in the Self by the Self. 
+                     <attribution>
+                         <emphasis>Gita.</emphasis></attribution>
+@@ -3740,9 +3715,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>Exclusive Concentration of<literallayout>
+-</literallayout>
+-                     Consciousness-Force and the Ignorance</title>
++                <title>Exclusive Concentration of Consciousness-Force and the Ignorance</title>
+                 <epigraph><para>From the kindled fire of Energy of Consciousness, Truth was born and the Law of Truth; from that the Night, from the Night the flowing ocean of being. 
+                     <attribution>
+                         <emphasis>Rig Veda.</emphasis></attribution>
+@@ -3816,11 +3789,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Origin and Remedy<literallayout>
+-</literallayout>
+-                     of Falsehood, Error,<literallayout>
+-</literallayout>
+-                     Wrong and Evil</title>
++                <title>The Origin and Remedy of Falsehood, Error, Wrong and Evil</title>
+                 <epigraph><para>The Lord accepts the sin and the virtue of none; because knowledge is veiled by Ignorance, mortal men are deluded. 
+                     <attribution>
+                         <emphasis>Gita.</emphasis></attribution>
+@@ -4014,9 +3983,7 @@
+ 
+             </para>
+         <part>
+-            <title>The Knowledge and<literallayout>
+-</literallayout>
+-                 the Spiritual Evolution</title>
++            <title>The Knowledge and the Spiritual Evolution</title>
+             <chapter>
+                 <title>Reality and the Integral Knowledge</title>
+                 <epigraph><para>This Self is to be won by the Truth and by an integral knowledge. 
+@@ -4140,11 +4107,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Integral Knowledge<literallayout>
+-</literallayout>
+-                     and the Aim of Life;<literallayout>
+-</literallayout>
+-                     Four Theories of Existence</title>
++                <title>The Integral Knowledge and the Aim of Life; Four Theories of Existence</title>
+                 <epigraph><para>When all the desires that cling to the heart are loosed away from it, then the mortal becomes immortal, even here he possesses the Eternal. 
+                     <attribution>
+                         <emphasis>Brihadaranyaka Upanishad.</emphasis></attribution>
+@@ -4314,9 +4277,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Progress to Knowledge—<literallayout>
+-</literallayout>
+-                     God, Man and Nature</title>
++                <title>The Progress to Knowledge—God, Man and Nature</title>
+                 <epigraph><para>Thou art That, O Swetaketu. 
+                     <attribution>
+                         <emphasis>Chhandogya Upanishad.</emphasis></attribution>
+@@ -4436,9 +4397,7 @@
+                 </para>
+             </chapter>
+             <chapter>
+-                <title>The Evolutionary Process—<literallayout>
+-</literallayout>
+-                     Ascent and Integration</title>
++                <title>The Evolutionary Process—Ascent and Integration</title>
+                 <epigraph><para>As he mounts from peak to peak... Indra makes him conscious of that goal of his movement. 
+                     <attribution>
+                         <emphasis>Rig Veda</emphasis></attribution>

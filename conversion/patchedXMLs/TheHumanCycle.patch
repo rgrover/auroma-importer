@@ -1,0 +1,90 @@
+--- ../xmlsFromAuromaParser/TheHumanCycle.xml	2011-04-27 15:49:12.470077999 +0530
++++ TheHumanCycle.xml	2011-04-27 22:03:16.216059013 +0530
+@@ -4,8 +4,8 @@
+         <title>The Human Cycle</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+@@ -47,7 +47,9 @@
+                 The chapters constituting this book were written under the title "The Psychology of Social Development" from month to month in the philosophical monthly, "Arya", from August 15, 1916 to July 15, 1918 and used recent and contemporary events as well as illustrations from the history of the past in explanation of the theory of social evolution put forward in these pages. The reader has therefore to go back in his mind to the events of that period in order to follow the line of thought and the atmosphere in which it developed. At one time there suggested itself the necessity of bringing this part up to date, especially by some reference to later developments in Nazi Germany and the development of a totalitarian Communist regime in Russia. But afterwards it was felt that there was sufficient prevision and allusion to these events and more elaborate description or criticism of them was not essential; there was already without them an adequate working out and elucidation of this theory of the social cycle.
+             </para>
+             <para>
+-
++	      <blockquote>
++		<attribution>November, 1949</attribution>
++	      </blockquote>
+             </para>
+             <chapter>
+                 <title>The Cycle of Society</title>
+@@ -1403,7 +1405,30 @@
+                     This endeavour will be a supreme and difficult labour even for the individual, but much more for the race. It may well be that, once started, it may not advance rapidly even to its first decisive stage; it may be that it will take long centuries of effort to come into some kind of permanent birth. But that is not altogether inevitable, for the principle of such changes in Nature seems to be a long obscure preparation followed by a swift gathering up and precipitation of the elements into the new birth, a rapid conversion, a transformation that in its luminous moment figures like a miracle. Even when the first decisive change is reached, it is certain that all humanity will not be
+                      able to rise to that level. There cannot fail to be a division into those who are able to live on the spiritual level and those who are only able to live in the light that descends from it into the mental level. And below these too there might still be a great mass influenced from above but not yet ready for the light. But even that would be a transformation and a beginning far beyond anything yet attained. This hierarchy would not mean as in our present vital living an egoistic domination of the undeveloped by the more developed, but a guidance of the younger by the elder brothers of the race and a constant working to lift them up to a greater spiritual level and wider horizons. And for the leaders too this ascent to the first spiritual levels would not be the end of the divine march, a culmination that left nothing more to be achieved on earth. For there would be still yet higher levels within the supramental realm, as the old Vedic poets knew when they spoke of the spiritual life as a constant ascent,—
+                 </para>
++		<para>
++		  <blockquote><literallayout>
++              brahmāṇas tvā śatakrato
++                ud vaṁśam iva yemire;
++              yat sānoḥ sānum āruhat,
++                bhūri aspaṣṭa kartvam,—
++</literallayout>
++The priests of the word climb thee like a ladder, O
++hundred-powered. As one ascends from peak to peak, there is made clear
++the much that has still to be done.
++		  </blockquote>
++		</para>
+                 <para>But once the foundation has been secured, the rest develops by a progressive self-unfolding and the soul is sure of its way. As again it is phrased by the ancient Vedic singers,—</para>
++		<para>
++		  <blockquote><literallayout>
++              abhyavasthāḥ pra jāyante,
++                pra vavrer vavriś ciketa;
++              upasthe mātur vi caṣṭe,—
++
++</literallayout>
++State is born upon state; covering after covering becomes conscious of
++knowledge; in the lap of the Mother the soul sees.
++		  </blockquote>
++		</para>
+                 <para>
+                     This at least is the highest hope, the possible destiny that opens out before the human view, and it is a possibility which
+                      the progress of the human mind seems on the way to redevelop. If the light that is being born increases, if the number of individuals who seek to realise the possibility in themselves and in the world grows large and they get nearer the right way, then the Spirit who is here in man, now a concealed divinity, a developing light and power, will descend more fully as the Avatar of a yet unseen and unguessed Godhead from above into the soul of mankind and into the great individualities in whom the light and power are the strongest. There will then be fulfilled the change that will prepare the transition of human life from its present limits into those larger and purer horizons; the earthly evolution will have taken its grand impetus upward and accomplished the revealing step in a divine progression of which the birth of thinking and aspiring man from the animal nature was only an obscure preparation and a far-off promise.
+@@ -1428,6 +1453,11 @@
+             <para>
+                 The main contentions advanced in these pages also remain unaffected by the course of events,—the inevitability of the unification of the life of humanity as a result of those imperative natural forces which lead always to the creation of larger and larger human aggregates, the choice of the principles which may be followed in the process, the need for preserving and bringing to fullness the principle of individual and group freedom within the human unity, and the insufficiency of formal unity without a growth of the religion of humanity which can alone make it a great psychological advance in the spiritual evolution of the race.
+             </para>
++	    <para>
++	      <blockquote>
++		<attribution>1919</attribution>
++	      </blockquote>
++	    </para>
+         </preface>
+         <preface>
+             <title>
+@@ -1442,9 +1472,12 @@
+                 The present edition is a revised version; but the revision was done before the last World War. It is, however, printed almost in that form brought up-to-date by the addition of a Postscript Chapter dealing with the world conditions today.
+             </para>
+             <para>
+-
++	      <blockquote>
++		<attribution>April, 1950</attribution>		
++	      </blockquote>
+             </para>
+         </preface>
++	<part>
+             <chapter>
+                 <title>The Turn towards Unity: Its Necessity and Dangers</title>
+                 <para>
+@@ -3644,7 +3677,7 @@
+                 <emphasis>Arya</emphasis> were deleted during revision). Sri Aurobindo added more than fifty footnotes in his first revision, many of them referring to political developments of the 1930s such as the rise of Fascism. In his second, lighter revision, undertaken more than ten years later, he also made extensive use of footnotes for updating the text. Some two dozen new footnotes were added at this time and an equal number of the earlier ones revised. Thus the majority of the footnotes in the final version may be taken to represent the standpoint of 1949–50. Detailed information on the dating of footnotes and other significant revision is provided in the reference volume (volume 35).</para>
+             <para>
+                 <emphasis>War and Self-Determination</emphasis>. Sri Aurobindo published five articles on current political topics in the 
+-                <emphasis>Arya</emphasis>: "The Passing of War?" (April 1916), "Self-Determination" (September 1918), "The Unseen Power" (December 1918), "1919" (July 1919) and "After the War" (August 1920). In 1920 the first three of these, along with a Foreword and a newly written essay, "The League of Nations", were brought out as a book by S. R. Murthy & Co., Madras. A second edition was published by Sarojini Ghose (Sri Aurobindo's sister) in 1922. Sri Aurobindo dictated a few scattered revisions to these essays during the late 1940s or in 1950. A third edition of the book was brought out in 1957. "After the War", which had been published as a separate booklet in 1949, was added to this edition. Since 1962 
++                <emphasis>Arya</emphasis>: "The Passing of War?" (April 1916), "Self-Determination" (September 1918), "The Unseen Power" (December 1918), "1919" (July 1919) and "After the War" (August 1920). In 1920 the first three of these, along with a Foreword and a newly written essay, "The League of Nations", were brought out as a book by S. R. Murthy and Co., Madras. A second edition was published by Sarojini Ghose (Sri Aurobindo's sister) in 1922. Sri Aurobindo dictated a few scattered revisions to these essays during the late 1940s or in 1950. A third edition of the book was brought out in 1957. "After the War", which had been published as a separate booklet in 1949, was added to this edition. Since 1962 
+                 <emphasis>War and Self-Determination</emphasis> has appeared in the combined editions mentioned above under 
+                 <emphasis>The Human Cycle</emphasis>. "1919" was first reproduced in the 1962 edition, where it was placed at the end. In the present edition, "1919" and "After the War" are printed in the order in which they were written.</para>
+             <para>
