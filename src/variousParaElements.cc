@@ -256,6 +256,19 @@ OpeningSingleQuoteParaElement::emit(outputMode_t        mode,
                                     bool                firstElement
     ) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            emitStartFontModifier(mode, fontModifiers);
+        }
+        parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (!firstElement && separatedFromPrevBySpace()) {
+            cout << " ";
+        }
+    }
     cout << "\'";
 }
 
@@ -267,6 +280,19 @@ OpeningDoubleQuotesParaElement::emit(outputMode_t        mode,
                                      bool                firstElement
     ) const
 {
+    if (parentStartedElements == false) {
+        spaces(indentation);
+        if (fontModifiers.size()) {
+            emitStartFontModifier(mode, fontModifiers);
+        }
+        parentStartedElements = true;
+
+        /* If we're starting out <elements>, we should also take care
+         * of the space before the first element. */
+        if (!firstElement && separatedFromPrevBySpace()) {
+            cout << " ";
+        }
+    }
     cout << "\"";
 }
 
