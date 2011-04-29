@@ -96,6 +96,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:sect1)/{EOC}   return auromaParserBase::SECTION1_CMD;
 \\(?i:sect2)$        return auromaParserBase::SECTION2_CMD;
 \\(?i:sect2)/{EOC}   return auromaParserBase::SECTION2_CMD;
+\\(?i:sect3)$        return auromaParserBase::SECTION3_CMD;
+\\(?i:sect3)/{EOC}   return auromaParserBase::SECTION3_CMD;
 \\(?i:title)$        return auromaParserBase::TITLE_CMD;
 \\(?i:title)/{EOC}   return auromaParserBase::TITLE_CMD;
 \\(?i:author)$       return auromaParserBase::AUTHOR_CMD;

@@ -56,6 +56,7 @@ enum ContainerLevel
     SECTION,
     SECTION1,
     SECTION2,
+    SECTION3,
 };
 
 class ContainerDirective: public ParaOrDirective

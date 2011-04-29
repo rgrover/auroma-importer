@@ -274,4 +274,33 @@ public:
 private:
 };
 
+class Section3 : public ContainerDirective
+{
+public:
+
+    Section3(void) : ContainerDirective(SECTION3)
+        {
+        }
+
+    ~Section3(void)
+        {
+        }
+
+    void setAuthor(string name)
+        {
+            assert(0);
+        }
+
+    string getAuthor(void) const
+        {
+            assert(0);
+        }
+
+    void emit(outputMode_t mode, unsigned int &indentation);
+    void emitBegin(void);
+    void emitEnd(void) const;
+
+private:
+};
+
 #endif /* VARIOUS_PARA_CONTAINERS */

@@ -342,3 +342,34 @@ Section2::emitEnd(void) const
     spaces(origIndentation);
     cout << "</sect2>" << endl;
 }
+
+
+void
+Section3::emit(outputMode_t  mode,
+              unsigned     &indentation)
+{
+    assert(mode == DOCBOOK);
+
+    /* update the emit-stack of containerDirectives */
+    assert(!directives.empty());
+    outputMode = mode;
+    setCurrentContainerDirective(this, indentation);
+}
+
+void
+Section3::emitBegin(void)
+{
+    ContainerDirective::emitBegin();
+
+    spaces(origIndentation);
+    cout << "<sect3>" << endl;
+}
+
+void
+Section3::emitEnd(void) const
+{
+    assert(outputMode == DOCBOOK);
+
+    spaces(origIndentation);
+    cout << "</sect3>" << endl;
+}
