@@ -1,0 +1,523 @@
+--- ../xmlsFromAuromaParser/Savitri.xml	2011-05-08 16:39:57.665166371 +0530
++++ Savitri.xml	2011-05-08 16:51:22.777778384 +0530
+@@ -1,4 +1,13 @@
+ <?xml version="1.0" encoding="utf-8"?>
++<book xmlns="http://docbook.org/ns/docbook">
++    <info>
++        <title>Savitri – A Legend and a Symbol</title>
++        <author><personname>Sri Aurobindo</personname></author>
++        <copyright>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++        </copyright>
++    </info>
+     <preface>
+         <title>Publisher's Note</title>
+         <para>The writing of 
+@@ -31,7 +40,7 @@
+     <preface>
+         <title>Author's Note</title>
+         <para>The tale of Satyavan and Savitri is recited in the Mahabharata as a story of conjugal love conquering death. But this legend is, as shown by many features of the human tale, one of the many symbolic myths of the Vedic cycle. Satyavan is the soul carrying the divine truth of being within itself but descended into the grip of death and ignorance; Savitri is the Divine Word, daughter of the Sun, goddess of the supreme Truth who comes down and is born to save; Aswapati, the Lord of the Horse, her human father, is the Lord of Tapasya, the concentrated energy of spiritual endeavour that helps us to rise from the mortal to the immortal planes; Dyumatsena, Lord of the Shining Hosts, father of Satyavan, is the Divine Mind here fallen blind, losing its celestial kingdom of vision, and through that loss its kingdom of glory. Still this is not a mere allegory, the characters are not personified qualities, but incarnations or emanations of living and conscious Forces with whom we can enter into concrete touch and they take human bodies in order to help man and show him the way from his mortal state to a divine consciousness and immortal life.</para>
+-        <para>
++        <para dir="rtl">
+             Sri Aurobindo
+         </para>
+         <para>
+@@ -39,7 +48,7 @@
+         </para>
+     </preface>
+     <part>
+-        <title>BOOKS IIII
++        <title>BOOKS I‒III
+ </title>
+         <sect1>
+             <title>BOOK ONE: The Book of Beginnings
+@@ -734,8 +743,9 @@
+ </literallayout>
+                      This was the day when Satyavan must die.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+-
+                 </para>
+             </sect2>
+             <sect2>
+@@ -1478,6 +1488,8 @@
+ </literallayout>
+                      And burst the bounds of consciousness and Time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -3145,6 +3157,8 @@
+ </literallayout>
+                      Lonely his days and splendid like the sun's.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -5111,6 +5125,8 @@
+ </literallayout>
+                      That Godhead's seed might flower in mindless Space.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Four
+ 
+                 </para>
+@@ -6388,9 +6404,12 @@
+ </literallayout>
+                      He broke into another Space and Time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Five 
++                </para>
++		<para dir="rtl">
+                     End of Book One
+-
+                 </para>
+                 <para>
+ 
+@@ -6921,6 +6940,8 @@
+ </literallayout>
+                      On the bare summit of created things.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -7817,6 +7838,8 @@
+ </literallayout>
+                      His destiny lay beyond in larger Space.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -8912,6 +8935,8 @@
+ </literallayout>
+                      Such was the evil mystery of her change.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -10279,6 +10304,8 @@
+ </literallayout>
+                      Around all floated still the nescient haze.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Four
+ 
+                 </para>
+@@ -11850,6 +11877,8 @@
+ </literallayout>
+                      His only sunlight was his spirit's flame.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Five
+ 
+                 </para>
+@@ -13921,6 +13950,8 @@
+ </literallayout>
+                      Or indifferent the Eternal watches Time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Six
+ 
+                 </para>
+@@ -15164,6 +15195,8 @@
+ </literallayout>
+                      He met with his bare spirit naked Hell.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Seven
+ 
+                 </para>
+@@ -16100,6 +16133,8 @@
+ </literallayout>
+                      Matter and spirit mingled and were one.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Eight
+ 
+                 </para>
+@@ -16423,6 +16458,8 @@
+ </literallayout>
+                      Immortality captured Time and carried Life.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Nine
+ 
+                 </para>
+@@ -17986,6 +18023,8 @@
+ </literallayout>
+                      Luminous in a remote and empty air.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Ten
+ 
+                 </para>
+@@ -19198,6 +19237,8 @@
+ </literallayout>
+                      But she remains herself and infinite.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Eleven
+ 
+                 </para>
+@@ -19589,6 +19630,8 @@
+ </literallayout>
+                      On the wide spirit height where all are one.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Twelve
+ 
+                 </para>
+@@ -19964,6 +20007,8 @@
+ </literallayout>
+                      To be was a prison, extinction the escape.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Thirteen
+ 
+                 </para>
+@@ -20496,6 +20541,8 @@
+ </literallayout>
+                      He fell down at her feet unconscious, prone.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Fourteen
+ 
+                 </para>
+@@ -20880,7 +20927,11 @@
+ </literallayout>
+                      His will took up the reins of cosmic Force.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Fifteen 
++                </para>
++		<para dir="rtl">
+                     End of Book Two
+ 
+                 </para>
+@@ -21203,6 +21254,8 @@
+ </literallayout>
+                      Infinite, eternal, unthinkable, alone.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -21658,6 +21711,8 @@
+ </literallayout>
+                      His soul was freed and given to her alone.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -22826,6 +22881,8 @@
+ </literallayout>
+                      That comes through the still self from the Supreme.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -23871,7 +23928,7 @@
+         </sect1>
+     </part>
+     <part>
+-        <title>BOOKS IVVIII
++        <title>BOOKS IV‒VIII
+ </title>
+         <sect1>
+             <title>BOOK FOUR: The Book of Birth and Quest
+@@ -24568,6 +24625,8 @@
+ </literallayout>
+                      A strange and starry head alone in Night.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -25253,6 +25312,8 @@
+ </literallayout>
+                      Apart in herself until her hour of fate.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -25782,6 +25843,8 @@
+ </literallayout>
+                      Delight had fled to search the spacious world.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -26438,7 +26501,11 @@
+ </literallayout>
+                      The spring winds failed; the sky was set like bronze.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Four 
++                </para>
++		<para dir="rtl">
+                     End of Book Four
+ 
+                 </para>
+@@ -26625,6 +26692,8 @@
+ </literallayout>
+                      Love in the wilderness met Savitri.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -27165,6 +27234,8 @@
+ </literallayout>
+                      An hour began, the matrix of new Time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -28068,7 +28139,11 @@
+ </literallayout>
+                      This now remained with her, her heart's constant scene.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three 
++                </para>
++		<para dir="rtl">
+                     End of Book Five
+ 
+                 </para>
+@@ -29600,6 +29675,8 @@
+ </literallayout>
+                      They sat and looked into the eyes of Fate.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -31446,7 +31523,11 @@
+ </literallayout>
+                      Chanted the anthem of eternal love.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two 
++                </para>
++		<para dir="rtl">
+                     End of Book Six
+ 
+                 </para>
+@@ -32103,6 +32184,8 @@
+ </literallayout>
+                      Her human heart spoke to the body's fate.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -33068,6 +33151,8 @@
+ </literallayout>
+                      And must be pushed aside to find her soul.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -34086,6 +34171,8 @@
+ </literallayout>
+                      One felt the silent nearness of the soul.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -35404,6 +35491,8 @@
+ </literallayout>
+                      There shall be light and peace in all the worlds."<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Four
+ 
+                 </para>
+@@ -36107,6 +36196,8 @@
+ </literallayout>
+                      A camp of God is pitched in human time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Five
+ 
+                 </para>
+@@ -37413,6 +37504,8 @@
+ </literallayout>
+                      And drowned the soul in its everlasting peace.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Six
+ 
+                 </para>
+@@ -37904,7 +37997,11 @@
+ </literallayout>
+                      Eternity looked out from her on Time.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Seven 
++                </para>
++		<para dir="rtl">
+                     End of Book Seven
+ 
+                 </para>
+@@ -38289,7 +38386,7 @@
+         </sect1>
+     </part>
+     <part>
+-        <title>BOOKS IXXII
++        <title>BOOKS IX‒XII
+ </title>
+         <sect1>
+             <title>BOOK NINE: The Book of Eternal Night
+@@ -39047,6 +39144,8 @@
+ </literallayout>
+                      A columned shaft of fire and light she rose.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -40018,7 +40117,11 @@
+ </literallayout>
+                      Phantasmal in the dimness moved the three.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two 
++                </para>
++		<para dir="rtl">
+                     End of Book Nine
+ 
+                 </para>
+@@ -40544,6 +40647,8 @@
+ </literallayout>
+                      Immutable like a fixed eternal star.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One
+ 
+                 </para>
+@@ -41496,6 +41601,8 @@
+ </literallayout>
+                      There into the hush from which thou cam'st retire."<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Two
+ 
+                 </para>
+@@ -42889,6 +42996,8 @@
+ </literallayout>
+                      Above was the unseen balance of his fate.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Three
+ 
+                 </para>
+@@ -44857,7 +44966,11 @@
+ </literallayout>
+                      All waited on the unknown inscrutable Will.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto Four 
++                </para>
++		<para dir="rtl">
+                     End of Book Ten
+ 
+                 </para>
+@@ -47889,7 +48002,11 @@
+ </literallayout>
+                      Over wide earth brooded the infinite bliss.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     End of Canto One 
++                </para>
++		<para dir="rtl">
+                     End of Book Eleven
+ 
+                 </para>
+@@ -48605,6 +48722,8 @@
+ </literallayout>
+                      And in her bosom nursed a greater dawn.<literallayout>
+ </literallayout>
++                </para>
++		<para dir="rtl">
+                     THE END
+ 
+                 </para>
+@@ -48665,14 +48784,13 @@
+                 <emphasis>Savitri</emphasis> at the end of the first phase of its composition. But the last manuscript actually completed was in six cantos and an epilogue. After "books" replaced the "cantos" and the number of books increased, some books were worked over several times. Others were hardly touched. There is a partial draft of "Book III / Death", for example; there is none from the stage when "Death" would have been the fourth book. After 1945 when Sri Aurobindo incorporated material from the early poem into what was by then a full-fledged epic, he sometimes went back to a manuscript of the six "cantos" as his starting-point.
+             </para>
+             <para>
+-                <emphasis>Savitri</emphasis> was apparently put aside during most of the 1920s, a period when Sri Aurobindo did little writing. The first evidence of its resumption is found in a letter of 1931. Here he speaks of a radical change in the conception and scope of the poem. Already the subtitle, "A Legend and a Symbol", is present in his mind: "There is a previous draft, the result of the many retouchings of which somebody told you; but in that form it would not have been a ' 
+-                <emphasis>magnum opus</emphasis>' at all. Besides, it would have been a legend and not a symbol. I therefore started recasting the whole thing; only the best passages and lines of the old draft will remain, altered so as to fit into the new frame."
++                <emphasis>Savitri</emphasis> was apparently put aside during most of the 1920s, a period when Sri Aurobindo did little writing. The first evidence of its resumption is found in a letter of 1931. Here he speaks of a radical change in the conception and scope of the poem. Already the subtitle, "A Legend and a Symbol", is present in his mind: "There is a previous draft, the result of the many retouchings of which somebody told you; but in that form it would not have been a '<emphasis>magnum opus</emphasis>' at all. Besides, it would have been a legend and not a symbol. I therefore started recasting the whole thing; only the best passages and lines of the old draft will remain, altered so as to fit into the new frame."
+             </para>
+             <para>
+                 Throughout the thirties and early forties, it was primarily Book One that was affected by this recasting. At first this book was still called "Quest". It extended as far as Savitri's arrival at "The Destined Meeting-Place" (the eventual title of Book Five, Canto One). But in the early thirties, the brief description of the Yoga of King Aswapati near the beginning swelled to hundreds of lines. What was to become the second and longest book of the epic, "The Book of the Traveller of the Worlds", began to take shape.
+             </para>
+             <para>
+-                In a letter of 1936, Sri Aurobindo mentioned a new first book, the "Book of Birth", carved out of the overgrown "Quest". Another letter of the same year reveals the internal structure of this book. It was "divided into sections and the larger sections into subsections". Up to this point, the books had been divided only into passages separated by spaces, as many cantos are now. As these sections increased in length, they were recognised as formal units and began to be named and numbered. Section marks () were usually put before and after the numbers.
++                In a letter of 1936, Sri Aurobindo mentioned a new first book, the "Book of Birth", carved out of the overgrown "Quest". Another letter of the same year reveals the internal structure of this book. It was "divided into sections and the larger sections into subsections". Up to this point, the books had been divided only into passages separated by spaces, as many cantos are now. As these sections increased in length, they were recognised as formal units and began to be named and numbered. Section marks (§) were usually put before and after the numbers.
+             </para>
+             <para>
+                 The Book of Birth, whose last section related the birth and childhood of Savitri, was still disproportionately long and was constantly growing. Early in 1937, Sri Aurobindo expressed his intention of rearranging the opening books into a Book of Beginnings and a Book of Birth and Quest.
