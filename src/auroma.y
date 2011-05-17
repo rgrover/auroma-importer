@@ -55,6 +55,7 @@
 %token SECTION1_CMD
 %token SECTION2_CMD
 %token SECTION3_CMD
+%token SECTION4_CMD
 %token TITLE_CMD
 %token AUTHOR_CMD
 
@@ -614,6 +615,15 @@ paragraphContainerDirective:
     {
         ContainerDirective *section3 = new Section3();
         newDirective(section3);
+    }
+|
+    optionalBlankSpaces
+    SECTION4_CMD
+    optionalBlankSpaces
+    newline
+    {
+        ContainerDirective *section4 = new Section4();
+        newDirective(section4);
     }
 |
     optionalBlankSpaces

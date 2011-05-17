@@ -98,6 +98,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:sect2)/{EOC}   return auromaParserBase::SECTION2_CMD;
 \\(?i:sect3)$        return auromaParserBase::SECTION3_CMD;
 \\(?i:sect3)/{EOC}   return auromaParserBase::SECTION3_CMD;
+\\(?i:sect4)$        return auromaParserBase::SECTION4_CMD;
+\\(?i:sect4)/{EOC}   return auromaParserBase::SECTION4_CMD;
 \\(?i:title)$        return auromaParserBase::TITLE_CMD;
 \\(?i:title)/{EOC}   return auromaParserBase::TITLE_CMD;
 \\(?i:author)$       return auromaParserBase::AUTHOR_CMD;
@@ -105,6 +107,10 @@ extern auromaParserBase::STYPE__ d_val;
 
 \\(?i:par)$          return auromaParserBase::PARA_CMD;
 \\(?i:par)/{EOC}     return auromaParserBase::PARA_CMD;
+\\(?i:spar)$         return auromaParserBase::PARA_CMD;
+\\(?i:spar)/{EOC}    return auromaParserBase::PARA_CMD;
+\\(?i:sparn)$        return auromaParserBase::PARA_CMD;
+\\(?i:sparn)/{EOC}   return auromaParserBase::PARA_CMD;
 
 \\(?i:hn)$           return auromaParserBase::HEADING_NUMBER_CMD;
 \\(?i:hn)/{EOC}      return auromaParserBase::HEADING_NUMBER_CMD;
@@ -185,6 +191,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:BC)[[:blank:]]*          /* ignore */
 \\(?i:bl)$                     /* ignore */
 \\(?i:bl)[[:blank:]]*          /* ignore */
+\\(?i:bi)$                     /* ignore */
+\\(?i:bi)[[:blank:]]*          /* ignore */
 \\(?i:bigskip)$                /* ignore */
 \\(?i:bigskip)/{EOC}           /* ignore */
 \\(?i:dropquote)$              /* ignore */
@@ -193,6 +201,8 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:emptypage)/{EOC}         /* ignore */
 \\(?i:fnquad)$                 /* ignore */
 \\(?i:fnquad)[[:blank:]]*      /* ignore */
+\\(?i:fsc)$                    /* ignore */
+\\(?i:fsc)/{EOC}               /* ignore */
 \\(?i:fsqend)$                 /* ignore */
 \\(?i:fsqend)/{EOC}            /* ignore */
 \\(?i:fsqstart)$               /* ignore */
@@ -221,12 +231,16 @@ extern auromaParserBase::STYPE__ d_val;
 \\(?i:relax)/{EOC}             /* ignore */
 \\(?i:rl)$                     /* ignore */
 \\(?i:rl)[[:blank:]]*          /* ignore */
+\\(?i:sbigcap)$                /* ignore */
+\\(?i:sbigcap)[[:blank:]]*     /* ignore */
 \\(?i:shortlines)$             /* ignore; but needs to be addressed */
 \\(?i:shortlines)/{EOC}        /* ignore; but needs to be addressed */
 \\(?i:si)$                     /* ignore */
 \\(?i:si)[[:blank:]]*          /* ignore */
 \\(?i:text)$                   /* ignore */
 \\(?i:text)[[:blank:]]*        /* ignore */
+\\(?i:thinspace)$              /* ignore */
+\\(?i:thinspace)[[:blank:]]*   /* ignore */
 \\[[:digit:]]$                 /* ignore; but needs to be addressed */
 \\[[:digit:]]/{EOC}            /* ignore; but needs to be addressed */
 
