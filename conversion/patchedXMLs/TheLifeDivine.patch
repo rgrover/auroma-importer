@@ -1,6 +1,6 @@
---- ../xmlsFromAuromaParser/TheLifeDivine.xml	2011-04-29 11:05:58.775896012 +0530
-+++ TheLifeDivine.xml	2011-04-29 11:07:15.075896012 +0530
-@@ -4,20 +4,11 @@
+--- ../xmlsFromAuromaParser/TheLifeDivine.xml	2011-05-17 15:03:45.181989784 +0530
++++ TheLifeDivine.xml	2011-05-17 15:14:59.341990096 +0530
+@@ -4,8 +4,8 @@
          <title>The Life Divine</title>
          <author><personname>Sri Aurobindo</personname></author>
          <copyright>
@@ -11,19 +11,7 @@
          </copyright>
      </info>
      <preface>
--        <title>THE LIFE DIVINE<literallayout>
--</literallayout>
--             Sri Aurobindo<literallayout>
--</literallayout>
--<literallayout>
--</literallayout>
--             Copyright (c) Sri Aurobindo Ashram Trust, Pondicherry, India.</title>
--    </preface>
--    <preface>
-         <title>Publisher's Note</title>
-         <para>
-             <emphasis>The Life Divine</emphasis> first appeared serially in the 
-@@ -33,14 +24,7 @@
+@@ -27,14 +27,7 @@
          </para>
      </preface>
      <book>
@@ -39,7 +27,7 @@
  </title>
          <chapter>
              <title>The Human Aspiration</title>
-@@ -76,9 +60,7 @@
+@@ -70,9 +63,7 @@
              </para>
          </chapter>
          <chapter>
@@ -50,7 +38,7 @@
              <epigraph><para>He energised conscious-force (in the austerity of thought) and came to the knowledge that Matter is the Brahman. For from Matter all existences are born; born, by Matter they increase and enter into Matter in their passing hence. Then he went to Varuna, his father, and said, "Lord, teach me of the Brahman." But he said to him: "Energise (again) the conscious-energy in thee; for the Energy is Brahman." 
                  <attribution>
                      <emphasis>Taittiriya Upanishad.</emphasis></attribution>
-@@ -202,9 +184,7 @@
+@@ -196,9 +187,7 @@
              </para>
          </chapter>
          <chapter>
@@ -61,7 +49,7 @@
              <epigraph><para>All this is the Brahman; this Self is the Brahman and the Self is fourfold.</para></epigraph>
              <blockquote><para>Beyond relation, featureless, unthinkable, in which all is still. 
                  <attribution>
-@@ -2033,7 +2013,28 @@
+@@ -2027,7 +2016,28 @@
                   principles instead of seven, and then we perceive that our existence is a sort of refraction of the divine existence, in inverted order of ascent and descent, thus ranged,—
              </para>
              <para>
@@ -91,7 +79,7 @@
              </para>
              <para>
                  The Divine descends from pure existence through the play of Consciousness-Force and Bliss and the creative medium of Supermind into cosmic being; we ascend from Matter through a developing life, soul and mind and the illuminating medium of Supermind towards the divine being. The knot of the two, the higher and the lower hemisphere,
-@@ -2078,9 +2079,7 @@
+@@ -2072,9 +2082,7 @@
              </para>
          </chapter>
          <chapter>
@@ -102,7 +90,7 @@
              <epigraph><para>There is a Permanent, a Truth hidden by a Truth where the Sun unyokes his horses. The ten hundreds (of his rays) came together—That One. I saw the most glorious of the Forms of the Gods. 
                  <attribution>
                      <emphasis>Rig Veda.</emphasis></attribution>
-@@ -2182,27 +2181,11 @@
+@@ -2176,27 +2184,11 @@
          </chapter>
      </book>
      <book>
@@ -133,7 +121,7 @@
                  <epigraph><para>The Unseen with whom there can be no pragmatic relations, unseizable, featureless, unthinkable, undesignable by name, whose substance is the certitude of One Self, in whom world-existence is stilled, who is all peace and bliss—that is the Self, that is what must be known. 
                      <attribution>
                          <emphasis>Mandukya Upanishad.</emphasis></attribution>
-@@ -2336,9 +2319,7 @@
+@@ -2330,9 +2322,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -144,7 +132,7 @@
                  <epigraph><para>It is there in beings indivisible and as if divided. 
                      <attribution>
                          <emphasis>Gita.</emphasis></attribution>
-@@ -2781,9 +2762,7 @@
+@@ -2775,9 +2765,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -155,7 +143,7 @@
                  <epigraph><para>Thou who hast come to this transient and unhappy world, turn to Me. 
                      <attribution>
                          <emphasis>Gita.</emphasis></attribution>
-@@ -3256,9 +3235,7 @@
+@@ -3250,9 +3238,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -166,7 +154,7 @@
                  <epigraph><para>Some speak of the self-nature of things, others say that it is Time. 
                      <attribution>
                          <emphasis>Swetaswatara Upanishad.</emphasis></attribution>
-@@ -3418,9 +3395,7 @@
+@@ -3412,9 +3398,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -177,7 +165,7 @@
                  <epigraph><para>They see the Self in the Self by the Self. 
                      <attribution>
                          <emphasis>Gita.</emphasis></attribution>
-@@ -3740,9 +3715,7 @@
+@@ -3734,9 +3718,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -188,7 +176,7 @@
                  <epigraph><para>From the kindled fire of Energy of Consciousness, Truth was born and the Law of Truth; from that the Night, from the Night the flowing ocean of being. 
                      <attribution>
                          <emphasis>Rig Veda.</emphasis></attribution>
-@@ -3816,11 +3789,7 @@
+@@ -3810,11 +3792,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -201,7 +189,7 @@
                  <epigraph><para>The Lord accepts the sin and the virtue of none; because knowledge is veiled by Ignorance, mortal men are deluded. 
                      <attribution>
                          <emphasis>Gita.</emphasis></attribution>
-@@ -4014,9 +3983,7 @@
+@@ -4008,9 +3986,7 @@
  
              </para>
          <part>
@@ -212,7 +200,7 @@
              <chapter>
                  <title>Reality and the Integral Knowledge</title>
                  <epigraph><para>This Self is to be won by the Truth and by an integral knowledge. 
-@@ -4140,11 +4107,7 @@
+@@ -4134,11 +4110,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -225,7 +213,7 @@
                  <epigraph><para>When all the desires that cling to the heart are loosed away from it, then the mortal becomes immortal, even here he possesses the Eternal. 
                      <attribution>
                          <emphasis>Brihadaranyaka Upanishad.</emphasis></attribution>
-@@ -4314,9 +4277,7 @@
+@@ -4308,9 +4280,7 @@
                  </para>
              </chapter>
              <chapter>
@@ -236,7 +224,7 @@
                  <epigraph><para>Thou art That, O Swetaketu. 
                      <attribution>
                          <emphasis>Chhandogya Upanishad.</emphasis></attribution>
-@@ -4436,9 +4397,7 @@
+@@ -4430,9 +4400,7 @@
                  </para>
              </chapter>
              <chapter>
