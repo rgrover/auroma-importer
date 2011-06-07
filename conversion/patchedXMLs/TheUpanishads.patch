@@ -1,0 +1,521 @@
+--- ../xmlsFromAuromaParser/TheUpanishads.xml	2011-06-05 14:48:11.751410396 +0530
++++ TheUpanishads.xml	2011-06-05 17:09:12.032918086 +0530
+@@ -4,8 +4,8 @@
+         <title>The Upanishads</title>
+         <author><personname>Sri Aurobindo</personname></author>
+         <copyright>
+-            <year>[PLEASE UPDATE AS NECESSARY]2010</year>
+-            <holder>[PLEASE UPDATE AS NECESSARY]Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
++            <year>2010</year>
++            <holder>Sri Aurobindo Ashram Trust, Pondicherry, India.</holder>
+         </copyright>
+     </info>
+     <preface>
+@@ -81,20 +81,34 @@
+ </title>
+         <preface>
+             <title>Isha Upanishad</title>
+-            <para>
+-                <emphasis>īśā vāsyamidaṁ sarvaṁ yat kiñca jagatyāṁ jagat, tena tyaktena bhuñjīthā mā gṛdhaḥ kasya sviddhanam. 1.</emphasis>
+-            </para>
++	    <orderedlist>
++	      <listitem>
++	    <para>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>īśā vāsyamidaṁ sarvaṁ yat kiñca jagatyāṁ jagat,</emphasis></member>
++		  <member><emphasis>tena tyaktena bhuñjīthā mā gṛdhaḥ kasya sviddhanam. </emphasis> || 1 ||</member>
++		</simplelist>
++	      </blockquote>
++	    </para>
+             <para>
+                 All this is for habitation
+                 <footnote><para>There are three possible senses of 
+                     <emphasis>vāsyam</emphasis>, "to be clothed", "to be worn as garment" and "to be inhabited". The first is the ordinarily accepted meaning. Shankara explains it in this significance, that we must lose the sense of this unreal objective universe in the sole perception of the pure Brahman. So explained the first line becomes a contradiction of the whole thought of the Upanishad which teaches the reconciliation, by the perception of essential Unity, of the apparently incompatible opposites, God and the World, Renunciation and Enjoyment, Action and internal Freedom, the One and the Many, Being and its Becomings, the passive divine Impersonality and the active divine Personality, the Knowledge and the Ignorance, the Becoming and the Not-Becoming, Life on earth and beyond and the supreme Immortality. The image is of the world either as a garment or as a dwelling-place for the informing and governing Spirit. The latter significance agrees better with the thought of the Upanishad.</para></footnote>
+                  by the Lord, whatsoever is individual universe of movement in the universal motion. By that renounced thou shouldst enjoy; lust not after any man's possession.
+             </para>
++	      </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>kūrvanneveha karmāṇi jijīviṣecchataṁ samāḥ, evaṁ tvayi nānyatheto'sti na karma lipyate nare. 2.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>kūrvanneveha karmāṇi jijīviṣecchataṁ samāḥ,</emphasis></member>
++		  <member><emphasis>evaṁ tvayi nānyatheto'sti na karma lipyate nare.</emphasis> || 2 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                2. Doing verily
++                Doing verily
+                 <footnote><para>
+                     <emphasis>Kurvanneva</emphasis>. The stress of the word 
+                     <emphasis>eva</emphasis> gives the force, "doing works indeed, and not refraining from them".</para></footnote>
+@@ -104,22 +118,35 @@
+                     <emphasis>karma</emphasis> in exactly the opposite sense, "evil action". The verse, he tells us, represents a concession to the ignorant; the enlightened soul abandons works and the world and goes to the forest. The whole expression and construction in this rendering become forced and unnatural. The rendering I give seems to me the simple and straightforward sense of the Upanishad.</para></footnote>
+ 
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>asūryā nāma te lokā andhena tamasāvṛtāḥ, tāṁste pretyābhigacchanti ye ke cātmahano janāḥ. 3.</emphasis>
+-
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>asūryā nāma te lokā andhena tamasāvṛtāḥ,</emphasis></member>
++		  <member><emphasis>tāṁste pretyābhigacchanti ye ke cātmahano janāḥ.</emphasis> || 3 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                3. Sunless
++                Sunless
+                 <footnote><para>We have two readings, 
+                     <emphasis>asūryāḥ</emphasis>, sunless, and 
+                     <emphasis>asūryāḥ</emphasis>, Titanic or undivine. The third verse is, in the thought structure of the Upanishad, the starting-point for the final movement in the last four verses. Its suggestions are there taken up and worked out. The prayer to the Sun refers back in thought to the sunless worlds and their blind gloom, which are recalled in the ninth and twelfth verses. The sun and his rays are intimately connected in other Upanishads also with the worlds of Light and their natural opposite is the dark and sunless, not the Titanic worlds.</para></footnote>
+                  are those worlds and enveloped in blind gloom whereto all they in their passing hence resort who are slayers of their souls.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>anejadekaṁ manaso javīyo nainaddevā āpnuvan pūrvamarṣat, taddhāvato'nyānatyeti tiṣṭhat tasminnapo mātariśvā dadhāti. 4.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>anejadekaṁ manaso javīyo nainaddevā āpnuvan pūrvamarṣat,</emphasis></member>
++		  <member><emphasis>taddhāvato'nyānatyeti tiṣṭhat tasminnapo mātariśvā dadhāti.</emphasis> || 4 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                4. One unmoving that is swifter than Mind, That the Gods reach not, for It progresses ever in front. That, standing, passes beyond others as they run. In That the Master of Life
++                One unmoving that is swifter than Mind, That the Gods reach not, for It progresses ever in front. That, standing, passes beyond others as they run. In That the Master of Life
+                 <footnote><para>
+                     <emphasis>Mātariśvan</emphasis> seems to mean "he who extends himself in the Mother or the container" whether that be the containing mother element, Ether, or the material energy called Earth in the Veda and spoken of there as the Mother. It is a Vedic epithet of the God Vayu, who, representing the divine principle in the Life-energy, Prana, extends himself in Matter and vivifies its forms. Here it signifies the divine Life-power that presides in all forms of cosmic activity.</para></footnote>
+                  establishes the Waters.
+@@ -128,84 +155,160 @@
+                     <emphasis>apas</emphasis>, work, action. Shankara, however, renders it by the plural, works. The difficulty only arises because the true Vedic sense of the word had been forgotten and it came to be taken as referring to the fourth of the five elemental states of Matter, the liquid. Such a reference would be entirely irrelevant to the context. But the Waters, otherwise called the seven streams or the seven fostering Cows, are the Vedic symbol for the seven cosmic principles and their activities, three inferior, the physical, vital and mental, four superior, the divine Truth, the divine Bliss, the divine Will and Consciousness, and the divine Being. On this conception also is founded the ancient idea of the seven worlds in each of which the seven principles are separately active by their various harmonies. This is, obviously, the right significance of the word in the Upanishad.</para></footnote>
+ 
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>tadejati tannaijati tad dūre tadvantike, tadantarasya sarvasya tadu sarvasyāsya bāhyataḥ. 5.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>tadejati tannaijati tad dūre tadvantike,</emphasis></member>
++		  <member><emphasis>tadantarasya sarvasya tadu sarvasyāsya bāhyataḥ.</emphasis> || 5 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                5. That moves and That moves not; That is far and the same is near; That is within all this and That also is outside all this.
+-
++                That moves and That moves not; That is far and the same is near; That is within all this and That also is outside all this.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>yastu sarvāṇi bhūtāni ātmanyevānupaśyati, sarvabhūteṣu cātmānam tato na vijugupsate. 6.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>yastu sarvāṇi bhūtāni ātmanyevānupaśyati,</emphasis></member>
++		  <member><emphasis>sarvabhūteṣu cātmānam tato na vijugupsate.</emphasis> || 6 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                6. But he who sees everywhere the Self in all existences and all existences in the Self, shrinks not thereafter from aught.
++                But he who sees everywhere the Self in all existences and all existences in the Self, shrinks not thereafter from aught.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>yasmin sarvāṇi bhūtāni ātmaivābhūd vijānataḥ, tatra ko mohaḥ kaḥ śoka ekatvamanupaśyataḥ. 7.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>yasmin sarvāṇi bhūtāni ātmaivābhūd vijānataḥ,</emphasis></member>
++		  <member><emphasis>tatra ko mohaḥ kaḥ śoka ekatvamanupaśyataḥ.</emphasis> || 7 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                7. He in whom it is the Self-Being that has become all existences that are Becomings,
++                He in whom it is the Self-Being that has become all existences that are Becomings,
+                 <footnote><para>The words 
+                     <emphasis>sarvāṇi bhūtāni</emphasis>, literally, "all things that have become", is opposed to Atman, self-existent and immutable being. The phrase means ordinarily "all creatures", but its literal sense is evidently insisted on in the expression 
+                     <emphasis>bhūtāni abhūt</emphasis> "became the Becomings". The idea is the acquisition in man of the supreme consciousness by which the one Self in him extends itself to embrace all creatures and realises the eternal act by which that One manifests itself in the multiple forms of the universal motion.</para></footnote>
+                  for he has the perfect knowledge, how shall he be deluded, whence shall he have grief who sees everywhere oneness?
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>sa paryagācchukramakāyamavraṇamasnāviraṁ śuddhamapāpaviddham, kavirmanīṣī paribhūḥ svayambhūryāthātathyato'rthān vyadadhācchāśvatībhyaḥ samābhyaḥ. 8.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>sa paryagācchukramakāyamavraṇamasnāviraṁ śuddhamapāpaviddham,</emphasis></member>
++		  <member><emphasis>kavirmanīṣī paribhūḥ svayambhūryāthātathyato'rthān vyadadhācchāśvatībhyaḥ samābhyaḥ.</emphasis> || 8 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                8. It is He that has gone abroad—That which is bright, bodi-less, without scar of imperfection, without sinews, pure, unpierced by evil. The Seer, the Thinker,
++                It is He that has gone abroad—That which is bright, bodi-less, without scar of imperfection, without sinews, pure, unpierced by evil. The Seer, the Thinker,
+                 <footnote><para>There is a clear distinction in Vedic thought between 
+                     <emphasis>kavi</emphasis>, the seer and 
+                     <emphasis>manīṣī</emphasis>, the thinker. The former indicates the divine supra-intellectual Knowledge which by direct vision and illumination sees the reality, the principles and the forms of things in their true relations, the latter, the labouring mentality, which works from the divided consciousness through the possibilities of things downward to the actual manifestation in form and upward to their reality in the self-existent Brahman.</para></footnote>
+                  the One who becomes everywhere, the Self-existent has ordered objects perfectly according to their nature from years sempiternal.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>andhaṁ tamaḥ praviśanti ye'vidyāmupāsate, tato bhūya iva te tamo ya u vidyāyāṁ ratāḥ. 9.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>andhaṁ tamaḥ praviśanti ye'vidyāmupāsate,</emphasis></member>
++		  <member><emphasis>tato bhūya iva te tamo ya u vidyāyāṁ ratāḥ.</emphasis> || 9 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                9. Into a blind darkness they enter who follow after the Ignorance, they as if into a greater darkness who devote themselves to the Knowledge alone.
++                Into a blind darkness they enter who follow after the Ignorance, they as if into a greater darkness who devote themselves to the Knowledge alone.
+ 
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>anyadevāhurvidyayā'nyadāhuravidyayā, iti śuśruma dhīrāṇāṁ ye nastadvicacakṣire. 10.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>anyadevāhurvidyayā'nyadāhuravidyayā,</emphasis></member>
++		  <member><emphasis>iti śuśruma dhīrāṇāṁ ye nastadvicacakṣire.</emphasis> || 10 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                10. Other, verily,
++                Other, verily,
+                 <footnote><para>
+                     <emphasis>Anyadeva—eva</emphasis> here gives to 
+                     <emphasis>anyad</emphasis> the force, "Quite other than the result described in the preceding verse is that to which lead the Knowledge and the Ignorance." We have the explanation of 
+                     <emphasis>anyad</emphasis> in the verse that follows. The ordinary rendering, "Knowledge has one result, Ignorance another", would be an obvious commonplace announced with an exaggerated pompousness, adding nothing to the thought and without any place in the sequence of the ideas.</para></footnote>
+                  it is said, is that which comes by the Knowledge, other that which comes by the Ignorance; this is the lore we have received from the wise who revealed That to our understanding.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>vidyāñcāvidyāñca yastadvedobhayaṁ saha, avidyayā mṛtyuṁ tīrtvā vidyayāmṛtamaśnute. 11.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>vidyāñcāvidyāñca yastadvedobhayaṁ saha,</emphasis></member>
++		  <member><emphasis>avidyayā mṛtyuṁ tīrtvā vidyayāmṛtamaśnute.</emphasis> || 11 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                11. He who knows That as both in one, the Knowledge and the Ignorance, by the Ignorance crosses beyond death and by the Knowledge enjoys Immortality.
++                He who knows That as both in one, the Knowledge and the Ignorance, by the Ignorance crosses beyond death and by the Knowledge enjoys Immortality.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>andhaṁ tamaḥ praviśanti ye'sambhūtimupāsate, tato bhūya iva te tamo ya u sambhūtyāṁ ratāḥ. 12.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>andhaṁ tamaḥ praviśanti ye'sambhūtimupāsate,</emphasis></member>
++		  <member><emphasis>tato bhūya iva te tamo ya u sambhūtyāṁ ratāḥ.</emphasis> || 12 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                12. Into a blind darkness they enter who follow after the Non-Birth, they as if into a greater darkness who devote themselves to the Birth alone.
++                Into a blind darkness they enter who follow after the Non-Birth, they as if into a greater darkness who devote themselves to the Birth alone.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>anyadevāhuḥ sambhavādanyadāhurasambhavāt, iti śuśruma dhīrāṇāṁ ye nastadvicacakṣire. 13.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>anyadevāhuḥ sambhavādanyadāhurasambhavāt,</emphasis></member>
++		  <member><emphasis>iti śuśruma dhīrāṇāṁ ye nastadvicacakṣire.</emphasis> || 13 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                13. Other, verily, it is said, is that which comes by the Birth, other that which comes by the Non-Birth; this is the lore we have received from the wise who revealed That to our understanding.
++                Other, verily, it is said, is that which comes by the Birth, other that which comes by the Non-Birth; this is the lore we have received from the wise who revealed That to our understanding.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>sambhūtiñca vināśañca yastadvedobhayaṁ saha, vināśena mṛtyuṁ tīrtvā sambhūtyā'mṛtamaśnute. 14.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>sambhūtiñca vināśañca yastadvedobhayaṁ saha,</emphasis></member>
++		  <member><emphasis>vināśena mṛtyuṁ tīrtvā sambhūtyā'mṛtamaśnute.</emphasis> || 14 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                14. He who knows That as both in one, the Birth and the
++                He who knows That as both in one, the Birth and the
+                  dissolution of Birth, by the dissolution crosses beyond death and by the Birth enjoys Immortality.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>hiraṇmayena pātreṇa satyasyāpihitaṁ mukham, tat tvaṁ pūṣannapāvṛṇu satyadharmāya dṛṣṭaye. 15.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>hiraṇmayena pātreṇa satyasyāpihitaṁ mukham,</emphasis></member>
++		  <member><emphasis>tat tvaṁ pūṣannapāvṛṇu satyadharmāya dṛṣṭaye.</emphasis> || 15 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+                 15. The face of Truth is covered with a brilliant golden lid; that do thou remove, O Fosterer,
+@@ -214,17 +317,31 @@
+                     <emphasis>yāthātathyataḥ</emphasis>, a luminous power proceeding from the Father of all existence, he reveals in himself the divine Purusha of whom all beings are the manifestations. His rays are the thoughts that proceed luminously from the Truth, the Vast, but become deflected and distorted, broken up and disordered in the reflecting and dividing principle, Mind. They form there the golden lid which covers the face of the Truth. The Seer prays to Surya to cast them into right order and relation and then draw them together into the unity of revealed truth. The result of this inner process is the perception of the oneness of all beings in the divine Soul of the Universe.</para></footnote>
+                  for the law of the Truth, for sight.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>pūṣannekarṣe yama sūrya prājāpatya vyūha raśmīn samūha, tejo yat te rūpaṁ kalyāṇatamaṁ tatte paśyāmi yo'sāvasau puruṣaḥ so'hamasmi. 16.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>pūṣannekarṣe yama sūrya prājāpatya vyūha raśmīn samūha,</emphasis></member>
++		  <member><emphasis>tejo yat te rūpaṁ kalyāṇatamaṁ tatte paśyāmi yo'sāvasau puruṣaḥ so'hamasmi.</emphasis> || 16 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                16. O Fosterer, O sole Seer, O Ordainer, O illumining Sun, O power of the Father of creatures, marshal thy rays, draw together thy light; the Lustre which is thy most blessed form of all, that in Thee I behold. The Purusha there and there, He am I.
++                O Fosterer, O sole Seer, O Ordainer, O illumining Sun, O power of the Father of creatures, marshal thy rays, draw together thy light; the Lustre which is thy most blessed form of all, that in Thee I behold. The Purusha there and there, He am I.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>vāyuranilamamṛtamathedaṁ bhasmāntaṁ śarīram, AUM krato smara kṛtaṁ smara krato smara kṛtaṁ smara. 17.</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>vāyuranilamamṛtamathedaṁ bhasmāntaṁ śarīram,</emphasis></member>
++		  <member><emphasis>AUM krato smara kṛtaṁ smara krato smara kṛtaṁ smara.</emphasis> || 17 || </member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                17. The Breath of things
++                The Breath of things
+                 <footnote><para>Vayu, called elsewhere Matarisvan, the Life Energy in the universe. In the light of Surya he reveals himself as an immortal principle of existence of which birth and death and life in the body are only particular and external processes.</para></footnote>
+                  is an immortal Life, but of this body
+                  ashes are the end. OM! O Will,
+@@ -232,11 +349,18 @@
+                     <emphasis>kratu</emphasis> means sometimes the action itself, sometimes the effective power behind action represented in mental consciousness by the will. Agni is this power. He is divine force which manifests first in matter as heat and light and material energy and then, taking different forms in the other principles of man's consciousness, leads him by a progressive manifestation upwards to the Truth and the Bliss.</para></footnote>
+                  remember, that which was done remember! O Will, remember, that which was done remember.
+             </para>
++	    </listitem>
++	    <listitem>
+             <para>
+-                <emphasis>agne naya supathā rāye asmān viśvāni deva vayunāni vidvān, yuyodhyasmajjuhurāṇameno bhūyiṣṭhāṁ te namauktiṁ vidhema || 18||</emphasis>
++	      <blockquote>
++		<simplelist>
++		  <member><emphasis>agne naya supathā rāye asmān viśvāni deva vayunāni vidvān,</emphasis></member>
++		  <member><emphasis>yuyodhyasmajjuhurāṇameno bhūyiṣṭhāṁ te namauktiṁ vidhema</emphasis> || 18 ||</member>
++		</simplelist>
++	      </blockquote>
+             </para>
+             <para>
+-                18. O god Agni, knowing all things that are manifested, lead us by the good path to the felicity; remove from us the devious attraction of sin.
++                O god Agni, knowing all things that are manifested, lead us by the good path to the felicity; remove from us the devious attraction of sin.
+                 <footnote><para>Sin, in the conception of the Veda, from which this verse is taken bodily, is that which excites and hurries the faculties into deviation from the good path. There is a straight road or road of naturally increasing light and truth, 
+                     <emphasis>ṛjuḥ panthāḥ</emphasis>, 
+                     <emphasis>ṛtasya panthāḥ</emphasis>, leading over infinite levels and towards infinite vistas, 
+@@ -250,6 +374,8 @@
+                     <emphasis>rāye</emphasis>. That state of beatitude is the intended self-content in the principle of pure Love and Joy, which the Vedic initiates regarded as the source of the divine existence in the universe and the foundation of the divine life in the human being. It is the deformation of this principle by egoism which appears as desire and the lust of possession in the lower worlds.</para></footnote>
+ 
+             </para>
++	    </listitem>
++	  </orderedlist>
+         </preface>
+         <part>
+             <title>Analysis</title>
+@@ -337,11 +463,13 @@
+                     <title>The Inhabiting Godhead: Life and Action</title>
+                     <sect3>
+                         <title>Verses 1–3
+-                            <footnote><para>1. All this is for habitation by the Lord, whatsoever is individual universe of movement in the universal motion. By that renounced thou shouldst enjoy; lust not after any man's possession.<literallayout>
+-</literallayout>
+-                                2. Doing verily works in this world one should wish to live a hundred years. Thus it is in thee and not otherwise than this; action cleaves not to a man.<literallayout>
+-</literallayout>
+-                                 3. Sunless are those worlds and enveloped in blind gloom whereto all they in their passing hence resort who are slayers of their souls.</para></footnote>
++                            <footnote><para>
++	    <simplelist>
++	      <member>1. All this is for habitation by the Lord, whatsoever is individual universe of movement in the universal motion. By that renounced thou shouldst enjoy; lust not after any man's possession.</member>
++	      <member>2. Doing verily works in this world one should wish to live a hundred years. Thus it is in thee and not otherwise than this; action cleaves not to a man.</member>
++	      <member>3. Sunless are those worlds and enveloped in blind gloom whereto all they in their passing hence resort who are slayers of their souls.</member>
++	    </simplelist>
++	    </para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -475,9 +603,11 @@
+                     <title>Brahman: Oneness of God and the World</title>
+                     <sect3>
+                         <title>Verses 4–5
+-                            <footnote><para>4. One unmoving that is swifter than Mind; That the Gods reach not, for It progresses ever in front. That, standing, passes beyond others as they run. In That the Master of Life establishes the Waters.<literallayout>
+-</literallayout>
+-                                5. That moves and That moves not; That is far and the same is near; That is within all this and That also is outside all this.</para></footnote>
++                            <footnote><para>
++	    <simplelist>
++	      <member>4. One unmoving that is swifter than Mind; That the Gods reach not, for It progresses ever in front. That, standing, passes beyond others as they run. In That the Master of Life establishes the Waters.</member>
++	      <member>5. That moves and That moves not; That is far and the same is near; That is within all this and That also is outside all this.</member>
++	    </simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -722,9 +852,11 @@
+                     <title>Self-Realisation</title>
+                     <sect3>
+                         <title>Verses 6–7
+-                            <footnote><para>6. But he who sees everywhere the Self in all existences and all existences in the Self, shrinks not thereafter from aught.<literallayout>
+-</literallayout>
+-                                7. He in whom it is the Self-Being that has become all existences that are Becomings, for he has the perfect knowledge, how shall he be deluded, whence shall he have grief who sees everywhere oneness?</para></footnote>
++                            <footnote><para>
++			      <simplelist>
++				<member>6. But he who sees everywhere the Self in all existences and all existences in the Self, shrinks not thereafter from aught.</member>
++				<member>7. He in whom it is the Self-Being that has become all existences that are Becomings, for he has the perfect knowledge, how shall he be deluded, whence shall he have grief who sees everywhere oneness?</member>
++			    </simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -1189,11 +1321,12 @@
+                     <title>Knowledge And Ignorance</title>
+                     <sect3>
+                         <title>Verses 9–11
+-                            <footnote><para>9. Into a blind darkness they enter who follow after the Ignorance, they as if into a greater darkness who devote themselves to the Knowledge alone.<literallayout>
+-</literallayout>
+-                                10. Other, verily, it is said, is that which comes by the Knowledge, other that which comes by the Ignorance; this is the lore we have received from the wise who revealed That to our understanding.<literallayout>
+-</literallayout>
+-                                11. He who knows That as both in one, the Knowledge and the Ignorance, by the Ignorance crosses beyond death and by the Knowledge enjoys Immortality.</para></footnote>
++                            <footnote><para>
++			      <simplelist>
++				<member>9. Into a blind darkness they enter who follow after the Ignorance, they as if into a greater darkness who devote themselves to the Knowledge alone.</member>
++				<member>10. Other, verily, it is said, is that which comes by the Knowledge, other that which comes by the Ignorance; this is the lore we have received from the wise who revealed That to our understanding.</member>
++				<member>11. He who knows That as both in one, the Knowledge and the Ignorance, by the Ignorance crosses beyond death and by the Knowledge enjoys Immortality.</member>
++			    </simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -1387,11 +1520,12 @@
+                     <title>Birth And Non-Birth</title>
+                     <sect3>
+                         <title>Verses 12–14
+-                            <footnote><para>12. Into a blind darkness they enter who follow after the Non-Birth, they as if into a greater darkness who devote themselves to the Birth alone.<literallayout>
+-</literallayout>
+-                                13. Other, verily, it is said, is that which comes by the Birth, other that which comes by the Non-Birth; this is the lore we have received from the wise who revealed That to our understanding.<literallayout>
+-</literallayout>
+-                                14. He who knows That as both in one, the Birth and the dissolution of Birth, by the dissolution crosses beyond death and by the Birth enjoys Immortality.</para></footnote>
++                            <footnote><para>
++			      <simplelist>
++				<member>12. Into a blind darkness they enter who follow after the Non-Birth, they as if into a greater darkness who devote themselves to the Birth alone.</member>
++				<member>13. Other, verily, it is said, is that which comes by the Birth, other that which comes by the Non-Birth; this is the lore we have received from the wise who revealed That to our understanding.</member>
++				<member>14. He who knows That as both in one, the Birth and the dissolution of Birth, by the dissolution crosses beyond death and by the Birth enjoys Immortality.</member>
++			    </simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -1476,9 +1610,11 @@
+                     <title>The Worlds—Surya</title>
+                     <sect3>
+                         <title>Verses 15–16
+-                            <footnote><para>15. The face of Truth is covered with a brilliant golden lid; that do thou remove, O Fosterer, for the law of the Truth, for sight.<literallayout>
+-</literallayout>
+-                                16. O Fosterer, O sole Seer, O Ordainer, O illumining Sun, O power of the Father of creatures, marshal thy rays, draw together thy light; the Lustre which is thy most blessed form of all, that in Thee I behold. The Purusha there and there, He am I.</para></footnote>
++                            <footnote><para>
++			      <simplelist>
++				<member>15. The face of Truth is covered with a brilliant golden lid; that do thou remove, O Fosterer, for the law of the Truth, for sight.</member>
++				<member>16. O Fosterer, O sole Seer, O Ordainer, O illumining Sun, O power of the Father of creatures, marshal thy rays, draw together thy light; the Lustre which is thy most blessed form of all, that in Thee I behold. The Purusha there and there, He am I.</member>
++			    </simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -1670,9 +1806,10 @@
+                     <title>Action and the Divine Will</title>
+                     <sect3>
+                         <title>Verses 17–18
+-                            <footnote><para>17. The Breath of things is an immortal life, but of this body ashes are the end—OM! O Will, remember, that which was done remember! O Will, remember, that which was done remember.<literallayout>
+-</literallayout>
+-                                18. O god Agni, knowing all things that are manifested, lead us by the good path to the felicity; remove from us the devious attraction of sin. To thee completest speech of submission we address.</para></footnote>
++                            <footnote><para>
++			      <simplelist>
++				<member>17. The Breath of things is an immortal life, but of this body ashes are the end—OM! O Will, remember, that which was done remember! O Will, remember, that which was done remember.</member>
++				<member>18. O god Agni, knowing all things that are manifested, lead us by the good path to the felicity; remove from us the devious attraction of sin. To thee completest speech of submission we address.</member></simplelist></para></footnote>
+ </title>
+                     </sect3>
+                     <sect3>
+@@ -1795,34 +1932,53 @@
+                     <para>
+                         The pairs of opposites successively taken up by the Upanishad and resolved are, in the order of their succession:
+                     </para>
++		    <orderedlist>
++		      <listitem>
+                     <para>
+-                        1. The Conscious Lord and phenomenal Nature.
++                        The Conscious Lord and phenomenal Nature.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        2. Renunciation and Enjoyment.
++                        Renunciation and Enjoyment.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        3. Action in Nature and Freedom in the Soul.
+-
++                        Action in Nature and Freedom in the Soul.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        4. The One stable Brahman and the multiple Movement.
++                        The One stable Brahman and the multiple Movement.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        5. Being and Becoming.
++                        Being and Becoming.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        6. The Active Lord and the indifferent Akshara Brahman.
++                        The Active Lord and the indifferent Akshara Brahman.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        7. Vidya and Avidya.
++                        Vidya and Avidya.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        8. Birth and Non-Birth.
++                        Birth and Non-Birth.
+                     </para>
++		      </listitem>
++		      <listitem>
+                     <para>
+-                        9. Works and Knowledge.
++                        Works and Knowledge.
+                     </para>
++		      </listitem>
++		    </orderedlist>
+                     <para>
+                         These discords are thus successively resolved:
+                     </para>
