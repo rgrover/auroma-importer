@@ -3172,7 +3172,7 @@ Page 97
 \par
 \ht Kena Upanishad
 
-\part
+\preface
 \par
 Page 99
 
@@ -5966,13 +5966,13 @@ Page 190
 
 \ht Mundaka Upanishad
 
-\sect1
+\preface
 \par
 Page 191
 
 \ht Mundaka Upanishad
 
-\sect3
+\sect1
 \par
 \ht First Mundaka; Chapter I
 \par
@@ -6515,13 +6515,13 @@ Page 210
 
 \ht Katha Upanishad
 
-\sect1
+\preface
 \par
 Page 211
 
 \ht Katha Upanishad of the Black Yajurveda
 
-\sect3
+\sect1
 \par
 \ht First Cycle: First Chapter
 \par
